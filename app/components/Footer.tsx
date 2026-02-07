@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,9 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
-            <span className="text-2xl font-bold text-white tracking-tight">
-              Campfire
-            </span>
+            <Image
+              src="/campfire-logo.png"
+              alt="Campfire"
+              width={140}
+              height={32}
+              className="h-8 w-auto brightness-0 invert"
+            />
             <p className="mt-4 text-sm leading-relaxed">
               Deeply human leadership development designed to flex and scale
               with you.

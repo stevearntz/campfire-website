@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, League_Spartan } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const spartan = League_Spartan({
+  variable: "--font-spartan",
   subsets: ["latin"],
 });
 
@@ -22,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased font-sans`}>
+      <body className={`${inter.variable} ${spartan.variable} antialiased font-sans`}>
         <Navbar />
         {children}
         <Footer />

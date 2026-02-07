@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
@@ -20,12 +21,19 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-gray-900 tracking-tight">
-          Campfire
+        <Link href="/">
+          <Image
+            src="/campfire-logo.png"
+            alt="Campfire"
+            width={140}
+            height={32}
+            className="h-8 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 font-[family-name:var(--font-spartan)]">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -39,7 +47,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 font-[family-name:var(--font-spartan)]">
           <Link
             href="#"
             className="px-5 py-2 text-sm font-semibold text-white bg-[#7C3AED] rounded-lg hover:bg-[#6D28D9] transition-colors"
