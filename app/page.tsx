@@ -4,16 +4,152 @@ export default function Home() {
   return (
     <main>
       {/* ==================== HERO ==================== */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center gap-12">
-          {/* Left — copy */}
-          <div className="flex-1 z-10">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
+      <section className="relative overflow-hidden bg-white min-h-[65vh] flex items-start">
+        {/* Full-width topographic wave background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <svg
+            viewBox="0 0 1440 900"
+            className="absolute inset-0 w-full h-full"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              {/* Deep purple wave gradient */}
+              <linearGradient id="wave1" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.9" />
+                <stop offset="40%" stopColor="#8B5CF6" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#A78BFA" stopOpacity="0.5" />
+              </linearGradient>
+              {/* Mid purple wave gradient */}
+              <linearGradient id="wave2" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.7" />
+                <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#C4B5FD" stopOpacity="0.3" />
+              </linearGradient>
+              {/* Light purple wave gradient */}
+              <linearGradient id="wave3" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.5" />
+                <stop offset="50%" stopColor="#C4B5FD" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#DDD6FE" stopOpacity="0.2" />
+              </linearGradient>
+              {/* Lightest wave gradient */}
+              <linearGradient id="wave4" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#C4B5FD" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#EDE9FE" stopOpacity="0.15" />
+              </linearGradient>
+              {/* Magenta accent gradient */}
+              <linearGradient id="wave5" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                <stop offset="60%" stopColor="#A855F7" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#D946EF" stopOpacity="0.4" />
+              </linearGradient>
+            </defs>
+
+            {/* Layer 1: Deepest / back — sweeps from bottom-left to upper-right */}
+            <path
+              className="wave-layer-1"
+              d="M-100,900 L-100,750 C100,680 300,620 500,650 C700,680 850,580 1050,520 C1250,460 1350,380 1540,350 L1540,900 Z"
+              fill="url(#wave1)"
+            />
+
+            {/* Layer 2: Mid-deep */}
+            <path
+              className="wave-layer-2"
+              d="M-100,900 L-100,800 C150,740 350,700 550,720 C750,740 900,640 1100,590 C1300,540 1400,470 1540,430 L1540,900 Z"
+              fill="url(#wave2)"
+            />
+
+            {/* Layer 3: Mid-light */}
+            <path
+              className="wave-layer-3"
+              d="M-100,900 L-100,830 C200,790 380,770 580,790 C780,810 950,710 1150,660 C1350,610 1420,550 1540,520 L1540,900 Z"
+              fill="url(#wave3)"
+            />
+
+            {/* Layer 4: Light wash */}
+            <path
+              className="wave-layer-4"
+              d="M-100,900 L-100,860 C250,830 450,830 650,845 C850,860 1000,780 1200,740 C1400,700 1460,650 1540,620 L1540,900 Z"
+              fill="url(#wave4)"
+            />
+
+            {/* Layer 5: Magenta accent ridge */}
+            <path
+              className="wave-layer-5"
+              d="M-100,900 L-100,820 C50,790 200,760 400,770 C600,780 750,700 950,660 C1150,620 1300,540 1540,490 L1540,900 Z"
+              fill="url(#wave5)"
+              opacity="0.15"
+            />
+
+            {/* Topographic contour lines */}
+            <path
+              className="topo-line-1"
+              d="M-50,780 C150,720 350,690 550,710 C750,730 900,640 1100,590 C1300,540 1450,480 1500,460"
+              fill="none"
+              stroke="rgba(255,255,255,0.25)"
+              strokeWidth="1.5"
+            />
+            <path
+              className="topo-line-2"
+              d="M-50,750 C180,690 380,660 560,680 C740,700 920,610 1120,560 C1320,510 1460,450 1500,430"
+              fill="none"
+              stroke="rgba(255,255,255,0.18)"
+              strokeWidth="1.2"
+            />
+            <path
+              className="topo-line-3"
+              d="M-50,720 C200,660 400,640 580,655 C760,670 940,580 1140,535 C1340,490 1470,430 1500,410"
+              fill="none"
+              stroke="rgba(255,255,255,0.12)"
+              strokeWidth="1"
+            />
+            <path
+              className="topo-line-4"
+              d="M-50,690 C220,630 420,615 600,628 C780,641 960,555 1160,510 C1360,465 1480,410 1500,390"
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="1"
+            />
+            <path
+              className="topo-line-5"
+              d="M-50,660 C240,605 440,590 620,600 C800,610 980,530 1180,488 C1380,446 1490,395 1500,375"
+              fill="none"
+              stroke="rgba(255,255,255,0.06)"
+              strokeWidth="0.8"
+            />
+
+            {/* Additional topo lines higher up — more subtle */}
+            <path
+              className="topo-line-3"
+              d="M400,620 C550,590 700,560 850,540 C1000,520 1150,470 1300,430 C1400,405 1500,380 1540,370"
+              fill="none"
+              stroke="rgba(255,255,255,0.1)"
+              strokeWidth="1"
+            />
+            <path
+              className="topo-line-1"
+              d="M500,580 C650,555 780,530 920,510 C1060,490 1200,445 1350,410 C1430,393 1500,370 1540,355"
+              fill="none"
+              stroke="rgba(255,255,255,0.07)"
+              strokeWidth="0.8"
+            />
+
+            {/* Small dot accents at ridge peaks */}
+            <circle cx="1180" cy="530" r="5" fill="rgba(255,255,255,0.3)" />
+            <circle cx="1180" cy="530" r="2" fill="rgba(255,255,255,0.6)" />
+            <circle cx="920" cy="620" r="4" fill="rgba(255,255,255,0.2)" />
+          </svg>
+        </div>
+
+        {/* Content overlay */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 md:pt-20 pb-24 w-full">
+          <div className="max-w-2xl">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
               Build Better Leaders
               <br />
               <span className="text-[#7C3AED]">&mdash;Your Way, at Scale</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed max-w-lg">
+            <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg">
               Flexible leadership development designed for modern, growing
               teams. Workshops and tools that actually stick.
             </p>
@@ -31,34 +167,6 @@ export default function Home() {
                 Talk to Us
               </Link>
             </div>
-          </div>
-
-          {/* Right — decorative wave */}
-          <div className="flex-1 relative h-[400px] w-full">
-            <svg
-              viewBox="0 0 500 400"
-              className="absolute inset-0 w-full h-full"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.15" />
-                  <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.2" />
-                  <stop offset="100%" stopColor="#C4B5FD" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
-              <path d="M0,300 Q125,200 250,250 T500,200 L500,400 L0,400 Z" fill="url(#waveGrad)" />
-              <path d="M0,320 Q125,250 250,280 T500,230 L500,400 L0,400 Z" fill="rgba(124,58,237,0.08)" />
-              <path d="M0,350 Q125,300 250,320 T500,270 L500,400 L0,400 Z" fill="rgba(124,58,237,0.05)" />
-              {/* Topo lines */}
-              <path d="M50,150 Q175,100 300,150 T550,120" fill="none" stroke="rgba(124,58,237,0.1)" strokeWidth="1.5" />
-              <path d="M30,180 Q155,130 280,180 T530,150" fill="none" stroke="rgba(124,58,237,0.07)" strokeWidth="1.5" />
-              <path d="M70,210 Q195,160 320,210 T570,180" fill="none" stroke="rgba(124,58,237,0.05)" strokeWidth="1.5" />
-              {/* Dot accents */}
-              <circle cx="400" cy="100" r="4" fill="rgba(124,58,237,0.15)" />
-              <circle cx="350" cy="160" r="6" fill="rgba(124,58,237,0.1)" />
-              <circle cx="420" cy="180" r="3" fill="rgba(124,58,237,0.2)" />
-            </svg>
           </div>
         </div>
       </section>
