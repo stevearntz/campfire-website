@@ -5,7 +5,7 @@ export default function ContentPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#7C3AED] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Content That Changes Behavior
@@ -53,7 +53,7 @@ export default function ContentPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
+                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100"
               >
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {item.title}
@@ -68,7 +68,7 @@ export default function ContentPage() {
       </section>
 
       {/* How we're different */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -100,7 +100,7 @@ export default function ContentPage() {
             </div>
 
             {/* Campfire Column */}
-            <div className="bg-[#7C3AED] rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 text-white">
+            <div className="bg-[#6E3FCC] rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 text-white">
               <h3 className="font-bold mb-6">Campfire</h3>
               <ul className="space-y-4 text-sm text-white/90">
                 {[
@@ -149,7 +149,7 @@ export default function ContentPage() {
             ].map((fw) => (
               <div
                 key={fw}
-                className="bg-gray-50 rounded-xl p-4 text-center border border-gray-100"
+                className="bg-[#F5F4F1] rounded-xl p-4 text-center border border-gray-100"
               >
                 <p className="text-sm font-medium text-gray-700">{fw}</p>
               </div>
@@ -159,7 +159,7 @@ export default function ContentPage() {
       </section>
 
       {/* Content Options */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -195,7 +195,7 @@ export default function ContentPage() {
                 key={option.title}
                 className={`rounded-2xl p-8 border ${
                   option.featured
-                    ? "bg-[#7C3AED] text-white border-[#7C3AED] shadow-lg shadow-purple-200"
+                    ? "bg-[#6E3FCC] text-white border-[#6E3FCC] shadow-lg shadow-purple-200"
                     : "bg-white text-gray-900 border-gray-100 shadow-sm"
                 }`}
               >
@@ -203,7 +203,7 @@ export default function ContentPage() {
                   className={`text-xs font-semibold px-3 py-1 rounded-full ${
                     option.featured
                       ? "bg-white/20 text-white"
-                      : "bg-purple-50 text-[#7C3AED]"
+                      : "bg-purple-50 text-[#6E3FCC]"
                   }`}
                 >
                   {option.tag}
@@ -234,7 +234,7 @@ export default function ContentPage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white bg-[#7C3AED] rounded-lg hover:bg-[#6D28D9] transition-colors"
+            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
           >
             Book a Call
           </Link>

@@ -59,7 +59,7 @@ export default function CustomersPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#7C3AED] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Trusted by Teams That Care
@@ -104,10 +104,10 @@ export default function CustomersPage() {
           {caseStudies.map((study, i) => (
             <div
               key={study.company}
-              className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden"
+              className="bg-[#F5F4F1] rounded-2xl border border-gray-100 overflow-hidden"
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-[#7C3AED] to-[#9333EA] px-8 py-6">
+              <div className="bg-gradient-to-r from-[#6E3FCC] to-[#7E4FD0] px-8 py-6">
                 <div className="flex flex-wrap items-center gap-4">
                   <h3 className="text-xl font-bold text-white">
                     {study.company}
@@ -153,7 +153,7 @@ export default function CustomersPage() {
                         key={result}
                         className="flex items-start gap-2 text-sm text-gray-600"
                       >
-                        <span className="text-[#7C3AED] mt-0.5">
+                        <span className="text-[#6E3FCC] mt-0.5">
                           &#10003;
                         </span>
                         {result}
@@ -178,7 +178,7 @@ export default function CustomersPage() {
       </section>
 
       {/* Pull Quotes */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
             What people are saying
@@ -225,7 +225,7 @@ export default function CustomersPage() {
 
       {/* CTA */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#6D28D9] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Your team could be next
@@ -235,7 +235,7 @@ export default function CustomersPage() {
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-[#7C3AED] bg-white rounded-lg hover:bg-gray-100 transition-colors"
+              className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors"
             >
               Book a Call
             </Link>

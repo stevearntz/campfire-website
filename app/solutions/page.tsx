@@ -13,7 +13,7 @@ const solutions = [
       "Building trust with a new team",
       "Managing former peers",
     ],
-    color: "bg-[#7C3AED]",
+    color: "bg-[#6E3FCC]",
   },
   {
     title: "Leading Through Change",
@@ -27,7 +27,7 @@ const solutions = [
       "Keeping people focused during uncertainty",
       "Leading through grief and loss",
     ],
-    color: "bg-[#9333EA]",
+    color: "bg-[#7E4FD0]",
   },
   {
     title: "Building Belonging & Psychological Safety",
@@ -41,7 +41,7 @@ const solutions = [
       "Building inclusive team norms",
       "Moving from awareness to action",
     ],
-    color: "bg-[#A855F7]",
+    color: "bg-[#8F65D9]",
   },
   {
     title: "Manager Effectiveness",
@@ -55,7 +55,7 @@ const solutions = [
       "Performance conversations that drive growth",
       "Managing energy, not just time",
     ],
-    color: "bg-[#7C3AED]",
+    color: "bg-[#6E3FCC]",
   },
   {
     title: "Team Alignment",
@@ -69,7 +69,7 @@ const solutions = [
       "Creating shared accountability",
       "Navigating cross-functional collaboration",
     ],
-    color: "bg-[#6D28D9]",
+    color: "bg-[#5B34AB]",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function SolutionsPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#7C3AED] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               What We Help With
@@ -111,7 +111,7 @@ export default function SolutionsPage() {
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                   {solution.title}
                 </h2>
-                <p className="text-[#7C3AED] font-medium mb-4">
+                <p className="text-[#6E3FCC] font-medium mb-4">
                   {solution.tagline}
                 </p>
                 <p className="text-gray-500 leading-relaxed mb-6">
@@ -126,7 +126,7 @@ export default function SolutionsPage() {
                       key={topic}
                       className="flex items-start gap-2 text-sm text-gray-600"
                     >
-                      <span className="text-[#7C3AED] mt-0.5">&#10003;</span>
+                      <span className="text-[#6E3FCC] mt-0.5">&#10003;</span>
                       {topic}
                     </li>
                   ))}
@@ -145,7 +145,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Why Campfire */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Why Campfire vs. the alternatives?
@@ -172,7 +172,7 @@ export default function SolutionsPage() {
                 key={item.vs}
                 className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-left"
               >
-                <h3 className="text-sm font-bold text-[#7C3AED] mb-3">
+                <h3 className="text-sm font-bold text-[#6E3FCC] mb-3">
                   {item.vs}
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
@@ -196,7 +196,7 @@ export default function SolutionsPage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white bg-[#7C3AED] rounded-lg hover:bg-[#6D28D9] transition-colors"
+            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
           >
             Book a Call
           </Link>

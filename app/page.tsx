@@ -16,31 +16,31 @@ export default function Home() {
             <defs>
               {/* Deep purple wave gradient */}
               <linearGradient id="wave1" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.9" />
-                <stop offset="40%" stopColor="#8B5CF6" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#A78BFA" stopOpacity="0.5" />
+                <stop offset="0%" stopColor="#6E3FCC" stopOpacity="0.9" />
+                <stop offset="40%" stopColor="#7E52D6" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#9A7ADE" stopOpacity="0.5" />
               </linearGradient>
               {/* Mid purple wave gradient */}
               <linearGradient id="wave2" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.7" />
-                <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#C4B5FD" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="#7E52D6" stopOpacity="0.7" />
+                <stop offset="50%" stopColor="#9A7ADE" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#BCA8E8" stopOpacity="0.3" />
               </linearGradient>
               {/* Light purple wave gradient */}
               <linearGradient id="wave3" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.5" />
-                <stop offset="50%" stopColor="#C4B5FD" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#DDD6FE" stopOpacity="0.2" />
+                <stop offset="0%" stopColor="#9A7ADE" stopOpacity="0.5" />
+                <stop offset="50%" stopColor="#BCA8E8" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#D6CDF0" stopOpacity="0.2" />
               </linearGradient>
               {/* Lightest wave gradient */}
               <linearGradient id="wave4" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#C4B5FD" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#EDE9FE" stopOpacity="0.15" />
+                <stop offset="0%" stopColor="#BCA8E8" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#EBE6F6" stopOpacity="0.15" />
               </linearGradient>
               {/* Magenta accent gradient */}
               <linearGradient id="wave5" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8" />
-                <stop offset="60%" stopColor="#A855F7" stopOpacity="0.6" />
+                <stop offset="0%" stopColor="#7E52D6" stopOpacity="0.8" />
+                <stop offset="60%" stopColor="#8F65D9" stopOpacity="0.6" />
                 <stop offset="100%" stopColor="#D946EF" stopOpacity="0.4" />
               </linearGradient>
             </defs>
@@ -147,7 +147,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
               Build Better Leaders
               <br />
-              <span className="text-[#7C3AED]">&mdash;Your Way, at Scale</span>
+              <span className="text-[#6E3FCC]">&mdash;Your Way, at Scale</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg">
               Flexible leadership development designed for modern, growing
@@ -156,13 +156,13 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="#how-it-works"
-                className="px-7 py-3.5 text-sm font-semibold text-white bg-[#7C3AED] rounded-lg hover:bg-[#6D28D9] transition-colors"
+                className="px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
               >
                 See How It Works
               </Link>
               <Link
                 href="/contact"
-                className="px-7 py-3.5 text-sm font-semibold text-[#7C3AED] border-2 border-[#7C3AED] rounded-lg hover:bg-[#7C3AED]/5 transition-colors"
+                className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] border-2 border-[#6E3FCC] rounded-lg hover:bg-[#6E3FCC]/5 transition-colors"
               >
                 Talk to Us
               </Link>
@@ -172,11 +172,11 @@ export default function Home() {
       </section>
 
       {/* ==================== WHAT CAMPFIRE IS ==================== */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-[#F5F4F1] py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Leadership development that&apos;s{" "}
-            <span className="text-[#7C3AED]">deeply human</span>
+            <span className="text-[#6E3FCC]">deeply human</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
             Campfire gives lean HR and talent teams everything they need to grow
@@ -239,25 +239,25 @@ export default function Home() {
                 step: "01",
                 title: "Content",
                 desc: "Research-backed frameworks delivered in short, digestible formats that leaders can immediately understand.",
-                color: "bg-[#7C3AED]",
+                color: "bg-[#6E3FCC]",
               },
               {
                 step: "02",
                 title: "Conversation",
                 desc: "Live, facilitated sessions where leaders learn from each other — sharing real challenges, not hypotheticals.",
-                color: "bg-[#9333EA]",
+                color: "bg-[#7E4FD0]",
               },
               {
                 step: "03",
                 title: "Application",
                 desc: "Practical tools and exercises that leaders apply to their actual work within days, not someday.",
-                color: "bg-[#A855F7]",
+                color: "bg-[#8F65D9]",
               },
               {
                 step: "04",
                 title: "Reinforcement",
                 desc: "Follow-up nudges, peer accountability, and manager check-ins that turn one-time learning into lasting habits.",
-                color: "bg-[#C084FC]",
+                color: "bg-[#A88AE0]",
               },
             ].map((item) => (
               <div key={item.step} className="relative">
@@ -279,7 +279,7 @@ export default function Home() {
       </section>
 
       {/* ==================== WHO IT'S FOR ==================== */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -350,7 +350,7 @@ export default function Home() {
 
           {/* Testimonials */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+            <div className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100">
               <p className="text-gray-600 leading-relaxed italic">
                 &ldquo;Campfire gave our managers a shared language and real
                 tools they actually use. The sessions sparked conversations we
@@ -366,7 +366,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+            <div className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100">
               <p className="text-gray-600 leading-relaxed italic">
                 &ldquo;We went from zero leadership development to a fully
                 running program in two weeks. Our managers are more confident
@@ -387,7 +387,7 @@ export default function Home() {
 
       {/* ==================== FINAL CTA ==================== */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#6D28D9] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Ready to build a culture that performs?
@@ -399,7 +399,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="px-8 py-4 text-sm font-semibold text-[#7C3AED] bg-white rounded-lg hover:bg-gray-100 transition-colors"
+                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Book a Call
               </Link>

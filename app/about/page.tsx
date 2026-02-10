@@ -5,7 +5,7 @@ export default function AboutPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#7C3AED] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               About Campfire
@@ -50,7 +50,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why We Exist */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-3xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
             Why we exist
@@ -82,7 +82,7 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-[#7C3AED] rounded-2xl p-10 text-white">
+            <div className="bg-[#6E3FCC] rounded-2xl p-10 text-white">
               <h3 className="text-sm font-bold uppercase tracking-wider opacity-60 mb-4">
                 Our Mission
               </h3>
@@ -91,7 +91,7 @@ export default function AboutPage() {
                 manager, at every level, in every kind of company.
               </p>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-10 border border-gray-100">
+            <div className="bg-[#F5F4F1] rounded-2xl p-10 border border-gray-100">
               <h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">
                 Our Vision
               </h3>
@@ -106,7 +106,7 @@ export default function AboutPage() {
       </section>
 
       {/* What We Believe */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
             What we believe
@@ -162,7 +162,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#6D28D9] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Want to learn more?
@@ -173,7 +173,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-[#7C3AED] bg-white rounded-lg hover:bg-gray-100 transition-colors"
+              className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors"
             >
               Get in Touch
             </Link>

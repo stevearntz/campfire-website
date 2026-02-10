@@ -9,7 +9,7 @@ export default function ContactPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#7C3AED] via-[#9333EA] to-[#7C3AED] topo-pattern py-20">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Let&apos;s Talk
@@ -53,7 +53,7 @@ export default function ContactPage() {
                   </h3>
                   <a
                     href="mailto:hello@getcampfire.com"
-                    className="text-[#7C3AED] text-sm font-medium hover:underline"
+                    className="text-[#6E3FCC] text-sm font-medium hover:underline"
                   >
                     hello@getcampfire.com
                   </a>
@@ -65,7 +65,7 @@ export default function ContactPage() {
                   <a
                     href="https://www.linkedin.com/company/getcampfire"
                     target="_blank"
-                    className="text-[#7C3AED] text-sm font-medium hover:underline"
+                    className="text-[#6E3FCC] text-sm font-medium hover:underline"
                   >
                     LinkedIn
                   </a>
@@ -101,7 +101,7 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20 focus:border-[#7C3AED]"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                       />
                     </div>
                     <div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20 focus:border-[#7C3AED]"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                       />
                     </div>
                   </div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     <input
                       type="email"
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20 focus:border-[#7C3AED]"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                     />
                   </div>
 
@@ -134,7 +134,7 @@ export default function ContactPage() {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20 focus:border-[#7C3AED]"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                     />
                   </div>
 
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     </label>
                     <select
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20 focus:border-[#7C3AED] text-gray-500"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC] text-gray-500"
                     >
                       <option value="">Select...</option>
                       <option>1-50 employees</option>
@@ -161,14 +161,14 @@ export default function ContactPage() {
                     </label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20 focus:border-[#7C3AED] resize-none"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC] resize-none"
                       placeholder="Tell us a bit about your team and what you're hoping to achieve..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 text-sm font-semibold text-white bg-[#7C3AED] rounded-lg hover:bg-[#6D28D9] transition-colors"
+                    className="w-full py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
                   >
                     Send Message
                   </button>
