@@ -6,7 +6,7 @@ export default function ContentPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Content That Changes Behavior
             </h1>

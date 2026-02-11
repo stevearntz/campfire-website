@@ -60,7 +60,7 @@ export default function CustomersPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Trusted by Teams That Care
             </h1>
@@ -226,7 +226,7 @@ export default function CustomersPage() {
       {/* CTA */}
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
-          <div className="max-w-3xl mx-auto px-6 text-center">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Your team could be next
             </h2>

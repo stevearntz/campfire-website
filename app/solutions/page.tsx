@@ -1,5 +1,115 @@
 import Link from "next/link";
 
+function SolutionIllustration({ index }: { index: number }) {
+  const illustrations = [
+    // New Manager Readiness — person ascending steps
+    <svg key="0" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <rect width="320" height="260" rx="16" fill="#F8F5FC" />
+      {/* Steps */}
+      <rect x="60" y="190" width="60" height="30" rx="4" fill="#6E3FCC" opacity="0.15" />
+      <rect x="120" y="160" width="60" height="60" rx="4" fill="#6E3FCC" opacity="0.2" />
+      <rect x="180" y="130" width="60" height="90" rx="4" fill="#6E3FCC" opacity="0.3" />
+      {/* Person on top step */}
+      <circle cx="210" cy="105" r="14" fill="#6E3FCC" opacity="0.7" />
+      <rect x="204" y="119" width="12" height="8" rx="4" fill="#6E3FCC" opacity="0.5" />
+      {/* Star / achievement */}
+      <path d="M255 85 L258 93 L267 93 L260 99 L263 107 L255 102 L247 107 L250 99 L243 93 L252 93 Z" fill="#6E3FCC" opacity="0.4" />
+      {/* Arrow going up */}
+      <path d="M90 185 L90 155 M82 163 L90 155 L98 163" stroke="#6E3FCC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.3" />
+    </svg>,
+
+    // Leading Through Change — compass with shifting paths
+    <svg key="1" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <rect width="320" height="260" rx="16" fill="#F8F5FC" />
+      {/* Compass circle */}
+      <circle cx="160" cy="125" r="55" stroke="#7E4FD0" strokeWidth="2" opacity="0.2" />
+      <circle cx="160" cy="125" r="45" stroke="#7E4FD0" strokeWidth="1.5" opacity="0.15" />
+      {/* Compass needle */}
+      <path d="M160 80 L168 125 L160 135 L152 125 Z" fill="#7E4FD0" opacity="0.5" />
+      <path d="M160 170 L168 125 L160 115 L152 125 Z" fill="#7E4FD0" opacity="0.2" />
+      {/* Cardinal dots */}
+      <circle cx="160" cy="70" r="3" fill="#7E4FD0" opacity="0.4" />
+      <circle cx="160" cy="180" r="3" fill="#7E4FD0" opacity="0.4" />
+      <circle cx="105" cy="125" r="3" fill="#7E4FD0" opacity="0.4" />
+      <circle cx="215" cy="125" r="3" fill="#7E4FD0" opacity="0.4" />
+      {/* Winding path below */}
+      <path d="M80 210 Q120 195 160 210 Q200 225 240 210" stroke="#7E4FD0" strokeWidth="2.5" strokeLinecap="round" opacity="0.25" fill="none" />
+      <path d="M80 225 Q120 210 160 225 Q200 240 240 225" stroke="#7E4FD0" strokeWidth="2" strokeLinecap="round" opacity="0.15" fill="none" />
+    </svg>,
+
+    // Building Belonging — connected people in a circle
+    <svg key="2" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <rect width="320" height="260" rx="16" fill="#F8F5FC" />
+      {/* Center heart/shield */}
+      <path d="M160 110 C160 95 145 85 135 95 C125 105 135 120 160 140 C185 120 195 105 185 95 C175 85 160 95 160 110 Z" fill="#8F65D9" opacity="0.3" />
+      {/* People around in a circle */}
+      <circle cx="160" cy="60" r="12" fill="#8F65D9" opacity="0.5" />
+      <circle cx="210" cy="85" r="12" fill="#8F65D9" opacity="0.4" />
+      <circle cx="225" cy="140" r="12" fill="#8F65D9" opacity="0.35" />
+      <circle cx="200" cy="190" r="12" fill="#8F65D9" opacity="0.3" />
+      <circle cx="120" cy="190" r="12" fill="#8F65D9" opacity="0.3" />
+      <circle cx="95" cy="140" r="12" fill="#8F65D9" opacity="0.35" />
+      <circle cx="110" cy="85" r="12" fill="#8F65D9" opacity="0.4" />
+      {/* Connection lines */}
+      <path d="M160 72 L210 85 L225 140 L200 190 L120 190 L95 140 L110 85 L160 72" stroke="#8F65D9" strokeWidth="1.5" opacity="0.2" fill="none" />
+      {/* Inner connections */}
+      <line x1="160" y1="72" x2="200" y2="190" stroke="#8F65D9" strokeWidth="1" opacity="0.1" />
+      <line x1="160" y1="72" x2="120" y2="190" stroke="#8F65D9" strokeWidth="1" opacity="0.1" />
+      <line x1="110" y1="85" x2="225" y2="140" stroke="#8F65D9" strokeWidth="1" opacity="0.1" />
+      <line x1="210" y1="85" x2="95" y2="140" stroke="#8F65D9" strokeWidth="1" opacity="0.1" />
+    </svg>,
+
+    // Manager Effectiveness — dashboard/dials
+    <svg key="3" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <rect width="320" height="260" rx="16" fill="#F8F5FC" />
+      {/* Main gauge */}
+      <path d="M110 170 A60 60 0 0 1 210 170" stroke="#6E3FCC" strokeWidth="8" strokeLinecap="round" opacity="0.15" fill="none" />
+      <path d="M110 170 A60 60 0 0 1 195 120" stroke="#6E3FCC" strokeWidth="8" strokeLinecap="round" opacity="0.5" fill="none" />
+      {/* Needle */}
+      <line x1="160" y1="170" x2="188" y2="128" stroke="#6E3FCC" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      <circle cx="160" cy="170" r="5" fill="#6E3FCC" opacity="0.5" />
+      {/* Mini metrics */}
+      <rect x="75" y="195" width="50" height="35" rx="6" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.2" fill="none" />
+      <rect x="81" y="210" width="20" height="4" rx="2" fill="#6E3FCC" opacity="0.2" />
+      <rect x="81" y="218" width="35" height="3" rx="1.5" fill="#6E3FCC" opacity="0.1" />
+      <rect x="135" y="195" width="50" height="35" rx="6" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.2" fill="none" />
+      <rect x="141" y="210" width="28" height="4" rx="2" fill="#6E3FCC" opacity="0.3" />
+      <rect x="141" y="218" width="35" height="3" rx="1.5" fill="#6E3FCC" opacity="0.1" />
+      <rect x="195" y="195" width="50" height="35" rx="6" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.2" fill="none" />
+      <rect x="201" y="210" width="32" height="4" rx="2" fill="#6E3FCC" opacity="0.4" />
+      <rect x="201" y="218" width="35" height="3" rx="1.5" fill="#6E3FCC" opacity="0.1" />
+      {/* Target icon top right */}
+      <circle cx="245" cy="80" r="18" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.15" fill="none" />
+      <circle cx="245" cy="80" r="10" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.2" fill="none" />
+      <circle cx="245" cy="80" r="3" fill="#6E3FCC" opacity="0.4" />
+    </svg>,
+
+    // Team Alignment — arrows converging
+    <svg key="4" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <rect width="320" height="260" rx="16" fill="#F8F5FC" />
+      {/* Converging arrows */}
+      <path d="M80 80 L160 130" stroke="#5B34AB" strokeWidth="2.5" strokeLinecap="round" opacity="0.3" />
+      <path d="M240 80 L160 130" stroke="#5B34AB" strokeWidth="2.5" strokeLinecap="round" opacity="0.3" />
+      <path d="M80 180 L160 130" stroke="#5B34AB" strokeWidth="2.5" strokeLinecap="round" opacity="0.3" />
+      <path d="M240 180 L160 130" stroke="#5B34AB" strokeWidth="2.5" strokeLinecap="round" opacity="0.3" />
+      <path d="M160 60 L160 130" stroke="#5B34AB" strokeWidth="2.5" strokeLinecap="round" opacity="0.3" />
+      {/* Center convergence point */}
+      <circle cx="160" cy="130" r="16" fill="#5B34AB" opacity="0.2" />
+      <circle cx="160" cy="130" r="8" fill="#5B34AB" opacity="0.4" />
+      {/* People dots at arrow origins */}
+      <circle cx="80" cy="80" r="10" fill="#5B34AB" opacity="0.25" />
+      <circle cx="240" cy="80" r="10" fill="#5B34AB" opacity="0.25" />
+      <circle cx="80" cy="180" r="10" fill="#5B34AB" opacity="0.25" />
+      <circle cx="240" cy="180" r="10" fill="#5B34AB" opacity="0.25" />
+      <circle cx="160" cy="60" r="10" fill="#5B34AB" opacity="0.25" />
+      {/* Forward arrow from center */}
+      <path d="M160 146 L160 210 M150 198 L160 210 L170 198" stroke="#5B34AB" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+    </svg>,
+  ];
+
+  return illustrations[index] || null;
+}
+
 const solutions = [
   {
     title: "New Manager Readiness",
@@ -79,7 +189,7 @@ export default function SolutionsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               What We Help With
             </h1>
@@ -133,11 +243,11 @@ export default function SolutionsPage() {
                 </ul>
               </div>
 
-              {/* Visual accent */}
+              {/* Illustration */}
               <div className="flex-1 flex items-center justify-center">
-                <div
-                  className={`w-full h-64 rounded-2xl ${solution.color} opacity-10`}
-                />
+                <div className="w-full max-w-xs">
+                  <SolutionIllustration index={i} />
+                </div>
               </div>
             </div>
           ))}
