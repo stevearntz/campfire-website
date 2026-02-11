@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main>
       {/* ==================== HERO ==================== */}
-      <section className="relative overflow-hidden bg-white min-h-[65vh] flex items-start">
+      <section className="relative overflow-hidden bg-white min-h-[60vh] flex items-start">
         {/* Full-width topographic wave background */}
         <div className="absolute inset-0 pointer-events-none">
           <svg
@@ -57,29 +57,185 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 md:pt-20 pb-24 w-full">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
-              Build better leaders
-              <br />
-              <span className="text-[#6E3FCC]">&mdash;your way, at scale</span>
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg">
-              Flexible leadership development for modern, growing teams.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="#how-it-works"
-                className="px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
-              >
-                See How It Works
-              </Link>
-              <Link
-                href="/contact"
-                className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] border-2 border-[#6E3FCC] rounded-lg hover:bg-[#6E3FCC]/5 transition-colors"
-              >
-                Talk to Us
-              </Link>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-16 md:pt-28 pb-16 w-full">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+            {/* Text */}
+            <div className="flex-1 max-w-xl">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
+                Build better leaders
+                <br />
+                <span className="text-[#6E3FCC]">&mdash;your way, at scale</span>
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg">
+                Flexible leadership development for modern, growing teams.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="#how-it-works"
+                  className="px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+                >
+                  See How It Works
+                </Link>
+                <Link
+                  href="/contact"
+                  className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] border-2 border-[#6E3FCC] rounded-lg hover:bg-[#6E3FCC]/5 transition-colors"
+                >
+                  Talk to Us
+                </Link>
+              </div>
+            </div>
+
+            {/* Hero illustration — Heroku-style wireframe */}
+            <div className="flex-1 hidden md:block max-w-lg">
+              <svg viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+                {/* ---- BACK LAYER: Admin Dashboard ---- */}
+                <g transform="translate(80, 0)">
+                  {/* Window chrome */}
+                  <rect x="0" y="0" width="340" height="240" rx="8" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.3" />
+                  <line x1="0" y1="28" x2="340" y2="28" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  {/* Window dots */}
+                  <circle cx="16" cy="14" r="4" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
+                  <circle cx="30" cy="14" r="4" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
+                  <circle cx="44" cy="14" r="4" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
+                  {/* Tab labels */}
+                  <rect x="70" y="8" width="50" height="12" rx="3" fill="#6E3FCC" opacity="0.12" />
+                  <rect x="128" y="8" width="50" height="12" rx="3" fill="#6E3FCC" opacity="0.06" />
+                  {/* Sidebar */}
+                  <rect x="0" y="28" width="80" height="212" fill="#6E3FCC" opacity="0.04" />
+                  <line x1="80" y1="28" x2="80" y2="240" stroke="#6E3FCC" strokeWidth="1" opacity="0.1" />
+                  {/* Sidebar items */}
+                  <rect x="12" y="44" width="56" height="8" rx="3" fill="#6E3FCC" opacity="0.15" />
+                  <rect x="12" y="62" width="48" height="8" rx="3" fill="#6E3FCC" opacity="0.08" />
+                  <rect x="12" y="80" width="52" height="8" rx="3" fill="#6E3FCC" opacity="0.08" />
+                  <rect x="12" y="98" width="40" height="8" rx="3" fill="#6E3FCC" opacity="0.08" />
+                  {/* Main content — schedule rows */}
+                  <text x="96" y="48" fontSize="7" fill="#6E3FCC" opacity="0.3" fontFamily="sans-serif" fontWeight="600">PROGRAM SCHEDULE</text>
+                  {/* Schedule row 1 */}
+                  <rect x="96" y="58" width="228" height="28" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" />
+                  <circle cx="112" cy="72" r="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="124" y="66" width="70" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
+                  <rect x="124" y="75" width="45" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="270" y="66" width="40" height="12" rx="4" fill="#6E3FCC" opacity="0.1" />
+                  {/* Schedule row 2 */}
+                  <rect x="96" y="92" width="228" height="28" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" />
+                  <circle cx="112" cy="106" r="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="124" y="100" width="80" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
+                  <rect x="124" y="109" width="55" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="270" y="100" width="40" height="12" rx="4" fill="#6E3FCC" opacity="0.15" />
+                  {/* Schedule row 3 */}
+                  <rect x="96" y="126" width="228" height="28" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" />
+                  <circle cx="112" cy="140" r="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="124" y="134" width="65" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
+                  <rect x="124" y="143" width="50" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="270" y="134" width="40" height="12" rx="4" fill="#6E3FCC" opacity="0.1" />
+                  {/* Stats row at bottom */}
+                  <rect x="96" y="170" width="68" height="52" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.1" />
+                  <rect x="106" y="182" width="30" height="6" rx="2" fill="#6E3FCC" opacity="0.2" />
+                  <rect x="106" y="196" width="48" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="106" y="206" width="36" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="176" y="170" width="68" height="52" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.1" />
+                  <rect x="186" y="182" width="24" height="6" rx="2" fill="#6E3FCC" opacity="0.15" />
+                  <rect x="186" y="196" width="48" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="186" y="206" width="40" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="256" y="170" width="68" height="52" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.1" />
+                  <rect x="266" y="182" width="36" height="6" rx="2" fill="#6E3FCC" opacity="0.25" />
+                  <rect x="266" y="196" width="48" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="266" y="206" width="32" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                </g>
+
+                {/* ---- MIDDLE LAYER: Live Workshop / Video ---- */}
+                <g transform="translate(0, 130)">
+                  <rect x="0" y="0" width="260" height="185" rx="8" fill="white" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" />
+                  <rect x="0" y="0" width="260" height="185" rx="8" fill="white" />
+                  <rect x="0" y="0" width="260" height="185" rx="8" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
+                  {/* Top bar */}
+                  <rect x="0" y="0" width="260" height="24" rx="8" fill="#6E3FCC" opacity="0.08" />
+                  <rect x="0" y="12" width="260" height="12" fill="#6E3FCC" opacity="0.08" />
+                  {/* Live indicator */}
+                  <circle cx="16" cy="12" r="4" fill="#6E3FCC" opacity="0.5" />
+                  <rect x="26" y="8" width="28" height="8" rx="3" fill="#6E3FCC" opacity="0.15" />
+                  {/* Session title */}
+                  <rect x="70" y="8" width="100" height="7" rx="2" fill="#6E3FCC" opacity="0.15" />
+                  {/* Main video area — facilitator */}
+                  <rect x="12" y="32" width="148" height="100" rx="6" fill="#6E3FCC" opacity="0.06" />
+                  {/* Facilitator silhouette */}
+                  <circle cx="86" cy="68" r="16" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.25" />
+                  <path d="M66 100 Q76 88 86 85 Q96 88 106 100" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.2" fill="none" />
+                  {/* Presentation element inside video */}
+                  <rect x="24" y="108" width="50" height="16" rx="3" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
+                  <rect x="28" y="112" width="30" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
+                  <rect x="28" y="118" width="40" height="3" rx="1" fill="#6E3FCC" opacity="0.06" />
+                  {/* Participant grid — right side */}
+                  <rect x="170" y="32" width="78" height="46" rx="4" fill="#6E3FCC" opacity="0.05" />
+                  <circle cx="193" cy="48" r="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="185" y="60" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
+                  <circle cx="233" cy="48" r="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="225" y="60" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
+                  <rect x="170" y="84" width="78" height="46" rx="4" fill="#6E3FCC" opacity="0.05" />
+                  <circle cx="193" cy="100" r="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="185" y="112" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
+                  <circle cx="233" cy="100" r="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="225" y="112" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
+                  {/* Bottom toolbar */}
+                  <line x1="12" y1="142" x2="248" y2="142" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.1" />
+                  {/* Mic icon */}
+                  <rect x="100" y="150" width="16" height="22" rx="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  {/* Camera icon */}
+                  <rect x="124" y="153" width="18" height="14" rx="3" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <circle cx="133" cy="160" r="4" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
+                  {/* Chat icon */}
+                  <rect x="150" y="152" width="16" height="14" rx="3" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="154" y="156" width="8" height="2" rx="1" fill="#6E3FCC" opacity="0.1" />
+                  <rect x="154" y="160" width="6" height="2" rx="1" fill="#6E3FCC" opacity="0.1" />
+                </g>
+
+                {/* ---- FRONT LAYER: Content Library Cards ---- */}
+                <g transform="translate(280, 200)">
+                  <rect x="0" y="0" width="220" height="200" rx="8" fill="white" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" />
+                  <rect x="0" y="0" width="220" height="200" rx="8" fill="white" />
+                  <rect x="0" y="0" width="220" height="200" rx="8" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
+                  {/* Header */}
+                  <text x="16" y="24" fontSize="7" fill="#6E3FCC" opacity="0.35" fontFamily="sans-serif" fontWeight="600">CONTENT LIBRARY</text>
+                  <rect x="160" y="12" width="44" height="16" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.15" />
+                  <rect x="168" y="18" width="28" height="4" rx="2" fill="#6E3FCC" opacity="0.1" />
+                  {/* Session card 1 */}
+                  <rect x="14" y="38" width="192" height="44" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="24" y="46" width="10" height="10" rx="2" fill="#6E3FCC" opacity="0.2" />
+                  <path d="M27 49 L27 54 L32 51.5 Z" fill="#6E3FCC" opacity="0.3" />
+                  <rect x="42" y="46" width="90" height="5" rx="2" fill="#6E3FCC" opacity="0.15" />
+                  <rect x="42" y="55" width="60" height="4" rx="2" fill="#6E3FCC" opacity="0.07" />
+                  <rect x="42" y="63" width="50" height="10" rx="3" fill="#6E3FCC" opacity="0.08" />
+                  <rect x="96" y="63" width="40" height="10" rx="3" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="168" y="48" width="28" height="14" rx="4" fill="#6E3FCC" opacity="0.12" />
+                  {/* Session card 2 */}
+                  <rect x="14" y="90" width="192" height="44" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
+                  <rect x="24" y="98" width="10" height="10" rx="2" fill="#6E3FCC" opacity="0.2" />
+                  <path d="M27 101 L27 106 L32 103.5 Z" fill="#6E3FCC" opacity="0.3" />
+                  <rect x="42" y="98" width="80" height="5" rx="2" fill="#6E3FCC" opacity="0.15" />
+                  <rect x="42" y="107" width="70" height="4" rx="2" fill="#6E3FCC" opacity="0.07" />
+                  <rect x="42" y="115" width="44" height="10" rx="3" fill="#6E3FCC" opacity="0.08" />
+                  <rect x="90" y="115" width="52" height="10" rx="3" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="168" y="100" width="28" height="14" rx="4" fill="#6E3FCC" opacity="0.12" />
+                  {/* Session card 3 */}
+                  <rect x="14" y="142" width="192" height="44" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.15" />
+                  <rect x="24" y="150" width="10" height="10" rx="2" fill="#6E3FCC" opacity="0.15" />
+                  <path d="M27 153 L27 158 L32 155.5 Z" fill="#6E3FCC" opacity="0.2" />
+                  <rect x="42" y="150" width="95" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
+                  <rect x="42" y="159" width="55" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="42" y="167" width="56" height="10" rx="3" fill="#6E3FCC" opacity="0.06" />
+                  <rect x="168" y="152" width="28" height="14" rx="4" fill="#6E3FCC" opacity="0.1" />
+                </g>
+
+                {/* ---- Decorative connection lines ---- */}
+                {/* Dashboard to Workshop */}
+                <path d="M80 200 Q40 180 60 160" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" fill="none" strokeDasharray="4 3" />
+                {/* Dashboard to Content */}
+                <path d="M420 240 Q440 220 430 200" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" fill="none" strokeDasharray="4 3" />
+                {/* Small floating elements */}
+                <circle cx="270" cy="160" r="3" fill="#6E3FCC" opacity="0.15" />
+                <circle cx="50" cy="110" r="2" fill="#6E3FCC" opacity="0.1" />
+                <circle cx="510" cy="190" r="2.5" fill="#6E3FCC" opacity="0.12" />
+              </svg>
             </div>
           </div>
         </div>
