@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import TestimonialCarousel from "./components/TestimonialCarousel";
 
 export default function Home() {
   return (
@@ -441,67 +442,7 @@ export default function Home() {
       </section>
 
       {/* ==================== TESTIMONIAL ==================== */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#F8F5FC] rounded-2xl p-10 md:p-14">
-            <div className="flex flex-col md:flex-row gap-10 items-start">
-              {/* Photo + attribution */}
-              <div className="flex flex-col items-center md:items-start shrink-0 mx-auto md:mx-0">
-                <Image
-                  src="/liz berry.png"
-                  alt="Liz Berry"
-                  width={200}
-                  height={200}
-                  className="w-24 h-24 rounded-full object-cover"
-                />
-                <div className="mt-4 text-center md:text-left">
-                  <p className="font-semibold text-gray-900 text-sm">
-                    Liz Berry
-                  </p>
-                  <p className="text-xs text-gray-500 leading-snug mt-0.5">
-                    Sr. Manager,
-                    <br />
-                    Talent Development
-                  </p>
-                </div>
-                <Image
-                  src="/cotopaxi.png"
-                  alt="Cotopaxi"
-                  width={140}
-                  height={50}
-                  className="mt-4 h-5 w-auto object-contain opacity-40"
-                />
-              </div>
-
-              {/* Quote */}
-              <div className="flex-1">
-                <svg className="w-8 h-6 text-[#6E3FCC] opacity-20 mb-3" viewBox="0 0 32 24" fill="currentColor">
-                  <path d="M0 24V14.4C0 6.08 4.48 1.12 13.44 0l1.28 3.52C9.28 4.8 7.04 8 6.72 12H12v12H0Zm18.56 0V14.4c0-8.32 4.48-13.28 13.44-14.4l1.28 3.52C27.84 4.8 25.6 8 25.28 12H30.56v12H18.56Z" />
-                </svg>
-                <blockquote className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  Campfire has been a game-changer for our small team of two,
-                  helping us deliver meaningful content across the entire
-                  organization. Acting as a true extension of our team, they
-                  don&apos;t just facilitate trainings&mdash;they collaborate
-                  with us as thought partners and co-creators to build materials
-                  tailored to our specific needs and goals. Thanks to
-                  Campfire&apos;s people and platform, we&apos;ve been able to
-                  create an engaging, collaborative learning and development
-                  program that reaches employees at every level.
-                </blockquote>
-                <div className="mt-8">
-                  <Link
-                    href="/customers"
-                    className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
-                  >
-                    Explore Case Studies
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialCarousel />
 
       {/* ==================== OUTCOMES ==================== */}
       <section className="py-20 bg-[#F8F5FC]">
