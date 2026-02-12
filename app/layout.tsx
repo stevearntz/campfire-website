@@ -3,6 +3,7 @@ import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CrispChat from "./components/CrispChat";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <CrispChat />
       </body>
     </html>
   );
