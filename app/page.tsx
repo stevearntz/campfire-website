@@ -453,10 +453,13 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <blockquote className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug">
-            &ldquo;Culture, retention, performance&mdash;they all trace back
-            to one thing: how well your managers lead.{" "}
-            <span className="text-[#6E3FCC]">That&apos;s the lever.</span>&rdquo;
+            &ldquo;Our biggest priority right now is improving our front-line
+            managers because that&apos;s the single biggest lever we have in
+            improving our results.&rdquo;
           </blockquote>
+          <p className="mt-6 text-sm text-gray-400">
+            &mdash; CEO, 1,200-employee company
+          </p>
         </div>
       </section>
 
