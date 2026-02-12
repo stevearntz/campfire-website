@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CrispChat from "./components/CrispChat";
+import Clarity from "./components/Clarity";
+import RB2B from "./components/RB2B";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
@@ -28,6 +30,8 @@ export default function RootLayout({
         {children}
         <Footer />
         <CrispChat />
+        <Clarity />
+        <RB2B />
       </body>
     </html>
   );
