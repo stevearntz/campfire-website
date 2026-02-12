@@ -454,7 +454,8 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <blockquote className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug">
             &ldquo;Our biggest priority right now is improving our front-line
-            managers because that&apos;s the single biggest lever we have in
+            managers because that&apos;s the{" "}
+            <span className="text-[#6E3FCC]">single biggest lever</span> we have in
             improving our results.&rdquo;
           </blockquote>
           <p className="mt-6 text-sm text-gray-400">
