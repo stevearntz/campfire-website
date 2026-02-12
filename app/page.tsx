@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -61,20 +62,24 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             {/* Text */}
             <div className="flex-1 max-w-xl">
+              <p className="text-sm font-semibold text-[#6E3FCC] tracking-wide uppercase mb-4">
+                For HR Leaders and L&amp;D Teams
+              </p>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
-                Build better leaders
+                Build Better Leaders
                 <br />
-                <span className="text-[#6E3FCC]">&mdash;your way, at scale</span>
+                <span className="text-[#6E3FCC]">&mdash;Your Way, at Scale</span>
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg">
-                Flexible leadership development for modern, growing teams.
+                Deeply human leadership development that&apos;s flexible and
+                designed to scale.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="#how-it-works"
+                  href="/solutions"
                   className="px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
                 >
-                  See How It Works
+                  Explore Solutions
                 </Link>
                 <Link
                   href="/contact"
@@ -90,45 +95,35 @@ export default function Home() {
               <svg viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
                 {/* ---- BACK LAYER: Admin Dashboard ---- */}
                 <g transform="translate(80, 0)">
-                  {/* Window chrome */}
                   <rect x="0" y="0" width="340" height="240" rx="8" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.3" />
                   <line x1="0" y1="28" x2="340" y2="28" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                  {/* Window dots */}
                   <circle cx="16" cy="14" r="4" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
                   <circle cx="30" cy="14" r="4" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
                   <circle cx="44" cy="14" r="4" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
-                  {/* Tab labels */}
                   <rect x="70" y="8" width="50" height="12" rx="3" fill="#6E3FCC" opacity="0.12" />
                   <rect x="128" y="8" width="50" height="12" rx="3" fill="#6E3FCC" opacity="0.06" />
-                  {/* Sidebar */}
                   <rect x="0" y="28" width="80" height="212" fill="#6E3FCC" opacity="0.04" />
                   <line x1="80" y1="28" x2="80" y2="240" stroke="#6E3FCC" strokeWidth="1" opacity="0.1" />
-                  {/* Sidebar items */}
                   <rect x="12" y="44" width="56" height="8" rx="3" fill="#6E3FCC" opacity="0.15" />
                   <rect x="12" y="62" width="48" height="8" rx="3" fill="#6E3FCC" opacity="0.08" />
                   <rect x="12" y="80" width="52" height="8" rx="3" fill="#6E3FCC" opacity="0.08" />
                   <rect x="12" y="98" width="40" height="8" rx="3" fill="#6E3FCC" opacity="0.08" />
-                  {/* Main content — schedule rows */}
                   <text x="96" y="48" fontSize="7" fill="#6E3FCC" opacity="0.3" fontFamily="sans-serif" fontWeight="600">PROGRAM SCHEDULE</text>
-                  {/* Schedule row 1 */}
                   <rect x="96" y="58" width="228" height="28" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" />
                   <circle cx="112" cy="72" r="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="124" y="66" width="70" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
                   <rect x="124" y="75" width="45" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
                   <rect x="270" y="66" width="40" height="12" rx="4" fill="#6E3FCC" opacity="0.1" />
-                  {/* Schedule row 2 */}
                   <rect x="96" y="92" width="228" height="28" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" />
                   <circle cx="112" cy="106" r="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="124" y="100" width="80" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
                   <rect x="124" y="109" width="55" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
                   <rect x="270" y="100" width="40" height="12" rx="4" fill="#6E3FCC" opacity="0.15" />
-                  {/* Schedule row 3 */}
                   <rect x="96" y="126" width="228" height="28" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" />
                   <circle cx="112" cy="140" r="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="124" y="134" width="65" height="5" rx="2" fill="#6E3FCC" opacity="0.12" />
                   <rect x="124" y="143" width="50" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
                   <rect x="270" y="134" width="40" height="12" rx="4" fill="#6E3FCC" opacity="0.1" />
-                  {/* Stats row at bottom */}
                   <rect x="96" y="170" width="68" height="52" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.1" />
                   <rect x="106" y="182" width="30" height="6" rx="2" fill="#6E3FCC" opacity="0.2" />
                   <rect x="106" y="196" width="48" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
@@ -142,30 +137,22 @@ export default function Home() {
                   <rect x="266" y="196" width="48" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
                   <rect x="266" y="206" width="32" height="4" rx="2" fill="#6E3FCC" opacity="0.06" />
                 </g>
-
                 {/* ---- MIDDLE LAYER: Live Workshop / Video ---- */}
                 <g transform="translate(0, 130)">
                   <rect x="0" y="0" width="260" height="185" rx="8" fill="white" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" />
                   <rect x="0" y="0" width="260" height="185" rx="8" fill="white" />
                   <rect x="0" y="0" width="260" height="185" rx="8" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
-                  {/* Top bar */}
                   <rect x="0" y="0" width="260" height="24" rx="8" fill="#6E3FCC" opacity="0.08" />
                   <rect x="0" y="12" width="260" height="12" fill="#6E3FCC" opacity="0.08" />
-                  {/* Live indicator */}
                   <circle cx="16" cy="12" r="4" fill="#6E3FCC" opacity="0.5" />
                   <rect x="26" y="8" width="28" height="8" rx="3" fill="#6E3FCC" opacity="0.15" />
-                  {/* Session title */}
                   <rect x="70" y="8" width="100" height="7" rx="2" fill="#6E3FCC" opacity="0.15" />
-                  {/* Main video area — facilitator */}
                   <rect x="12" y="32" width="148" height="100" rx="6" fill="#6E3FCC" opacity="0.06" />
-                  {/* Facilitator silhouette */}
                   <circle cx="86" cy="68" r="16" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.25" />
                   <path d="M66 100 Q76 88 86 85 Q96 88 106 100" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.2" fill="none" />
-                  {/* Presentation element inside video */}
                   <rect x="24" y="108" width="50" height="16" rx="3" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
                   <rect x="28" y="112" width="30" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
                   <rect x="28" y="118" width="40" height="3" rx="1" fill="#6E3FCC" opacity="0.06" />
-                  {/* Participant grid — right side */}
                   <rect x="170" y="32" width="78" height="46" rx="4" fill="#6E3FCC" opacity="0.05" />
                   <circle cx="193" cy="48" r="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="185" y="60" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
@@ -176,29 +163,22 @@ export default function Home() {
                   <rect x="185" y="112" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
                   <circle cx="233" cy="100" r="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="225" y="112" width="16" height="3" rx="1" fill="#6E3FCC" opacity="0.1" />
-                  {/* Bottom toolbar */}
                   <line x1="12" y1="142" x2="248" y2="142" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.1" />
-                  {/* Mic icon */}
                   <rect x="100" y="150" width="16" height="22" rx="8" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                  {/* Camera icon */}
                   <rect x="124" y="153" width="18" height="14" rx="3" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <circle cx="133" cy="160" r="4" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
-                  {/* Chat icon */}
                   <rect x="150" y="152" width="16" height="14" rx="3" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="154" y="156" width="8" height="2" rx="1" fill="#6E3FCC" opacity="0.1" />
                   <rect x="154" y="160" width="6" height="2" rx="1" fill="#6E3FCC" opacity="0.1" />
                 </g>
-
                 {/* ---- FRONT LAYER: Content Library Cards ---- */}
                 <g transform="translate(280, 200)">
                   <rect x="0" y="0" width="220" height="200" rx="8" fill="white" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" />
                   <rect x="0" y="0" width="220" height="200" rx="8" fill="white" />
                   <rect x="0" y="0" width="220" height="200" rx="8" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
-                  {/* Header */}
                   <text x="16" y="24" fontSize="7" fill="#6E3FCC" opacity="0.35" fontFamily="sans-serif" fontWeight="600">CONTENT LIBRARY</text>
                   <rect x="160" y="12" width="44" height="16" rx="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.15" />
                   <rect x="168" y="18" width="28" height="4" rx="2" fill="#6E3FCC" opacity="0.1" />
-                  {/* Session card 1 */}
                   <rect x="14" y="38" width="192" height="44" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="24" y="46" width="10" height="10" rx="2" fill="#6E3FCC" opacity="0.2" />
                   <path d="M27 49 L27 54 L32 51.5 Z" fill="#6E3FCC" opacity="0.3" />
@@ -207,7 +187,6 @@ export default function Home() {
                   <rect x="42" y="63" width="50" height="10" rx="3" fill="#6E3FCC" opacity="0.08" />
                   <rect x="96" y="63" width="40" height="10" rx="3" fill="#6E3FCC" opacity="0.06" />
                   <rect x="168" y="48" width="28" height="14" rx="4" fill="#6E3FCC" opacity="0.12" />
-                  {/* Session card 2 */}
                   <rect x="14" y="90" width="192" height="44" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
                   <rect x="24" y="98" width="10" height="10" rx="2" fill="#6E3FCC" opacity="0.2" />
                   <path d="M27 101 L27 106 L32 103.5 Z" fill="#6E3FCC" opacity="0.3" />
@@ -216,7 +195,6 @@ export default function Home() {
                   <rect x="42" y="115" width="44" height="10" rx="3" fill="#6E3FCC" opacity="0.08" />
                   <rect x="90" y="115" width="52" height="10" rx="3" fill="#6E3FCC" opacity="0.06" />
                   <rect x="168" y="100" width="28" height="14" rx="4" fill="#6E3FCC" opacity="0.12" />
-                  {/* Session card 3 */}
                   <rect x="14" y="142" width="192" height="44" rx="6" stroke="#6E3FCC" strokeWidth="1" opacity="0.15" />
                   <rect x="24" y="150" width="10" height="10" rx="2" fill="#6E3FCC" opacity="0.15" />
                   <path d="M27 153 L27 158 L32 155.5 Z" fill="#6E3FCC" opacity="0.2" />
@@ -225,13 +203,9 @@ export default function Home() {
                   <rect x="42" y="167" width="56" height="10" rx="3" fill="#6E3FCC" opacity="0.06" />
                   <rect x="168" y="152" width="28" height="14" rx="4" fill="#6E3FCC" opacity="0.1" />
                 </g>
-
                 {/* ---- Decorative connection lines ---- */}
-                {/* Dashboard to Workshop */}
                 <path d="M80 200 Q40 180 60 160" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" fill="none" strokeDasharray="4 3" />
-                {/* Dashboard to Content */}
                 <path d="M420 240 Q440 220 430 200" stroke="#6E3FCC" strokeWidth="1" opacity="0.12" fill="none" strokeDasharray="4 3" />
-                {/* Small floating elements */}
                 <circle cx="270" cy="160" r="3" fill="#6E3FCC" opacity="0.15" />
                 <circle cx="50" cy="110" r="2" fill="#6E3FCC" opacity="0.1" />
                 <circle cx="510" cy="190" r="2.5" fill="#6E3FCC" opacity="0.12" />
@@ -241,45 +215,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== BELIEF SECTION ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Leadership is the lever
-            </h2>
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
-              Leaders sit at the center of culture and performance. How they
-              communicate, make decisions, and show up every day shapes how teams
-              work and deliver results.
-            </p>
-            <p className="mt-6 text-lg text-gray-700 font-medium">
-              Leadership development only works when it:
-            </p>
-            <ul className="mt-4 space-y-3">
-              {[
-                "Fits into the flow of real work",
-                "Adapts to your culture and challenges",
-                "Shows up consistently over time",
-                "Scales across the organization",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-3 text-gray-600"
-                >
-                  <span className="w-2 h-2 rounded-full bg-[#6E3FCC] flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
-              >
-                Book a Call
-              </Link>
-            </div>
+      {/* ==================== LOGOS ==================== */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-center text-xs font-semibold text-gray-400 tracking-wider uppercase mb-8">
+            Trusted by teams at
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
+            {[
+              { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
+              { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
+              { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
+              { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
+              { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
+              { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
+            ].map((logo) => (
+              <div key={logo.alt} className="flex items-center justify-center">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.w}
+                  height={logo.h}
+                  className="h-7 md:h-9 w-auto object-contain grayscale opacity-[0.4]"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -289,8 +249,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Everything you need to scale an{" "}
-              <span className="text-[#6E3FCC]">outcomes driven culture</span>
+              Everything You Need to Scale an{" "}
+              <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
               Campfire helps organizations develop leaders at every level with
@@ -303,15 +263,15 @@ export default function Home() {
             {[
               {
                 title: "Flexible Content",
-                desc: "A curated library of live leadership workshops and practical tools focused on real leadership challenges like trust, communication, and change. Mix, match, and customize to fit your context and priorities.",
+                desc: "A curated library of practical, live leadership workshops you can mix, match, and customize to your needs.",
               },
               {
                 title: "Scalable Facilitation",
-                desc: "Live, interactive workshops led by our expert facilitators or your own trained leaders. Deliver consistent, high-quality experiences across teams and geographies while keeping conversations human, engaging, and relevant.",
+                desc: "Expert facilitators\u2014or your trained leaders\u2014for delivering consistent, high-quality experiences across teams and geographies.",
               },
               {
                 title: "Program Support",
-                desc: "End-to-end support to make leadership development easy to run. We handle scheduling, coordination, tracking, and logistics so small talent teams can scale programs without added headcount.",
+                desc: "End-to-end scheduling, coordination, tracking, and logistics to help lean talent teams run programs smoothly and scale with confidence.",
               },
             ].map((card) => (
               <div
@@ -327,42 +287,25 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ==================== PROOF / CTA ==================== */}
-      <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-16">
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">
-              Results you can trust
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { number: "6,000+", label: "Sessions delivered" },
-                { number: "25+", label: "Years of experience" },
-                { number: "250+", label: "Companies served" },
-                { number: "10k+", label: "Leaders supported" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-4xl md:text-5xl font-bold text-white">
-                    {stat.number}
-                  </div>
-                  <p className="mt-2 text-sm text-white/70">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/solutions"
+              className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ==================== HOW IT WORKS ==================== */}
-      <section id="how-it-works" className="py-20 bg-white">
+      <section id="how-it-works" className="py-20 bg-[#F5F4F1]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Built to fit the way you work
-              <span className="text-[#6E3FCC]">&mdash;and drive lasting change</span>
+              Built to fit the rhythm of real work{" "}
+              <span className="text-[#6E3FCC]">&mdash; and drive lasting change</span>
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -386,7 +329,7 @@ export default function Home() {
               {
                 step: "01",
                 title: "Start with relevant content",
-                desc: "Build the programs your people need most by blending our time-tested sessions with the most important principles and pieces from your organization.",
+                desc: "You design your program by choosing the sessions your people need most.",
                 color: "bg-[#6E3FCC]",
               },
               {
@@ -426,23 +369,160 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mid-page CTA */}
-      <section className="py-12 bg-[#F5F4F1]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-lg text-gray-600">
-            Want to see how it would work with your organization?
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block mt-4 px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
-          >
-            Book a Call
-          </Link>
+      {/* ==================== PROOF ==================== */}
+      <section className="relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-16">
+          <div className="relative z-10 max-w-5xl mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">
+              Results You Can Trust
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { number: "6,000+", label: "Sessions delivered" },
+                { number: "25+", label: "Years of experience" },
+                { number: "250+", label: "Companies serviced" },
+                { number: "10,000+", label: "Leaders supported" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <div className="text-4xl md:text-5xl font-bold text-white">
+                    {stat.number}
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== TESTIMONIAL / CASE STUDY ==================== */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-[#F8F5FC] rounded-2xl p-10 md:p-14 text-center">
+            <p className="text-xs font-semibold text-[#6E3FCC] tracking-wider uppercase mb-6">
+              Case Study
+            </p>
+            <blockquote className="text-xl md:text-2xl text-gray-700 leading-relaxed italic">
+              &ldquo;Campfire helped us build a leadership culture that scales
+              with our growth. The impact on our managers has been
+              transformative.&rdquo;
+            </blockquote>
+            <p className="mt-6 text-sm font-semibold text-gray-900">
+              &mdash; Cotopaxi Leadership Team
+            </p>
+            <Link
+              href="/customers"
+              className="inline-block mt-8 px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+            >
+              Explore Case Studies
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== OUTCOMES ==================== */}
+      <section className="py-20 bg-[#F8F5FC]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Impact You Can Feel
+              <span className="text-[#6E3FCC]">&mdash;Company-Wide</span>
+            </h2>
+            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+              When leaders make small shifts in everyday conversations,
+              decisions, and behaviors, your entire organization benefits.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                title: "Better conversations",
+                desc: "Leaders communicate more clearly, listen more effectively, and navigate difficult conversations with confidence and care.",
+              },
+              {
+                title: "Stronger alignment",
+                desc: "Teams operate with shared language, clearer expectations, and better decision-making\u2014reducing friction and confusion.",
+              },
+              {
+                title: "Healthier team dynamics",
+                desc: "Trust increases, feedback improves, and people feel more supported, engaged, and accountable.",
+              },
+              {
+                title: "More consistent leadership behaviors",
+                desc: "Leadership expectations don\u2019t live in a slide deck. They show up in meetings, 1:1s, and everyday decisions across the organization.",
+              },
+              {
+                title: "Improved performance and results",
+                desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
+              },
+            ].map((impact) => (
+              <div
+                key={impact.title}
+                className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
+              >
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  {impact.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {impact.desc}
+                </p>
+              </div>
+            ))}
+            {/* Purple CTA card */}
+            <div className="bg-[#6E3FCC] rounded-2xl p-8 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-bold text-white mb-2">
+                  See it for yourself
+                </h3>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  Learn how Campfire can help your leaders build these habits and
+                  drive real results.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-block mt-6 px-6 py-3 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors text-center"
+              >
+                Book a Call &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== CTA ==================== */}
+      <section className="relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Ready to transform your people and culture?
+            </h2>
+            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+              Schedule a conversation with us. You bring your goals and
+              challenges, and we&apos;ll think with you about practical next
+              steps.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                Book a Call &rarr;
+              </Link>
+              <Link
+                href="/solutions"
+                className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
+              >
+                Explore Solutions
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ==================== HOW IT SHOWS UP ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -467,7 +547,7 @@ export default function Home() {
                 desc: "Short series or focused initiatives that create structure and momentum, while still reinforcing skills beyond a defined start and end.",
               },
               {
-                title: "Group experiences",
+                title: "Cohorts",
                 desc: "Small-group experiences that connect leaders facing similar challenges, creating space for peer learning, accountability, and deeper conversation.",
               },
               {
@@ -477,7 +557,7 @@ export default function Home() {
             ].map((format) => (
               <div
                 key={format.title}
-                className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow"
               >
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {format.title}
@@ -487,6 +567,41 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== BELIEF SECTION ==================== */}
+      <section className="py-20 bg-[#F5F4F1]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Leadership is the lever
+            </h2>
+            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
+              Leaders sit at the center of culture and performance. How they
+              communicate, make decisions, and show up every day shapes how teams
+              work and deliver results.
+            </p>
+            <p className="mt-6 text-lg text-gray-700 font-medium">
+              Leadership development only works when it:
+            </p>
+            <ul className="mt-4 space-y-3">
+              {[
+                "Fits into the flow of real work",
+                "Adapts to your culture and challenges",
+                "Shows up consistently over time",
+                "Scales across the organization",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 text-gray-600"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#6E3FCC] flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -537,110 +652,6 @@ export default function Home() {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== IMPACT ==================== */}
-      <section className="py-20 bg-[#F8F5FC]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              What changes when leadership development{" "}
-              <span className="text-[#6E3FCC]">actually sticks</span>
-            </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              When leadership development fits real work and shows up
-              consistently, the impact is visible&mdash;not abstract.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                title: "Better conversations",
-                desc: "Leaders communicate more clearly, listen more effectively, and navigate difficult conversations with confidence and care.",
-              },
-              {
-                title: "Stronger alignment",
-                desc: "Teams operate with shared language, clearer expectations, and better decision-making\u2014reducing friction and confusion.",
-              },
-              {
-                title: "Healthier team dynamics",
-                desc: "Trust increases, feedback improves, and people feel more supported, engaged, and accountable.",
-              },
-              {
-                title: "More consistent leadership behaviors",
-                desc: "Leadership expectations don\u2019t live in a slide deck. They show up in meetings, 1:1s, and everyday decisions across the organization.",
-              },
-              {
-                title: "Improved performance and results",
-                desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
-              },
-            ].map((impact) => (
-              <div
-                key={impact.title}
-                className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {impact.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {impact.desc}
-                </p>
-              </div>
-            ))}
-
-            {/* CTA card */}
-            <div className="bg-[#6E3FCC] rounded-2xl p-8 shadow-sm flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  See it for yourself
-                </h3>
-                <p className="text-white/70 text-sm leading-relaxed">
-                  Learn how Campfire can help your leaders build these habits
-                  and drive real results.
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="inline-block mt-6 px-6 py-3 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors text-center"
-              >
-                Book a Call &rarr;
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== FINAL CTA ==================== */}
-      <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
-          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Ready to build a culture that performs?
-            </h2>
-            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
-              Book a 30-minute call and we&apos;ll show you how Campfire can
-              work for your team. No pressure, just a real conversation.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Book a Call &rarr;
-              </Link>
-              <Link
-                href="/solutions"
-                className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
-              >
-                Explore Solutions
-              </Link>
-            </div>
-            <p className="mt-6 text-sm text-white/50">
-              30 minutes &middot; No commitment &middot; Tailored to your team
-            </p>
           </div>
         </div>
       </section>
