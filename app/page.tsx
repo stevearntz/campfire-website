@@ -219,7 +219,7 @@ export default function Home() {
       </section>
 
       {/* ==================== LOGOS ==================== */}
-      <section className="py-10 bg-[#6E3FCC]">
+      <section className="py-10 bg-[#4D2C8F]">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-center text-xs font-semibold text-white/50 tracking-wider uppercase mb-8">
             Trusted by teams at
