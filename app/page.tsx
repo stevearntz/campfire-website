@@ -219,9 +219,9 @@ export default function Home() {
       </section>
 
       {/* ==================== LOGOS ==================== */}
-      <section className="py-10 bg-white border-t border-gray-100">
+      <section className="py-10 bg-[#6E3FCC]">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-center text-xs font-semibold text-gray-400 tracking-wider uppercase mb-8">
+          <p className="text-center text-xs font-semibold text-white/50 tracking-wider uppercase mb-8">
             Trusted by teams at
           </p>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
@@ -239,7 +239,7 @@ export default function Home() {
                   alt={logo.alt}
                   width={logo.w}
                   height={logo.h}
-                  className="h-7 md:h-9 w-auto object-contain grayscale opacity-[0.4]"
+                  className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-60"
                 />
               </div>
             ))}
