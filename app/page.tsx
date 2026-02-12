@@ -220,7 +220,7 @@ export default function Home() {
         {/* Logo bar — inside hero so waves flow behind it */}
         <div className="relative z-10 pb-10 pt-4 w-full">
           <div className="max-w-5xl mx-auto px-6">
-            <p className="text-center text-xs font-semibold text-white/50 tracking-wider uppercase mb-8">
+            <p className="text-center text-xs font-bold text-white/80 tracking-wider uppercase mb-8">
               Trusted by teams at
             </p>
             <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
@@ -238,7 +238,7 @@ export default function Home() {
                     alt={logo.alt}
                     width={logo.w}
                     height={logo.h}
-                    className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-60"
+                    className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-90"
                   />
                 </div>
               ))}
