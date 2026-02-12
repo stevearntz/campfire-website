@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -32,11 +33,10 @@ export default function ContactPage() {
                 Schedule a conversation
               </h2>
               <p className="text-gray-500 leading-relaxed mb-8">
-                The best way to see if Campfire can help is to meet with someone
-                on our team about the things you&apos;re trying to do in your
-                organization. We&apos;ll talk about your goals, your challenges,
-                and your people. We&apos;d love to find ways to work together to
-                solve your leadership development challenges.
+                The best way to see if Campfire can help is a conversation with
+                our team. We&apos;ll learn about your organization, your people
+                challenges, and share how we&apos;ve helped companies like yours
+                build stronger leaders.
               </p>
 
               <div className="space-y-6">
@@ -45,10 +45,10 @@ export default function ContactPage() {
                     What to expect
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed">
-                    A 30-minute, low-pressure conversation. We&apos;ll learn
-                    about your company culture, your talent development goals,
-                    and share relevant examples of how Campfire has helped
-                    organizations like yours.
+                    A 30-minute, low-pressure conversation about your company
+                    culture and talent development goals. No pitch deck. No
+                    pressure. Just a real conversation about what you&apos;re
+                    trying to build.
                   </p>
                 </div>
 
@@ -107,95 +107,145 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Trust signal — testimonial */}
+              <div className="mt-10 pt-8 border-t border-gray-100">
+                <div className="flex gap-4">
+                  <Image
+                    src="/liz berry.png"
+                    alt="Liz Berry"
+                    width={80}
+                    height={80}
+                    className="w-12 h-12 rounded-full object-cover shrink-0"
+                  />
+                  <div>
+                    <p className="text-sm text-gray-500 leading-relaxed italic">
+                      &ldquo;What Campfire has done is create a space where
+                      managers actually want to show up and grow. That&apos;s
+                      rare.&rdquo;
+                    </p>
+                    <p className="mt-2 text-xs font-semibold text-gray-900">
+                      Liz Berry
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      Sr. Manager, Talent Development &middot; Cotopaxi
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right — form */}
             <div>
               {submitted ? (
-                <div className="bg-green-50 border border-green-200 rounded-2xl p-10 text-center">
-                  <div className="text-4xl mb-4">&#10003;</div>
+                <div className="bg-[#F8F5FC] border border-[#6E3FCC]/10 rounded-2xl p-10 text-center">
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#6E3FCC]/10 flex items-center justify-center">
+                    <svg
+                      className="w-7 h-7 text-[#6E3FCC]"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 6.5 6.5 0 0012 12.5a6.5 6.5 0 003.362-7.286z"
+                      />
+                    </svg>
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Thanks for reaching out!
+                    We&apos;re excited to connect!
                   </h3>
-                  <p className="text-gray-500">
-                    We&apos;ll be in touch within one business day.
+                  <p className="text-gray-500 text-sm">
+                    Someone from our team will reach out within one business day.
+                    In the meantime, feel free to{" "}
+                    <a
+                      href="https://tools.getcampfire.com/courses"
+                      className="text-[#6E3FCC] font-medium hover:underline"
+                    >
+                      explore Campfire on your own
+                    </a>
+                    .
                   </p>
                 </div>
               ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSubmitted(true);
-                  }}
-                  className="space-y-5"
-                >
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        First name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Last name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Work email
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      What are you looking for?
-                    </label>
-                    <textarea
-                      rows={4}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC] resize-none"
-                      placeholder="Tell us a bit about your team and what you're hoping to achieve..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+                <div className="bg-[#F8F5FC] border border-[#6E3FCC]/10 rounded-2xl p-8">
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setSubmitted(true);
+                    }}
+                    className="space-y-5"
                   >
-                    Connect With Us
-                  </button>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          First name
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Last name
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
+                        />
+                      </div>
+                    </div>
 
-                  <p className="text-xs text-gray-400 text-center">
-                    We&apos;ll respond within one business day. No spam, ever.
-                  </p>
-                </form>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Work email
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Company
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        What are you looking for?
+                      </label>
+                      <textarea
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC] resize-none"
+                        placeholder="Tell us a bit about your team and what you're hoping to achieve..."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+                    >
+                      Connect With Us
+                    </button>
+
+                    <p className="text-xs text-gray-400 text-center">
+                      We&apos;ll respond within one business day. No spam, ever.
+                    </p>
+                  </form>
+                </div>
               )}
             </div>
           </div>
