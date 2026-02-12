@@ -63,7 +63,7 @@ export default function Home() {
             {/* Text */}
             <div className="flex-1 max-w-xl">
               <p className="text-sm font-semibold text-[#6E3FCC] tracking-wide uppercase mb-4">
-                For HR Leaders and L&amp;D Teams
+                For HR and Talent Development Leaders
               </p>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
                 Build Better Leaders
@@ -71,8 +71,8 @@ export default function Home() {
                 <span className="text-[#6E3FCC]">&mdash;Your Way, at Scale</span>
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-500 leading-relaxed max-w-lg">
-                Deeply human leadership development that&apos;s flexible and
-                designed to scale.
+                Your managers need support. Your team is stretched thin.
+                Campfire was built for both.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
@@ -244,18 +244,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== DIFFERENTIATOR ==================== */}
+      <section className="pt-16 pb-4 bg-white">
+        <p className="text-center text-sm font-medium text-gray-400 uppercase tracking-wider">
+          Not a content library. Not executive coaching. Live development that changes behavior.
+        </p>
+      </section>
+
       {/* ==================== WHAT IT IS ==================== */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Everything You Need to Scale an{" "}
+              Scale an{" "}
               <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Campfire helps organizations develop leaders at every level with
-              flexible content, scalable facilitation, and program support that
-              adapts to your needs.
+              Flexible content, scalable facilitation, and program
+              support&mdash;designed to develop leaders at every level and adapt
+              to your organization.
             </p>
           </div>
 
@@ -288,12 +295,21 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <p className="text-center mt-10 text-sm text-gray-400">
+            <span className="font-semibold text-gray-500">Built for:</span>{" "}
+            HR leaders scaling leadership development{" "}
+            <span className="text-gray-300 mx-1">&middot;</span>{" "}
+            L&amp;D teams with lean headcount{" "}
+            <span className="text-gray-300 mx-1">&middot;</span>{" "}
+            Talent leaders building and shaping culture
+          </p>
+
+          <div className="text-center mt-6">
             <Link
               href="/solutions"
               className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
             >
-              Learn More
+              See How It Works
             </Link>
           </div>
         </div>
@@ -330,25 +346,25 @@ export default function Home() {
                 step: "01",
                 title: "Start with relevant content",
                 desc: "You design your program by choosing the sessions your people need most.",
-                color: "bg-[#6E3FCC]",
+                color: "bg-[#A88AE0]",
               },
               {
                 step: "02",
                 title: "Bring it to life through conversation",
                 desc: "Live, facilitated discussions create space for reflection, peer learning, and meaningful connection\u2014building shared language and perspective.",
-                color: "bg-[#7E4FD0]",
+                color: "bg-[#8F65D9]",
               },
               {
                 step: "03",
                 title: "Apply it in real work",
                 desc: "Leaders put tools to use and practice new behaviors in meetings, one-on-ones, and day-to-day decisions\u2014where leadership actually shows up.",
-                color: "bg-[#8F65D9]",
+                color: "bg-[#7E4FD0]",
               },
               {
                 step: "04",
                 title: "Reinforce over time",
                 desc: "Skills are revisited and strengthened through ongoing experiences and resources to dive deeper, helping leadership behaviors stick and compound.",
-                color: "bg-[#A88AE0]",
+                color: "bg-[#6E3FCC]",
               },
             ].map((item) => (
               <div key={item.step}>
@@ -510,13 +526,50 @@ export default function Home() {
               >
                 Book a Call &rarr;
               </Link>
-              <Link
-                href="/solutions"
+              <a
+                href="https://tools.getcampfire.com/courses"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
               >
-                Explore Solutions
-              </Link>
+                Explore Workshops
+              </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== BELIEF SECTION ==================== */}
+      <section className="py-20 bg-[#F5F4F1]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center md:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Leadership is the lever
+            </h2>
+            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
+              Leaders sit at the center of culture and performance. How they
+              communicate, make decisions, and show up every day shapes how teams
+              work and deliver results.
+            </p>
+            <p className="mt-6 text-lg text-gray-700 font-medium">
+              Leadership development only works when it:
+            </p>
+            <ul className="mt-4 space-y-3">
+              {[
+                "Fits into the flow of real work",
+                "Adapts to your culture and challenges",
+                "Shows up consistently over time",
+                "Scales across the organization",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 text-gray-600"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#6E3FCC] flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -571,88 +624,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== BELIEF SECTION ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Leadership is the lever
-            </h2>
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
-              Leaders sit at the center of culture and performance. How they
-              communicate, make decisions, and show up every day shapes how teams
-              work and deliver results.
-            </p>
-            <p className="mt-6 text-lg text-gray-700 font-medium">
-              Leadership development only works when it:
-            </p>
-            <ul className="mt-4 space-y-3">
-              {[
-                "Fits into the flow of real work",
-                "Adapts to your culture and challenges",
-                "Shows up consistently over time",
-                "Scales across the organization",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-3 text-gray-600"
-                >
-                  <span className="w-2 h-2 rounded-full bg-[#6E3FCC] flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== WHY IT WORKS ==================== */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Designed for how leadership{" "}
-              <span className="text-[#6E3FCC]">actually changes</span>
-            </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              Leadership development works when it reflects the realities leaders
-              face every day. Campfire is built around a few core principles that
-              make development stick&mdash;and scale.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                title: "Built for real work",
-                desc: "Leadership development fits into meetings, one-on-ones, and everyday conversations\u2014so growth happens alongside work, not separate from it.",
-              },
-              {
-                title: "Grounded in practical leadership",
-                desc: "Well-researched models and core competencies are translated into simple, usable skills leaders can apply immediately in real situations.",
-              },
-              {
-                title: "Reinforced over time",
-                desc: "Leadership behaviors are strengthened through repetition. Skills are revisited and built on, so development compounds instead of fading after a single experience.",
-              },
-              {
-                title: "Relevant to leaders today",
-                desc: "Everything is designed around the real challenges managers are facing right now\u2014so learning feels useful, not theoretical.",
-              },
-            ].map((principle) => (
-              <div
-                key={principle.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {principle.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {principle.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+      {/* ==================== CLOSING CTA ==================== */}
+      <section className="py-14 bg-[#F5F4F1]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-lg text-gray-500">
+            Not sure where to start?
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block mt-4 px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+          >
+            Find Your Fit
+          </Link>
         </div>
       </section>
     </main>
