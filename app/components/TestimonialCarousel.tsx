@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Ashley Logan",
     title: "Sr. Director, Talent Development",
-    photo: "/ashley.png",
+    photo: "/Ashley.png",
     logo: "/nuvei.png",
     logoAlt: "Nuvei",
     quote:
