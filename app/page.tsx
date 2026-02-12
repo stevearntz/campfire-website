@@ -449,6 +449,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== PULL QUOTE ==================== */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <blockquote className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug">
+            &ldquo;Culture, retention, performance&mdash;they all trace back
+            to one thing: how well your managers lead.{" "}
+            <span className="text-[#6E3FCC]">That&apos;s the lever.</span>&rdquo;
+          </blockquote>
+        </div>
+      </section>
+
       {/* ==================== TESTIMONIAL ==================== */}
       <TestimonialCarousel />
 
@@ -551,41 +562,6 @@ export default function Home() {
                 Explore Workshops
               </a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== BELIEF SECTION ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Leadership is the lever
-            </h2>
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
-              Leaders sit at the center of culture and performance. How they
-              communicate, make decisions, and show up every day shapes how teams
-              work and deliver results.
-            </p>
-            <p className="mt-6 text-lg text-gray-700 font-medium">
-              Leadership development only works when it:
-            </p>
-            <ul className="mt-4 space-y-3">
-              {[
-                "Fits into the flow of real work",
-                "Adapts to your culture and challenges",
-                "Shows up consistently over time",
-                "Scales across the organization",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-3 text-gray-600"
-                >
-                  <span className="w-2 h-2 rounded-full bg-[#6E3FCC] flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
