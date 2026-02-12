@@ -7,7 +7,7 @@ export default function Home() {
       {/* ==================== HERO ==================== */}
       <section className="relative overflow-hidden bg-white min-h-[60vh] flex items-start">
         {/* Full-width topographic wave background */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none hidden md:block">
           <svg
             viewBox="0 0 1440 900"
             className="absolute inset-0 w-full h-full"
@@ -246,7 +246,7 @@ export default function Home() {
 
       {/* ==================== DIFFERENTIATOR ==================== */}
       <section className="pt-16 pb-4 bg-white">
-        <p className="text-center text-sm font-medium text-gray-400 uppercase tracking-wider">
+        <p className="text-center text-sm font-medium text-gray-400 uppercase tracking-wider px-6">
           Not a content library. Not executive coaching. Live development that changes behavior.
         </p>
       </section>
