@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TestimonialCarousel from "./components/TestimonialCarousel";
 import ProductShowcase from "./components/ProductShowcase";
+import SessionWalkthrough from "./components/SessionWalkthrough";
 
 export default function Home() {
   return (
@@ -418,6 +419,9 @@ export default function Home() {
 
       {/* ==================== PRODUCT SHOWCASE ==================== */}
       <ProductShowcase />
+
+      {/* ==================== SESSION WALKTHROUGH ==================== */}
+      <SessionWalkthrough />
 
       {/* ==================== PROOF ==================== */}
       <section className="relative overflow-hidden">
