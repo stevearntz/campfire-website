@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main>
       {/* ==================== HERO ==================== */}
-      <section className="relative overflow-hidden bg-white min-h-[60vh] flex items-start">
+      <section className="relative overflow-hidden bg-white">
         {/* Full-width topographic wave background */}
         <div className="absolute inset-0 pointer-events-none hidden md:block">
           <svg
@@ -216,33 +216,33 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ==================== LOGOS ==================== */}
-      <section className="py-10 bg-[#9B7AD9]">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="text-center text-xs font-semibold text-white/50 tracking-wider uppercase mb-8">
-            Trusted by teams at
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
-            {[
-              { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
-              { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
-              { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
-              { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
-              { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
-              { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
-            ].map((logo) => (
-              <div key={logo.alt} className="flex items-center justify-center">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={logo.w}
-                  height={logo.h}
-                  className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-60"
-                />
-              </div>
-            ))}
+        {/* Logo bar — inside hero so waves flow behind it */}
+        <div className="relative z-10 pb-10 pt-4 w-full">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="text-center text-xs font-semibold text-white/50 tracking-wider uppercase mb-8">
+              Trusted by teams at
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
+              {[
+                { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
+                { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
+                { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
+                { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
+                { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
+                { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
+              ].map((logo) => (
+                <div key={logo.alt} className="flex items-center justify-center">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={logo.w}
+                    height={logo.h}
+                    className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-60"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
