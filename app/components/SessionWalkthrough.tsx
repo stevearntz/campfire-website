@@ -41,8 +41,8 @@ export default function SessionWalkthrough() {
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Inside a{" "}
-            <span className="text-[#6E3FCC]">60-minute session</span>
+            Sessions that{" "}
+            <span className="text-[#6E3FCC]">drive behavior change</span>
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             What it actually feels like when your managers show up to a Campfire

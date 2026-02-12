@@ -216,46 +216,39 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Logo bar — inside hero so waves flow behind it */}
-        <div className="relative z-10 pb-10 pt-4 w-full">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="text-center text-xs font-bold text-white/80 tracking-wider uppercase mb-8">
-              Trusted by teams at
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
-              {[
-                { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
-                { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
-                { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
-                { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
-                { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
-                { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
-              ].map((logo) => (
-                <div key={logo.alt} className="flex items-center justify-center">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={logo.w}
-                    height={logo.h}
-                    className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-90"
-                  />
-                </div>
-              ))}
-            </div>
+      {/* ==================== LOGOS ==================== */}
+      <section className="py-10 bg-[#262F56]">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-center text-xs font-bold text-white/50 tracking-wider uppercase mb-8">
+            Trusted by teams at
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
+            {[
+              { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
+              { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
+              { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
+              { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
+              { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
+              { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
+            ].map((logo) => (
+              <div key={logo.alt} className="flex items-center justify-center">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.w}
+                  height={logo.h}
+                  className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-90"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ==================== DIFFERENTIATOR ==================== */}
-      <section className="pt-16 pb-4 bg-white">
-        <p className="text-center text-sm font-medium text-gray-400 uppercase tracking-wider px-6">
-          Not a content library. Not executive coaching. Live development that changes behavior.
-        </p>
-      </section>
-
       {/* ==================== WHAT IT IS ==================== */}
-      <section className="pt-8 pb-20 bg-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -347,8 +340,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== PRODUCT SHOWCASE ==================== */}
+      <ProductShowcase />
+
+      {/* ==================== FREE TRIAL RIBBON ==================== */}
+      <section className="relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-10">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+            <h2 className="text-xl md:text-2xl font-bold text-white">
+              You&apos;re 30 seconds away from experiencing Campfire
+            </h2>
+            <p className="mt-2 text-sm text-white/60 max-w-lg mx-auto">
+              Sign up free, explore our full catalog, and try our
+              industry-leading platform. No credit card required.
+            </p>
+            <a
+              href="https://tools.getcampfire.com/courses"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-block px-8 py-3.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+            >
+              Try Campfire
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ==================== HOW IT WORKS ==================== */}
-      <section id="how-it-works" className="py-20 bg-[#F5F4F1]">
+      <section id="how-it-works" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -417,11 +436,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== PRODUCT SHOWCASE ==================== */}
-      <ProductShowcase />
-
-      {/* ==================== SESSION WALKTHROUGH ==================== */}
-      <SessionWalkthrough />
+      {/* ==================== TESTIMONIAL ==================== */}
+      <TestimonialCarousel />
 
       {/* ==================== PROOF ==================== */}
       <section className="relative overflow-hidden">
@@ -463,9 +479,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      {/* ==================== TESTIMONIAL ==================== */}
-      <TestimonialCarousel />
 
       {/* ==================== OUTCOMES ==================== */}
       <section className="py-20 bg-[#F8F5FC]">
@@ -535,73 +548,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ==================== CTA ==================== */}
-      <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
-          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Ready to transform your people and culture?
-            </h2>
-            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
-              Schedule a conversation with us. You bring your goals and
-              challenges, and we&apos;ll think with you about practical next
-              steps.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Book a Call &rarr;
-              </Link>
-              <a
-                href="https://tools.getcampfire.com/courses"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
-              >
-                Explore Workshops
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== NEWSLETTER ==================== */}
-      <section className="py-14 bg-[#F8F5FC]">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <svg className="w-8 h-8 mx-auto mb-4" viewBox="0 0 32 32" fill="none">
-            <path d="M16 4 C14 8 10 12 10 18 C10 22.4 12.7 26 16 26 C19.3 26 22 22.4 22 18 C22 12 18 8 16 4Z" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" fill="#6E3FCC" fillOpacity="0.06" />
-            <path d="M16 10 C15 13 13 15 13 18.5 C13 20.7 14.3 22.5 16 22.5 C17.7 22.5 19 20.7 19 18.5 C19 15 17 13 16 10Z" fill="#6E3FCC" opacity="0.15" />
-            <path d="M16 15 C15.4 16.5 14.5 17.5 14.5 19 C14.5 20.4 15.2 21.5 16 21.5 C16.8 21.5 17.5 20.4 17.5 19 C17.5 17.5 16.6 16.5 16 15Z" fill="#6E3FCC" opacity="0.3" />
-          </svg>
-          <h3 className="text-xl font-bold text-gray-900">
-            Leadership insights, delivered weekly
-          </h3>
-          <p className="mt-2 text-sm text-gray-500">
-            Practical ideas for developing better leaders&mdash;straight to
-            your inbox.
-          </p>
-          <form className="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your work email"
-              className="flex-1 px-4 py-3 text-sm rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/30 focus:border-[#6E3FCC]"
-              required
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors whitespace-nowrap"
-            >
-              Subscribe
-            </button>
-          </form>
-          <p className="mt-3 text-xs text-gray-400">
-            No spam. Unsubscribe anytime.
-          </p>
         </div>
       </section>
 
@@ -706,18 +652,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== CLOSING CTA ==================== */}
-      <section className="py-14 bg-[#F5F4F1]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-lg text-gray-500">
-            Not sure where to start?
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block mt-4 px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
-          >
-            Find Your Fit
-          </Link>
+      {/* ==================== SESSION WALKTHROUGH ==================== */}
+      <SessionWalkthrough />
+
+      {/* ==================== FINAL CTA ==================== */}
+      <section className="relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
+          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Ready to transform your people and culture?
+            </h2>
+            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+              Schedule a conversation with us. You bring your goals and
+              challenges, and we&apos;ll think with you about practical next
+              steps.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                Book a Call &rarr;
+              </Link>
+              <a
+                href="https://tools.getcampfire.com/courses"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
+              >
+                Explore Workshops
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
