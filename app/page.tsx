@@ -181,7 +181,7 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] pt-16 pb-0 overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-6">
+        <div className="max-w-[1536px] mx-auto px-6">
           <div className="relative flex flex-col md:flex-row items-center">
             {/* Pink topo CTA box — sharp corners, overlaps photo by 20% */}
             <div
