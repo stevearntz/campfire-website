@@ -151,25 +151,23 @@ export default function Home() {
             ].map((card) => (
               <div
                 key={card.title}
-                className="bg-white rounded-2xl p-8 border border-gray-100 flex gap-5 items-start"
+                className="bg-white rounded-2xl p-8 border border-gray-100"
               >
-                <div className="shrink-0">
+                <div className="mb-5">
                   <Image
                     src={card.icon}
                     alt={card.iconAlt}
-                    width={60}
-                    height={60}
-                    className="w-14 h-14 object-contain"
+                    width={80}
+                    height={80}
+                    className="w-20 h-20 object-contain"
                   />
                 </div>
-                <div>
-                  <h3 className="text-base font-bold text-gray-900 mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {card.desc}
-                  </p>
-                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  {card.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {card.desc}
+                </p>
               </div>
             ))}
           </div>
