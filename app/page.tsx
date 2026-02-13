@@ -437,7 +437,7 @@ export default function Home() {
                 return (
                 <div
                   key={impact.title}
-                  className="relative bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1.2fr] items-center gap-5 md:gap-6 pl-12 pr-8 py-6"
+                  className="relative bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1fr] items-center gap-5 md:gap-4 pl-12 pr-8 py-6"
                 >
                   <div
                     className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full text-white text-sm font-bold flex items-center justify-center z-10"
@@ -445,11 +445,11 @@ export default function Home() {
                   >
                     {i + 1}
                   </div>
-                  <h3 className="text-base font-bold text-[#1E2A4A]">
+                  <h3 className="text-xl md:text-2xl font-bold text-[#1E2A4A]">
                     {impact.title}
                   </h3>
                   <div className="hidden md:block w-px h-full bg-gray-200" />
-                  <p className="text-gray-500 text-sm leading-relaxed">
+                  <p className="text-gray-500 text-base leading-relaxed">
                     {impact.desc}
                   </p>
                 </div>
