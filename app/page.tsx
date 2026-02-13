@@ -20,13 +20,13 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             {/* Text */}
             <div className="flex-1 max-w-xl">
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight">
+              <h1 className="t-h1 text-white">
                 Build Better Leaders
                 <br />
                 &mdash;Your Way, at Scale
               </h1>
               <p
-                className="mt-6 text-lg md:text-xl leading-relaxed max-w-lg font-medium"
+                className="mt-6 t-hero-sub max-w-lg"
                 style={{ color: "#FFC28A" }}
               >
                 Your managers need support. Your team is stretched thin.
@@ -67,7 +67,7 @@ export default function Home() {
         <div className="relative z-10">
           <div className="absolute inset-0" style={{ backgroundColor: "rgba(58, 2, 168, 0.25)" }} />
           <div className="relative z-10 max-w-5xl mx-auto px-6 py-10">
-            <p className="text-center text-xs font-bold text-white/60 tracking-wider uppercase mb-8">
+            <p className="text-center t-label text-white/60 mb-8">
               Trusted by companies like...
             </p>
             <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
@@ -97,11 +97,11 @@ export default function Home() {
       {/* ==================== OUTCOMES-DRIVEN CULTURE ==================== */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h2 className="t-h2 text-gray-900">
             Scale an{" "}
             <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
           </h2>
-          <p className="mt-6 text-lg text-gray-500 leading-relaxed">
+          <p className="mt-6 t-body-lg">
             When people understand the mission, know what outcomes matter, and
             feel connected to the purpose behind their work, everything changes.
             Burnout drops because effort becomes sustainable and directed.
@@ -110,7 +110,7 @@ export default function Home() {
             together&mdash;with clarity, confidence, and accountability that
             doesn&apos;t require constant oversight.
           </p>
-          <p className="mt-4 text-lg text-gray-500 leading-relaxed">
+          <p className="mt-4 t-body-lg">
             Campfire helps you build that kind of culture&mdash;where leadership
             development isn&apos;t a checkbox, it&apos;s the engine that drives
             alignment, performance, and the kind of environment where people
@@ -123,7 +123,7 @@ export default function Home() {
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="t-h2 text-gray-900">
               Leadership Development, Without the Overhead
             </h2>
           </div>
@@ -162,10 +162,10 @@ export default function Home() {
                     className="w-20 h-20 object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                <h3 className="t-h3 text-gray-900 mb-3">
                   {card.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="t-body-sm">
                   {card.desc}
                 </p>
               </div>
@@ -284,11 +284,11 @@ export default function Home() {
       <section id="how-it-works" className="py-20 bg-[#1C1334]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="t-h2 text-white">
               Built to fit the rhythm of real work{" "}
               <span className="text-[#A84AEB]">&mdash; and drive lasting change</span>
             </h2>
-            <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
+            <p className="mt-4 t-body-lg text-white/60 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
               simple, repeatable flow that scales across your organization.
             </p>
@@ -337,10 +337,10 @@ export default function Home() {
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-base font-bold text-white mb-3 leading-snug">
+                <h3 className="t-h3 text-white mb-3">
                   {item.title}
                 </h3>
-                <p className="text-sm text-white/50 leading-relaxed">
+                <p className="t-body-sm text-white/50">
                   {item.desc}
                 </p>
               </div>
@@ -356,7 +356,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="py-16" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">
+            <h2 className="t-h2 text-white text-center mb-10">
               Results You Can Trust
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -383,13 +383,13 @@ export default function Home() {
         <div className="h-[3px] bg-gradient-to-r from-[#6E3FCC] to-[#3B82F6]" />
         <div className="py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <blockquote className="text-3xl md:text-[2.75rem] font-medium text-[#1E2A4A] leading-[1.3]">
+            <blockquote className="t-pullquote">
               &ldquo;Our biggest priority right now is improving our
               front-line managers because that&apos;s the{" "}
               <span className="text-[#6E3FCC]">single biggest
               lever we have</span> in improving our results.&rdquo;
             </blockquote>
-            <p className="mt-8 text-lg text-gray-500">
+            <p className="mt-8 t-attribution">
               &mdash; CEO, 1,200-employee company
             </p>
           </div>
@@ -402,7 +402,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
             {/* Left heading */}
             <div className="lg:w-[420px] shrink-0">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
+              <h2 className="t-h2 text-[#1E2A4A] !text-4xl md:!text-5xl whitespace-nowrap">
                 Impact you can feel
                 <br />
                 <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
@@ -445,11 +445,11 @@ export default function Home() {
                   >
                     {i + 1}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-[#1E2A4A]">
+                  <h3 className="t-h3-lg text-[#1E2A4A]">
                     {impact.title}
                   </h3>
                   <div className="hidden md:block w-px h-full bg-gray-200" />
-                  <p className="text-gray-500 text-base leading-relaxed">
+                  <p className="t-body">
                     {impact.desc}
                   </p>
                 </div>
@@ -481,10 +481,10 @@ export default function Home() {
         </div>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
+            <h2 className="t-h2 text-gray-900 !font-medium">
               Flexible formats that meet leaders where they are
             </h2>
-            <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-5 t-body max-w-3xl mx-auto">
               Campfire offers flexible format options that work across different
               teams, timelines, and goals.
               <br />
@@ -533,10 +533,10 @@ export default function Home() {
                     className="w-9 h-9 object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                <h3 className="t-h3 text-gray-900 mb-3">
                   {format.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="t-body-sm">
                   {format.desc}
                 </p>
               </div>
@@ -552,10 +552,10 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="t-h2 text-white">
               Ready to transform your people and culture?
             </h2>
-            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+            <p className="mt-4 t-body-lg text-white/70 max-w-xl mx-auto">
               Schedule a conversation with us. You bring your goals and
               challenges, and we&apos;ll think with you about practical next
               steps.

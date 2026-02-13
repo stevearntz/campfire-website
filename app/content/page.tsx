@@ -7,10 +7,10 @@ export default function ContentPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            <h1 className="t-h1 text-white tracking-tight">
               Content That Changes Behavior
             </h1>
-            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="mt-4 t-body-lg text-white/70 max-w-2xl mx-auto">
               Not another library of videos people never watch. Campfire content
               is designed to be experienced, discussed, and applied.
             </p>
@@ -22,10 +22,10 @@ export default function ContentPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="t-h2 text-gray-900">
               Our philosophy
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-4 t-body-lg text-gray-500 max-w-2xl mx-auto">
               Leadership isn&apos;t learned in a course. It&apos;s learned in
               conversation, through reflection, and by doing. That belief shapes
               everything we build.
@@ -55,10 +55,10 @@ export default function ContentPage() {
                 key={item.title}
                 className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100"
               >
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="t-h3 text-gray-900 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="t-body-sm text-gray-500">
                   {item.desc}
                 </p>
               </div>
@@ -71,7 +71,7 @@ export default function ContentPage() {
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="t-h2 text-gray-900">
               Not your typical e-learning
             </h2>
           </div>
@@ -126,10 +126,10 @@ export default function ContentPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="t-h2 text-gray-900">
               Frameworks that leaders actually use
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-4 t-body-lg text-gray-500 max-w-2xl mx-auto">
               Our content is built on proven frameworks from organizational
               psychology, behavioral science, and decades of leadership
               research.
@@ -162,10 +162,10 @@ export default function ContentPage() {
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="t-h2 text-gray-900">
               Choose what works for you
             </h2>
-            <p className="mt-4 text-lg text-gray-500">
+            <p className="mt-4 t-body-lg text-gray-500">
               Three ways to bring Campfire to your team.
             </p>
           </div>
@@ -210,7 +210,7 @@ export default function ContentPage() {
                 </span>
                 <h3 className="text-xl font-bold mt-4 mb-3">{option.title}</h3>
                 <p
-                  className={`text-sm leading-relaxed ${
+                  className={`t-body-sm ${
                     option.featured ? "text-white/80" : "text-gray-500"
                   }`}
                 >
@@ -225,7 +225,7 @@ export default function ContentPage() {
       {/* CTA */}
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="t-h2 text-gray-900">
             Want to see the full content library?
           </h2>
           <p className="mt-4 text-gray-500">

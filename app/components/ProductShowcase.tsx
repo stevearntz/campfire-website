@@ -44,11 +44,11 @@ export default function ProductShowcase() {
     <section className="py-20 bg-[#1C1334]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="t-h2 text-white">
             See what{" "}
             <span className="text-[#6E3FCC]">Campfire looks like</span>
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="mt-4 t-body-lg text-white/80 max-w-2xl mx-auto">
             A purpose-built platform and curated content library designed for
             live leadership development.
           </p>

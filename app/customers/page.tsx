@@ -62,10 +62,10 @@ export default function CustomersPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            <h1 className="t-h1 text-white tracking-tight">
               Trusted by Teams That Care
             </h1>
-            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="mt-4 t-body-lg text-white/70 max-w-2xl mx-auto">
               See how companies like yours are using Campfire to develop
               stronger leaders, healthier teams, and a culture where people
               actually talk to each other about the things that matter.
@@ -77,7 +77,7 @@ export default function CustomersPage() {
       {/* Logo Bar */}
       <section className="py-10 bg-[#262F56]">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-center text-xs font-bold text-white/50 tracking-wider uppercase mb-8">
+          <p className="text-center t-label text-white/50 mb-8">
             Companies building better leaders with Campfire
           </p>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
@@ -114,7 +114,7 @@ export default function CustomersPage() {
               {/* Header */}
               <div className="bg-gradient-to-r from-[#6E3FCC] to-[#7E4FD0] px-8 py-6">
                 <div className="flex flex-wrap items-center gap-4">
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="t-h3-lg text-white">
                     {study.company}
                   </h3>
                   <span className="text-xs font-medium text-white/60 bg-white/10 px-3 py-1 rounded-full">
@@ -132,7 +132,7 @@ export default function CustomersPage() {
                   <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
                     The Challenge
                   </h4>
-                  <p className="text-gray-500 text-sm leading-relaxed">
+                  <p className="t-body-sm text-gray-500">
                     {study.challenge}
                   </p>
                 </div>
@@ -142,7 +142,7 @@ export default function CustomersPage() {
                   <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
                     What We Did
                   </h4>
-                  <p className="text-gray-500 text-sm leading-relaxed">
+                  <p className="t-body-sm text-gray-500">
                     {study.solution}
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export default function CustomersPage() {
                     {study.results.map((result) => (
                       <li
                         key={result}
-                        className="flex items-start gap-2 text-sm text-gray-600"
+                        className="flex items-start gap-2 t-body-sm text-gray-600"
                       >
                         <span className="text-[#6E3FCC] mt-0.5">
                           &#10003;
@@ -185,7 +185,7 @@ export default function CustomersPage() {
       {/* Pull Quotes */}
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+          <h2 className="t-h2 text-gray-900 text-center mb-12">
             What people are saying
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -232,10 +232,10 @@ export default function CustomersPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="t-h2 text-white">
               Your team is next
             </h2>
-            <p className="mt-4 text-lg text-white/70">
+            <p className="mt-4 t-body-lg text-white/70">
               Let&apos;s talk about what Campfire can do for your managers.
             </p>
             <Link
