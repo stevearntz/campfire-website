@@ -486,7 +486,9 @@ export default function Home() {
             </h2>
             <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Campfire offers flexible format options that work across different
-              teams, timelines, and goals. Organizations can start small or go
+              teams, timelines, and goals.
+              <br />
+              Organizations can start small or go
               broad, choosing the right mix for their people.
             </p>
           </div>
