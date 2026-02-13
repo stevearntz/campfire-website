@@ -461,7 +461,7 @@ export default function Home() {
       </section>
 
       {/* ==================== HOW IT SHOWS UP ==================== */}
-      <section className="relative pt-20 pb-20 bg-white">
+      <section className="relative pt-32 pb-20 bg-white">
         {/* Purple CTA banner — bridges between sections */}
         <div className="absolute left-0 right-0 -top-9 z-10">
           <div className="max-w-5xl mx-auto px-6">
@@ -481,7 +481,7 @@ export default function Home() {
         </div>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-normal text-gray-900">
               Flexible formats that meet leaders where they are
             </h2>
             <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
