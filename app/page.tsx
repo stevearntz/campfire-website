@@ -437,10 +437,10 @@ export default function Home() {
                 return (
                 <div
                   key={impact.title}
-                  className="bg-white rounded-xl grid grid-cols-1 md:grid-cols-[auto_1fr_1px_1.2fr] items-center gap-5 md:gap-6 px-8 py-6"
+                  className="relative bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1.2fr] items-center gap-5 md:gap-6 pl-12 pr-8 py-6"
                 >
                   <div
-                    className="w-10 h-10 rounded-full text-white text-sm font-bold flex items-center justify-center shrink-0"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full text-white text-sm font-bold flex items-center justify-center z-10"
                     style={{ backgroundColor: circleColors[i] }}
                   >
                     {i + 1}
