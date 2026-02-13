@@ -229,9 +229,9 @@ export default function Home() {
             />
           </div>
 
-          {/* Pink topo — absolutely positioned, flush left, vertically centered */}
+          {/* Pink topo — fixed min-width, slides over image as viewport shrinks */}
           <div
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[55%] px-12 py-10 lg:px-16 lg:py-12 text-center"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[55%] min-w-[650px] px-12 py-10 lg:px-16 lg:py-12 text-center"
             style={{
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
