@@ -354,7 +354,7 @@ export default function Home() {
 
       {/* ==================== PROOF ==================== */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-16">
+        <div className="py-16" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-5xl mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">
               Results You Can Trust
