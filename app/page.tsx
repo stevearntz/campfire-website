@@ -96,7 +96,7 @@ export default function Home() {
 
       {/* ==================== WHAT IT IS ==================== */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Scale an{" "}
@@ -114,49 +114,35 @@ export default function Home() {
               {
                 title: "Flexible Content",
                 desc: "A curated library of practical, live leadership workshops you can mix, match, and customize to your needs.",
-                icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <rect x="2" y="14" width="20" height="15" rx="3" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.2" />
-                    <rect x="8" y="8" width="20" height="15" rx="3" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
-                    <rect x="14" y="2" width="20" height="15" rx="3" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.7" fill="#6E3FCC" fillOpacity="0.05" />
-                    <line x1="18" y1="6" x2="28" y2="6" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.4" strokeLinecap="round" />
-                    <line x1="18" y1="10" x2="25" y2="10" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.25" strokeLinecap="round" />
-                  </svg>
-                ),
+                icon: "/kite-icon.webp",
+                iconAlt: "Kite icon representing flexible, adaptable content",
               },
               {
                 title: "Scalable Facilitation",
                 desc: "Expert facilitators\u2014or your trained leaders\u2014for delivering consistent, high-quality experiences across teams and geographies.",
-                icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="12" r="5" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.6" />
-                    <path d="M13 30 C13 22 16 18 20 18 C24 18 27 22 27 30" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.35" fill="none" />
-                    <circle cx="7" cy="22" r="3.5" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
-                    <circle cx="33" cy="22" r="3.5" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.3" />
-                    <line x1="15" y1="15" x2="10" y2="19" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" strokeDasharray="2 2" />
-                    <line x1="25" y1="15" x2="30" y2="19" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" strokeDasharray="2 2" />
-                  </svg>
-                ),
+                icon: "/phoenix-icon.webp",
+                iconAlt: "Phoenix icon representing scalable growth and transformation",
               },
               {
                 title: "Program Support",
                 desc: "End-to-end scheduling, coordination, tracking, and logistics to help lean talent teams run programs smoothly and scale with confidence.",
-                icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <rect x="6" y="2" width="28" height="36" rx="4" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
-                    <rect x="14" y="0" width="12" height="5" rx="2" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.6" fill="white" />
-                    <path d="M13 15 L16 18 L22 12" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                    <line x1="13" y1="24" x2="27" y2="24" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.25" strokeLinecap="round" />
-                    <line x1="13" y1="30" x2="23" y2="30" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.2" strokeLinecap="round" />
-                  </svg>
-                ),
+                icon: "/plant-icon.webp",
+                iconAlt: "Plant icon representing nurturing program support",
               },
             ].map((card) => (
               <div
                 key={card.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow"
+                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow text-center"
               >
-                {card.icon}
+                <div className="flex justify-center mb-5">
+                  <Image
+                    src={card.icon}
+                    alt={card.iconAlt}
+                    width={80}
+                    height={80}
+                    className="w-20 h-20 object-contain"
+                  />
+                </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {card.title}
                 </h3>
@@ -167,16 +153,19 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="text-center mt-10 text-sm text-gray-400">
-            <span className="font-semibold text-gray-500">Built for:</span>{" "}
-            HR leaders scaling leadership development{" "}
-            <span className="text-gray-300 mx-1">&middot;</span>{" "}
-            L&amp;D teams with lean headcount{" "}
-            <span className="text-gray-300 mx-1">&middot;</span>{" "}
-            Talent leaders building and shaping culture
-          </p>
+          {/* Built For bar */}
+          <div className="mt-10 bg-[#F5F4F1] rounded-xl px-6 py-4 border border-gray-100">
+            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-gray-500">
+              <span className="font-semibold text-gray-700">Built for:</span>
+              <span>HR leaders scaling leadership development</span>
+              <span className="text-gray-300 hidden sm:inline">&middot;</span>
+              <span>L&amp;D teams with lean headcount</span>
+              <span className="text-gray-300 hidden sm:inline">&middot;</span>
+              <span>Talent leaders building and shaping culture</span>
+            </div>
+          </div>
 
-          <div className="text-center mt-6">
+          <div className="text-center mt-8">
             <Link
               href="/solutions"
               className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
