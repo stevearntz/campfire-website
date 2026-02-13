@@ -198,7 +198,7 @@ export default function CustomersPage() {
               },
               {
                 quote:
-                  "As an HR team of two, we needed something we could launch fast and trust to be really good. Campfire delivered on both counts — and our managers loved it.",
+                  "As an HR team of two, we needed something we could launch fast and trust to be good. Campfire delivered on both counts — and our managers loved it.",
                 person: "People Partner",
                 company: "Remote-First Company",
               },
