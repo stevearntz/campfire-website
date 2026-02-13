@@ -541,7 +541,7 @@ export default function AboutPage() {
               {
                 belief: "Systems beat events",
                 line1: "One workshop feels good.",
-                line2: "Ongoing reinforcement changes how teams actually operate.",
+                line2: "Ongoing reinforcement and tools change how teams actually operate.",
                 accent: "bg-[#7E4FD0]",
               },
               {
