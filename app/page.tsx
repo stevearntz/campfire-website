@@ -132,9 +132,9 @@ export default function Home() {
             ].map((card) => (
               <div
                 key={card.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow text-center"
+                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow"
               >
-                <div className="flex justify-center mb-5">
+                <div className="mb-5">
                   <Image
                     src={card.icon}
                     alt={card.iconAlt}
@@ -155,7 +155,7 @@ export default function Home() {
 
           {/* Built For bar */}
           <div className="mt-10 bg-[#F5F4F1] rounded-xl px-6 py-4 border border-gray-100">
-            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-gray-500">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500">
               <span className="font-semibold text-gray-700">Built for:</span>
               <span>HR leaders scaling leadership development</span>
               <span className="text-gray-300 hidden sm:inline">&middot;</span>
