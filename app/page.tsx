@@ -181,41 +181,43 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] py-16 overflow-hidden">
-        <div className="relative flex flex-col md:flex-row items-center">
-          {/* Pink topo CTA box — flush left, sharp corners */}
+        <div className="relative flex flex-col md:flex-row items-stretch">
+          {/* Pink topo CTA box — flush left, stretches to match image height */}
           <div
-            className="relative z-10 px-8 py-12 md:pl-[8%] md:pr-[6%] md:py-14 md:w-[55%] shrink-0 text-center"
+            className="relative z-10 md:w-[55%] shrink-0 flex items-center justify-center"
             style={{
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <h2 className="text-xl md:text-2xl font-bold text-white max-w-xl mx-auto">
-              You&apos;re 30 seconds away from experiencing Campfire
-            </h2>
-            <p className="mt-3 text-sm text-white/80 max-w-xl mx-auto">
-              Sign up free, explore our full catalog, and try our
-              industry-leading platform. No credit card required.
-            </p>
-            <a
-              href="https://tools.getcampfire.com/courses"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
-            >
-              Try Campfire
-            </a>
+            <div className="px-8 py-12 md:px-12 md:py-14 lg:px-16 lg:py-16 text-center w-full">
+              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-xl mx-auto">
+                You&apos;re 30 seconds away from experiencing Campfire
+              </h2>
+              <p className="mt-3 md:mt-4 text-sm md:text-sm lg:text-base text-white/80 max-w-xl mx-auto">
+                Sign up free, explore our full catalog, and try our
+                industry-leading platform. No credit card required.
+              </p>
+              <a
+                href="https://tools.getcampfire.com/courses"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 md:mt-8 inline-block px-7 py-3.5 text-sm lg:text-base font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              >
+                Try Campfire
+              </a>
+            </div>
           </div>
 
-          {/* Campfire image — flush right, rounded corners */}
-          <div className="relative md:w-[41%] md:-ml-[10%] shrink-0">
+          {/* Campfire image — flush right, sets the row height */}
+          <div className="relative md:w-[55%] md:-ml-[10%] shrink-0">
             <Image
               src="/campfire.webp"
               alt="Campfire session with participants collaborating"
               width={800}
               height={600}
-              className="w-full h-auto object-cover rounded-2xl"
+              className="w-full h-full object-cover rounded-2xl"
             />
           </div>
         </div>
