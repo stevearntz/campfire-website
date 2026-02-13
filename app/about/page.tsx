@@ -469,11 +469,10 @@ export default function AboutPage() {
               care about:
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto">
               {[
                 "Retention",
                 "Performance",
-                "Manager effectiveness",
                 "Change adoption",
                 "Culture health",
               ].map((metric) => (
