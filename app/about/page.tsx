@@ -7,10 +7,10 @@ export default function AboutPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 className="t-h1 text-white tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Leadership Development That Fits Your Company and Your Leaders
             </h1>
-            <p className="mt-4 t-body-lg text-white/70 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
               Your managers carry your culture, navigate change, and hold your
               values in the moments that matter. Campfire gives them practical
               tools, real conversations, and ongoing support — without adding
@@ -25,15 +25,15 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <div>
-              <h2 className="t-h2 text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Who we are
               </h2>
-              <p className="t-body-lg text-gray-500 leading-relaxed mb-6">
+              <p className="text-lg text-gray-500 leading-relaxed mb-6">
                 Campfire is a leadership development platform built for
                 remote-first, growing companies with lean HR and
                 talent teams.
               </p>
-              <p className="t-body-lg text-gray-500 leading-relaxed mb-8">
+              <p className="text-lg text-gray-500 leading-relaxed mb-8">
                 We help you build better managers — not through one-off
                 training, but through a flexible, always-on system that
                 integrates direction, culture, and skills into the way your
@@ -48,26 +48,26 @@ export default function AboutPage() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 shrink-0" />
-                    <p className="t-h3 text-gray-900">
+                    <p className="text-lg font-bold text-gray-900">
                       A passive e-learning library
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 shrink-0" />
-                    <p className="t-h3 text-gray-900">
+                    <p className="text-lg font-bold text-gray-900">
                       A one-time workshop vendor
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 shrink-0" />
-                    <p className="t-h3 text-gray-900">
+                    <p className="text-lg font-bold text-gray-900">
                       Executive coaching for a select few
                     </p>
                   </div>
                 </div>
               </div>
 
-              <p className="t-body-lg text-gray-500 leading-relaxed">
+              <p className="text-lg text-gray-500 leading-relaxed">
                 We are the partner small teams rely on to diagnose needs, design
                 programs, and deliver leadership development at scale — without
                 building everything from scratch.
@@ -107,10 +107,10 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="t-h2 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               What we <span className="text-[#6E3FCC]">actually provide</span>
             </h2>
-            <p className="mt-4 t-body-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               Everything you need to run leadership development programs that
               actually work — without building it all yourself.
             </p>
@@ -233,10 +233,10 @@ export default function AboutPage() {
       {/* ==================== WHAT IT FEELS LIKE ==================== */}
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="t-h2 text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What it <span className="text-[#6E3FCC]">feels like</span>
           </h2>
-          <p className="t-body-lg text-gray-500 mb-12 max-w-2xl">
+          <p className="text-lg text-gray-500 mb-12 max-w-2xl">
             Great managers don&apos;t just sit back and watch.
           </p>
 
@@ -350,10 +350,10 @@ export default function AboutPage() {
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="t-h2 text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Why we exist
               </h2>
-              <p className="t-body-lg text-white/70 max-w-xl mx-auto">
+              <p className="text-xl text-white/70 max-w-xl mx-auto">
                 Most leadership development solves a learning problem.
               </p>
               <p className="text-2xl font-bold text-white mt-2">
@@ -405,7 +405,7 @@ export default function AboutPage() {
       {/* ==================== BELIEFS ==================== */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="t-h2 text-gray-900 text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-14">
             What we believe
           </h2>
 
@@ -453,10 +453,10 @@ export default function AboutPage() {
                 className="bg-[#F5F4F1] rounded-xl border border-gray-100 p-6 relative overflow-hidden"
               >
                 <div className={`absolute top-0 left-0 w-1 h-full ${item.accent} opacity-40`} />
-                <h3 className="t-h3 text-gray-900 mb-2 pl-3">
+                <h3 className="font-bold text-gray-900 mb-2 pl-3">
                   {item.belief}
                 </h3>
-                <p className="t-body-sm pl-3">
+                <p className="text-sm text-gray-500 leading-relaxed pl-3">
                   {item.line1}
                   <br />
                   {item.line2}
@@ -471,10 +471,10 @@ export default function AboutPage() {
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="t-h2 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               The people behind <span className="text-[#6E3FCC]">Campfire</span>
             </h2>
-            <p className="mt-4 t-body-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               A team of practitioners, facilitators, and builders who care
               deeply about leadership development done right.
             </p>
@@ -513,13 +513,13 @@ export default function AboutPage() {
                       {founder.initials}
                     </span>
                   </div>
-                  <h3 className="t-h3 text-gray-900">
+                  <h3 className="text-lg font-bold text-gray-900">
                     {founder.name}
                   </h3>
                   <p className="text-sm font-medium text-[#6E3FCC] mb-3">
                     {founder.role}
                   </p>
-                  <p className="t-body-sm">
+                  <p className="text-sm text-gray-500 leading-relaxed">
                     {founder.bio}
                   </p>
                 </div>
@@ -601,10 +601,10 @@ export default function AboutPage() {
       <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="t-h2 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               The impact <span className="text-[#6E3FCC]">we see</span>
             </h2>
-            <p className="mt-4 t-body-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               When leadership development fits the flow of work.
             </p>
           </div>
@@ -688,7 +688,7 @@ export default function AboutPage() {
               ].map((phrase, i) => (
                 <p
                   key={i}
-                  className="t-h3 text-gray-900 leading-snug"
+                  className="text-lg font-bold text-gray-900 leading-snug"
                 >
                   {phrase}
                 </p>
@@ -702,10 +702,10 @@ export default function AboutPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="t-h2 text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
               Ready to support your managers?
             </h2>
-            <p className="mt-4 t-body-lg text-white/70 max-w-xl mx-auto">
+            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
               If you&apos;re trying to support managers in a growing,
               distributed organization — and you need something flexible,
               scalable, and proven — we&apos;d love to learn about your team.

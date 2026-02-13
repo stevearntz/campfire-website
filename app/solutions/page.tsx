@@ -7,10 +7,10 @@ export default function SolutionsPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-            <h1 className="t-h1 text-white tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Practical Support for Real Challenges
             </h1>
-            <p className="mt-4 t-body-lg text-white/70 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
               Campfire supports the leadership moments your managers face every
               day, with solutions that adapt to your culture and scale to your
               entire organization.
@@ -23,10 +23,10 @@ export default function SolutionsPage() {
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="t-h2 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Our Solutions
             </h2>
-            <p className="mt-4 t-body-lg text-gray-500 max-w-3xl mx-auto">
+            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Whether you&apos;re supporting new managers or navigating change,
               Campfire helps you design and deliver leadership development to fit
               your unique needs.
@@ -83,10 +83,10 @@ export default function SolutionsPage() {
                 <div className="w-12 h-12 rounded-xl bg-[#6E3FCC]/10 flex items-center justify-center text-[#6E3FCC] mb-5">
                   {solution.icon}
                 </div>
-                <h3 className="t-h3 text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {solution.title}
                 </h3>
-                <p className="t-body-sm text-gray-500 mb-5">
+                <p className="text-gray-500 text-sm leading-relaxed mb-5">
                   {solution.desc}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -109,10 +109,10 @@ export default function SolutionsPage() {
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="t-h2 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Campfire vs. Traditional Solutions
             </h2>
-            <p className="mt-4 t-body-lg text-gray-500 max-w-3xl mx-auto">
+            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Campfire is a complete system for leadership growth that provides
               the structure, reinforcement, and support needed to build
               leadership capability company-wide.
@@ -166,14 +166,14 @@ export default function SolutionsPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       {item.title}
                     </h3>
-                    <p className="t-body-sm text-gray-500">
+                    <p className="text-gray-500 text-sm leading-relaxed">
                       {item.problem}
                     </p>
                   </div>
 
                   {/* Campfire side */}
                   <div className="p-8 bg-[#6E3FCC] md:rounded-r-2xl">
-                    <h4 className="t-h3 text-white mb-3">
+                    <h4 className="text-lg font-bold text-white mb-3">
                       {item.campfireTitle}
                     </h4>
                     <p className="text-white/90 text-sm leading-relaxed">
@@ -213,10 +213,10 @@ export default function SolutionsPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="t-h2 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               How to Get Started
             </h2>
-            <p className="mt-4 t-body-lg text-gray-500">
+            <p className="mt-4 text-lg text-gray-500">
               Getting started with Campfire is straightforward and designed to
               fit your team.
             </p>
@@ -244,10 +244,10 @@ export default function SolutionsPage() {
                 <div className="w-12 h-12 rounded-full bg-[#6E3FCC] text-white text-lg font-bold flex items-center justify-center mx-auto mb-5">
                   {item.step}
                 </div>
-                <h3 className="t-h3 text-gray-900 mb-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
                   {item.title}
                 </h3>
-                <p className="t-body-sm text-gray-500">
+                <p className="text-gray-500 text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -260,10 +260,10 @@ export default function SolutionsPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="t-h2 text-white">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
               Not sure where to start?
             </h2>
-            <p className="mt-4 t-body-lg text-white/70">
+            <p className="mt-4 text-lg text-white/70">
               Schedule a conversation with us, and we&apos;ll help you figure
               out what your managers need most right now.
             </p>
