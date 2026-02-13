@@ -522,8 +522,8 @@ export default function AboutPage() {
               },
               {
                 belief: "Managers are the leverage point",
-                line1: "If managers don\u2019t change, nothing scales \u2014",
-                line2: "culture, performance, and strategy all live in their daily behavior.",
+                line1: "Culture, performance, and strategy all live",
+                line2: "in the daily behavior of your managers.",
                 accent: "bg-[#7E4FD0]",
               },
               {
