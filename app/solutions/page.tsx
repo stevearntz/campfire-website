@@ -119,10 +119,21 @@ export default function SolutionsPage() {
             </p>
           </div>
 
+          {/* Column headers */}
+          <div className="hidden md:grid grid-cols-2 gap-6 max-w-4xl mx-auto mb-4">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider px-8">
+              The Common Approach
+            </p>
+            <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-wider px-8">
+              The Campfire Difference
+            </p>
+          </div>
+
           <div className="space-y-6 max-w-4xl mx-auto">
             {[
               {
                 title: "Self-paced or E-learning",
+                campfireTitle: "Built for Real Conversation",
                 problem:
                   "People don't change behavior by watching videos. Without real conversation, reflection, and reinforcement, most learning fades quickly and never shows up in daily leadership moments.",
                 solution:
@@ -130,6 +141,7 @@ export default function SolutionsPage() {
               },
               {
                 title: "Executive Coaching",
+                campfireTitle: "Leadership Development That Scales",
                 problem:
                   "Coaching is powerful — but expensive and limited to a small group. It rarely creates shared language or consistent leadership habits across an organization.",
                 solution:
@@ -137,6 +149,7 @@ export default function SolutionsPage() {
               },
               {
                 title: "Building In-House",
+                campfireTitle: "Ready to Run, Without the Lift",
                 problem:
                   "Building programs internally takes time, coordination, and expertise most lean teams don't have. Efforts often stall, lose momentum, or become inconsistent.",
                 solution:
@@ -145,12 +158,12 @@ export default function SolutionsPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white rounded-2xl border border-gray-100 overflow-hidden"
+                className="rounded-2xl overflow-hidden shadow-sm"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-100">
                   {/* Problem side */}
-                  <div className="p-8 border-b md:border-b-0 md:border-r border-gray-100">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  <div className="p-8 bg-white md:rounded-l-2xl">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       {item.title}
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed">
@@ -159,11 +172,11 @@ export default function SolutionsPage() {
                   </div>
 
                   {/* Campfire side */}
-                  <div className="p-8 bg-[#F8F5FC]">
-                    <h4 className="text-sm font-bold text-[#6E3FCC] mb-3">
-                      How Campfire is Different
+                  <div className="p-8 bg-[#6E3FCC] md:rounded-r-2xl">
+                    <h4 className="text-lg font-bold text-white mb-3">
+                      {item.campfireTitle}
                     </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-white/90 text-sm leading-relaxed">
                       {item.solution}
                     </p>
                   </div>

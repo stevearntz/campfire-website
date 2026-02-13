@@ -1,130 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function AboutPage() {
   return (
     <main>
       {/* ==================== HERO ==================== */}
-      <section className="relative overflow-hidden bg-white">
-        {/* Topographic wave background */}
-        <div className="absolute inset-0 pointer-events-none hidden md:block">
-          <svg
-            viewBox="0 0 1440 900"
-            className="absolute inset-0 w-full h-full"
-            preserveAspectRatio="xMidYMid slice"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="aw1" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#6E3FCC" stopOpacity="0.9" />
-                <stop offset="40%" stopColor="#7E52D6" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#9A7ADE" stopOpacity="0.5" />
-              </linearGradient>
-              <linearGradient id="aw2" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#7E52D6" stopOpacity="0.7" />
-                <stop offset="50%" stopColor="#9A7ADE" stopOpacity="0.5" />
-                <stop offset="100%" stopColor="#BCA8E8" stopOpacity="0.3" />
-              </linearGradient>
-              <linearGradient id="aw3" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#9A7ADE" stopOpacity="0.5" />
-                <stop offset="50%" stopColor="#BCA8E8" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#D6CDF0" stopOpacity="0.2" />
-              </linearGradient>
-              <linearGradient id="aw4" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#BCA8E8" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#EBE6F6" stopOpacity="0.15" />
-              </linearGradient>
-            </defs>
-            <path d="M-100,900 L-100,750 C100,680 300,620 500,650 C700,680 850,580 1050,520 C1250,460 1350,380 1540,350 L1540,900 Z" fill="url(#aw1)" />
-            <path d="M-100,900 L-100,800 C150,740 350,700 550,720 C750,740 900,640 1100,590 C1300,540 1400,470 1540,430 L1540,900 Z" fill="url(#aw2)" />
-            <path d="M-100,900 L-100,830 C200,790 380,770 580,790 C780,810 950,710 1150,660 C1350,610 1420,550 1540,520 L1540,900 Z" fill="url(#aw3)" />
-            <path d="M-100,900 L-100,860 C250,830 450,830 650,845 C850,860 1000,780 1200,740 C1400,700 1460,650 1540,620 L1540,900 Z" fill="url(#aw4)" />
-            <path d="M-50,780 C150,720 350,690 550,710 C750,730 900,640 1100,590 C1300,540 1450,480 1500,460" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-            <path d="M-50,750 C180,690 380,660 560,680 C740,700 920,610 1120,560 C1320,510 1460,450 1500,430" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.2" />
-            <path d="M-50,720 C200,660 400,640 580,655 C760,670 940,580 1140,535 C1340,490 1470,430 1500,410" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-          </svg>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-16 md:pt-28 pb-16">
-          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            <div className="flex-1 max-w-xl md:bg-white/80 md:backdrop-blur-sm md:rounded-2xl md:p-10 md:-m-10">
-              <p className="text-sm font-semibold text-[#6E3FCC] tracking-wide uppercase mb-4">
-                About Campfire
-              </p>
-              <h1 className="text-4xl md:text-[2.75rem] lg:text-[2.85rem] font-bold text-gray-900 leading-[1.15] tracking-tight">
-                Leadership development that fits{" "}
-                <span className="text-[#6E3FCC]">your company</span> and{" "}
-                <span className="text-[#6E3FCC]">your leaders.</span>
-              </h1>
-              <p className="mt-6 text-lg text-gray-500 leading-relaxed max-w-lg">
-                Your managers are the linchpin of your organization. They carry
-                your culture, navigate change, onboard new talent, drive
-                performance, and hold your values in the everyday moments that
-                matter. Campfire gives them practical tools, real conversations,
-                and ongoing support — without adding burden to your
-                team.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/#how-it-works"
-                  className="px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors shadow-md"
-                >
-                  Learn How It Works
-                </Link>
-                <Link
-                  href="/content"
-                  className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] border-2 border-[#6E3FCC] rounded-lg hover:bg-[#6E3FCC]/5 transition-colors bg-white shadow-md"
-                >
-                  Explore the Session Library
-                </Link>
-              </div>
-            </div>
-
-            {/* Hero illustration */}
-            <div className="flex-1 hidden md:flex justify-center max-w-lg">
-              <svg viewBox="0 0 420 340" fill="none" className="w-full h-auto">
-                {/* Central warm glow */}
-                <circle cx="210" cy="190" r="120" fill="#6E3FCC" fillOpacity="0.03" />
-                <circle cx="210" cy="190" r="80" fill="#6E3FCC" fillOpacity="0.04" />
-                <circle cx="210" cy="190" r="45" fill="#6E3FCC" fillOpacity="0.06" />
-                {/* Campfire flame */}
-                <path d="M210 155 C204 172, 188 182, 192 200 C196 212, 206 218, 210 224 C214 218, 224 212, 228 200 C232 182, 216 172, 210 155Z" fill="#6E3FCC" fillOpacity="0.12" />
-                <path d="M210 168 C208 176, 200 182, 203 190 C205 196, 209 198, 210 202 C211 198, 215 196, 217 190 C220 182, 212 176, 210 168Z" fill="#6E3FCC" fillOpacity="0.22" />
-                {/* Person top-left */}
-                <circle cx="110" cy="100" r="18" fill="#6E3FCC" fillOpacity="0.1" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                <rect x="100" y="122" width="20" height="26" rx="10" fill="#6E3FCC" fillOpacity="0.07" />
-                {/* Speech bubble */}
-                <rect x="134" y="84" width="44" height="22" rx="11" fill="#6E3FCC" fillOpacity="0.08" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
-                <rect x="140" y="91" width="24" height="3" rx="1.5" fill="#6E3FCC" fillOpacity="0.12" />
-                <rect x="140" y="97" width="16" height="3" rx="1.5" fill="#6E3FCC" fillOpacity="0.08" />
-                {/* Person top-right */}
-                <circle cx="310" cy="100" r="18" fill="#6E3FCC" fillOpacity="0.1" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                <rect x="300" y="122" width="20" height="26" rx="10" fill="#6E3FCC" fillOpacity="0.07" />
-                {/* Speech bubble */}
-                <rect x="246" y="78" width="50" height="22" rx="11" fill="#6E3FCC" fillOpacity="0.08" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
-                <rect x="254" y="85" width="28" height="3" rx="1.5" fill="#6E3FCC" fillOpacity="0.12" />
-                <rect x="254" y="91" width="20" height="3" rx="1.5" fill="#6E3FCC" fillOpacity="0.08" />
-                {/* Person bottom-left */}
-                <circle cx="120" cy="260" r="18" fill="#6E3FCC" fillOpacity="0.1" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                <rect x="110" y="282" width="20" height="26" rx="10" fill="#6E3FCC" fillOpacity="0.07" />
-                {/* Person bottom-right */}
-                <circle cx="300" cy="260" r="18" fill="#6E3FCC" fillOpacity="0.1" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                <rect x="290" y="282" width="20" height="26" rx="10" fill="#6E3FCC" fillOpacity="0.07" />
-                {/* Person far left */}
-                <circle cx="50" cy="185" r="16" fill="#6E3FCC" fillOpacity="0.08" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
-                <rect x="42" y="205" width="16" height="22" rx="8" fill="#6E3FCC" fillOpacity="0.05" />
-                {/* Person far right */}
-                <circle cx="370" cy="185" r="16" fill="#6E3FCC" fillOpacity="0.08" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.15" />
-                <rect x="362" y="205" width="16" height="22" rx="8" fill="#6E3FCC" fillOpacity="0.05" />
-                {/* Connection lines */}
-                <line x1="128" y1="110" x2="192" y2="170" stroke="#6E3FCC" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="292" y1="110" x2="228" y2="170" stroke="#6E3FCC" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="138" y1="255" x2="195" y2="210" stroke="#6E3FCC" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="282" y1="255" x2="225" y2="210" stroke="#6E3FCC" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="66" y1="185" x2="165" y2="190" stroke="#6E3FCC" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="4 4" />
-                <line x1="354" y1="185" x2="255" y2="190" stroke="#6E3FCC" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="4 4" />
-              </svg>
-            </div>
+      <section className="relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+              Leadership Development That Fits Your Company and Your Leaders
+            </h1>
+            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
+              Your managers carry your culture, navigate change, and hold your
+              values in the moments that matter. Campfire gives them practical
+              tools, real conversations, and ongoing support — without adding
+              burden to your team.
+            </p>
           </div>
         </div>
       </section>
