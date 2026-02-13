@@ -460,15 +460,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ==================== SEE IT FOR YOURSELF BANNER ==================== */}
+      <section className="bg-[#F8F5FC] pb-10">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-[#6E3FCC] rounded-xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-white text-sm md:text-base text-center md:text-left">
+              <span className="font-bold">See it for yourself:</span>{" "}
+              Learn how Campfire can help your leaders build these habits and drive real results.
+            </p>
+            <Link
+              href="/contact"
+              className="shrink-0 px-6 py-2.5 text-xs font-semibold text-[#6E3FCC] bg-white rounded-md hover:bg-gray-100 transition-colors uppercase tracking-wider"
+            >
+              Book a Call
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ==================== HOW IT SHOWS UP ==================== */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Flexible formats that meet leaders{" "}
-              <span className="text-[#6E3FCC]">where they are</span>
+            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 italic">
+              Flexible formats that meet leaders where they are
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Campfire offers flexible format options that work across different
               teams, timelines, and goals. Organizations can start small or go
               broad, choosing the right mix for their people.
@@ -481,15 +498,11 @@ export default function Home() {
                 title: "Live virtual workshops",
                 desc: "Interactive sessions focused on real leadership challenges, designed to build shared language, reflection, and practical skills leaders can use right away.",
                 icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <rect x="4" y="6" width="32" height="22" rx="3" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.4" />
-                    <line x1="4" y1="28" x2="36" y2="28" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.3" />
-                    <rect x="15" y="28" width="10" height="4" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                    <circle cx="14" cy="16" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.5" />
-                    <circle cx="26" cy="16" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.5" />
-                    <circle cx="20" cy="22" r="1.5" fill="#6E3FCC" opacity="0.3" />
-                    <line x1="16" y1="19" x2="18" y2="21" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.25" strokeDasharray="1.5 1.5" />
-                    <line x1="24" y1="19" x2="22" y2="21" stroke="#6E3FCC" strokeWidth="0.8" opacity="0.25" strokeDasharray="1.5 1.5" />
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#6E3FCC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                 ),
               },
@@ -497,16 +510,9 @@ export default function Home() {
                 title: "Time-bound programs",
                 desc: "Short series or focused initiatives that create structure and momentum, while still reinforcing skills beyond a defined start and end.",
                 icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <line x1="6" y1="20" x2="34" y2="20" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.2" />
-                    <circle cx="10" cy="20" r="3.5" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.35" />
-                    <circle cx="20" cy="20" r="3.5" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.5" />
-                    <circle cx="30" cy="20" r="3.5" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.65" fill="#6E3FCC" fillOpacity="0.08" />
-                    <path d="M10 15 L10 12" stroke="#6E3FCC" strokeWidth="1" opacity="0.25" strokeLinecap="round" />
-                    <rect x="6" y="8" width="8" height="4" rx="1.5" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                    <path d="M30 15 L30 12" stroke="#6E3FCC" strokeWidth="1" opacity="0.35" strokeLinecap="round" />
-                    <rect x="26" y="8" width="8" height="4" rx="1.5" stroke="#6E3FCC" strokeWidth="1" opacity="0.3" />
-                    <path d="M30 21.5 L31 20 L29 20 Z" fill="#6E3FCC" opacity="0.5" />
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#6E3FCC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
                   </svg>
                 ),
               },
@@ -514,17 +520,11 @@ export default function Home() {
                 title: "Cohorts",
                 desc: "Small-group experiences that connect leaders facing similar challenges, creating space for peer learning, accountability, and deeper conversation.",
                 icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="10" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.45" />
-                    <circle cx="10" cy="24" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.45" />
-                    <circle cx="30" cy="24" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.45" />
-                    <circle cx="14" cy="34" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.45" />
-                    <circle cx="26" cy="34" r="3" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.45" />
-                    <line x1="17" y1="12" x2="12" y2="22" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                    <line x1="23" y1="12" x2="28" y2="22" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                    <line x1="12" y1="27" x2="14" y2="31" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                    <line x1="28" y1="27" x2="26" y2="31" stroke="#6E3FCC" strokeWidth="1" opacity="0.2" />
-                    <line x1="13" y1="24" x2="27" y2="24" stroke="#6E3FCC" strokeWidth="1" opacity="0.15" strokeDasharray="2 2" />
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#6E3FCC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
                   </svg>
                 ),
               },
@@ -532,23 +532,20 @@ export default function Home() {
                 title: "Offsites and gatherings",
                 desc: "High-impact moments for alignment, connection, and culture-building\u2014designed to create momentum that carries into everyday work.",
                 icon: (
-                  <svg className="w-10 h-10 mb-4" viewBox="0 0 40 40" fill="none">
-                    <path d="M8 32 L20 10 L32 32 Z" stroke="#6E3FCC" strokeWidth="1.5" opacity="0.3" fill="none" />
-                    <path d="M14 32 L20 16 L26 32" stroke="#6E3FCC" strokeWidth="1" opacity="0.15" fill="none" />
-                    <circle cx="12" cy="28" r="2.5" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.4" />
-                    <circle cx="20" cy="26" r="2.5" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.4" />
-                    <circle cx="28" cy="28" r="2.5" stroke="#6E3FCC" strokeWidth="1.2" opacity="0.4" />
-                    <path d="M19 22 C19.3 20.5 20 19.5 20 18" stroke="#6E3FCC" strokeWidth="1" opacity="0.25" strokeLinecap="round" />
-                    <path d="M21 22 C20.7 20.5 20 19.5 20 18" stroke="#6E3FCC" strokeWidth="1" opacity="0.25" strokeLinecap="round" />
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#6E3FCC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 2L11 13" />
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" />
                   </svg>
                 ),
               },
             ].map((format) => (
               <div
                 key={format.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow"
+                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-200"
               >
-                {format.icon}
+                <div className="flex justify-end mb-8">
+                  {format.icon}
+                </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {format.title}
                 </h3>
