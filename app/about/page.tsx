@@ -785,8 +785,8 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 "More honest conversations",
-                "More humanity at work",
-                "More clarity",
+                "More human-centered leadership",
+                "More aligned decision-making",
                 "More sustainable performance",
               ].map((phrase) => (
                 <p
