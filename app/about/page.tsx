@@ -220,8 +220,8 @@ export default function AboutPage() {
               What we <span className="text-[#6E3FCC]">actually provide</span>
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              Everything you need to run leadership development that works —
-              without building it all yourself.
+              Everything you need to run leadership development programs that
+              actually work — without building it all yourself.
             </p>
           </div>
 
