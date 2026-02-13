@@ -56,7 +56,7 @@ export default function Home() {
                 alt="Campfire platform — live workshop with participants, activities, and facilitation tools"
                 width={1983}
                 height={1448}
-                className="w-full h-auto rounded-lg shadow-2xl"
+                className="w-full h-auto rounded-lg"
                 priority
               />
             </div>
