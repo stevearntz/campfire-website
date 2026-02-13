@@ -432,12 +432,17 @@ export default function Home() {
                   title: "Improved Performance + Results",
                   desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
                 },
-              ].map((impact, i) => (
+              ].map((impact, i) => {
+                const circleColors = ["#521DB5", "#896DF0", "#A84AEB", "#D65CE9", "#EE81DD"];
+                return (
                 <div
                   key={impact.title}
                   className="bg-white rounded-xl grid grid-cols-1 md:grid-cols-[auto_1fr_1px_1.2fr] items-center gap-5 md:gap-6 px-8 py-6"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#6E3FCC] text-white text-sm font-bold flex items-center justify-center shrink-0">
+                  <div
+                    className="w-10 h-10 rounded-full text-white text-sm font-bold flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: circleColors[i] }}
+                  >
                     {i + 1}
                   </div>
                   <h3 className="text-base font-bold text-[#1E2A4A]">
@@ -448,7 +453,8 @@ export default function Home() {
                     {impact.desc}
                   </p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
