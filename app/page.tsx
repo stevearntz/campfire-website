@@ -399,69 +399,55 @@ export default function Home() {
       {/* ==================== OUTCOMES ==================== */}
       <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Impact You Can Feel
-              <span className="text-[#6E3FCC]">&mdash;Company-Wide</span>
-            </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              When leaders make small shifts in everyday conversations,
-              decisions, and behaviors, your entire organization benefits.
-            </p>
-          </div>
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+            {/* Left heading */}
+            <div className="lg:w-[340px] shrink-0 lg:sticky lg:top-20">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] italic">
+                Impact you can feel
+                <br />
+                <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
+              </h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                title: "Better conversations",
-                desc: "Leaders communicate more clearly, listen more effectively, and navigate difficult conversations with confidence and care.",
-              },
-              {
-                title: "Stronger alignment",
-                desc: "Teams operate with shared language, clearer expectations, and better decision-making\u2014reducing friction and confusion.",
-              },
-              {
-                title: "Healthier team dynamics",
-                desc: "Trust increases, feedback improves, and people feel more supported, engaged, and accountable.",
-              },
-              {
-                title: "More consistent leadership behaviors",
-                desc: "Leadership expectations don\u2019t live in a slide deck. They show up in meetings, 1:1s, and everyday decisions across the organization.",
-              },
-              {
-                title: "Improved performance and results",
-                desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
-              },
-            ].map((impact) => (
-              <div
-                key={impact.title}
-                className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {impact.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {impact.desc}
-                </p>
-              </div>
-            ))}
-            {/* Purple CTA card */}
-            <div className="bg-[#6E3FCC] rounded-2xl p-8 shadow-sm flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  See it for yourself
-                </h3>
-                <p className="text-white/70 text-sm leading-relaxed">
-                  Learn how Campfire can help your leaders build these habits and
-                  drive real results.
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="inline-block mt-6 px-6 py-3 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors text-center"
-              >
-                Book a Call &rarr;
-              </Link>
+            {/* Right rows */}
+            <div className="flex-1">
+              {[
+                {
+                  title: "Better Conversations",
+                  desc: "Leaders communicate more clearly, listen more effectively, and navigate difficult conversations with confidence and care.",
+                },
+                {
+                  title: "Stronger Alignment",
+                  desc: "Teams operate with shared language, clearer expectations, and better decision-making\u2014reducing friction and confusion.",
+                },
+                {
+                  title: "Healthier Team Dynamics",
+                  desc: "Trust increases, feedback improves, and people feel more supported, engaged, and accountable.",
+                },
+                {
+                  title: "Consistent Leadership Behaviors",
+                  desc: "Leadership expectations don\u2019t live in a slide deck. They show up in meetings, 1:1s, and everyday decisions across the organization.",
+                },
+                {
+                  title: "Improved Performance + Results",
+                  desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
+                },
+              ].map((impact, i) => (
+                <div
+                  key={impact.title}
+                  className={`grid grid-cols-1 md:grid-cols-[1fr_1px_1.2fr] items-center gap-6 md:gap-8 py-6 ${
+                    i > 0 ? "border-t border-gray-200" : ""
+                  }`}
+                >
+                  <h3 className="text-base font-bold text-[#1E2A4A]">
+                    {impact.title}
+                  </h3>
+                  <div className="hidden md:block w-px h-full bg-gray-200" />
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {impact.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
