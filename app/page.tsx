@@ -21,7 +21,7 @@ export default function Home() {
             {/* Text */}
             <div className="flex-1 max-w-xl">
               <p className="text-sm font-bold tracking-wider uppercase mb-4" style={{ color: "#FFC28A" }}>
-                For HR &amp; Talent Development Leaders
+                Flexible Leadership Development For HR &amp; Talent Leaders
               </p>
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight">
                 Build Better Leaders
