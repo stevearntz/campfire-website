@@ -140,10 +140,10 @@ export default function ProductShowcase() {
 
             {/* Right: Image */}
             <div
-              className="relative flex items-center justify-center p-6 md:p-8"
+              className="relative flex flex-col p-6 md:p-8"
               style={{ backgroundColor: "#2f2745" }}
             >
-              <div className="grid w-full">
+              <div className="grid w-full flex-1">
                 {slides.map((slide, i) => (
                   <div
                     key={slide.label}
@@ -165,20 +165,20 @@ export default function ProductShowcase() {
                   </div>
                 ))}
               </div>
+
+              {/* CTA inside the right panel */}
+              <div className="text-center mt-6">
+                <a
+                  href={s.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+                >
+                  {s.cta}
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* CTA below card — changes per slide */}
-        <div className="text-center mt-8">
-          <a
-            href={s.ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
-          >
-            {s.cta}
-          </a>
         </div>
       </div>
     </section>
