@@ -11,7 +11,7 @@ export default function Home() {
       <section
         className="relative overflow-hidden"
         style={{
-          backgroundImage: "url('/hero-bg.png')",
+          backgroundImage: "url('/hero-bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -52,7 +52,7 @@ export default function Home() {
             {/* Product screenshot */}
             <div className="flex-1 hidden md:block">
               <Image
-                src="/product-screen.png"
+                src="/product-screen.webp"
                 alt="Campfire platform — live workshop with participants, activities, and facilitation tools"
                 width={1983}
                 height={1448}
