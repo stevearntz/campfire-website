@@ -41,7 +41,7 @@ export default function ProductShowcase() {
   const s = slides[active];
 
   return (
-    <section className="py-20 bg-[#262F56]">
+    <section className="py-20 bg-[#1C1334]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -58,8 +58,8 @@ export default function ProductShowcase() {
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr]">
             {/* Left: Text + navigation */}
             <div
-              className="p-8 md:p-10 flex flex-col justify-between"
-              style={{ backgroundColor: "#403955" }}
+              className="p-8 md:px-10 flex flex-col justify-between"
+              style={{ backgroundColor: "#403955", paddingTop: "calc(2.5rem + 25px)", paddingBottom: "calc(2.5rem + 25px)" }}
             >
               <div>
                 <p className="text-xs font-semibold text-[#6E3FCC] tracking-wider uppercase mb-4">
@@ -140,8 +140,8 @@ export default function ProductShowcase() {
 
             {/* Right: Image */}
             <div
-              className="relative flex flex-col p-6 md:p-8"
-              style={{ backgroundColor: "#2f2745" }}
+              className="relative flex flex-col p-6 md:px-8"
+              style={{ backgroundColor: "#2f2745", paddingTop: "calc(2rem + 25px)", paddingBottom: "calc(2rem + 25px)" }}
             >
               <div className="grid w-full flex-1">
                 {slides.map((slide, i) => (
