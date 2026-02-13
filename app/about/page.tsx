@@ -496,9 +496,9 @@ export default function AboutPage() {
                 scale.
               </p>
               <p className="mt-4 text-white/60 text-sm">
-                We exist to make meaningful, practical leadership development
-                accessible to every manager — not just the C-suite or high
-                potentials.
+                We exist to make meaningful, practical, and engaging leadership
+                development accessible to every manager. Leadership support
+                should go beyond just executives and &ldquo;high-potentials&rdquo;.
               </p>
             </div>
           </div>
