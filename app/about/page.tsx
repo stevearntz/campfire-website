@@ -546,8 +546,8 @@ export default function AboutPage() {
               },
               {
                 belief: "Simple beats complex",
-                line1: "The best tools are the ones leaders use tomorrow.",
-                line2: "If it doesn\u2019t fit the flow of work, it doesn\u2019t stick.",
+                line1: "Tools need to fit into the flow of work",
+                line2: "or they won\u2019t stick.",
                 accent: "bg-[#8F65D9]",
               },
             ].map((item) => (
