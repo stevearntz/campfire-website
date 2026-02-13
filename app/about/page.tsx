@@ -516,8 +516,8 @@ export default function AboutPage() {
             {[
               {
                 belief: "Leadership is a practice, not a title",
-                line1: "You become a leader in ordinary moments \u2014",
-                line2: "in 1:1s, in feedback, in how you show up on a hard Tuesday.",
+                line1: "Leaders are built in the ordinary moments.",
+                line2: "It\u2019s how you show up on a hard Tuesday.",
                 accent: "bg-[#6E3FCC]",
               },
               {
