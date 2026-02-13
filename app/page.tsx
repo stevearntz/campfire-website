@@ -401,7 +401,7 @@ export default function Home() {
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
             {/* Left heading */}
-            <div className="lg:w-[420px] shrink-0 lg:sticky lg:top-20">
+            <div className="lg:w-[420px] shrink-0">
               <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
                 Impact you can feel
                 <br />
