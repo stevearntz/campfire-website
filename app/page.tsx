@@ -181,21 +181,21 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] pt-16 pb-0 overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-6">
+        <div className="max-w-[1280px] mx-auto px-6">
           <div className="relative flex flex-col md:flex-row items-center">
             {/* Pink topo CTA box — sharp corners, overlaps photo by 20% */}
             <div
-              className="relative z-10 px-8 py-12 md:px-12 md:py-14 md:w-[62%] shrink-0"
+              className="relative z-10 px-8 py-12 md:px-12 md:py-14 md:w-[62%] shrink-0 text-center"
               style={{
                 backgroundImage: "url('/pink-topo-bg.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             >
-              <h2 className="text-xl md:text-2xl font-bold text-white max-w-md">
+              <h2 className="text-xl md:text-2xl font-bold text-white max-w-xl mx-auto">
                 You&apos;re 30 seconds away from experiencing Campfire
               </h2>
-              <p className="mt-3 text-sm text-white/80 max-w-md">
+              <p className="mt-3 text-sm text-white/80 max-w-xl mx-auto">
                 Sign up free, explore our full catalog, and try our
                 industry-leading platform. No credit card required.
               </p>
