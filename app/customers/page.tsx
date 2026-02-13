@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const caseStudies = [
   {
@@ -73,28 +74,31 @@ export default function CustomersPage() {
       </section>
 
       {/* Logo Bar */}
-      <section className="py-12 bg-white border-b border-gray-100">
+      <section className="py-10 bg-[#262F56]">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-8">
+          <p className="text-center text-xs font-bold text-white/50 tracking-wider uppercase mb-8">
             Companies building better leaders with Campfire
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-12 opacity-30">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
             {[
-              "Company A",
-              "Company B",
-              "Company C",
-              "Company D",
-              "Company E",
-              "Company F",
-            ].map((name) => (
-              <div key={name} className="text-xl font-bold text-gray-900">
-                {name}
+              { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
+              { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
+              { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
+              { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
+              { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
+              { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
+            ].map((logo) => (
+              <div key={logo.alt} className="flex items-center justify-center">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.w}
+                  height={logo.h}
+                  className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-90"
+                />
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-gray-400 mt-6">
-            Client logos coming soon — reach out to hear specific stories.
-          </p>
         </div>
       </section>
 
@@ -193,7 +197,7 @@ export default function CustomersPage() {
               },
               {
                 quote:
-                  "As an HR team of two, we needed something we could launch fast and trust to be good. Campfire delivered on both.",
+                  "As an HR team of two, we needed something we could launch fast and trust to be really good. Campfire delivered on both counts — and our managers loved it.",
                 person: "People Partner",
                 company: "Remote-First Company",
               },
@@ -228,7 +232,7 @@ export default function CustomersPage() {
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Your team could be next
+              Your team is next
             </h2>
             <p className="mt-4 text-lg text-white/70">
               Let&apos;s talk about what Campfire can do for your managers.
