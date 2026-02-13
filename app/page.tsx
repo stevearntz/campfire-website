@@ -389,7 +389,7 @@ export default function Home() {
               <span className="text-[#6E3FCC]">single biggest
               lever we have</span> in improving our results.&rdquo;
             </blockquote>
-            <p className="mt-8 text-base text-gray-400">
+            <p className="mt-8 text-lg text-gray-500">
               &mdash; CEO, 1,200-employee company
             </p>
           </div>
