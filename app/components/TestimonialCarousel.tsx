@@ -65,28 +65,27 @@ export default function TestimonialCarousel() {
           What People Are Saying
         </p>
 
-        {/* Carousel track */}
-        <div className="relative">
-          {/* Cards container — overflow visible so side cards peek */}
-          <div className="flex gap-6 justify-center items-stretch">
-            {[-1, 0, 1].map((offset) => {
-              const idx = getVisibleIndex(offset);
-              const t = testimonials[idx];
-              const isCenter = offset === 0;
+        {/* Carousel track — overflow hidden so side cards peek from edges */}
+        <div className="relative overflow-hidden mx-[-1.5rem]">
+          <div
+            className="flex gap-6 transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(calc(50% - ${active * (680 + 24)}px - 340px))`,
+            }}
+          >
+            {testimonials.map((t, i) => {
+              const isCenter = i === active;
 
               return (
                 <div
-                  key={`${idx}-${offset}`}
-                  className={`shrink-0 w-[420px] bg-[#F8F5FC] rounded-2xl p-8 flex flex-col justify-between transition-all duration-500 ${
-                    isCenter ? "opacity-100" : "opacity-70"
+                  key={`${t.logoAlt}-${i}`}
+                  className={`shrink-0 w-[680px] h-[340px] bg-[#F8F5FC] rounded-2xl p-10 flex flex-col justify-between transition-opacity duration-500 ${
+                    isCenter ? "opacity-100" : "opacity-50"
                   }`}
-                  style={{
-                    transform: isCenter ? "scale(1)" : "scale(0.97)",
-                  }}
                 >
                   <div>
                     {/* Logo — top right */}
-                    <div className="flex justify-end mb-4">
+                    <div className="flex justify-end mb-3">
                       <Image
                         src={t.logo}
                         alt={t.logoAlt}
@@ -106,13 +105,13 @@ export default function TestimonialCarousel() {
                     </svg>
 
                     {/* Quote */}
-                    <blockquote className="text-gray-700 text-base leading-relaxed">
+                    <blockquote className="text-gray-700 text-xl leading-relaxed">
                       {t.quote}
                     </blockquote>
                   </div>
 
                   {/* Attribution */}
-                  <p className="mt-6 text-sm text-gray-500">
+                  <p className="text-sm text-gray-500">
                     <span className="font-bold text-gray-800">
                       &ndash;{t.name}
                     </span>{" "}
