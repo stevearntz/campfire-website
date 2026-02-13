@@ -67,7 +67,8 @@ export default function CustomersPage() {
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
               See how companies like yours are using Campfire to develop
-              stronger leaders and healthier teams.
+              stronger leaders, healthier teams, and a culture where people
+              actually talk to each other about the things that matter.
             </p>
           </div>
         </div>
