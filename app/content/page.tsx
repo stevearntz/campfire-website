@@ -175,14 +175,14 @@ export default function ContentPage() {
               {
                 title: "Bundles",
                 desc: "Pre-packaged series of workshops around a theme — like New Manager Foundations or Leading Through Change. 4–6 sessions, ready to launch.",
-                tag: "Most Popular",
-                featured: true,
+                tag: "Quick Start",
+                featured: false,
               },
               {
                 title: "Library",
                 desc: "Access our full catalog of standalone workshops and pick the topics your team needs most. Mix and match to build your own rhythm.",
-                tag: "Flexible",
-                featured: false,
+                tag: "Most Popular",
+                featured: true,
               },
               {
                 title: "Custom Sessions",
@@ -195,7 +195,7 @@ export default function ContentPage() {
                 key={option.title}
                 className={`rounded-2xl p-8 border ${
                   option.featured
-                    ? "bg-[#6E3FCC] text-white border-[#6E3FCC] shadow-lg shadow-purple-200"
+                    ? "bg-[#6E3FCC] text-white border-[#6E3FCC] shadow-lg shadow-purple-200 md:scale-105 md:-my-2"
                     : "bg-white text-gray-900 border-gray-100 shadow-sm"
                 }`}
               >
