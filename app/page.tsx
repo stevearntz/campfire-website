@@ -401,8 +401,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
             {/* Left heading */}
-            <div className="lg:w-[340px] shrink-0 lg:sticky lg:top-20">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2]">
+            <div className="lg:w-[420px] shrink-0 lg:sticky lg:top-20">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
                 Impact you can feel
                 <br />
                 <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
@@ -432,11 +432,14 @@ export default function Home() {
                   title: "Improved Performance + Results",
                   desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
                 },
-              ].map((impact) => (
+              ].map((impact, i) => (
                 <div
                   key={impact.title}
-                  className="bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1.2fr] items-center gap-6 md:gap-8 px-8 py-6"
+                  className="bg-white rounded-xl grid grid-cols-1 md:grid-cols-[auto_1fr_1px_1.2fr] items-center gap-5 md:gap-6 px-8 py-6"
                 >
+                  <div className="w-10 h-10 rounded-full bg-[#6E3FCC] text-white text-sm font-bold flex items-center justify-center shrink-0">
+                    {i + 1}
+                  </div>
                   <h3 className="text-base font-bold text-[#1E2A4A]">
                     {impact.title}
                   </h3>
