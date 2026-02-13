@@ -234,7 +234,7 @@ export default function ContentPage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Book a Call
           </Link>

@@ -713,13 +713,13 @@ export default function AboutPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors"
+                className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
               >
                 Talk to Us
               </Link>
               <Link
                 href="/solutions"
-                className="px-7 py-3.5 text-sm font-semibold text-white border-2 border-white/50 rounded-lg hover:bg-white/10 hover:border-white/70 transition-colors"
+                className="px-7 py-3.5 text-sm font-semibold text-white border-2 border-white/50 rounded-lg hover:bg-white/10 hover:border-white/70 transition-colors uppercase tracking-wide"
               >
                 See How It Fits
               </Link>

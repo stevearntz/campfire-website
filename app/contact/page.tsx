@@ -236,7 +236,7 @@ export default function ContactPage() {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+                      className="w-full py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
                     >
                       Connect With Us
                     </button>

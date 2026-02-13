@@ -50,13 +50,13 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3 font-[family-name:var(--font-spartan)]">
           <Link
             href="#"
-            className="px-5 py-2 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+            className="px-5 py-2 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Sign Up
           </Link>
           <Link
             href="#"
-            className="px-5 py-2 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors"
+            className="px-5 py-2 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors uppercase tracking-wide"
           >
             Log In
           </Link>

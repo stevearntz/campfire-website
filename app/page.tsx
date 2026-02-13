@@ -20,6 +20,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
             {/* Text */}
             <div className="flex-1 max-w-xl">
+              <p className="text-sm font-bold tracking-wider uppercase mb-4" style={{ color: "#FFC28A" }}>
+                For HR &amp; Talent Development Leaders
+              </p>
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight">
                 Build Better Leaders
                 <br />
@@ -42,7 +45,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-7 py-3.5 text-sm font-semibold text-white border-2 border-white/60 rounded-lg hover:border-white hover:bg-white/10 transition-colors uppercase tracking-wide"
+                  className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
                 >
                   Talk to Us
                 </Link>
@@ -183,7 +186,7 @@ export default function Home() {
           <div className="text-center mt-8">
             <Link
               href="/solutions"
-              className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+              className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               See How It Works
             </Link>
@@ -220,7 +223,7 @@ export default function Home() {
               className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               Try Campfire
-            </a>
+  </a>
           </div>
         </div>
 
@@ -461,7 +464,7 @@ export default function Home() {
       </section>
 
       {/* ==================== HOW IT SHOWS UP ==================== */}
-      <section className="relative pt-32 pb-20 bg-white">
+      <section className="relative pb-20 bg-white" style={{ paddingTop: "178px" }}>
         {/* Purple CTA banner — bridges between sections */}
         <div className="absolute left-0 right-0 -top-9 z-10">
           <div className="max-w-5xl mx-auto px-6">
@@ -549,33 +552,39 @@ export default function Home() {
       <SessionWalkthrough />
 
       {/* ==================== FINAL CTA ==================== */}
-      <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
-          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Ready to transform your people and culture?
-            </h2>
-            <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
-              Schedule a conversation with us. You bring your goals and
-              challenges, and we&apos;ll think with you about practical next
-              steps.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Book a Call &rarr;
-              </Link>
-              <a
-                href="https://tools.getcampfire.com/courses"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
-              >
-                Explore Workshops
-              </a>
-            </div>
+      <section
+        className="relative overflow-hidden py-20"
+        style={{
+          backgroundImage: "url('/purple-topo-tall.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Ready to transform your people and culture?
+          </h2>
+          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+            Schedule a conversation with us. You bring your goals and
+            challenges, and we&apos;ll think with you about practical next
+            steps.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact"
+              className="px-8 py-4 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
+              style={{ backgroundColor: "#E055CB" }}
+            >
+              Book a Call &rarr;
+            </Link>
+            <a
+              href="https://tools.getcampfire.com/courses"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+            >
+              Explore Workshops
+            </a>
           </div>
         </div>
       </section>
