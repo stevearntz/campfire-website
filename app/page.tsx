@@ -181,17 +181,17 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] py-16 overflow-hidden">
-        <div className="relative flex flex-col md:flex-row items-stretch">
-          {/* Pink topo CTA box — flush left, stretches to match image height */}
+        <div className="relative flex flex-col md:flex-row items-center">
+          {/* Pink topo CTA box — flush left, 50% image height, centered vertically */}
           <div
-            className="relative z-10 md:w-[55%] shrink-0 flex items-center justify-center"
+            className="relative z-10 md:w-[55%] shrink-0"
             style={{
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="px-8 py-12 md:px-12 md:py-14 lg:px-16 lg:py-16 text-center w-full">
+            <div className="px-8 py-8 md:px-12 md:py-10 lg:px-16 lg:py-12 text-center w-full">
               <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-xl mx-auto">
                 You&apos;re 30 seconds away from experiencing Campfire
               </h2>
