@@ -379,17 +379,20 @@ export default function Home() {
       </section>
 
       {/* ==================== PULL QUOTE ==================== */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <blockquote className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug">
-            &ldquo;Our biggest priority right now is improving our front-line
-            managers because that&apos;s the{" "}
-            <span className="text-[#6E3FCC]">single biggest lever</span> we have in
-            improving our results.&rdquo;
-          </blockquote>
-          <p className="mt-6 text-sm text-gray-400">
-            &mdash; CEO, 1,200-employee company
-          </p>
+      <section className="bg-white">
+        <div className="h-[3px] bg-gradient-to-r from-[#6E3FCC] to-[#3B82F6]" />
+        <div className="py-20">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <blockquote className="text-3xl md:text-[2.75rem] font-extrabold text-[#1E2A4A] leading-[1.3]">
+              &ldquo;Our biggest priority right now is improving our
+              front-line managers because that&apos;s the{" "}
+              <span className="text-[#6E3FCC]">single biggest
+              lever we have</span> in improving our results.&rdquo;
+            </blockquote>
+            <p className="mt-8 text-base text-gray-400">
+              &mdash; CEO, 1,200-employee company
+            </p>
+          </div>
         </div>
       </section>
 
