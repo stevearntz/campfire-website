@@ -346,7 +346,7 @@ export default function AboutPage() {
             What it <span className="text-[#6E3FCC]">feels like</span>
           </h2>
           <p className="text-lg text-gray-500 mb-12 max-w-2xl">
-            Managers don&apos;t sit back and watch.
+            Great managers don&apos;t just sit back and watch.
           </p>
 
           {/* The experience */}
