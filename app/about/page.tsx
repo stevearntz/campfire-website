@@ -539,7 +539,7 @@ export default function AboutPage() {
                 accent: "bg-[#6E3FCC]",
               },
               {
-                belief: "Systems beat events",
+                belief: "Systems beat one-time events",
                 line1: "Ongoing reinforcement and tools change",
                 line2: "how teams actually operate.",
                 accent: "bg-[#7E4FD0]",
