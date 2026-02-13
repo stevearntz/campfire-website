@@ -182,7 +182,7 @@ export default function Home() {
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] pt-16 pb-0 overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="relative flex flex-col md:flex-row items-end">
+          <div className="relative flex flex-col md:flex-row items-center">
             {/* Pink topo CTA box — sharp corners, overlaps photo by 20% */}
             <div
               className="relative z-10 px-8 py-12 md:px-12 md:py-14 md:w-[62%] shrink-0"
@@ -209,11 +209,11 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Stock photo — rounded corners, extends above */}
-            <div className="relative md:w-[58%] md:-ml-[20%] md:-mt-16 shrink-0">
+            {/* Campfire image — rounded corners */}
+            <div className="relative md:w-[58%] md:-ml-[20%] shrink-0">
               <Image
-                src="/stock-people.webp"
-                alt="Team collaborating around a table with charts and notes"
+                src="/campfire.webp"
+                alt="Campfire session with participants collaborating"
                 width={800}
                 height={600}
                 className="w-full h-auto object-cover rounded-2xl"
