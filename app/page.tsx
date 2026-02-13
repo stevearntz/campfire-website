@@ -460,26 +460,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== SEE IT FOR YOURSELF BANNER ==================== */}
-      <section className="bg-[#F8F5FC] pb-10">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-[#6E3FCC] rounded-xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-white text-sm md:text-base text-center md:text-left">
-              <span className="font-bold">See it for yourself:</span>{" "}
-              Learn how Campfire can help your leaders build these habits and drive real results.
-            </p>
-            <Link
-              href="/contact"
-              className="shrink-0 px-6 py-2.5 text-xs font-semibold text-[#6E3FCC] bg-white rounded-md hover:bg-gray-100 transition-colors uppercase tracking-wider"
-            >
-              Book a Call
-            </Link>
+      {/* ==================== HOW IT SHOWS UP ==================== */}
+      <section className="relative pt-20 pb-20 bg-white">
+        {/* Purple CTA banner — bridges between sections */}
+        <div className="absolute left-0 right-0 -top-7 z-10">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="bg-[#6E3FCC] rounded-xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
+              <p className="text-white text-sm md:text-base text-center md:text-left">
+                <span className="font-bold">See it for yourself:</span>{" "}
+                Learn how Campfire can help your leaders build these habits and drive real results.
+              </p>
+              <Link
+                href="/contact"
+                className="shrink-0 px-6 py-2.5 text-xs font-semibold text-[#6E3FCC] bg-white rounded-md hover:bg-gray-100 transition-colors uppercase tracking-wider"
+              >
+                Book a Call
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* ==================== HOW IT SHOWS UP ==================== */}
-      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900 italic">
