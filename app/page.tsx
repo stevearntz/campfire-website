@@ -195,7 +195,7 @@ export default function Home() {
       <ProductShowcase />
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
-      <section className="bg-[#262F56] py-16 overflow-hidden">
+      <section className="bg-[#1C1334] py-16 overflow-hidden">
         {/* Mobile: pink topo only, no image */}
         <div className="md:hidden px-6">
           <div
@@ -281,7 +281,7 @@ export default function Home() {
       </section>
 
       {/* ==================== HOW IT WORKS ==================== */}
-      <section id="how-it-works" className="py-20 bg-[#262F56]">
+      <section id="how-it-works" className="py-20 bg-[#1C1334]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
