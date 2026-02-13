@@ -94,22 +94,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ==================== WHAT IT IS ==================== */}
+      {/* ==================== OUTCOMES-DRIVEN CULTURE ==================== */}
       <section className="py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Scale an{" "}
+            <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
+          </h2>
+          <p className="mt-6 text-lg text-gray-500 leading-relaxed">
+            When people understand the mission, know what outcomes matter, and
+            feel connected to the purpose behind their work, everything changes.
+            Burnout drops because effort becomes sustainable and directed.
+            Micromanagement fades because leaders can trust their people to make
+            good decisions. Teams stop spinning their wheels and start moving
+            together&mdash;with clarity, confidence, and accountability that
+            doesn&apos;t require constant oversight.
+          </p>
+          <p className="mt-4 text-lg text-gray-500 leading-relaxed">
+            Campfire helps you build that kind of culture&mdash;where leadership
+            development isn&apos;t a checkbox, it&apos;s the engine that drives
+            alignment, performance, and the kind of environment where people
+            actually want to do their best work.
+          </p>
+        </div>
+      </section>
+
+      {/* ==================== LEADERSHIP DEVELOPMENT ==================== */}
+      <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Scale an{" "}
-              <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
+              Leadership Development, Without the Overhead
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Flexible content, scalable facilitation, and program
-              support&mdash;designed to develop leaders at every level and adapt
-              to your organization.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
                 title: "Flexible Content",
@@ -132,38 +151,36 @@ export default function Home() {
             ].map((card) => (
               <div
                 key={card.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100 hover:shadow-md transition-shadow"
+                className="bg-white rounded-2xl p-8 border border-gray-100 flex gap-5 items-start"
               >
-                <div className="mb-5">
+                <div className="shrink-0">
                   <Image
                     src={card.icon}
                     alt={card.iconAlt}
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 object-contain"
+                    width={60}
+                    height={60}
+                    className="w-14 h-14 object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {card.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {card.desc}
-                </p>
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {card.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Built For bar */}
-          <div className="mt-10 bg-[#F5F4F1] rounded-xl px-6 py-4 border border-gray-100">
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500">
-              <span className="font-semibold text-gray-700">Built for:</span>
-              <span>HR leaders scaling leadership development</span>
-              <span className="text-gray-300 hidden sm:inline">&middot;</span>
-              <span>L&amp;D teams with lean headcount</span>
-              <span className="text-gray-300 hidden sm:inline">&middot;</span>
-              <span>Talent leaders building and shaping culture</span>
-            </div>
-          </div>
+          {/* Built For — plain text */}
+          <p className="text-center mt-10 text-sm text-gray-500">
+            <span className="font-bold text-gray-700">Built For:</span>{" "}
+            HR leaders scaling leadership development{" "}
+            + L&amp;D teams with lean headcount{" "}
+            + Talent leaders building and shaping culture
+          </p>
 
           <div className="text-center mt-8">
             <Link
