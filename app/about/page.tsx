@@ -516,32 +516,38 @@ export default function AboutPage() {
             {[
               {
                 belief: "Leadership is a practice, not a title",
-                detail: "You become a leader through daily behaviors and conversations.",
+                line1: "You become a leader in ordinary moments \u2014",
+                line2: "in 1:1s, in feedback, in how you show up on a hard Tuesday.",
                 accent: "bg-[#6E3FCC]",
               },
               {
                 belief: "Managers are the leverage point",
-                detail: "If managers don\u2019t change, nothing scales.",
+                line1: "If managers don\u2019t change, nothing scales \u2014",
+                line2: "culture, performance, and strategy all live in their daily behavior.",
                 accent: "bg-[#7E4FD0]",
               },
               {
                 belief: "Culture lives in everyday moments",
-                detail: "In 1:1s, meetings, feedback, recognition, and difficult decisions.",
+                line1: "Not in the values slide.",
+                line2: "In meetings, recognition, conflict, and small decisions that repeat.",
                 accent: "bg-[#8F65D9]",
               },
               {
                 belief: "Behavior beats content",
-                detail: "Frameworks matter. Application matters more.",
+                line1: "Frameworks are helpful. Practice is transformative.",
+                line2: "Leaders change when conversations change.",
                 accent: "bg-[#6E3FCC]",
               },
               {
                 belief: "Systems beat events",
-                detail: "One workshop doesn\u2019t change behavior. Ongoing reinforcement does.",
+                line1: "One workshop feels good.",
+                line2: "Ongoing reinforcement changes how teams actually operate.",
                 accent: "bg-[#7E4FD0]",
               },
               {
                 belief: "Simple beats complex",
-                detail: "The best tools are the ones leaders actually use.",
+                line1: "The best tools are the ones leaders use tomorrow.",
+                line2: "If it doesn\u2019t fit the flow of work, it doesn\u2019t stick.",
                 accent: "bg-[#8F65D9]",
               },
             ].map((item) => (
@@ -554,7 +560,9 @@ export default function AboutPage() {
                   {item.belief}
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed pl-3">
-                  {item.detail}
+                  {item.line1}
+                  <br />
+                  {item.line2}
                 </p>
               </div>
             ))}
