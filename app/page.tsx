@@ -192,10 +192,10 @@ export default function Home() {
             }}
           >
             <div className="px-8 py-8 md:px-12 md:py-10 lg:px-16 lg:py-12 text-center w-full">
-              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-xl mx-auto">
+              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-[672px] mx-auto">
                 You&apos;re 30 seconds away from experiencing Campfire
               </h2>
-              <p className="mt-3 md:mt-4 text-sm md:text-sm lg:text-base text-white/80 max-w-xl mx-auto">
+              <p className="mt-3 md:mt-4 text-sm md:text-sm lg:text-base text-white/80 max-w-[672px] mx-auto">
                 Sign up free, explore our full catalog, and try our
                 industry-leading platform. No credit card required.
               </p>
