@@ -402,7 +402,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
             {/* Left heading */}
             <div className="lg:w-[340px] shrink-0 lg:sticky lg:top-20">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] italic">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2]">
                 Impact you can feel
                 <br />
                 <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
@@ -410,7 +410,7 @@ export default function Home() {
             </div>
 
             {/* Right rows */}
-            <div className="flex-1">
+            <div className="flex-1 space-y-4">
               {[
                 {
                   title: "Better Conversations",
@@ -432,12 +432,10 @@ export default function Home() {
                   title: "Improved Performance + Results",
                   desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
                 },
-              ].map((impact, i) => (
+              ].map((impact) => (
                 <div
                   key={impact.title}
-                  className={`grid grid-cols-1 md:grid-cols-[1fr_1px_1.2fr] items-center gap-6 md:gap-8 py-6 ${
-                    i > 0 ? "border-t border-gray-200" : ""
-                  }`}
+                  className="bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1.2fr] items-center gap-6 md:gap-8 px-8 py-6"
                 >
                   <h3 className="text-base font-bold text-[#1E2A4A]">
                     {impact.title}
