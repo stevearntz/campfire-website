@@ -96,7 +96,7 @@ export default function Home() {
 
       {/* ==================== OUTCOMES-DRIVEN CULTURE ==================== */}
       <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Scale an{" "}
             <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
