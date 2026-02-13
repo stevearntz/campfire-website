@@ -216,56 +216,49 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Flow label */}
-          <div className="flex items-center justify-center gap-3 mb-10 text-sm font-semibold text-[#6E3FCC]">
-            <span>Content</span>
-            <span className="text-gray-300">&rarr;</span>
-            <span>Conversation</span>
-            <span className="text-gray-300">&rarr;</span>
-            <span>Application</span>
-            <span className="text-gray-300">&rarr;</span>
-            <span>Reinforcement</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {/* Bordered table grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 border border-gray-200 rounded-xl overflow-hidden">
             {[
               {
                 step: "01",
-                title: "Start with relevant content",
+                label: "Content",
+                title: "Identify topics your leaders need most",
                 desc: "You design your program by choosing the sessions your people need most.",
-                color: "bg-[#A88AE0]",
               },
               {
                 step: "02",
-                title: "Bring it to life through conversation",
-                desc: "Live, facilitated discussions create space for reflection, peer learning, and meaningful connection\u2014building shared language and perspective.",
-                color: "bg-[#8F65D9]",
+                label: "Conversations",
+                title: "Provide guided conversations",
+                desc: "Live, facilitated discussions create space for reflection, peer learning, and meaningful connection.",
               },
               {
                 step: "03",
-                title: "Apply it in real work",
-                desc: "Leaders put tools to use and practice new behaviors in meetings, one-on-ones, and day-to-day decisions\u2014where leadership actually shows up.",
-                color: "bg-[#7E4FD0]",
+                label: "Application",
+                title: "Apply insights to your real work",
+                desc: "Leaders put tools to use and practice new behaviors in meetings, one-on-ones, and day-to-day decisions.",
               },
               {
                 step: "04",
-                title: "Reinforce over time",
-                desc: "Skills are revisited and strengthened through ongoing experiences and resources to dive deeper, helping leadership behaviors stick and compound.",
-                color: "bg-[#6E3FCC]",
+                label: "Reinforcement",
+                title: "Reinforce behavior change over time",
+                desc: "Skills are revisited and strengthened through ongoing experiences and resources.",
               },
-            ].map((item) => (
-              <div key={item.step}>
-                <div
-                  className={`${item.color} text-white rounded-2xl p-8 h-full`}
-                >
-                  <span className="text-sm font-bold opacity-60">
-                    {item.step}
-                  </span>
-                  <h3 className="text-lg font-bold mt-2 mb-3">{item.title}</h3>
-                  <p className="text-sm text-white/80 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
+            ].map((item, i) => (
+              <div
+                key={item.step}
+                className={`p-6 md:p-8 ${
+                  i < 3 ? "border-b md:border-b-0 md:border-r border-gray-200" : ""
+                }`}
+              >
+                <p className="text-sm font-bold text-[#6E3FCC] mb-4">
+                  {item.step}: {item.label}
+                </p>
+                <h3 className="text-base font-bold text-gray-900 mb-3 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
