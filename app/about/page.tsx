@@ -488,10 +488,11 @@ export default function AboutPage() {
             <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/15 p-8 text-center max-w-2xl mx-auto">
               <p className="text-white/80 leading-relaxed">
                 Frontline and mid-level managers are the primary unit of change
-                in an organization.{" "}
-                <span className="text-white font-semibold">
-                  If they don&apos;t grow, nothing scales.
-                </span>
+                in an organization.
+              </p>
+              <p className="text-white font-semibold leading-relaxed mt-3">
+                If managers and leaders don&apos;t learn and grow, nothing will
+                scale.
               </p>
               <p className="mt-4 text-white/60 text-sm">
                 We exist to make meaningful, practical leadership development
