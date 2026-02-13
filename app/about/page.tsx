@@ -354,19 +354,23 @@ export default function AboutPage() {
             {[
               {
                 num: "01",
-                text: "They join live sessions with peers facing the same challenges.",
+                line1: "They don\u2019t just join sessions \u2014",
+                line2: "they sit with peers facing the same hard realities.",
               },
               {
                 num: "02",
-                text: "They reflect on what\u2019s actually happening on their teams.",
+                line1: "They slow down long enough",
+                line2: "to name what\u2019s actually happening on their teams.",
               },
               {
                 num: "03",
-                text: "They practice real conversations.",
+                line1: "They practice the conversations",
+                line2: "they\u2019ve been avoiding \u2014 feedback, conflict, clarity.",
               },
               {
                 num: "04",
-                text: "They leave with one clear action they can implement immediately.",
+                line1: "They leave with one specific shift",
+                line2: "they can apply in their very next 1:1.",
               },
             ].map((item) => (
               <div
@@ -377,7 +381,9 @@ export default function AboutPage() {
                   {item.num}
                 </span>
                 <p className="text-gray-700 font-medium leading-relaxed">
-                  {item.text}
+                  {item.line1}
+                  <br />
+                  {item.line2}
                 </p>
               </div>
             ))}
