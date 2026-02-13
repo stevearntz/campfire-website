@@ -822,13 +822,13 @@ export default function AboutPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+                className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Talk to Us
               </Link>
               <Link
                 href="/solutions"
-                className="px-8 py-4 text-sm font-semibold text-white/80 border-2 border-white/30 rounded-lg hover:border-white/60 hover:text-white transition-colors"
+                className="px-7 py-3.5 text-sm font-semibold text-white border-2 border-white/50 rounded-lg hover:bg-white/10 hover:border-white/70 transition-colors"
               >
                 See How It Fits
               </Link>
