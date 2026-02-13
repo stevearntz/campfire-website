@@ -181,8 +181,8 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] py-16 overflow-hidden">
-        {/* Mobile: stacked */}
-        <div className="md:hidden px-6 space-y-4">
+        {/* Mobile: pink topo only, no image */}
+        <div className="md:hidden px-6">
           <div
             className="px-8 py-10 text-center"
             style={{
@@ -207,13 +207,6 @@ export default function Home() {
               Try Campfire
             </a>
           </div>
-          <Image
-            src="/campfire.webp"
-            alt="Campfire session with participants collaborating"
-            width={800}
-            height={600}
-            className="w-full h-auto object-cover rounded-2xl"
-          />
         </div>
 
         {/* Desktop: image drives height, pink box overlays from left */}
