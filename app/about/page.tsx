@@ -497,7 +497,7 @@ export default function AboutPage() {
               </p>
               <p className="mt-4 text-white/60 text-sm">
                 We exist to make meaningful, practical, and engaging leadership
-                development accessible to every manager. Leadership support
+                development accessible to every manager. Support and growth
                 should go beyond just executives and &ldquo;high-potentials&rdquo;.
               </p>
             </div>
