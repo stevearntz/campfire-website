@@ -2,24 +2,37 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const slides = [
   {
-    image: "/content.webp",
-    alt: "Campfire content library showing 40+ leadership workshop topics with illustrated cards",
+    image: "/content-catalog.webp",
+    alt: "Campfire content catalog showing 50+ leadership workshop topics with illustrated cards",
     label: "Content",
-    headline: "40+ ready-to-run sessions across every leadership challenge",
+    headline: "50+ ready-to-run sessions across every leadership challenge",
     description:
       "From giving feedback to strategic thinking to managing change\u2014our library covers the topics your leaders face every day. Mix and match, or let us build something custom.",
+    cta: "Explore Full Library",
+    ctaHref: "https://tools.getcampfire.com/courses",
   },
   {
-    image: "/product-screen.webp",
+    image: "/product-screen-shadow.webp",
     alt: "Campfire live session platform showing participants in a facilitated workshop",
-    label: "The Experience",
+    label: "Experience",
     headline: "Live, interactive sessions on a purpose-built platform",
     description:
       "Every Campfire workshop is delivered live with expert facilitation, breakout discussions, journaling, and real-time collaboration\u2014designed to keep every participant engaged and connected.",
+    cta: "Explore Campfire",
+    ctaHref: "https://tools.getcampfire.com/courses",
+  },
+  {
+    image: "/analytics.webp",
+    alt: "Campfire analytics and reporting dashboard showing participation and engagement data",
+    label: "Insights",
+    headline: "Analytics and reporting that prove impact",
+    description:
+      "Track participation, engagement, and satisfaction across your organization. See which sessions resonate most, monitor completion rates, and share results with leadership\u2014all in one dashboard.",
+    cta: "Explore Campfire",
+    ctaHref: "https://tools.getcampfire.com/courses",
   },
 ];
 
@@ -41,10 +54,13 @@ export default function ProductShowcase() {
           </p>
         </div>
 
-        <div className="bg-[#1E2545] rounded-2xl overflow-hidden border border-white/10">
+        <div className="rounded-2xl overflow-hidden border border-white/10">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr]">
             {/* Left: Text + navigation */}
-            <div className="p-8 md:p-10 flex flex-col justify-between">
+            <div
+              className="p-8 md:p-10 flex flex-col justify-between"
+              style={{ backgroundColor: "#403955" }}
+            >
               <div>
                 <p className="text-xs font-semibold text-[#6E3FCC] tracking-wider uppercase mb-4">
                   {s.label}
@@ -123,8 +139,11 @@ export default function ProductShowcase() {
             </div>
 
             {/* Right: Image */}
-            <div className="relative">
-              <div className="grid">
+            <div
+              className="relative flex items-center justify-center p-6 md:p-8"
+              style={{ backgroundColor: "#2f2745" }}
+            >
+              <div className="grid w-full">
                 {slides.map((slide, i) => (
                   <div
                     key={slide.label}
@@ -138,9 +157,9 @@ export default function ProductShowcase() {
                     <Image
                       src={slide.image}
                       alt={slide.alt}
-                      width={1200}
-                      height={600}
-                      className="w-full h-full object-cover"
+                      width={1600}
+                      height={900}
+                      className="w-full h-auto object-contain rounded-lg"
                       priority={i === 0}
                     />
                   </div>
@@ -150,15 +169,15 @@ export default function ProductShowcase() {
           </div>
         </div>
 
-        {/* CTA below card */}
+        {/* CTA below card — changes per slide */}
         <div className="text-center mt-8">
           <a
-            href="https://tools.getcampfire.com/courses"
+            href={s.ctaHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
-            Explore Full Library
+            {s.cta}
           </a>
         </div>
       </div>
