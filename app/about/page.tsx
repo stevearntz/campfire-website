@@ -528,8 +528,8 @@ export default function AboutPage() {
               },
               {
                 belief: "Culture lives in everyday moments",
-                line1: "Not in the values slide.",
-                line2: "In meetings, recognition, conflict, and small decisions that repeat.",
+                line1: "Not on the values slide.",
+                line2: "In meetings and everyday decisions.",
                 accent: "bg-[#8F65D9]",
               },
               {
