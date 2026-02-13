@@ -209,7 +209,7 @@ export default function Home() {
           </div>
 
           {/* Campfire image — flush right, rounded corners */}
-          <div className="relative md:w-[55%] md:-ml-[10%] shrink-0">
+          <div className="relative md:w-[41%] md:-ml-[10%] shrink-0">
             <Image
               src="/campfire.webp"
               alt="Campfire session with participants collaborating"
