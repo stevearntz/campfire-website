@@ -62,6 +62,9 @@ export default function CustomersPage() {
       <section className="relative overflow-hidden">
         <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
+              Customer Stories
+            </p>
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               Trusted by Teams That Care
             </h1>
