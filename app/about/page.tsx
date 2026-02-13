@@ -535,7 +535,7 @@ export default function AboutPage() {
               {
                 belief: "Behavior beats content",
                 line1: "Frameworks help. Practice transforms.",
-                line2: "Leaders change when conversations change.",
+                line2: "Leaders change with conversations.",
                 accent: "bg-[#6E3FCC]",
               },
               {
