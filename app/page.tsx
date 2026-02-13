@@ -231,17 +231,27 @@ export default function Home() {
 
           {/* Pink topo — fixed min-width, slides over image as viewport shrinks */}
           <div
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[55%] min-w-[650px] px-12 py-10 lg:px-16 lg:py-12 text-center"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[55%] min-w-[650px] text-center"
             style={{
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
+              padding: "clamp(2.5rem, 3vw, 4rem) clamp(2rem, 4vw, 4rem)",
             }}
           >
-            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-[840px] mx-auto">
+            <h2
+              className="font-bold text-white max-w-[840px] mx-auto"
+              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
+            >
               You&apos;re 30 seconds away from experiencing Campfire
             </h2>
-            <p className="mt-4 text-sm lg:text-base text-white/80 max-w-[840px] mx-auto">
+            <p
+              className="text-white/80 max-w-[840px] mx-auto"
+              style={{
+                fontSize: "clamp(0.875rem, 1.1vw, 1.125rem)",
+                marginTop: "clamp(0.75rem, 1.2vw, 1.25rem)",
+              }}
+            >
               Sign up free, explore our full catalog, and try our
               industry-leading platform. No credit card required.
             </p>
@@ -249,7 +259,12 @@ export default function Home() {
               href="https://tools.getcampfire.com/courses"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block px-7 py-3.5 text-sm lg:text-base font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              className="inline-block font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              style={{
+                fontSize: "clamp(0.875rem, 1vw, 1rem)",
+                padding: "clamp(0.75rem, 1vw, 1rem) clamp(1.5rem, 2vw, 2rem)",
+                marginTop: "clamp(1.5rem, 2vw, 2.5rem)",
+              }}
             >
               Try Campfire
             </a>
