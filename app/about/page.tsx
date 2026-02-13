@@ -818,7 +818,7 @@ export default function AboutPage() {
                 href="/contact"
                 className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
               >
-                Talk to Us &rarr;
+                Talk to Us
               </Link>
               <Link
                 href="/solutions"
