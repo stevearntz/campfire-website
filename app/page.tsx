@@ -481,7 +481,7 @@ export default function Home() {
         </div>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-medium text-gray-900 italic">
+            <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
               Flexible formats that meet leaders where they are
             </h2>
             <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
