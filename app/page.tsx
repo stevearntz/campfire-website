@@ -463,8 +463,8 @@ export default function Home() {
       {/* ==================== HOW IT SHOWS UP ==================== */}
       <section className="relative pt-20 pb-20 bg-white">
         {/* Purple CTA banner — bridges between sections */}
-        <div className="absolute left-0 right-0 -top-7 z-10">
-          <div className="max-w-4xl mx-auto px-6">
+        <div className="absolute left-0 right-0 -top-9 z-10">
+          <div className="max-w-5xl mx-auto px-6">
             <div className="bg-[#6E3FCC] rounded-xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
               <p className="text-white text-sm md:text-base text-center md:text-left">
                 <span className="font-bold">See it for yourself:</span>{" "}
