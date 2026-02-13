@@ -786,11 +786,11 @@ export default function AboutPage() {
               {[
                 "Honest conversations",
                 "Human-centered leadership",
-                "Aligned decision-making",
+                <>Aligned<br />decision-making</>,
                 "Sustainable performance",
-              ].map((phrase) => (
+              ].map((phrase, i) => (
                 <p
-                  key={phrase}
+                  key={i}
                   className="text-lg font-bold text-gray-900 leading-snug"
                 >
                   {phrase}
