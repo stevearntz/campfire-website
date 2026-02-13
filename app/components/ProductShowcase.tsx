@@ -35,7 +35,7 @@ export default function ProductShowcase() {
             See what{" "}
             <span className="text-[#6E3FCC]">Campfire looks like</span>
           </h2>
-          <p className="mt-4 text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             A purpose-built platform and curated content library designed for
             live leadership development.
           </p>
