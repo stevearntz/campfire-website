@@ -784,10 +784,10 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                "More honest conversations",
-                "More human-centered leadership",
-                "More aligned decision-making",
-                "More sustainable performance",
+                "Honest conversations",
+                "Human-centered leadership",
+                "Aligned decision-making",
+                "Sustainable performance",
               ].map((phrase) => (
                 <p
                   key={phrase}
