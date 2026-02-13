@@ -210,8 +210,8 @@ export default function Home() {
         </div>
 
         {/* Desktop: image drives height, pink box overlays from left */}
-        <div className="hidden md:block relative">
-          {/* Image — flush right, drives the section height */}
+        <div className="hidden md:block relative max-w-[1400px] mx-auto px-6">
+          {/* Image — right side, drives the section height */}
           <div className="ml-auto w-[55%]">
             <Image
               src="/campfire.webp"
@@ -224,7 +224,7 @@ export default function Home() {
 
           {/* Pink topo — fixed min-width, slides over image as viewport shrinks */}
           <div
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[55%] min-w-[650px] text-center"
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-10 w-[60%] min-w-[650px] text-center"
             style={{
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
