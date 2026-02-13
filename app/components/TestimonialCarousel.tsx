@@ -64,9 +64,10 @@ export default function TestimonialCarousel() {
         <p className="text-center text-xs font-bold text-gray-400 tracking-[0.2em] uppercase mb-12">
           What People Are Saying
         </p>
+      </div>
 
-        {/* Carousel track — overflow hidden so side cards peek from edges */}
-        <div className="relative overflow-hidden mx-[-1.5rem]">
+      {/* Carousel track — full browser width, no container constraint */}
+      <div className="relative overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-500 ease-in-out"
             style={{
@@ -190,7 +191,6 @@ export default function TestimonialCarousel() {
             Explore Case Studies
           </Link>
         </div>
-      </div>
     </section>
   );
 }
