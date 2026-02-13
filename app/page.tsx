@@ -181,44 +181,78 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] py-16 overflow-hidden">
-        <div className="relative flex flex-col md:flex-row items-center">
-          {/* Pink topo CTA box — flush left, 50% image height, centered vertically */}
+        {/* Mobile: stacked */}
+        <div className="md:hidden px-6 space-y-4">
           <div
-            className="relative z-10 md:w-[55%] shrink-0"
+            className="px-8 py-10 text-center"
             style={{
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="px-8 py-8 md:px-12 md:py-10 lg:px-16 lg:py-12 text-center w-full">
-              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-[840px] mx-auto">
-                You&apos;re 30 seconds away from experiencing Campfire
-              </h2>
-              <p className="mt-3 md:mt-4 text-sm md:text-sm lg:text-base text-white/80 max-w-[840px] mx-auto">
-                Sign up free, explore our full catalog, and try our
-                industry-leading platform. No credit card required.
-              </p>
-              <a
-                href="https://tools.getcampfire.com/courses"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 md:mt-8 inline-block px-7 py-3.5 text-sm lg:text-base font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
-              >
-                Try Campfire
-              </a>
-            </div>
+            <h2 className="text-xl font-bold text-white">
+              You&apos;re 30 seconds away from experiencing Campfire
+            </h2>
+            <p className="mt-3 text-sm text-white/80">
+              Sign up free, explore our full catalog, and try our
+              industry-leading platform. No credit card required.
+            </p>
+            <a
+              href="https://tools.getcampfire.com/courses"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+            >
+              Try Campfire
+            </a>
           </div>
+          <Image
+            src="/campfire.webp"
+            alt="Campfire session with participants collaborating"
+            width={800}
+            height={600}
+            className="w-full h-auto object-cover rounded-2xl"
+          />
+        </div>
 
-          {/* Campfire image — flush right, sets the row height */}
-          <div className="relative md:w-[55%] md:-ml-[10%] shrink-0">
+        {/* Desktop: image drives height, pink box overlays from left */}
+        <div className="hidden md:block relative">
+          {/* Image — flush right, drives the section height */}
+          <div className="ml-auto w-[55%]">
             <Image
               src="/campfire.webp"
               alt="Campfire session with participants collaborating"
               width={800}
               height={600}
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-auto object-cover rounded-2xl"
             />
+          </div>
+
+          {/* Pink topo — absolutely positioned, flush left, vertically centered */}
+          <div
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[55%] px-12 py-10 lg:px-16 lg:py-12 text-center"
+            style={{
+              backgroundImage: "url('/pink-topo-bg.webp')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white max-w-[840px] mx-auto">
+              You&apos;re 30 seconds away from experiencing Campfire
+            </h2>
+            <p className="mt-4 text-sm lg:text-base text-white/80 max-w-[840px] mx-auto">
+              Sign up free, explore our full catalog, and try our
+              industry-leading platform. No credit card required.
+            </p>
+            <a
+              href="https://tools.getcampfire.com/courses"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-block px-7 py-3.5 text-sm lg:text-base font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+            >
+              Try Campfire
+            </a>
           </div>
         </div>
       </section>
