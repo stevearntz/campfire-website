@@ -1,24 +1,33 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const testimonials = [
-  {
-    logo: "/cotopaxi.png",
-    logoAlt: "Cotopaxi",
-    name: "Liz Berry",
-    title: "Sr. Manager, Talent Development",
-    quote:
-      "Campfire has been a game-changer for our small team. They don\u2019t just facilitate\u2014they collaborate as thought partners to build materials tailored to our goals.",
-  },
   {
     logo: "/nuvei.png",
     logoAlt: "Nuvei",
     name: "Ashley Logan",
     title: "Sr. Director, Talent Development",
     quote:
-      "As a team of one, I needed a partner to amplify our efforts. What would have taken months to create internally, we now achieve with ease through Campfire.",
+      "As a team of one, I needed a partner that could amplify our leadership development efforts without adding to my workload. Campfire has been that partner\u2014providing tools and resources to scale impactful programs across our global teams.",
+  },
+  {
+    logo: "/cotopaxi.png",
+    logoAlt: "Cotopaxi",
+    name: "Liz Berry",
+    title: "Sr. Manager, Talent Development",
+    quote:
+      "What would have required months of work and significant budget to create internally, we now achieve with ease and efficiency.",
+  },
+  {
+    logo: "/cotopaxi.png",
+    logoAlt: "Cotopaxi",
+    name: "Liz Berry",
+    title: "Sr. Manager, Talent Development",
+    quote:
+      "Campfire has been a game-changer for our small team of two. Acting as a true extension of our team to help build materials tailored to our needs and goals.",
   },
   {
     logo: "/dermalogica.png",
@@ -36,87 +45,148 @@ const testimonials = [
     quote:
       "Campfire gave us a complete leadership development system we could launch fast and trust to be excellent. Our managers actually look forward to sessions.",
   },
-  {
-    logo: "/enveda.png",
-    logoAlt: "Enveda Biosciences",
-    name: "Leadership Team",
-    title: "Enveda Biosciences",
-    quote:
-      "The workshops didn\u2019t feel like corporate training. They felt like real conversations about real problems. That\u2019s why people showed up.",
-  },
 ];
 
 export default function TestimonialCarousel() {
+  const [active, setActive] = useState(1);
+
+  const prev = () =>
+    setActive((active - 1 + testimonials.length) % testimonials.length);
+  const next = () => setActive((active + 1) % testimonials.length);
+
+  // Get indices for visible cards: previous, current, next
+  const getVisibleIndex = (offset: number) =>
+    (active + offset + testimonials.length) % testimonials.length;
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            What our <span className="text-[#6E3FCC]">customers</span> say
-          </h2>
+        <p className="text-center text-xs font-bold text-gray-400 tracking-[0.2em] uppercase mb-12">
+          What People Are Saying
+        </p>
+
+        {/* Carousel track */}
+        <div className="relative">
+          {/* Cards container — overflow visible so side cards peek */}
+          <div className="flex gap-6 justify-center items-stretch">
+            {[-1, 0, 1].map((offset) => {
+              const idx = getVisibleIndex(offset);
+              const t = testimonials[idx];
+              const isCenter = offset === 0;
+
+              return (
+                <div
+                  key={`${idx}-${offset}`}
+                  className={`shrink-0 w-[420px] bg-[#F8F5FC] rounded-2xl p-8 flex flex-col justify-between transition-all duration-500 ${
+                    isCenter ? "opacity-100" : "opacity-70"
+                  }`}
+                  style={{
+                    transform: isCenter ? "scale(1)" : "scale(0.97)",
+                  }}
+                >
+                  <div>
+                    {/* Logo — top right */}
+                    <div className="flex justify-end mb-4">
+                      <Image
+                        src={t.logo}
+                        alt={t.logoAlt}
+                        width={140}
+                        height={50}
+                        className="h-5 w-auto object-contain opacity-30 grayscale"
+                      />
+                    </div>
+
+                    {/* Purple quote mark */}
+                    <svg
+                      className="w-10 h-8 text-[#6E3FCC] mb-4"
+                      viewBox="0 0 40 30"
+                      fill="currentColor"
+                    >
+                      <path d="M0 30V18C0 7.6 5.6 1.4 16.8 0l1.6 4.4C11.6 6 8.8 10 8.4 15H15v15H0Zm23.2 0V18c0-10.4 5.6-16.6 16.8-18l1.6 4.4C34.8 6 32 10 31.6 15H38.2v15H23.2Z" />
+                    </svg>
+
+                    {/* Quote */}
+                    <blockquote className="text-gray-700 text-base leading-relaxed">
+                      {t.quote}
+                    </blockquote>
+                  </div>
+
+                  {/* Attribution */}
+                  <p className="mt-6 text-sm text-gray-500">
+                    <span className="font-bold text-gray-800">
+                      &ndash;{t.name}
+                    </span>{" "}
+                    {t.title}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.slice(0, 3).map((t) => (
-            <div
-              key={t.logoAlt}
-              className="bg-[#F8F5FC] rounded-2xl p-8 flex flex-col justify-between"
+        {/* Navigation dots + arrows */}
+        <div className="flex items-center justify-center gap-3 mt-10">
+          <button
+            onClick={prev}
+            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:text-[#6E3FCC] hover:border-[#6E3FCC]/40 transition-colors"
+            aria-label="Previous testimonial"
+          >
+            <svg
+              className="w-3.5 h-3.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
             >
-              <div>
-                <Image
-                  src={t.logo}
-                  alt={t.logoAlt}
-                  width={140}
-                  height={50}
-                  className="h-6 w-auto object-contain opacity-40 grayscale mb-6"
-                />
-                <blockquote className="text-gray-600 text-sm leading-relaxed">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-              </div>
-              <div className="mt-6 pt-4 border-t border-gray-200/60">
-                <p className="font-semibold text-gray-900 text-sm">
-                  {t.name}
-                </p>
-                <p className="text-xs text-gray-500">{t.title}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+              <path
+                d="M10 3L5 8L10 13"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
 
-        {/* Bottom row — 2 cards centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-[calc(66.666%+0.75rem)] mx-auto">
-          {testimonials.slice(3).map((t) => (
-            <div
-              key={t.logoAlt}
-              className="bg-[#F8F5FC] rounded-2xl p-8 flex flex-col justify-between"
+          <div className="flex gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  i === active
+                    ? "bg-[#6E3FCC]/40 scale-110"
+                    : "bg-gray-800"
+                }`}
+                aria-label={`Testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:text-[#6E3FCC] hover:border-[#6E3FCC]/40 transition-colors"
+            aria-label="Next testimonial"
+          >
+            <svg
+              className="w-3.5 h-3.5"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
             >
-              <div>
-                <Image
-                  src={t.logo}
-                  alt={t.logoAlt}
-                  width={140}
-                  height={50}
-                  className="h-6 w-auto object-contain opacity-40 grayscale mb-6"
-                />
-                <blockquote className="text-gray-600 text-sm leading-relaxed">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-              </div>
-              <div className="mt-6 pt-4 border-t border-gray-200/60">
-                <p className="font-semibold text-gray-900 text-sm">
-                  {t.name}
-                </p>
-                <p className="text-xs text-gray-500">{t.title}</p>
-              </div>
-            </div>
-          ))}
+              <path
+                d="M6 3L11 8L6 13"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
 
-        <div className="text-center mt-10">
+        {/* CTA */}
+        <div className="text-center mt-8">
           <Link
             href="/customers"
-            className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors"
+            className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Explore Case Studies
           </Link>
