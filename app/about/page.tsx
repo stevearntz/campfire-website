@@ -529,7 +529,7 @@ export default function AboutPage() {
               {
                 belief: "Culture lives in everyday moments",
                 line1: "Not on the values slide.",
-                line2: "In meetings and everyday decisions.",
+                line2: "In meetings and small decisions.",
                 accent: "bg-[#8F65D9]",
               },
               {
