@@ -181,11 +181,11 @@ export default function Home() {
 
       {/* ==================== FREE TRIAL RIBBON ==================== */}
       <section className="bg-[#262F56] pt-16 pb-0 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-6">
           <div className="relative flex flex-col md:flex-row items-end">
-            {/* Pink topo CTA box */}
+            {/* Pink topo CTA box — sharp corners, overlaps photo by 20% */}
             <div
-              className="relative z-10 rounded-t-2xl md:rounded-2xl md:rounded-r-none px-8 py-12 md:px-12 md:py-14 md:w-[58%] shrink-0"
+              className="relative z-10 px-8 py-12 md:px-12 md:py-14 md:w-[62%] shrink-0"
               style={{
                 backgroundImage: "url('/pink-topo-bg.webp')",
                 backgroundSize: "cover",
@@ -209,14 +209,14 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Stock photo — overlaps upward */}
-            <div className="relative md:w-[46%] md:-ml-4 md:-mt-16 shrink-0">
+            {/* Stock photo — rounded corners, extends above */}
+            <div className="relative md:w-[58%] md:-ml-[20%] md:-mt-16 shrink-0">
               <Image
                 src="/stock-people.webp"
                 alt="Team collaborating around a table with charts and notes"
                 width={800}
                 height={600}
-                className="w-full h-auto object-cover rounded-t-2xl md:rounded-2xl"
+                className="w-full h-auto object-cover rounded-2xl"
               />
             </div>
           </div>
@@ -224,60 +224,66 @@ export default function Home() {
       </section>
 
       {/* ==================== HOW IT WORKS ==================== */}
-      <section id="how-it-works" className="py-20 bg-white">
+      <section id="how-it-works" className="py-20 bg-[#262F56]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
               Built to fit the rhythm of real work{" "}
-              <span className="text-[#6E3FCC]">&mdash; and drive lasting change</span>
+              <span className="text-[#A84AEB]">&mdash; and drive lasting change</span>
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
               simple, repeatable flow that scales across your organization.
             </p>
           </div>
 
-          {/* Bordered table grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 border border-gray-200 rounded-xl overflow-hidden">
+          {/* Gradient-bordered cards */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             {[
               {
                 step: "01",
                 label: "Content",
                 title: "Identify topics your leaders need most",
                 desc: "You design your program by choosing the sessions your people need most.",
+                borderColor: "#8252E1",
               },
               {
                 step: "02",
                 label: "Conversations",
                 title: "Provide guided conversations",
                 desc: "Live, facilitated discussions create space for reflection, peer learning, and meaningful connection.",
+                borderColor: "#A84AEB",
               },
               {
                 step: "03",
                 label: "Application",
                 title: "Apply insights to your real work",
                 desc: "Leaders put tools to use and practice new behaviors in meetings, one-on-ones, and day-to-day decisions.",
+                borderColor: "#D65CE9",
               },
               {
                 step: "04",
                 label: "Reinforcement",
                 title: "Reinforce behavior change over time",
                 desc: "Skills are revisited and strengthened through ongoing experiences and resources.",
+                borderColor: "#EE81DD",
               },
-            ].map((item, i) => (
+            ].map((item) => (
               <div
                 key={item.step}
-                className={`p-6 md:p-8 ${
-                  i < 3 ? "border-b md:border-b-0 md:border-r border-gray-200" : ""
-                }`}
+                className="rounded-xl p-6 md:p-8"
+                style={{ border: `2px solid ${item.borderColor}` }}
               >
-                <p className="text-sm font-bold text-[#6E3FCC] mb-4">
+                <p
+                  className="text-sm font-bold mb-4"
+                  style={{ color: item.borderColor }}
+                >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-base font-bold text-gray-900 mb-3 leading-snug">
+                <h3 className="text-base font-bold text-white mb-3 leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                <p className="text-sm text-white/50 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
