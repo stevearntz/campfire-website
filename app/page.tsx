@@ -210,7 +210,7 @@ export default function Home() {
         </div>
 
         {/* Desktop: image drives height, pink box overlays from left */}
-        <div className="hidden md:block relative max-w-[2000px] mx-auto px-6">
+        <div className="hidden md:block relative max-w-[2500px] mx-auto px-6">
           {/* Image — right side, drives the section height */}
           <div className="ml-auto w-[55%]">
             <Image
