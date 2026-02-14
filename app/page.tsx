@@ -409,9 +409,9 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="py-16" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">
-              Results You Can Trust
-            </h2>
+            <p className="text-xs font-bold text-white/50 text-center mb-10 uppercase tracking-widest">
+              Results you can trust
+            </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
                 { number: "6,000+", label: "Sessions delivered" },
@@ -423,7 +423,7 @@ export default function Home() {
                   <div className="text-4xl md:text-5xl font-bold text-white">
                     {stat.number}
                   </div>
-                  <p className="mt-2 text-sm text-white/70">{stat.label}</p>
+                  <p className="mt-2 text-sm font-semibold text-white/70 lowercase">{stat.label}</p>
                 </div>
               ))}
             </div>
