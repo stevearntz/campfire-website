@@ -90,7 +90,7 @@ export default function CustomersPage() {
               { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
               { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
               { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
-              { src: "/pdq.png", alt: "PDQ", w: 100, h: 65 },
+              { src: "/pdq.webp", alt: "PDQ", w: 100, h: 65 },
             ].map((logo) => (
               <div key={logo.alt} className="flex items-center justify-center">
                 <Image
