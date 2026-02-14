@@ -88,7 +88,7 @@ export default function ContactPage() {
                     </a>
                     <span className="text-gray-300">|</span>
                     <a
-                      href="https://getcampfire.substack.com"
+                      href="https://bythecampfire.beehiiv.com/"
                       target="_blank"
                       className="inline-flex items-center gap-2 text-[#6E3FCC] text-sm font-medium hover:underline"
                     >

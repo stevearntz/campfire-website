@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Customers", href: "/customers" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Blog", href: "https://blog.getcampfire.com", external: true },
+  { label: "Blog", href: "https://bythecampfire.beehiiv.com/", external: true },
 ];
 
 export default function Navbar() {
