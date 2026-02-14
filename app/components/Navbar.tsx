@@ -23,10 +23,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/">
           <Image
-            src="/campfire-logo.png"
+            src="/campfire-logo.webp"
             alt="Campfire"
-            width={140}
-            height={32}
+            width={1862}
+            height={396}
             className="h-8 w-auto"
             priority
           />

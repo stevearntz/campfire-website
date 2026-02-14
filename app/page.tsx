@@ -104,7 +104,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Scale an outcomes-driven culture
+              Scale an <span className="text-[#6E3FCC]">outcomes-driven</span> culture
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
               When leaders paint a clear picture and trust their people to own
@@ -173,7 +173,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Leadership development, without the overhead
+              Leadership development, <span className="text-[#6E3FCC]">without the overhead</span>
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Everything you need to scale world-class leadership
@@ -268,7 +268,7 @@ export default function Home() {
               industry-leading platform. No credit card required.
             </p>
             <a
-              href="https://tools.getcampfire.com/courses"
+              href="https://meet.getcampfire.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
@@ -319,7 +319,7 @@ export default function Home() {
               industry-leading platform. No credit card required.
             </p>
             <a
-              href="https://tools.getcampfire.com/courses"
+              href="https://meet.getcampfire.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
@@ -340,7 +340,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Built to fit the rhythm of real work<br />&mdash; and drive lasting change
+              Built to fit the rhythm of real work<br />&mdash; and <span className="text-[#6E3FCC]">drive lasting change</span>
             </h2>
             <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -376,6 +376,7 @@ export default function Home() {
                 step: "04",
                 label: "Reinforcement",
                 title: "Reinforce behavior change over time",
+                titleJsx: <>Reinforce <span className="text-[#6E3FCC]">behavior change</span> over time</>,
                 desc: "Skills are revisited and strengthened through ongoing experiences and resources.",
                 borderColor: "#EE81DD",
               },
@@ -392,7 +393,7 @@ export default function Home() {
                   {item.step}: {item.label}
                 </p>
                 <h3 className="text-lg font-bold text-white mb-3 leading-snug">
-                  {item.title}
+                  {item.titleJsx || item.title}
                 </h3>
                 <p className="text-sm text-white/80 leading-relaxed">
                   {item.desc}
@@ -537,7 +538,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
-              Flexible formats that meet leaders where they are
+              Flexible formats that meet leaders <span className="text-[#6E3FCC]">where they are</span>
             </h2>
             <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Campfire offers flexible format options that work across different
@@ -624,7 +625,8 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+              className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
+              style={{ backgroundColor: "#E055CB" }}
             >
               Book a Call
             </Link>

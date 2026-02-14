@@ -22,7 +22,7 @@ const slides = [
     description:
       "Every Campfire workshop is delivered live with expert facilitation, breakout discussions, journaling, and real-time collaboration\u2014designed to keep every participant engaged and connected.",
     cta: "Explore Campfire",
-    ctaHref: "https://tools.getcampfire.com/courses",
+    ctaHref: "https://meet.getcampfire.com/",
   },
   {
     image: "/analytics.webp",
@@ -32,7 +32,7 @@ const slides = [
     description:
       "Track participation, engagement, and satisfaction across your organization. See which sessions resonate most, monitor completion rates, and share results with leadership\u2014all in one dashboard.",
     cta: "Explore Campfire",
-    ctaHref: "https://tools.getcampfire.com/courses",
+    ctaHref: "https://meet.getcampfire.com/",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function ProductShowcase() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            See the magic of Campfire
+            See the magic of <span className="text-[#6E3FCC]">Campfire</span>
           </h2>
           <p className="mt-4 text-lg text-white/80">
             A purpose-built platform and curated content library designed to
