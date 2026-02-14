@@ -100,26 +100,71 @@ export default function Home() {
 
       {/* ==================== OUTCOMES-DRIVEN CULTURE ==================== */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Scale an{" "}
-            <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
-          </h2>
-          <p className="mt-6 text-lg text-gray-500 leading-relaxed">
-            When people understand the mission, know what outcomes matter, and
-            feel connected to the purpose behind their work, everything changes.
-            Burnout drops because effort becomes sustainable and directed.
-            Micromanagement fades because leaders can trust their people to make
-            good decisions. Teams stop spinning their wheels and start moving
-            together&mdash;with clarity, confidence, and accountability that
-            doesn&apos;t require constant oversight.
-          </p>
-          <p className="mt-4 text-lg text-gray-500 leading-relaxed">
-            Campfire helps you build that kind of culture&mdash;where leadership
-            development isn&apos;t a checkbox, it&apos;s the engine that drives
-            alignment, performance, and the kind of environment where people
-            actually want to do their best work.
-          </p>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Scale an{" "}
+              <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
+            </h2>
+            <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
+              When leaders grow, everything downstream improves. Campfire turns
+              leadership development into the engine that drives alignment,
+              performance, and a culture people don&apos;t want to leave.
+            </p>
+          </div>
+
+          {/* Outcome pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                metric: "Less",
+                label: "Burnout",
+                desc: "Effort becomes sustainable when it's connected to purpose.",
+                color: "#E055CB",
+              },
+              {
+                metric: "Less",
+                label: "Micromanagement",
+                desc: "Leaders trust their people to make good decisions.",
+                color: "#6E3FCC",
+              },
+              {
+                metric: "More",
+                label: "Alignment",
+                desc: "Teams move together with clarity and confidence.",
+                color: "#6E3FCC",
+              },
+              {
+                metric: "More",
+                label: "Accountability",
+                desc: "Ownership that doesn't require constant oversight.",
+                color: "#E055CB",
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="relative rounded-2xl p-6 text-center border border-gray-100 overflow-hidden"
+              >
+                {/* Accent bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1"
+                  style={{ backgroundColor: item.color }}
+                />
+                <p
+                  className="text-xs font-bold uppercase tracking-widest mb-1"
+                  style={{ color: item.color }}
+                >
+                  {item.metric}
+                </p>
+                <p className="text-xl font-bold text-gray-900 mb-3">
+                  {item.label}
+                </p>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
