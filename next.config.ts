@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { hostname: "media.beehiiv.com" },
       { hostname: "*.beehiiv.com" },
+      { hostname: "beehiiv-images-production.s3.amazonaws.com" },
     ],
   },
 };

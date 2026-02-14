@@ -9,38 +9,31 @@ interface BeehiivPost {
   thumbnail_url: string | null;
   web_url: string;
   publish_date: number;
-  displayed_date: number;
+  displayed_date: number | null;
   authors: string[];
   content_tags: { id: string; name: string }[];
   preview_text: string | null;
+  meta_default_description: string | null;
+  meta_default_title: string | null;
   status: string;
-}
-
-interface BeehiivResponse {
-  data: BeehiivPost[];
-  total_results: number;
 }
 
 async function getPosts(): Promise<BeehiivPost[]> {
   const apiKey = process.env.BEEHIIV_API_KEY;
   const pubId = process.env.BEEHIIV_PUBLICATION_ID;
 
-  if (!apiKey || !pubId) {
-    return [];
-  }
+  if (!apiKey || !pubId) return [];
 
   try {
     const res = await fetch(
-      `https://api.beehiiv.com/v2/publications/${pubId}/posts?status=confirmed&platform=web&order_by=publish_date&direction=desc&limit=20`,
+      `https://api.beehiiv.com/v2/publications/${pubId}/posts?status=confirmed&order_by=publish_date&direction=desc&limit=20`,
       {
         headers: { Authorization: `Bearer ${apiKey}` },
         next: { revalidate: 3600 },
       }
     );
-
     if (!res.ok) return [];
-
-    const json: BeehiivResponse = await res.json();
+    const json = await res.json();
     return json.data || [];
   } catch {
     return [];
@@ -84,8 +77,8 @@ export default async function BlogPage() {
           {posts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-lg text-gray-500 mb-6">
-                Posts are loading from our newsletter. In the meantime, check
-                them out directly:
+                Our blog is on its way. In the meantime, check out our
+                newsletter:
               </p>
               <a
                 href="https://bythecampfire.beehiiv.com/"
@@ -98,57 +91,52 @@ export default async function BlogPage() {
             </div>
           ) : (
             <>
-              {/* Featured post — first one large */}
-              {posts.length > 0 && (
-                <a
-                  href={posts[0].web_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block group mb-16"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    {posts[0].thumbnail_url && (
-                      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#F5F4F1]">
-                        <Image
-                          src={posts[0].thumbnail_url}
-                          alt={posts[0].title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    <div>
-                      <p className="text-sm text-[#6E3FCC] font-semibold mb-2">
-                        Latest Post
-                      </p>
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#6E3FCC] transition-colors mb-3">
-                        {posts[0].title}
-                      </h2>
-                      {posts[0].subtitle && (
-                        <p className="text-gray-500 leading-relaxed mb-4">
-                          {posts[0].subtitle}
-                        </p>
+              {/* Featured post */}
+              <Link href={`/blog/${posts[0].slug}`} className="block group mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  {posts[0].thumbnail_url && (
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#F5F4F1]">
+                      <Image
+                        src={posts[0].thumbnail_url}
+                        alt={posts[0].title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-xs font-bold text-[#6E3FCC] tracking-wider uppercase mb-3">
+                      Latest Post
+                    </p>
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#6E3FCC] transition-colors mb-3">
+                      {posts[0].meta_default_title || posts[0].title}
+                    </h2>
+                    <p className="text-gray-500 leading-relaxed mb-4">
+                      {posts[0].meta_default_description || posts[0].preview_text || posts[0].subtitle}
+                    </p>
+                    <div className="flex items-center gap-3 text-sm text-gray-400">
+                      {posts[0].authors?.[0] && (
+                        <>
+                          <span className="font-medium text-gray-600">{posts[0].authors[0]}</span>
+                          <span>&middot;</span>
+                        </>
                       )}
-                      <p className="text-sm text-gray-400">
-                        {formatDate(posts[0].displayed_date || posts[0].publish_date)}
-                      </p>
+                      <span>{formatDate(posts[0].publish_date)}</span>
                     </div>
                   </div>
-                </a>
-              )}
+                </div>
+              </Link>
 
-              {/* Rest of posts in grid */}
+              {/* Remaining posts */}
               {posts.length > 1 && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {posts.slice(1).map((post) => (
-                    <a
+                    <Link
                       key={post.id}
-                      href={post.web_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/blog/${post.slug}`}
                       className="group"
                     >
-                      <div className="rounded-2xl overflow-hidden bg-[#F5F4F1] border border-gray-100">
+                      <div className="rounded-2xl overflow-hidden bg-[#F5F4F1] border border-gray-100 h-full flex flex-col">
                         {post.thumbnail_url ? (
                           <div className="relative aspect-[16/10] overflow-hidden">
                             <Image
@@ -165,21 +153,25 @@ export default async function BlogPage() {
                             </svg>
                           </div>
                         )}
-                        <div className="p-6">
+                        <div className="p-6 flex-1 flex flex-col">
                           <h3 className="font-bold text-gray-900 group-hover:text-[#6E3FCC] transition-colors mb-2 leading-snug">
-                            {post.title}
+                            {post.meta_default_title || post.title}
                           </h3>
-                          {post.subtitle && (
-                            <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-3">
-                              {post.subtitle}
-                            </p>
-                          )}
-                          <p className="text-xs text-gray-400">
-                            {formatDate(post.displayed_date || post.publish_date)}
+                          <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
+                            {post.meta_default_description || post.preview_text || post.subtitle}
                           </p>
+                          <div className="flex items-center gap-3 text-xs text-gray-400">
+                            {post.authors?.[0] && (
+                              <>
+                                <span className="font-medium text-gray-600">{post.authors[0]}</span>
+                                <span>&middot;</span>
+                              </>
+                            )}
+                            <span>{formatDate(post.publish_date)}</span>
+                          </div>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}

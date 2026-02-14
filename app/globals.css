@@ -71,6 +71,77 @@ body {
 .topo-line-4 { animation: lineShimmer 9s ease-in-out infinite 3s; }
 .topo-line-5 { animation: lineShimmer 11s ease-in-out infinite 4s; }
 
+/* ==================== BEEHIIV BLOG CONTENT ==================== */
+.beehiiv-content {
+  color: #374151;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+.beehiiv-content h1,
+.beehiiv-content h2,
+.beehiiv-content h3 {
+  color: #111827;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  line-height: 1.3;
+}
+.beehiiv-content h1 { font-size: 1.875rem; }
+.beehiiv-content h2 { font-size: 1.5rem; }
+.beehiiv-content h3 { font-size: 1.25rem; }
+.beehiiv-content p {
+  margin-bottom: 1.25em;
+}
+.beehiiv-content a {
+  color: #6E3FCC;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.beehiiv-content a:hover { color: #5B34AB; }
+.beehiiv-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5em 0;
+}
+.beehiiv-content blockquote {
+  border-left: 3px solid #6E3FCC;
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  color: #6b7280;
+  font-style: italic;
+}
+.beehiiv-content ul,
+.beehiiv-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+}
+.beehiiv-content li {
+  margin-bottom: 0.5em;
+}
+.beehiiv-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 2em 0;
+}
+.beehiiv-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+.beehiiv-content td,
+.beehiiv-content th {
+  padding: 0.75em;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+/* Hide beehiiv branding/footer elements */
+.beehiiv-content .footer,
+.beehiiv-content [data-testid="footer"],
+.beehiiv-content .subscription-widget {
+  display: none;
+}
+
 .topo-pattern-dark {
   background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-50 100 Q100 60 250 100 T550 100 T850 100' fill='none' stroke='rgba(139,92,199,0.12)' stroke-width='1.5'/%3E%3Cpath d='M-50 150 Q100 110 250 150 T550 150 T850 150' fill='none' stroke='rgba(139,92,199,0.08)' stroke-width='1.5'/%3E%3Cpath d='M-50 200 Q100 160 250 200 T550 200 T850 200' fill='none' stroke='rgba(139,92,199,0.1)' stroke-width='1.5'/%3E%3Cpath d='M-50 250 Q100 210 250 250 T550 250 T850 250' fill='none' stroke='rgba(139,92,199,0.06)' stroke-width='1.5'/%3E%3Cpath d='M-50 300 Q100 260 250 300 T550 300 T850 300' fill='none' stroke='rgba(139,92,199,0.09)' stroke-width='1.5'/%3E%3C/svg%3E");
   background-size: cover;
