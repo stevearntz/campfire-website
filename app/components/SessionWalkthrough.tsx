@@ -164,18 +164,13 @@ export default function SessionWalkthrough() {
           }}
         >
           <div className="flex items-start gap-5">
-            <div
-              className="shrink-0 rounded-full flex items-center justify-center overflow-hidden"
-              style={{ width: "40px", height: "40px", backgroundColor: "rgba(255,255,255,0.25)" }}
-            >
-              <Image
-                src="/offline_bolt.webp"
-                alt="Lightning bolt"
-                width={40}
-                height={40}
-                className="w-[24px] h-[24px] object-contain brightness-0 invert"
-              />
-            </div>
+            <Image
+              src="/offline_bolt.webp"
+              alt="Lightning bolt"
+              width={24}
+              height={24}
+              className="w-[24px] h-[24px] shrink-0 object-contain brightness-0 invert mt-1"
+            />
             <div>
               <h3 className="text-lg font-bold text-white mb-3">
                 The following week
