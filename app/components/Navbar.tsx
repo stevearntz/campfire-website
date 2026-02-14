@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Customers", href: "/customers" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Blog", href: "https://bythecampfire.beehiiv.com/", external: true },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
@@ -38,7 +38,6 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              target={link.external ? "_blank" : undefined}
               className="text-sm font-medium text-gray-600 hover:text-[#6E3FCC] transition-colors"
             >
               {link.label}
@@ -84,7 +83,6 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              target={link.external ? "_blank" : undefined}
               className="block text-sm font-medium text-gray-600 hover:text-[#6E3FCC]"
               onClick={() => setMobileOpen(false)}
             >
