@@ -1,25 +1,23 @@
-"use client";
-
 import Image from "next/image";
 
 const steps = [
   {
     time: "0–5 min",
-    title: "Check-in",
+    title: "Spark & Connection",
     detail:
-      "The facilitator opens with a prompt: \"What's one leadership moment from this week that stuck with you?\" Sarah shares that she froze during a tough 1:1. Others nod — they've been there too.",
+      "The facilitator opens with a prompt: Priya reflects on a recent moment when she held back instead of being direct. Others share similar patterns \u2014 cushioning feedback, avoiding discomfort, waiting for \u201Cbetter timing.\u201D\nOutcome: She realizes hesitation is common \u2014 and that she\u2019s not the only one navigating this tension.",
   },
   {
     time: "5–20 min",
     title: "Framework",
     detail:
-      "The facilitator introduces a practical model for navigating difficult conversations — not theory from a textbook, but a simple structure Sarah can use in her next meeting.",
+      "The facilitator introduces a practical model for navigating difficult conversations \u2014 not theory from a textbook, but a simple structure Sarah can use in her next meeting.",
   },
   {
     time: "20–40 min",
     title: "Breakout discussion",
     detail:
-      "In a small group of four, Sarah practices applying the framework to her real situation. Her peers ask questions she hadn't considered. She starts to see her 1:1 differently.",
+      "In a small group of four, Sarah practices applying the framework to her real situation. Her peers ask questions she hadn\u2019t considered. She starts to see her 1:1 differently.",
   },
   {
     time: "40–55 min",
@@ -31,14 +29,14 @@ const steps = [
     time: "55–60 min",
     title: "Commitment",
     detail:
-      "Sarah writes one specific thing she'll do differently before the next session. She picks: \"I'll use the framework in my 1:1 with Jordan on Thursday.\" She leaves with a plan, not just notes.",
+      "Sarah writes one specific thing she\u2019ll do differently before the next session. She picks: \u201CI\u2019ll use the framework in my 1:1 with Jordan on Thursday.\u201D She leaves with a plan, not just notes.",
   },
 ];
 
 export default function SessionWalkthrough() {
   return (
     <section className="py-20 bg-[#F5F4F1]">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="mx-auto px-6" style={{ maxWidth: "1329px" }}>
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Sessions that{" "}
@@ -50,106 +48,122 @@ export default function SessionWalkthrough() {
           </p>
         </div>
 
-        {/* Persona card */}
-        <div className="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 mb-10">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-            <Image
-              src="/Ashley.png"
-              alt="Sarah, an engineering director"
-              width={200}
-              height={200}
-              className="w-20 h-20 rounded-full object-cover shrink-0"
-            />
-            <div>
-              <p className="text-xs font-semibold text-[#6E3FCC] tracking-wider uppercase mb-1">
-                Meet Sarah
-              </p>
-              <p className="text-gray-900 font-semibold">
-                Engineering Director at a 300-person company
-              </p>
-              <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                Sarah was promoted six months ago and now leads three teams. She's
-                strong technically but struggling with the people side — especially
-                difficult conversations. Her VP suggested she join the next
-                Campfire session on{" "}
-                <span className="font-medium text-gray-700">
-                  Navigating Difficult Conversations
-                </span>
-                .
-              </p>
+        {/* Main card container */}
+        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+          {/* Meet Sarah */}
+          <div className="bg-[#F8F5FC] px-8 md:px-12 py-10">
+            <div className="flex flex-col sm:flex-row items-start gap-6">
+              <Image
+                src="/sarah-110.webp"
+                alt="Sarah, an engineering director"
+                width={110}
+                height={110}
+                className="rounded-full object-cover shrink-0"
+                style={{ width: "110px", height: "110px" }}
+              />
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">
+                  Meet Sarah
+                </h3>
+                <p className="text-sm font-semibold text-[#6E3FCC] mb-3">
+                  Engineering Director at a 300-person company
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  Six months into being a new leader, Sarah finds herself
+                  struggling to address some performance concerns with a member
+                  of her team. She signs up for Campfire&apos;s Candid
+                  Communication session, hoping to get some help.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-[23px] md:left-[27px] top-4 bottom-4 w-px bg-[#6E3FCC]/15 hidden sm:block" />
+          {/* Timeline steps */}
+          <div className="relative px-8 md:px-12 py-10">
+            {/* Dashed vertical line */}
+            <div
+              className="absolute hidden sm:block"
+              style={{
+                left: "67px",
+                top: "0",
+                bottom: "0",
+                width: "1px",
+                backgroundImage:
+                  "repeating-linear-gradient(to bottom, #6E3FCC40 0, #6E3FCC40 6px, transparent 6px, transparent 12px)",
+              }}
+            />
 
-          <div className="space-y-6">
-            {steps.map((step, i) => (
-              <div key={step.title} className="flex gap-5 sm:gap-8">
-                {/* Dot */}
-                <div className="relative shrink-0 pt-1 hidden sm:block">
-                  <div
-                    className="w-[13px] h-[13px] rounded-full border-2 border-[#6E3FCC] bg-white"
-                    style={{
-                      opacity: 0.4 + i * 0.15,
-                    }}
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="bg-white rounded-xl border border-gray-100 p-6 flex-1">
-                  <div className="flex flex-wrap items-baseline gap-3 mb-2">
-                    <span className="text-xs font-mono font-semibold text-[#6E3FCC]/60">
-                      {step.time}
-                    </span>
-                    <h3 className="text-base font-bold text-gray-900">
-                      {step.title}
-                    </h3>
+            <div className="space-y-0">
+              {steps.map((step, i) => (
+                <div key={step.title} className="relative flex gap-8 sm:gap-10">
+                  {/* Circle on the dashed line */}
+                  <div className="relative shrink-0 hidden sm:flex items-start" style={{ width: "26px" }}>
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-2 border-[#6E3FCC]/40 bg-white"
+                      style={{ left: "-9px", marginLeft: "35px" }}
+                    />
                   </div>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {step.detail}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Outcome */}
-        <div className="mt-10 bg-[#6E3FCC] rounded-2xl p-8 md:p-10 text-white">
-          <div className="flex flex-col sm:flex-row items-start gap-6">
-            <svg
-              className="w-10 h-10 shrink-0 opacity-60"
-              viewBox="0 0 40 40"
-              fill="none"
-            >
-              <circle
-                cx="20"
-                cy="20"
-                r="16"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M14 20L18 24L26 16"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <div>
-              <h3 className="text-lg font-bold mb-2">The following week</h3>
-              <p className="text-white/80 text-sm leading-relaxed">
-                Sarah used the framework in her 1:1 with Jordan. The conversation
-                wasn't easy, but it was clearer and more productive than anything
-                she'd tried before. At the next Campfire session, she shared what
-                happened — and two other managers asked to learn the same approach.
-                That's how behavior change spreads.
-              </p>
+                  {/* Card content */}
+                  <div
+                    className={`flex-1 py-6 ${
+                      i < steps.length - 1
+                        ? "border-b border-gray-100"
+                        : ""
+                    }`}
+                  >
+                    <div className="flex items-baseline justify-between mb-2">
+                      <h3 className="text-base font-bold text-gray-900">
+                        {step.title}
+                      </h3>
+                      <span className="text-sm text-gray-400 shrink-0 ml-4">
+                        {step.time}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                      {step.detail}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* The following week — pink topo section */}
+          <div
+            className="px-8 md:px-12 py-10 rounded-b-2xl"
+            style={{
+              backgroundImage: "url('/pink-topo-session.webp')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="flex items-start gap-5">
+              <div
+                className="shrink-0 rounded-full flex items-center justify-center overflow-hidden"
+                style={{ width: "40px", height: "40px", backgroundColor: "rgba(255,255,255,0.25)" }}
+              >
+                <Image
+                  src="/offline_bolt.webp"
+                  alt="Lightning bolt"
+                  width={40}
+                  height={40}
+                  className="w-[24px] h-[24px] object-contain brightness-0 invert"
+                />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  The following week
+                </h3>
+                <p className="text-white/90 leading-relaxed">
+                  Sarah used the framework in her 1:1 with Jordan. The
+                  conversation wasn&apos;t easy, but it was clearer and more
+                  productive than anything she&apos;d tried before. At the next
+                  Campfire session, she shared what happened &mdash; and two
+                  other managers asked to learn the same approach. That&apos;s
+                  how behavior change spreads.
+                </p>
+              </div>
             </div>
           </div>
         </div>
