@@ -60,7 +60,7 @@ export default function CustomersPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
+        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               Customer Stories
@@ -79,26 +79,27 @@ export default function CustomersPage() {
 
       {/* Logo Bar */}
       <section className="py-10 bg-[#262F56]">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="mx-auto px-2" style={{ maxWidth: "1200px" }}>
           <p className="text-center text-xs font-bold text-white/50 tracking-wider uppercase mb-8">
             Companies building better leaders with Campfire
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-6 max-w-4xl mx-auto">
+          <div className="flex flex-wrap items-center justify-between gap-y-8">
             {[
-              { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
-              { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
-              { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
-              { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
-              { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
-              { src: "/pdq.webp", alt: "PDQ", w: 100, h: 65 },
+              { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887 },
+              { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241 },
+              { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247 },
+              { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475 },
+              { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198 },
+              { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277 },
+              { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507 },
             ].map((logo) => (
-              <div key={logo.alt} className="flex items-center justify-center">
+              <div key={logo.alt}>
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   width={logo.w}
                   height={logo.h}
-                  className="h-7 md:h-9 w-auto object-contain brightness-0 invert opacity-90"
+                  className="h-4 md:h-5 w-auto brightness-0 invert opacity-90"
                 />
               </div>
             ))}
@@ -115,7 +116,7 @@ export default function CustomersPage() {
               className="bg-[#F5F4F1] rounded-2xl border border-gray-100 overflow-hidden"
             >
               {/* Header */}
-              <div className="bg-gradient-to-r from-[#6E3FCC] to-[#7E4FD0] px-8 py-6">
+              <div className="px-8 py-6" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
                 <div className="flex flex-wrap items-center gap-4">
                   <h3 className="text-xl font-bold text-white">
                     {study.company}
@@ -233,7 +234,7 @@ export default function CustomersPage() {
 
       {/* CTA */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
+        <div className="py-20" style={{ backgroundImage: "url('/purple-topo-tall.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Your team is next

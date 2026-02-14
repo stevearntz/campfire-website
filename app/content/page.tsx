@@ -6,7 +6,7 @@ export default function ContentPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
+        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               Content &amp; Frameworks
@@ -165,7 +165,7 @@ export default function ContentPage() {
             </div>
 
             {/* Campfire side */}
-            <div className="bg-[#6E3FCC] rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 text-white">
+            <div className="rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 text-white" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
               <h3 className="font-bold mb-6">Campfire</h3>
               <ul className="space-y-4 text-sm text-white/90">
                 {[
@@ -284,9 +284,10 @@ export default function ContentPage() {
                 key={option.title}
                 className={`rounded-2xl p-8 border ${
                   option.featured
-                    ? "bg-[#6E3FCC] text-white border-[#6E3FCC] shadow-lg shadow-purple-200 md:scale-105 md:-my-2"
+                    ? "text-white border-transparent shadow-lg shadow-purple-200 md:scale-105 md:-my-2"
                     : "bg-[#F5F4F1] text-gray-900 border-gray-100"
                 }`}
+                style={option.featured ? { backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" } : undefined}
               >
                 <span
                   className={`text-xs font-semibold px-3 py-1 rounded-full ${

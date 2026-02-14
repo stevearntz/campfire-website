@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SubscribeForm from "../components/SubscribeForm";
 
 interface BeehiivPost {
   id: string;
@@ -55,7 +56,7 @@ export default async function BlogPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
+        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               Blog
@@ -63,7 +64,7 @@ export default async function BlogPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
               By the Campfire
             </h1>
-            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-white/70">
               Ideas, insights, and practical advice on leadership development,
               team culture, and building better managers.
             </p>
@@ -197,15 +198,9 @@ export default async function BlogPage() {
             Subscribe to By the Campfire for leadership development ideas
             delivered every week.
           </p>
-          <a
-            href="https://bythecampfire.beehiiv.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide shadow-lg"
-            style={{ backgroundColor: "#E055CB" }}
-          >
-            Subscribe
-          </a>
+          <div className="mt-8">
+            <SubscribeForm />
+          </div>
         </div>
       </section>
     </main>

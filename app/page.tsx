@@ -70,26 +70,27 @@ export default function Home() {
         {/* Logo bar — inside hero so bg image continues behind */}
         <div className="relative z-10">
           <div className="absolute inset-0" style={{ backgroundColor: "rgba(58, 2, 168, 0.25)" }} />
-          <div className="relative z-10 max-w-5xl mx-auto px-6 pt-6 pb-10">
+          <div className="relative z-10 mx-auto px-2 pt-6 pb-10" style={{ maxWidth: "1200px" }}>
             <p className="text-center text-xs font-bold text-white/60 tracking-wider uppercase mb-5">
               Trusted by companies like...
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-8 md:gap-x-16 max-w-5xl mx-auto">
+            <div className="flex flex-wrap items-center justify-between gap-y-8">
               {[
-                { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
-                { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
-                { src: "/dermalogica.png", alt: "Dermalogica", w: 300, h: 40 },
-                { src: "/plusgrade.png", alt: "Plusgrade", w: 200, h: 50 },
-                { src: "/enveda.png", alt: "Enveda Biosciences", w: 180, h: 75 },
-                { src: "/pdq.webp", alt: "PDQ", w: 100, h: 65 },
+                { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887 },
+                { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241 },
+                { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247 },
+                { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475 },
+                { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198 },
+                { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277 },
+                { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507 },
               ].map((logo) => (
-                <div key={logo.alt} className="flex items-center justify-center">
+                <div key={logo.alt}>
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     width={logo.w}
                     height={logo.h}
-                    className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
+                    className="h-4 md:h-5 w-auto brightness-0 invert"
                   />
                 </div>
               ))}
@@ -623,8 +624,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-full hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
-              style={{ backgroundColor: "#E055CB" }}
+              className="px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Book a Call
             </Link>

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const testimonials = [
   {
-    logo: "/nuvei.png",
+    logo: "/nuvei-logo.webp",
     logoAlt: "Nuvei",
     name: "Ashley Logan",
     title: "Sr. Director, Talent Development",
@@ -14,7 +14,7 @@ const testimonials = [
       "As a team of one, I needed a partner that could amplify our leadership development efforts without adding to my workload. Campfire has been that partner\u2014providing tools and resources to scale impactful programs across our global teams.",
   },
   {
-    logo: "/cotopaxi.png",
+    logo: "/cotopaxi-logo.webp",
     logoAlt: "Cotopaxi",
     name: "Liz Berry",
     title: "Sr. Manager, Talent Development",
@@ -22,7 +22,7 @@ const testimonials = [
       "What would have required months of work and significant budget to create internally, we now achieve with ease and efficiency.",
   },
   {
-    logo: "/cotopaxi.png",
+    logo: "/cotopaxi-logo.webp",
     logoAlt: "Cotopaxi",
     name: "Liz Berry",
     title: "Sr. Manager, Talent Development",
@@ -30,7 +30,7 @@ const testimonials = [
       "Campfire has been a game-changer for our small team of two. Acting as a true extension of our team to help build materials tailored to our needs and goals.",
   },
   {
-    logo: "/dermalogica.png",
+    logo: "/dermalogica-logo.webp",
     logoAlt: "Dermalogica",
     name: "People Team",
     title: "Dermalogica",
@@ -38,7 +38,7 @@ const testimonials = [
       "Our managers started having better conversations within a week. That\u2019s not something we can say about any other program we\u2019ve tried.",
   },
   {
-    logo: "/plusgrade.png",
+    logo: "/plusgrade-logo.webp",
     logoAlt: "Plusgrade",
     name: "HR Leader",
     title: "Plusgrade",
@@ -92,7 +92,7 @@ export default function TestimonialCarousel() {
                         alt={t.logoAlt}
                         width={140}
                         height={50}
-                        className={`w-auto object-contain opacity-30 grayscale ${t.logoAlt === "Cotopaxi" ? "h-7" : "h-5"}`}
+                        className="h-5 w-auto object-contain opacity-30 grayscale"
                       />
                     </div>
 

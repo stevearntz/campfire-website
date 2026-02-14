@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import SubscribeForm from "../../components/SubscribeForm";
 
 interface BeehiivPost {
   id: string;
@@ -101,7 +102,7 @@ export default async function BlogPostPage({
   return (
     <main>
       {/* Hero header */}
-      <section className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern">
+      <section style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="relative z-10 max-w-4xl mx-auto px-6 pt-16 pb-12">
           <Link
             href="/blog"
@@ -234,15 +235,9 @@ export default async function BlogPostPage({
             Subscribe to By the Campfire for leadership development ideas
             delivered every week.
           </p>
-          <a
-            href="https://bythecampfire.beehiiv.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide shadow-lg"
-            style={{ backgroundColor: "#E055CB" }}
-          >
-            Subscribe
-          </a>
+          <div className="mt-8">
+            <SubscribeForm />
+          </div>
         </div>
       </section>
     </main>

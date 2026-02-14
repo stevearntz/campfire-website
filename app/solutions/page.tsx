@@ -5,13 +5,13 @@ export default function SolutionsPage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#6E3FCC] topo-pattern py-20">
+        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               Solutions
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Practical Support for Real Challenges
+              Practical support for real challenges
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
               Campfire supports the leadership moments your managers face every
@@ -27,7 +27,7 @@ export default function SolutionsPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Our Solutions
+              Our solutions
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Whether you&apos;re supporting new managers or navigating change,
@@ -113,7 +113,7 @@ export default function SolutionsPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Campfire vs. Traditional Solutions
+              Campfire vs. traditional solutions
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Campfire is a complete system for leadership growth that provides
@@ -175,7 +175,7 @@ export default function SolutionsPage() {
                   </div>
 
                   {/* Campfire side */}
-                  <div className="p-8 bg-[#6E3FCC] md:rounded-r-2xl">
+                  <div className="p-8 md:rounded-r-2xl" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
                     <h4 className="text-lg font-bold text-white mb-3">
                       {item.campfireTitle}
                     </h4>
@@ -191,22 +191,9 @@ export default function SolutionsPage() {
           <div className="text-center mt-10">
             <Link
               href="/content"
-              className="inline-flex items-center gap-2 text-[#6E3FCC] font-semibold text-sm hover:underline"
+              className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
-              Learn more about programs you can run inside Campfire
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
+              Explore Content
             </Link>
           </div>
         </div>
@@ -217,7 +204,7 @@ export default function SolutionsPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              How to Get Started
+              How to get started
             </h2>
             <p className="mt-4 text-lg text-gray-500">
               Getting started with Campfire is straightforward and designed to
@@ -261,14 +248,13 @@ export default function SolutionsPage() {
 
       {/* CTA */}
       <section className="relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#6E3FCC] via-[#7E4FD0] to-[#5B34AB] topo-pattern py-20">
-          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        <div className="py-20" style={{ backgroundImage: "url('/purple-topo-tall.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
+          <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Not sure where to start?
             </h2>
             <p className="mt-4 text-lg text-white/70">
-              Schedule a conversation with us, and we&apos;ll help you figure
-              out what your managers need most right now.
+              Schedule a conversation with us, and we&apos;ll help you figure out what your managers need most right&nbsp;now.
             </p>
             <Link
               href="/contact"
