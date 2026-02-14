@@ -45,8 +45,7 @@ export default function ProductShowcase() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            See what{" "}
-            <span className="text-[#6E3FCC]">Campfire looks like</span>
+            See what Campfire looks like
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             A purpose-built platform and curated content library designed for

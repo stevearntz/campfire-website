@@ -39,8 +39,7 @@ export default function SessionWalkthrough() {
       <div className="mx-auto px-6" style={{ maxWidth: "1329px" }}>
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Sessions that{" "}
-            <span className="text-[#6E3FCC]">drive behavior change</span>
+            Sessions that drive behavior change
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             What it actually feels like when your managers show up to a Campfire

@@ -111,7 +111,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              What we <span className="text-[#6E3FCC]">actually provide</span>
+              What we actually provide
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               Everything you need to run leadership development programs that
@@ -237,7 +237,7 @@ export default function AboutPage() {
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            What it <span className="text-[#6E3FCC]">feels like</span>
+            What it feels like
           </h2>
           <p className="text-lg text-gray-500 mb-12 max-w-2xl">
             Great managers don&apos;t just sit back and watch.
@@ -475,7 +475,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              The people behind <span className="text-[#6E3FCC]">Campfire</span>
+              The people behind Campfire
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               A team of practitioners, facilitators, and builders who care
@@ -605,7 +605,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              The impact <span className="text-[#6E3FCC]">we see</span>
+              The impact we see
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
               When leadership development fits the flow of work.

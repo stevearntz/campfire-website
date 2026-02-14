@@ -103,8 +103,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Scale an{" "}
-              <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
+              Scale an Outcomes-Driven Culture
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
               When leaders paint a clear picture and trust their people to own
@@ -436,8 +435,8 @@ export default function Home() {
             <blockquote className="text-3xl md:text-[2.75rem] font-medium text-[#1E2A4A] leading-[1.3]">
               &ldquo;Our biggest priority right now is improving our
               front-line managers because that&apos;s the{" "}
-              <span className="text-[#6E3FCC]">single biggest
-              lever we have</span> in improving our results.&rdquo;
+single biggest
+              lever we have in improving our results.&rdquo;
             </blockquote>
             <p className="mt-8 text-lg text-gray-500">
               &mdash; CEO, 1,200-employee company
@@ -455,7 +454,7 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
                 Impact you can feel
                 <br />
-                <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
+                &mdash;Company-wide
               </h2>
             </div>
 
