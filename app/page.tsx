@@ -434,8 +434,8 @@ export default function Home() {
             <blockquote className="text-3xl md:text-[2.75rem] font-medium text-[#1E2A4A] leading-[1.3]">
               &ldquo;Our biggest priority right now is improving our
               front-line managers because that&apos;s the{" "}
-single biggest
-              lever we have in improving our results.&rdquo;
+<span className="text-[#6E3FCC]">single biggest
+              lever we have</span> in improving our results.&rdquo;
             </blockquote>
             <p className="mt-8 text-lg text-gray-500">
               &mdash; CEO, 1,200-employee company
@@ -453,7 +453,7 @@ single biggest
               <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
                 Impact you can feel
                 <br />
-                &mdash;Company-wide
+                <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
               </h2>
             </div>
 
