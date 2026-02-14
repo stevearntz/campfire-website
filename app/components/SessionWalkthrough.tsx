@@ -167,9 +167,9 @@ export default function SessionWalkthrough() {
             <Image
               src="/offline_bolt.webp"
               alt="Lightning bolt"
-              width={24}
-              height={24}
-              className="w-[24px] h-[24px] shrink-0 object-contain brightness-0 invert mt-1"
+              width={40}
+              height={40}
+              className="w-[40px] h-[40px] shrink-0 object-contain brightness-0 invert"
             />
             <div>
               <h3 className="text-lg font-bold text-white mb-3">
