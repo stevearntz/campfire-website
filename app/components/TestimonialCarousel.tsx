@@ -69,9 +69,9 @@ export default function TestimonialCarousel() {
       {/* Carousel track — full browser width, no container constraint */}
       <div className="relative overflow-hidden">
           <div
-            className="flex gap-6 transition-transform duration-500 ease-in-out"
+            className="flex gap-3 transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(calc(50% - ${active * (680 + 24)}px - 340px))`,
+              transform: `translateX(calc(50% - ${active * (560 + 12)}px - 280px))`,
             }}
           >
             {testimonials.map((t, i) => {
@@ -80,7 +80,7 @@ export default function TestimonialCarousel() {
               return (
                 <div
                   key={`${t.logoAlt}-${i}`}
-                  className={`shrink-0 w-[680px] h-[340px] bg-[#F8F5FC] rounded-2xl p-10 flex flex-col justify-between transition-opacity duration-500 ${
+                  className={`shrink-0 w-[560px] h-[340px] bg-[#F8F5FC] rounded-2xl p-10 flex flex-col justify-between transition-opacity duration-500 ${
                     isCenter ? "opacity-100" : "opacity-50"
                   }`}
                 >
@@ -92,7 +92,7 @@ export default function TestimonialCarousel() {
                         alt={t.logoAlt}
                         width={140}
                         height={50}
-                        className="h-5 w-auto object-contain opacity-30 grayscale"
+                        className={`w-auto object-contain opacity-30 grayscale ${t.logoAlt === "Cotopaxi" ? "h-7" : "h-5"}`}
                       />
                     </div>
 

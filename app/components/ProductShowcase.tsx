@@ -47,21 +47,21 @@ export default function ProductShowcase() {
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             See the magic of Campfire
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80">
             A purpose-built platform and curated content library designed to
             support your leaders and amplify your impact.
           </p>
         </div>
 
         <div className="rounded-2xl overflow-hidden border border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr]">
+          <div className="grid grid-cols-1 md:grid-cols-[0.8fr_2fr]">
             {/* Left: Text + navigation */}
             <div
               className="p-8 md:px-10 flex flex-col justify-between"
-              style={{ backgroundColor: "#403955", paddingTop: "calc(2.5rem + 25px)", paddingBottom: "calc(2.5rem + 25px)" }}
+              style={{ backgroundColor: "#403955", paddingTop: "calc(3.5rem + 25px)", paddingBottom: "calc(3.5rem + 25px)" }}
             >
               <div>
-                <p className="text-xs font-semibold tracking-wider uppercase mb-4" style={{ color: "#9D88ED" }}>
+                <p className="text-xs font-semibold tracking-wider uppercase mb-4 mt-6" style={{ color: "#9D88ED" }}>
                   {s.label}
                 </p>
                 <h3 className="text-2xl md:text-[1.75rem] font-bold text-white leading-snug" style={{ maxWidth: "280px" }}>
@@ -141,7 +141,7 @@ export default function ProductShowcase() {
             {/* Right: Image */}
             <div
               className="relative flex flex-col p-6 md:px-8"
-              style={{ backgroundColor: "#2f2745", paddingTop: "calc(2rem + 25px)", paddingBottom: "calc(2rem + 25px)" }}
+              style={{ backgroundColor: "#2f2745", paddingTop: "calc(3rem + 25px)", paddingBottom: "calc(3rem + 25px)" }}
             >
               <div className="grid w-full flex-1">
                 {slides.map((slide, i) => (

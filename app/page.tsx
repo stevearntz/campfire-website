@@ -70,8 +70,8 @@ export default function Home() {
         {/* Logo bar — inside hero so bg image continues behind */}
         <div className="relative z-10">
           <div className="absolute inset-0" style={{ backgroundColor: "rgba(58, 2, 168, 0.25)" }} />
-          <div className="relative z-10 max-w-5xl mx-auto px-6 py-10">
-            <p className="text-center text-xs font-bold text-white/60 tracking-wider uppercase mb-8">
+          <div className="relative z-10 max-w-5xl mx-auto px-6 pt-6 pb-10">
+            <p className="text-center text-xs font-bold text-white/60 tracking-wider uppercase mb-5">
               Trusted by companies like...
             </p>
             <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-8 md:gap-x-16 max-w-5xl mx-auto">
@@ -181,7 +181,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
             {[
               {
                 title: "Flexible Content",
@@ -218,7 +218,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {card.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-gray-500 text-sm leading-snug">
                   {card.desc}
                 </p>
               </div>
@@ -292,7 +292,7 @@ export default function Home() {
 
           {/* Pink topo — fixed min-width, slides over image as viewport shrinks */}
           <div
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 min-w-[650px] text-center"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 min-w-[650px] text-center rounded-r-2xl"
             style={{
               width: "max(60%, calc(100% - 800px))",
               backgroundImage: "url('/pink-topo-bg.webp')",
@@ -339,7 +339,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Built to fit the rhythm of real work &mdash; and drive lasting change
+              Built to fit the rhythm of real work<br />&mdash; and drive lasting change
             </h2>
             <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -436,7 +436,7 @@ export default function Home() {
         <div className="h-[3px] bg-gradient-to-r from-[#6E3FCC] to-[#3B82F6]" />
         <div className="py-20">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <blockquote className="text-3xl md:text-[2.75rem] font-bold text-[#1E2A4A] leading-[1.3] max-w-[1140px] mx-auto">
+            <blockquote className="font-bold text-[#1E2A4A] leading-[1.3] max-w-[1140px] mx-auto" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.75rem)" }}>
               &ldquo;Our biggest priority right now is improving our
               <br />
               front-line managers because that&apos;s the
@@ -457,9 +457,9 @@ export default function Home() {
             {/* Left heading */}
             <div className="lg:w-[420px] shrink-0">
               <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
-                Impact you can feel
+                Impact you can feel,
                 <br />
-                <span className="text-[#6E3FCC]">&mdash;Company-wide</span>
+                <span className="text-[#6E3FCC]">company-wide</span>
               </h2>
             </div>
 
