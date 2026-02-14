@@ -32,8 +32,9 @@ export default function Home() {
                 className="mt-6 text-lg md:text-xl leading-relaxed max-w-lg font-medium"
                 style={{ color: "#FFC28A" }}
               >
-                Your managers need support. Your team is stretched thin.
-                Campfire was built for both.
+                Everything you expect from leadership development—now
+                flexible, customizable, and built to scale effortlessly
+                across your organization.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
