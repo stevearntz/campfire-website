@@ -107,9 +107,9 @@ export default function Home() {
               <span className="text-[#6E3FCC]">Outcomes-Driven Culture</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              When leaders grow, everything downstream improves. Campfire turns
-              leadership development into the engine that drives alignment,
-              performance, and a culture people don&apos;t want to leave.
+              When leaders paint a clear picture and trust their people to own
+              the outcomes that drive collective success, effort takes care of
+              itself. That&apos;s the culture Campfire helps you build.
             </p>
           </div>
 
