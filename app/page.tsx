@@ -228,9 +228,9 @@ export default function Home() {
         </div>
 
         {/* Desktop: image drives height, pink box overlays from left */}
-        <div className="hidden md:block relative max-w-[1800px] mx-auto">
+        <div className="hidden md:block relative">
           {/* Image — right side, drives the section height */}
-          <div className="ml-auto w-[50%]">
+          <div className="ml-auto w-[50%] max-w-[900px]">
             <Image
               src="/campfire.webp"
               alt="Campfire session with participants collaborating"
