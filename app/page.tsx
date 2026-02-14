@@ -436,7 +436,7 @@ export default function Home() {
         <div className="h-[3px] bg-gradient-to-r from-[#6E3FCC] to-[#3B82F6]" />
         <div className="py-20">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <blockquote className="text-3xl md:text-[2.75rem] font-bold text-[#1E2A4A] leading-[1.3] max-w-[820px] mx-auto">
+            <blockquote className="text-3xl md:text-[2.75rem] font-bold text-[#1E2A4A] leading-[1.3] max-w-[1066px] mx-auto">
               &ldquo;Our biggest priority right now is improving our
               front-line managers because that&apos;s the{" "}
               <span className="text-[#6E3FCC]">single biggest
