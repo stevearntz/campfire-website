@@ -12,8 +12,15 @@ const spartan = League_Spartan({
   subsets: ["latin"],
 });
 
+const baseUrl =
+  process.env.VERCEL_ENV === "production"
+    ? "https://getcampfire.com"
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://getcampfire.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://getcampfire.com"),
+  metadataBase: new URL(baseUrl),
   title: {
     default: "Campfire — Build Better Leaders, Your Way, at Scale",
     template: "%s | Campfire",
