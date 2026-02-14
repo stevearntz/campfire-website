@@ -8,10 +8,10 @@ const slides = [
     image: "/content-catalog.webp",
     alt: "Campfire content catalog showing 50+ leadership workshop topics with illustrated cards",
     label: "Content",
-    headline: "50+ ready-to-run sessions across every leadership challenge",
+    headline: "40+ ready-to-run sessions across every leadership challenge",
     description:
       "From giving feedback to strategic thinking to managing change\u2014our library covers the topics your leaders face every day. Mix and match, or let us build something custom.",
-    cta: "Explore Full Library",
+    cta: "See Full Library",
     ctaHref: "https://tools.getcampfire.com/courses",
   },
   {
@@ -45,11 +45,11 @@ export default function ProductShowcase() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            See what Campfire looks like
+            See the magic of Campfire
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            A purpose-built platform and curated content library designed for
-            live leadership development.
+            A purpose-built platform and curated content library designed to
+            support your leaders and amplify your impact.
           </p>
         </div>
 
@@ -61,26 +61,27 @@ export default function ProductShowcase() {
               style={{ backgroundColor: "#403955", paddingTop: "calc(2.5rem + 25px)", paddingBottom: "calc(2.5rem + 25px)" }}
             >
               <div>
-                <p className="text-xs font-semibold text-[#6E3FCC] tracking-wider uppercase mb-4">
+                <p className="text-xs font-semibold tracking-wider uppercase mb-4" style={{ color: "#9D88ED" }}>
                   {s.label}
                 </p>
-                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug">
+                <h3 className="text-2xl md:text-[1.75rem] font-bold text-white leading-snug" style={{ maxWidth: "280px" }}>
                   {s.headline}
                 </h3>
-                <p className="mt-4 text-white/50 text-sm leading-relaxed">
+                <p className="mt-4 text-white/70 text-sm leading-relaxed" style={{ maxWidth: "280px" }}>
                   {s.description}
                 </p>
               </div>
 
-              {/* Carousel navigation */}
-              <div className="flex items-center gap-4 mt-8">
+              {/* Carousel navigation — centered */}
+              <div className="flex items-center justify-center gap-4 mt-8">
                 <button
                   onClick={() =>
                     setActive(
                       (active - 1 + slides.length) % slides.length
                     )
                   }
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/40 hover:text-white hover:border-white/50 transition-colors"
+                  className="w-9 h-9 rounded-full border flex items-center justify-center transition-colors"
+                  style={{ borderColor: "#9D88ED40", color: "#9D88ED" }}
                   aria-label="Previous slide"
                 >
                   <svg
@@ -103,11 +104,10 @@ export default function ProductShowcase() {
                     <button
                       key={i}
                       onClick={() => setActive(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${
-                        i === active
-                          ? "bg-white"
-                          : "bg-white/30 hover:bg-white/50"
-                      }`}
+                      className="w-2.5 h-2.5 rounded-full transition-all"
+                      style={{
+                        backgroundColor: i === active ? "#9D88ED" : "rgba(157, 136, 237, 0.3)",
+                      }}
                       aria-label={`Slide ${i + 1}`}
                     />
                   ))}
@@ -117,7 +117,8 @@ export default function ProductShowcase() {
                   onClick={() =>
                     setActive((active + 1) % slides.length)
                   }
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/40 hover:text-white hover:border-white/50 transition-colors"
+                  className="w-9 h-9 rounded-full border flex items-center justify-center transition-colors"
+                  style={{ borderColor: "#9D88ED40", color: "#9D88ED" }}
                   aria-label="Next slide"
                 >
                   <svg

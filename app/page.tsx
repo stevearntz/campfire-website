@@ -385,15 +385,15 @@ export default function Home() {
                 style={{ border: `2px solid ${item.borderColor}` }}
               >
                 <p
-                  className="text-sm font-bold mb-4"
+                  className="text-base font-bold mb-4"
                   style={{ color: item.borderColor }}
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-base font-bold text-white mb-3 leading-snug">
+                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-sm text-white/50 leading-relaxed">
+                <p className="text-sm text-white/80 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -622,7 +622,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
+              className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-full hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
               style={{ backgroundColor: "#E055CB" }}
             >
               Book a Call
