@@ -79,53 +79,60 @@ export default function SessionWalkthrough() {
           </div>
 
           {/* Timeline steps */}
-          <div className="relative px-8 md:px-12 py-10">
-            {/* Dashed vertical line */}
-            <div
-              className="absolute hidden sm:block"
-              style={{
-                left: "67px",
-                top: "0",
-                bottom: "0",
-                width: "1px",
-                backgroundImage:
-                  "repeating-linear-gradient(to bottom, #6E3FCC40 0, #6E3FCC40 6px, transparent 6px, transparent 12px)",
-              }}
-            />
+          <div className="relative py-10">
+            {/* Centered narrower card area with dashed line to its left */}
+            <div className="relative mx-auto" style={{ maxWidth: "1060px" }}>
+              {/* Dashed vertical line — 60px left of the cards */}
+              <div
+                className="absolute hidden sm:block"
+                style={{
+                  left: "-60px",
+                  top: "0",
+                  bottom: "0",
+                  width: "2px",
+                  backgroundImage:
+                    "repeating-linear-gradient(to bottom, #6E3FCC40 0, #6E3FCC40 6px, transparent 6px, transparent 12px)",
+                }}
+              />
 
-            <div className="space-y-0">
-              {steps.map((step, i) => (
-                <div key={step.title} className="relative flex gap-8 sm:gap-10">
-                  {/* Circle on the dashed line */}
-                  <div className="relative shrink-0 hidden sm:flex items-start" style={{ width: "26px" }}>
+              <div className="space-y-0">
+                {steps.map((step, i) => (
+                  <div key={step.title} className="relative">
+                    {/* 27px circle on the dashed line, vertically centered */}
                     <div
-                      className="absolute top-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-2 border-[#6E3FCC]/40 bg-white"
-                      style={{ left: "-9px", marginLeft: "35px" }}
+                      className="absolute hidden sm:block rounded-full border-2 border-[#6E3FCC]/40 bg-white"
+                      style={{
+                        width: "27px",
+                        height: "27px",
+                        left: "-73px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      }}
                     />
-                  </div>
 
-                  {/* Card content */}
-                  <div
-                    className={`flex-1 py-6 ${
-                      i < steps.length - 1
-                        ? "border-b border-gray-100"
-                        : ""
-                    }`}
-                  >
-                    <div className="flex items-baseline justify-between mb-2">
-                      <h3 className="text-base font-bold text-gray-900">
-                        {step.title}
-                      </h3>
-                      <span className="text-sm text-gray-400 shrink-0 ml-4">
-                        {step.time}
-                      </span>
+                    {/* Card content */}
+                    <div
+                      className={`px-8 md:px-10 py-8 ${
+                        i < steps.length - 1
+                          ? "border-b border-gray-100"
+                          : ""
+                      }`}
+                    >
+                      <div className="flex items-baseline justify-between mb-2">
+                        <h3 className="text-base font-bold text-gray-900">
+                          {step.title}
+                        </h3>
+                        <span className="text-sm text-gray-400 shrink-0 ml-4">
+                          {step.time}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                        {step.detail}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
-                      {step.detail}
-                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
