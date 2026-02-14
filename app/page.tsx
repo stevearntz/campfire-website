@@ -252,8 +252,8 @@ export default function Home() {
             }}
           >
             <h2
-              className="font-bold text-white max-w-[840px] mx-auto"
-              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
+              className="font-bold text-white max-w-[840px] mx-auto whitespace-nowrap"
+              style={{ fontSize: "clamp(1.1rem, 2vw, 2.25rem)" }}
             >
               You&apos;re 30 seconds away from experiencing Campfire
             </h2>
