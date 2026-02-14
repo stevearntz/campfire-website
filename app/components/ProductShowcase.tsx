@@ -172,7 +172,7 @@ export default function ProductShowcase() {
                   href={s.ctaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+                  className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
                 >
                   {s.cta}
                 </a>

@@ -39,14 +39,14 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/solutions"
-                  className="px-7 py-3.5 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
+                  className="px-7 py-3.5 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
                   style={{ backgroundColor: "#E055CB" }}
                 >
                   Explore Solutions
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-7 py-3.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+                  className="px-7 py-3.5 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
                 >
                   Talk to Us
                 </Link>
@@ -187,7 +187,7 @@ export default function Home() {
           <div className="text-center mt-8">
             <Link
               href="/solutions"
-              className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               See How It Works
             </Link>
@@ -221,7 +221,7 @@ export default function Home() {
               href="https://tools.getcampfire.com/courses"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               Try Campfire
   </a>
@@ -574,7 +574,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="px-8 py-4 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
+              className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
               style={{ backgroundColor: "#E055CB" }}
             >
               Book a Call
@@ -583,7 +583,7 @@ export default function Home() {
               href="https://tools.getcampfire.com/courses"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+              className="px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Explore Workshops
             </a>

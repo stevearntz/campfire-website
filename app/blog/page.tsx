@@ -84,7 +84,7 @@ export default async function BlogPage() {
                 href="https://bythecampfire.beehiiv.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-7 py-3.5 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+                className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
               >
                 Visit Our Newsletter
               </a>
@@ -201,7 +201,7 @@ export default async function BlogPage() {
             href="https://bythecampfire.beehiiv.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide shadow-lg"
+            className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide shadow-lg"
             style={{ backgroundColor: "#E055CB" }}
           >
             Subscribe

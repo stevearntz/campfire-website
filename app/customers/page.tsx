@@ -243,7 +243,7 @@ export default function CustomersPage() {
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-block px-8 py-4 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+              className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Book a Call
             </Link>
