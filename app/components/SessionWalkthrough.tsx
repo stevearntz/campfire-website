@@ -48,129 +48,146 @@ export default function SessionWalkthrough() {
           </p>
         </div>
 
-        {/* Main card container */}
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
-          {/* Meet Sarah */}
-          <div className="bg-[#F8F5FC] px-8 md:px-12 py-10">
-            <div className="flex flex-col sm:flex-row items-start gap-6">
-              <Image
-                src="/sarah-110.webp"
-                alt="Sarah, an engineering director"
-                width={110}
-                height={110}
-                className="rounded-full object-cover shrink-0"
-                style={{ width: "110px", height: "110px" }}
-              />
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">
-                  Meet Sarah
-                </h3>
-                <p className="text-sm font-semibold text-[#6E3FCC] mb-3">
-                  Engineering Director at a 300-person company
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Six months into being a new leader, Sarah finds herself
-                  struggling to address some performance concerns with a member
-                  of her team. She signs up for Campfire&apos;s Candid
-                  Communication session, hoping to get some help.
-                </p>
-              </div>
+        {/* Meet Sarah — full-width top card */}
+        <div className="bg-[#F8F5FC] rounded-2xl px-8 md:px-12 py-10">
+          <div className="flex flex-col sm:flex-row items-start gap-6">
+            <Image
+              src="/sarah-110.webp"
+              alt="Sarah, an engineering director"
+              width={110}
+              height={110}
+              className="rounded-full object-cover shrink-0"
+              style={{ width: "110px", height: "110px" }}
+            />
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">
+                Meet Sarah
+              </h3>
+              <p className="text-sm font-semibold text-[#6E3FCC] mb-3">
+                Engineering Director at a 300-person company
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Six months into being a new leader, Sarah finds herself
+                struggling to address some performance concerns with a member
+                of her team. She signs up for Campfire&apos;s Candid
+                Communication session, hoping to get some help.
+              </p>
             </div>
           </div>
+        </div>
 
-          {/* Timeline steps */}
-          <div className="relative py-10">
-            {/* Centered narrower card area with dashed line to its left */}
-            <div className="relative mx-auto" style={{ maxWidth: "1060px" }}>
-              {/* Dashed vertical line — 60px left of the cards */}
-              <div
-                className="absolute hidden sm:block"
-                style={{
-                  left: "-60px",
-                  top: "0",
-                  bottom: "0",
-                  width: "2px",
-                  backgroundImage:
-                    "repeating-linear-gradient(to bottom, #6E3FCC40 0, #6E3FCC40 6px, transparent 6px, transparent 12px)",
-                }}
-              />
-
-              <div className="space-y-0">
-                {steps.map((step, i) => (
-                  <div key={step.title} className="relative">
-                    {/* 27px circle on the dashed line, vertically centered */}
-                    <div
-                      className="absolute hidden sm:block rounded-full border-2 border-[#6E3FCC]/40 bg-white"
-                      style={{
-                        width: "27px",
-                        height: "27px",
-                        left: "-73px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                      }}
-                    />
-
-                    {/* Card content */}
-                    <div
-                      className={`px-8 md:px-10 py-8 ${
-                        i < steps.length - 1
-                          ? "border-b border-gray-100"
-                          : ""
-                      }`}
-                    >
-                      <div className="flex items-baseline justify-between mb-2">
-                        <h3 className="text-base font-bold text-gray-900">
-                          {step.title}
-                        </h3>
-                        <span className="text-sm text-gray-400 shrink-0 ml-4">
-                          {step.time}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
-                        {step.detail}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* The following week — pink topo section */}
+        {/* Timeline — gray page background shows through */}
+        <div className="relative" style={{ padding: "20px 0" }}>
+          {/* Dashed vertical line on the gray background */}
           <div
-            className="px-8 md:px-12 py-10 rounded-b-2xl"
+            className="absolute hidden sm:block"
             style={{
-              backgroundImage: "url('/pink-topo-session.webp')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              left: "48px",
+              top: "0",
+              bottom: "0",
+              width: "2px",
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, #6E3FCC40 0, #6E3FCC40 6px, transparent 6px, transparent 12px)",
             }}
+          />
+
+          {/* Step cards — 1060px wide, offset right of the dashed line */}
+          <div
+            className="flex flex-col sm:hidden"
+            style={{ gap: "20px" }}
           >
-            <div className="flex items-start gap-5">
+            {/* Mobile: full-width cards, no line */}
+            {steps.map((step) => (
               <div
-                className="shrink-0 rounded-full flex items-center justify-center overflow-hidden"
-                style={{ width: "40px", height: "40px", backgroundColor: "rgba(255,255,255,0.25)" }}
+                key={step.title}
+                className="bg-white rounded-xl px-6 py-6"
               >
-                <Image
-                  src="/offline_bolt.webp"
-                  alt="Lightning bolt"
-                  width={40}
-                  height={40}
-                  className="w-[24px] h-[24px] object-contain brightness-0 invert"
-                />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-white mb-3">
-                  The following week
-                </h3>
-                <p className="text-white/90 leading-relaxed">
-                  Sarah used the framework in her 1:1 with Jordan. The
-                  conversation wasn&apos;t easy, but it was clearer and more
-                  productive than anything she&apos;d tried before. At the next
-                  Campfire session, she shared what happened &mdash; and two
-                  other managers asked to learn the same approach. That&apos;s
-                  how behavior change spreads.
+                <div className="flex items-baseline justify-between mb-2">
+                  <h3 className="text-base font-bold text-gray-900">
+                    {step.title}
+                  </h3>
+                  <span className="text-sm text-gray-400 shrink-0 ml-4">
+                    {step.time}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                  {step.detail}
                 </p>
               </div>
+            ))}
+          </div>
+
+          <div
+            className="hidden sm:flex flex-col"
+            style={{ gap: "20px", marginLeft: "122px", maxWidth: "1060px" }}
+          >
+            {steps.map((step) => (
+              <div
+                key={step.title}
+                className="relative bg-white rounded-xl px-8 md:px-10 py-8"
+              >
+                {/* 27px circle centered on the dashed line, vertically centered with card */}
+                <div
+                  className="absolute rounded-full border-2 border-[#6E3FCC]/40 bg-[#F5F4F1]"
+                  style={{
+                    width: "27px",
+                    height: "27px",
+                    left: "-87px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                  }}
+                />
+
+                <div className="flex items-baseline justify-between mb-2">
+                  <h3 className="text-base font-bold text-gray-900">
+                    {step.title}
+                  </h3>
+                  <span className="text-sm text-gray-400 shrink-0 ml-4">
+                    {step.time}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                  {step.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* The following week — full-width bottom card */}
+        <div
+          className="rounded-2xl px-8 md:px-12 py-10"
+          style={{
+            backgroundImage: "url('/pink-topo-session.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="flex items-start gap-5">
+            <div
+              className="shrink-0 rounded-full flex items-center justify-center overflow-hidden"
+              style={{ width: "40px", height: "40px", backgroundColor: "rgba(255,255,255,0.25)" }}
+            >
+              <Image
+                src="/offline_bolt.webp"
+                alt="Lightning bolt"
+                width={40}
+                height={40}
+                className="w-[24px] h-[24px] object-contain brightness-0 invert"
+              />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-3">
+                The following week
+              </h3>
+              <p className="text-white/90 leading-relaxed">
+                Sarah used the framework in her 1:1 with Jordan. The
+                conversation wasn&apos;t easy, but it was clearer and more
+                productive than anything she&apos;d tried before. At the next
+                Campfire session, she shared what happened &mdash; and two
+                other managers asked to learn the same approach. That&apos;s
+                how behavior change spreads.
+              </p>
             </div>
           </div>
         </div>
