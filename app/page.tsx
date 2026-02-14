@@ -575,7 +575,7 @@ export default function Home() {
               className="px-8 py-4 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-opacity shadow-lg uppercase tracking-wide"
               style={{ backgroundColor: "#E055CB" }}
             >
-              Book a Call &rarr;
+              Book a Call
             </Link>
             <a
               href="https://tools.getcampfire.com/courses"
