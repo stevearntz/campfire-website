@@ -103,7 +103,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Scale an Outcomes-Driven Culture
+              Scale an outcomes-driven culture
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
               When leaders paint a clear picture and trust their people to own
@@ -168,12 +168,17 @@ export default function Home() {
       </section>
 
       {/* ==================== LEADERSHIP DEVELOPMENT ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20" style={{ backgroundColor: "#F7F6F7" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Leadership Development, Without the Overhead
+              Leadership development, without the overhead
             </h2>
+            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
+              Everything you need to scale world-class leadership
+              development&mdash;without adding work to your plate or headcount
+              to your team.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -220,9 +225,9 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Built For — plain text */}
-          <p className="text-center mt-10 text-sm text-gray-500">
-            <span className="font-bold text-gray-700">Built For:</span>{" "}
+          {/* Built For */}
+          <p className="text-center mt-10 text-lg text-gray-500">
+            <span className="font-bold text-gray-800">Built For:</span>{" "}
             HR leaders scaling leadership development{" "}
             + L&amp;D teams with lean headcount{" "}
             + Talent leaders building and shaping culture
@@ -233,7 +238,7 @@ export default function Home() {
               href="/solutions"
               className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
-              See How It Works
+              Explore Solutions
             </Link>
           </div>
         </div>
