@@ -321,7 +321,7 @@ export default function Home() {
               href="https://tools.getcampfire.com/courses"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              className="inline-block font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
               style={{
                 fontSize: "clamp(0.875rem, 1vw, 1rem)",
                 padding: "clamp(0.75rem, 1vw, 1rem) clamp(1.5rem, 2vw, 2rem)",
