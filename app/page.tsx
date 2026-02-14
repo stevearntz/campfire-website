@@ -407,9 +407,9 @@ export default function Home() {
 
       {/* ==================== PROOF ==================== */}
       <section className="relative overflow-hidden">
-        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="py-16" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <p className="text-sm font-bold text-white/50 text-center mb-12 uppercase tracking-widest">
+            <p className="text-xs font-bold text-white/50 text-center mb-10 uppercase tracking-widest">
               Results you can trust
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -420,10 +420,10 @@ export default function Home() {
                 { number: "10,000+", label: "Leaders supported" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-5xl md:text-6xl font-bold text-white">
+                  <div className="text-4xl md:text-5xl font-bold text-white">
                     {stat.number}
                   </div>
-                  <p className="mt-3 text-base font-semibold text-white/70 lowercase">{stat.label}</p>
+                  <p className="mt-2 text-sm font-semibold text-white/70 lowercase">{stat.label}</p>
                 </div>
               ))}
             </div>
