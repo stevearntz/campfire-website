@@ -74,7 +74,7 @@ export default function Home() {
             <p className="text-center text-xs font-bold text-white/60 tracking-wider uppercase mb-8">
               Trusted by companies like...
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-10 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-8 md:gap-x-16 max-w-5xl mx-auto">
               {[
                 { src: "/cotopaxi.png", alt: "Cotopaxi", w: 140, h: 50 },
                 { src: "/cricut logo.png", alt: "Cricut", w: 120, h: 60 },
