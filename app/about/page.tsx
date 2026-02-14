@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About Campfire — Our Story and Mission",
+  description:
+    "Campfire is a leadership development platform built for remote-first, growing companies with lean HR and talent teams. Learn about our mission and approach.",
+  openGraph: {
+    title: "About Campfire — Our Story and Mission",
+    description:
+      "Campfire is a leadership development platform built for remote-first, growing companies with lean HR and talent teams.",
+  },
+};
 
 export default function AboutPage() {
   return (

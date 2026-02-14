@@ -4,9 +4,51 @@ import TestimonialCarousel from "./components/TestimonialCarousel";
 import ProductShowcase from "./components/ProductShowcase";
 import SessionWalkthrough from "./components/SessionWalkthrough";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://getcampfire.com/#organization",
+      name: "Campfire",
+      url: "https://getcampfire.com",
+      logo: "https://getcampfire.com/campfire-logo.webp",
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "hello@getcampfire.com",
+        contactType: "sales",
+      },
+      sameAs: ["https://www.linkedin.com/company/getcampfire"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://getcampfire.com/#website",
+      url: "https://getcampfire.com",
+      name: "Campfire",
+      publisher: { "@id": "https://getcampfire.com/#organization" },
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Campfire",
+      applicationCategory: "BusinessApplication",
+      description:
+        "Leadership development platform with 50+ live workshops, scalable facilitation, and program support for growing companies.",
+      operatingSystem: "Web",
+      offers: {
+        "@type": "Offer",
+        category: "Leadership Development",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ==================== HERO ==================== */}
       <section
         className="relative overflow-hidden"

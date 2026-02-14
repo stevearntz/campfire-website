@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Customers — Trusted by Growing Companies",
+  description:
+    "See how companies are using Campfire to develop stronger leaders, healthier teams, and a culture where people talk about the things that matter.",
+  openGraph: {
+    title: "Customers — Trusted by Growing Companies",
+    description:
+      "See how companies are using Campfire to develop stronger leaders and healthier teams.",
+  },
+};
 
 const caseStudies = [
   {

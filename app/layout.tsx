@@ -13,9 +13,24 @@ const spartan = League_Spartan({
 });
 
 export const metadata: Metadata = {
-  title: "Campfire | Build Better Leaders — Your Way, at Scale",
+  metadataBase: new URL("https://getcampfire.com"),
+  title: {
+    default: "Campfire — Build Better Leaders, Your Way, at Scale",
+    template: "%s | Campfire",
+  },
   description:
     "Flexible leadership development designed for modern, growing teams. Scalable workshops and programs that create direction, grow skills, and align your people.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Campfire",
+    description:
+      "Flexible leadership development designed for modern, growing teams. Scalable workshops and programs that create direction, grow skills, and align your people.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Campfire — Build Better Leaders, Your Way, at Scale" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

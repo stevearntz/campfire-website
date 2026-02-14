@@ -1,6 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import SubscribeForm from "../components/SubscribeForm";
+
+export const metadata: Metadata = {
+  title: "Blog — By the Campfire",
+  description:
+    "Ideas, insights, and practical advice on leadership development, team culture, and building better managers.",
+  openGraph: {
+    title: "Blog — By the Campfire",
+    description:
+      "Ideas, insights, and practical advice on leadership development, team culture, and building better managers.",
+  },
+};
 
 interface BeehiivPost {
   id: string;

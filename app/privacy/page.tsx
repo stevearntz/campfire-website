@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Privacy policy for Campfire leadership development platform.",
+};
+
 export default function PrivacyPage() {
   return (
     <main>

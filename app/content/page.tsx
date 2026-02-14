@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Content Library — 40+ Leadership Topics",
+  description:
+    "Research-backed content for your leaders' unique challenges — designed to move beyond awareness and create lasting behavior change. 50+ live workshops available.",
+  openGraph: {
+    title: "Content Library — 40+ Leadership Topics",
+    description:
+      "Research-backed leadership development content designed to create lasting behavior change.",
+  },
+};
 
 export default function ContentPage() {
   return (

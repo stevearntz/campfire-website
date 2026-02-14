@@ -1,8 +1,42 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Solutions — Scalable Leadership Programs",
+  description:
+    "Campfire supports the leadership moments your managers face every day, with solutions that adapt to your culture and scale to your entire organization.",
+  openGraph: {
+    title: "Solutions — Scalable Leadership Programs",
+    description:
+      "Practical support for real challenges. Solutions that adapt to your culture and scale to your entire organization.",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Campfire Leadership Development",
+  provider: {
+    "@type": "Organization",
+    name: "Campfire",
+    url: "https://getcampfire.com",
+  },
+  serviceType: "Leadership Development",
+  description:
+    "Scalable leadership development programs including live workshops, cohort-based learning, and custom content for growing companies.",
+  audience: {
+    "@type": "Audience",
+    audienceType: "HR leaders, L&D teams, Talent development professionals",
+  },
+};
 
 export default function SolutionsPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -77,6 +78,44 @@ function formatDate(timestamp: number): string {
   });
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return { title: "Post Not Found" };
+  }
+
+  const title = post.meta_default_title || post.title;
+  const description =
+    post.meta_default_description || post.preview_text || post.subtitle || "";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: new Date(post.publish_date * 1000).toISOString(),
+      authors: post.authors || [],
+      ...(post.thumbnail_url && {
+        images: [{ url: post.thumbnail_url, alt: title }],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(post.thumbnail_url && { images: [post.thumbnail_url] }),
+    },
+  };
+}
+
 function extractBodyContent(html: string): string {
   // Extract just the body content from the full HTML document
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
@@ -99,8 +138,31 @@ export default async function BlogPostPage({
 
   const recentPosts = await getRecentPosts(slug);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.meta_default_title || post.title,
+    ...(post.thumbnail_url && { image: post.thumbnail_url }),
+    datePublished: new Date(post.publish_date * 1000).toISOString(),
+    author: (post.authors || []).map((name: string) => ({
+      "@type": "Person",
+      name,
+    })),
+    publisher: {
+      "@type": "Organization",
+      name: "Campfire",
+      logo: "https://getcampfire.com/campfire-logo.webp",
+    },
+    description:
+      post.meta_default_description || post.preview_text || post.subtitle || "",
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Hero header */}
       <section style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="relative z-10 max-w-4xl mx-auto px-6 pt-16 pb-12">
