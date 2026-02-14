@@ -242,8 +242,9 @@ export default function Home() {
 
           {/* Pink topo — fixed min-width, slides over image as viewport shrinks */}
           <div
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-[60%] min-w-[650px] text-center"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 min-w-[650px] text-center"
             style={{
+              width: "max(60%, calc(100% - 800px))",
               backgroundImage: "url('/pink-topo-bg.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center",
