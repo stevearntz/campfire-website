@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendSlackNotification } from "@/app/lib/slack";
+import { upsertHubSpotContact } from "@/app/lib/hubspot";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -16,15 +17,13 @@ export async function POST(request: Request) {
   const fields = { firstName, lastName, email, company, message };
 
   // Fan out — downstream failures never block the user
-  const destinations: Promise<unknown>[] = [];
+  const destinations: Promise<unknown>[] = [
+    upsertHubSpotContact(fields),
+  ];
 
   if (!partial) {
     destinations.push(sendSlackNotification(fields));
-    // Future: destinations.push(createAirtableRecord(fields));
   }
-
-  // Future: always upsert to CRM for both partial + full
-  // destinations.push(upsertContact(fields));
 
   const results = await Promise.allSettled(destinations);
 
