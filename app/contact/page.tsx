@@ -1,10 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import Image from "next/image";
+import { useProgressiveCapture } from "@/app/hooks/useProgressiveCapture";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const submitted = status === "success";
+  const fields = { firstName, lastName, email, company, message };
+
+  useProgressiveCapture(fields, submitted);
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, partial: false }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data.error || "Something went wrong.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setErrorMsg("Something went wrong. Please try again.");
+      setStatus("error");
+    }
+  }
 
   return (
     <main>
@@ -175,10 +214,7 @@ export default function ContactPage() {
               ) : (
                 <div className="bg-[#F8F5FC] border border-[#6E3FCC]/10 rounded-2xl p-8">
                   <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setSubmitted(true);
-                    }}
+                    onSubmit={handleSubmit}
                     className="space-y-5"
                   >
                     <div className="grid grid-cols-2 gap-4">
@@ -189,6 +225,8 @@ export default function ContactPage() {
                         <input
                           type="text"
                           required
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                         />
                       </div>
@@ -199,6 +237,8 @@ export default function ContactPage() {
                         <input
                           type="text"
                           required
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                         />
                       </div>
@@ -211,6 +251,8 @@ export default function ContactPage() {
                       <input
                         type="email"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                       />
                     </div>
@@ -222,6 +264,8 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                       />
                     </div>
@@ -232,6 +276,8 @@ export default function ContactPage() {
                       </label>
                       <textarea
                         rows={4}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC] resize-none"
                         placeholder="Tell us a bit about your team and what you're hoping to achieve..."
                       />
@@ -239,10 +285,15 @@ export default function ContactPage() {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+                      disabled={status === "loading"}
+                      className="w-full py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide disabled:opacity-70"
                     >
-                      Connect With Us
+                      {status === "loading" ? "Sending..." : "Connect With Us"}
                     </button>
+
+                    {status === "error" && (
+                      <p className="text-red-600 text-sm text-center">{errorMsg}</p>
+                    )}
 
                     <p className="text-xs text-gray-400 text-center">
                       We&apos;ll respond within one business day. No spam, ever.
