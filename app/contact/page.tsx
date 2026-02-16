@@ -299,19 +299,20 @@ export default function ContactPage() {
                       We&apos;ll respond within one business day. No spam, ever.
                     </p>
 
-                    <div className="text-center pt-2 border-t border-gray-200">
-                      <p className="text-xs text-gray-400">
-                        Prefer to book directly?{" "}
-                        <a
-                          href="https://calendly.com/getcampfire/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#6E3FCC] font-medium hover:underline"
-                        >
-                          Pick a time on our calendar
-                        </a>
-                      </p>
+                    <div className="flex items-center gap-3 pt-1">
+                      <div className="h-px flex-1 bg-gray-200" />
+                      <span className="text-xs text-gray-400 uppercase tracking-wide">or</span>
+                      <div className="h-px flex-1 bg-gray-200" />
                     </div>
+
+                    <a
+                      href="https://calendly.com/getcampfire/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 text-sm font-semibold leading-none text-[#6E3FCC] bg-white border border-[#6E3FCC]/30 rounded-lg hover:bg-[#6E3FCC]/5 transition-colors uppercase tracking-wide text-center block"
+                    >
+                      Book a Time Directly
+                    </a>
                   </form>
                 </div>
               )}
