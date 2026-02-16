@@ -226,68 +226,6 @@ export default function ContentPage() {
             </a>
           </div>
 
-          {/* Full session catalog */}
-          <div className="mt-20">
-            <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-4">
-              39 sessions and growing
-            </h3>
-            <p className="text-white/50 text-center text-sm mb-10 max-w-2xl mx-auto">
-              Every session is live, facilitator-led, and designed for real conversation. Here&apos;s what&apos;s in the library today.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {[
-                { name: "Activate Autonomy", desc: "Identify where you want more ownership and learn how to ask for it in a way that builds trust." },
-                { name: "Adapting to Change", desc: "Develop your ability to adapt and thrive in change." },
-                { name: "Adapt Your Strengths", desc: "Recognize your strengths and adapt them to meet the needs of a current situation." },
-                { name: "Beat Imposter Syndrome", desc: "Rewrite one internal monologue that contributes most to feelings of imposter syndrome." },
-                { name: "Build Trust on Your Team", desc: "Create an environment where trust flourishes and team members work together efficiently and effectively." },
-                { name: "Candid Communication", desc: "Communicate with others in a straightforward, clear way, while also inviting the perspectives of the other person." },
-                { name: "Career Mapping", desc: "Identify one meaningful step in your career that brings you closer to your overall vision of success." },
-                { name: "Coaching Essentials", desc: "Develop the skills to become effective coaches: tools and techniques to guide meaningful and supportive conversations." },
-                { name: "Constructive Conflict", desc: "Learn your natural response as a manager and how to help others control their default responses to conflict." },
-                { name: "Cross-Cultural Collaboration", desc: "Recognize and adapt to cultural differences that affect collaboration, communication, and teamwork." },
-                { name: "Cultivating Gratitude", desc: "Integrate small, meaningful practices of gratitude into your everyday life to foster a more joyful mindset." },
-                { name: "Curiosity in Conversations", desc: "See a team member\u2019s whole self through actively applying curiosity to your conversations." },
-                { name: "Decision Making", desc: "Strengthen your ability to make decisions in alignment with your people, purpose, and principles." },
-                { name: "Deliberate Listening", desc: "Unlock the power of intentional listening by focusing your mind, space, and body on helping others feel seen." },
-                { name: "Deliver Feedback", desc: "Deliver feedback in a way that strengthens relationships, builds trust, and drives growth." },
-                { name: "Develop Your Leadership Brand", desc: "Identify the values and strengths that define you\u2014and use them to shape an authentic leadership style." },
-                { name: "Develop Your Team", desc: "Make your team indispensable by identifying strengths, addressing gaps, and crafting a development plan." },
-                { name: "Emotional Intelligence: Self-Regulation", desc: "Identify one strategy to strengthen your self-regulation in emotionally charged situations." },
-                { name: "Executive Communication", desc: "Refine your communication to better resonate with senior stakeholders." },
-                { name: "Finance for Better Decisions", desc: "Recognize the financial impact your decisions have on broader business objectives." },
-                { name: "Foster Belonging", desc: "Create safety on your team by modelling the building blocks of belonging: value, connection, and support." },
-                { name: "Habits for Resilience", desc: "Create habits to help withstand and recover from challenges quickly and combat stress, anxiety, and overwhelm." },
-                { name: "Hopes, Fears, and Expectations", desc: "Clarify hopes, fears, and expectations to build a strong foundation for a successful working relationship." },
-                { name: "Inclusive Leadership", desc: "Lead with inclusivity by engaging in deeper conversations and uncovering hidden assumptions." },
-                { name: "Inspire with Vision", desc: "Establish a vision and align with your team to move towards it together." },
-                { name: "Lead Effective Meetings", desc: "Plan and lead meetings that stay focused on the most important outcomes." },
-                { name: "Leading Others Through Change", desc: "Support your team through change by creating space for concerns and guiding them toward the future." },
-                { name: "Magnify Strengths in Others", desc: "Recognize strengths on your team and support them in using those strengths to create greater impact." },
-                { name: "Make the Most of 1-on-1s", desc: "Guide and empower your team with 1-on-1s that build trust, clarity, and momentum." },
-                { name: "Manage Your Time", desc: "Protect your time for what matters most by grounding your priorities in people and purpose." },
-                { name: "Peer Coaching", desc: "Strengthen your coaching skills by practicing with peers while receiving insights on your own challenges." },
-                { name: "Performance Discussions", desc: "Lead successful and constructive performance discussions." },
-                { name: "Practicing Self-Awareness", desc: "Cultivate self-awareness to improve decision-making, strengthen relationships, and lead with empathy." },
-                { name: "Preventing Burnout", desc: "Identify the risk factors that contribute to burnout and develop strategies to prevent them." },
-                { name: "Setting and Achieving Goals", desc: "Take an existing goal and make it more achievable." },
-                { name: "Setting Clear Expectations", desc: "Create a strong team culture by identifying key values and needs that everyone needs to succeed." },
-                { name: "Strategic Thinking", desc: "Elevate your thinking to tackle complex problems and develop strategies that drive team success." },
-                { name: "Successful Delegation", desc: "Sharpen your delegation skills and create space for your most essential work." },
-                { name: "The Art of Recognition", desc: "Unlock your team\u2019s best work through tactful recognition." },
-              ].map((session) => (
-                <div
-                  key={session.name}
-                  className="bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/[0.08] transition-colors"
-                >
-                  <h4 className="text-sm font-bold text-white mb-2">{session.name}</h4>
-                  <p className="text-xs text-white/50 leading-relaxed">{session.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Bite-sized programs */}
           <div className="mt-20">
             <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-12">
