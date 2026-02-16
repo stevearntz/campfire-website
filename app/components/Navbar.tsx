@@ -47,18 +47,22 @@ export default function Navbar() {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3 font-[family-name:var(--font-spartan)]">
-          <Link
-            href="#"
+          <a
+            href="https://meet.getcampfire.com/users/sign_in"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Sign Up
-          </Link>
-          <Link
-            href="#"
+          </a>
+          <a
+            href="https://meet.getcampfire.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-2 text-sm font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors uppercase tracking-wide"
           >
             Log In
-          </Link>
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -90,12 +94,12 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="flex gap-3 pt-3 border-t border-gray-100">
-            <Link href="#" className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
+            <a href="https://meet.getcampfire.com/users/sign_in" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
               Sign Up
-            </Link>
-            <Link href="#" className="px-5 py-2 text-sm font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg">
+            </a>
+            <a href="https://meet.getcampfire.com/" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg">
               Log In
-            </Link>
+            </a>
           </div>
         </div>
       )}

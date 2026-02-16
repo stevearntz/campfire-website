@@ -37,84 +37,27 @@ export default function AboutPage() {
 
       {/* ==================== WHO WE ARE ==================== */}
       <section className="py-20 bg-[#F5F4F1]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Who we are
-              </h2>
-              <p className="text-lg text-gray-500 leading-relaxed mb-6">
-                Campfire is a leadership development platform built for
-                remote-first, growing companies with lean HR and
-                talent teams.
-              </p>
-              <p className="text-lg text-gray-500 leading-relaxed mb-8">
-                We help you build better managers — not through one-off
-                training, but through a flexible, always-on system that
-                integrates direction, culture, and skills into the way your
-                company already works.
-              </p>
-
-              {/* Contrast block */}
-              <div className="bg-white rounded-xl border border-gray-100 p-6 mb-8">
-                <p className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
-                  We are not
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 shrink-0" />
-                    <p className="text-lg font-bold text-gray-900">
-                      A passive e-learning library
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 shrink-0" />
-                    <p className="text-lg font-bold text-gray-900">
-                      A one-time workshop vendor
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 shrink-0" />
-                    <p className="text-lg font-bold text-gray-900">
-                      Executive coaching for a select few
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-lg text-gray-500 leading-relaxed">
-                We are the partner small teams rely on to diagnose needs, design
-                programs, and deliver leadership development at scale — without
-                building everything from scratch.
-              </p>
-            </div>
-
-            {/* Visual — abstract partnership illustration */}
-            <div className="hidden md:flex justify-center items-center">
-              <svg viewBox="0 0 360 400" fill="none" className="w-full max-w-sm">
-                {/* Two interlocking circles representing partnership */}
-                <circle cx="150" cy="180" r="90" stroke="#6E3FCC" strokeWidth="1.5" strokeOpacity="0.12" fill="none" />
-                <circle cx="210" cy="180" r="90" stroke="#6E3FCC" strokeWidth="1.5" strokeOpacity="0.12" fill="none" />
-                {/* Overlap fill */}
-                <path d="M180 107 C200 130, 200 230, 180 253 C160 230, 160 130, 180 107Z" fill="#6E3FCC" fillOpacity="0.06" />
-                {/* Your team label area */}
-                <rect x="72" y="162" width="64" height="8" rx="4" fill="#6E3FCC" fillOpacity="0.08" />
-                <rect x="80" y="176" width="48" height="6" rx="3" fill="#6E3FCC" fillOpacity="0.05" />
-                {/* Campfire label area */}
-                <rect x="224" y="162" width="64" height="8" rx="4" fill="#6E3FCC" fillOpacity="0.08" />
-                <rect x="232" y="176" width="48" height="6" rx="3" fill="#6E3FCC" fillOpacity="0.05" />
-                {/* Center spark */}
-                <path d="M180 165 C178 172, 173 176, 175 182 C176 186, 179 188, 180 190 C181 188, 184 186, 185 182 C187 176, 182 172, 180 165Z" fill="#6E3FCC" fillOpacity="0.2" />
-                {/* Outcome arrows flowing down */}
-                <path d="M180 260 L180 320" stroke="#6E3FCC" strokeWidth="1.2" strokeOpacity="0.15" strokeDasharray="4 4" />
-                <path d="M174 314 L180 324 L186 314" stroke="#6E3FCC" strokeWidth="1.2" strokeOpacity="0.2" fill="none" />
-                {/* Outcome blocks */}
-                <rect x="140" y="334" width="80" height="10" rx="5" fill="#6E3FCC" fillOpacity="0.1" />
-                <rect x="150" y="350" width="60" height="8" rx="4" fill="#6E3FCC" fillOpacity="0.06" />
-                <rect x="155" y="364" width="50" height="6" rx="3" fill="#6E3FCC" fillOpacity="0.04" />
-              </svg>
-            </div>
-          </div>
+        <div className="max-w-3xl mx-auto px-6 text-center" style={{ maxWidth: "52rem" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            Who we are
+          </h2>
+          <p className="text-lg text-gray-500 leading-relaxed mb-6">
+            Campfire is a leadership development platform built for
+            remote-first, growing companies with lean HR and
+            talent teams.
+          </p>
+          <p className="text-lg text-gray-500 leading-relaxed mb-6">
+            We help you build better managers — not through one-off
+            training, but through a flexible, always-on system that
+            integrates direction, culture, and skills into the way your
+            company already works.
+          </p>
+          <div className="w-12 h-px bg-[#6E3FCC]/30 mx-auto my-8" />
+          <p className="text-lg text-gray-500 leading-relaxed">
+            We are the partner small teams rely on to diagnose needs, design
+            programs, and deliver leadership development at scale — without
+            building everything from scratch.
+          </p>
         </div>
       </section>
 
@@ -211,15 +154,16 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-wrap gap-2.5">
                 {[
-                  "Supporting new managers",
-                  "Navigating change",
-                  "Preventing burnout",
-                  "Building trust & belonging",
                   "Giving & receiving feedback",
-                  "Setting clear expectations",
-                  "Running effective 1:1s",
-                  "Leading through uncertainty",
-                  "Driving performance & accountability",
+                  "Navigating change & uncertainty",
+                  "Building trust & psychological safety",
+                  "Coaching & developing your people",
+                  "Preventing burnout & building resilience",
+                  "Running effective meetings & 1:1s",
+                  "Strategic thinking & decision-making",
+                  "Handling conflict with confidence",
+                  "Communication & active listening",
+                  "Delegation, ownership & accountability",
                 ].map((topic) => (
                   <span
                     key={topic}
@@ -256,36 +200,43 @@ export default function AboutPage() {
           </p>
 
           {/* The experience */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-14 mb-16">
             {[
               {
-                num: "01",
+                num: "1",
+                color: "#3D2272",
                 line1: "They don\u2019t just join sessions \u2014",
                 line2: "they sit with peers facing the same hard realities.",
               },
               {
-                num: "02",
+                num: "2",
+                color: "#6E3FCC",
                 line1: "They slow down long enough",
                 line2: "to name what\u2019s actually happening on their teams.",
               },
               {
-                num: "03",
+                num: "3",
+                color: "#9B6AD8",
                 line1: "They practice the conversations",
                 line2: "they\u2019ve been avoiding \u2014 feedback, conflict, clarity.",
               },
               {
-                num: "04",
+                num: "4",
+                color: "#C882D4",
                 line1: "They leave with one specific shift",
                 line2: "they can apply in their very next 1:1.",
               },
             ].map((item) => (
               <div
                 key={item.num}
-                className="bg-white rounded-xl border border-gray-100 p-6 flex items-start gap-4"
+                className="relative bg-white rounded-xl border border-gray-100 p-6 pl-14 flex items-center"
               >
-                <span className="text-sm font-bold text-[#6E3FCC]/40 font-mono mt-0.5">
-                  {item.num}
-                </span>
+                <div
+                  className="absolute -left-5 w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
+                  style={{ backgroundColor: item.color }}
+                >
+                  <span className="text-sm font-bold text-white">{item.num}</span>
+                </div>
                 <p className="text-gray-700 font-medium leading-relaxed">
                   {item.line1}
                   <br />
@@ -482,7 +433,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ==================== OUR PEOPLE ==================== */}
+      {/* ==================== OUR PEOPLE (TODO: add real names, bios, photos) ====================
       <section className="py-20 bg-[#F5F4F1]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -495,7 +446,6 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Founders */}
           <div className="mb-14">
             <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-8 text-center">
               Founders
@@ -542,7 +492,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Team */}
           <div className="mb-14">
             <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-8 text-center">
               Team
@@ -568,10 +517,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Facilitators & Content Developers */}
           <div>
             <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-4 text-center">
-              Facilitators &amp; Content Developers
+              Facilitators & Content Developers
             </p>
             <p className="text-sm text-gray-500 text-center mb-8 max-w-lg mx-auto">
               Our network of experienced facilitators and content creators bring
@@ -611,6 +559,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      ==================== */}
 
       {/* ==================== IMPACT ==================== */}
       <section className="py-20 bg-[#F8F5FC]">
