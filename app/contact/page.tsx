@@ -298,6 +298,20 @@ export default function ContactPage() {
                     <p className="text-xs text-gray-400 text-center">
                       We&apos;ll respond within one business day. No spam, ever.
                     </p>
+
+                    <div className="text-center pt-2 border-t border-gray-200">
+                      <p className="text-xs text-gray-400">
+                        Prefer to book directly?{" "}
+                        <a
+                          href="https://calendly.com/getcampfire/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#6E3FCC] font-medium hover:underline"
+                        >
+                          Pick a time on our calendar
+                        </a>
+                      </p>
+                    </div>
                   </form>
                 </div>
               )}

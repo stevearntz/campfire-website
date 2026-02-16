@@ -254,12 +254,14 @@ export default function CustomersPage() {
             <p className="mt-4 text-lg text-white/70">
               Let&apos;s talk about what Campfire can do for your managers.
             </p>
-            <Link
-              href="/contact"
+            <a
+              href="https://calendly.com/getcampfire/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Book a Call
-            </Link>
+            </a>
           </div>
         </div>
       </section>
