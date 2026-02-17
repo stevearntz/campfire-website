@@ -48,12 +48,12 @@ export default function Navbar() {
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3 font-[family-name:var(--font-spartan)]">
           <a
-            href="https://meet.getcampfire.com/users/sign_in"
+            href="https://calendly.com/getcampfire/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
-            Sign Up
+            Get Demo
           </a>
           <a
             href="https://meet.getcampfire.com/"
@@ -94,8 +94,8 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="flex gap-3 pt-3 border-t border-gray-100">
-            <a href="https://meet.getcampfire.com/users/sign_in" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
-              Sign Up
+            <a href="https://calendly.com/getcampfire/" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
+              Get Demo
             </a>
             <a href="https://meet.getcampfire.com/" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg">
               Log In

@@ -8,13 +8,12 @@ export default function ContactPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const submitted = status === "success";
-  const fields = { firstName, lastName, email, company, message };
+  const fields = { firstName, lastName, email, message };
 
   useProgressiveCapture(fields, submitted);
 
@@ -220,7 +219,7 @@ export default function ContactPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                          First name
+                          First name <span className="text-red-400">*</span>
                         </label>
                         <input
                           type="text"
@@ -232,7 +231,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Last name
+                          Last name <span className="text-red-400">*</span>
                         </label>
                         <input
                           type="text"
@@ -246,26 +245,13 @@ export default function ContactPage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Work email
+                        Work email <span className="text-red-400">*</span>
                       </label>
                       <input
                         type="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Company
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#6E3FCC]/20 focus:border-[#6E3FCC]"
                       />
                     </div>
