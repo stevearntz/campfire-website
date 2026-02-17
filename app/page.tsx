@@ -113,18 +113,18 @@ export default function Home() {
         <div className="relative z-10">
           <div className="absolute inset-0" style={{ backgroundColor: "rgba(58, 2, 168, 0.25)" }} />
           <div className="relative z-10 mx-auto px-2 pt-6 pb-10" style={{ maxWidth: "1200px" }}>
-            <p className="text-center text-xs font-bold text-white/60 tracking-wider uppercase mb-5">
+            <p className="text-center text-xs font-bold text-white tracking-wider uppercase mb-5">
               Trusted by companies like...
             </p>
             <div className="flex flex-wrap items-center justify-between gap-y-8">
               {[
-                { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887 },
-                { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241 },
-                { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247 },
-                { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475 },
-                { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198 },
-                { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277 },
-                { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507 },
+                { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887, cls: "h-8 md:h-10" },
+                { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241, cls: "h-5 md:h-6" },
+                { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247, cls: "h-5 md:h-6" },
+                { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475, cls: "h-6 md:h-7" },
+                { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198, cls: "h-4 md:h-5" },
+                { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277, cls: "h-5 md:h-6" },
+                { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507, cls: "h-8 md:h-9" },
               ].map((logo) => (
                 <div key={logo.alt}>
                   <Image
@@ -132,7 +132,7 @@ export default function Home() {
                     alt={logo.alt}
                     width={logo.w}
                     height={logo.h}
-                    className="h-4 md:h-5 w-auto brightness-0 invert"
+                    className={`${logo.cls} w-auto brightness-0 invert`}
                   />
                 </div>
               ))}
@@ -143,7 +143,7 @@ export default function Home() {
 
       {/* ==================== OUTCOMES-DRIVEN CULTURE ==================== */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Scale an <span className="text-[#6E3FCC]">outcomes-driven</span> culture
@@ -155,53 +155,60 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Outcome pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {/* Outcome pillars — continuous gradient bar across all 4 cards
+              Full gradient: 0% #EE81DD → 34% #D65CE9 → 67% #A84AEB → 100% #8252E1
+              Each card shows its 25% slice with stops mapped to local coords */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
               {
                 metric: "Less",
                 label: "Burnout",
-                desc: "Effort becomes sustainable when it's connected to purpose.",
-                color: "#E055CB",
+                desc: "Effort becomes sustainable when it's connected to real purpose.",
+                textColor: "#E573E1",
+                gradient: "linear-gradient(to right, #EE81DD, #DC66E6)",
               },
               {
                 metric: "Less",
                 label: "Micromanagement",
-                desc: "Leaders trust their people to make good decisions.",
-                color: "#6E3FCC",
+                desc: "Leaders trust their people to think clearly and make good decisions.",
+                textColor: "#D05AE9",
+                gradient: "linear-gradient(to right, #DC66E6, #D65CE9 36%, #C053EA)",
               },
               {
                 metric: "More",
                 label: "Alignment",
-                desc: "Teams move together with clarity and confidence.",
-                color: "#6E3FCC",
+                desc: "Teams move together with shared clarity and genuine confidence.",
+                textColor: "#AE4CEB",
+                gradient: "linear-gradient(to right, #C053EA, #A84AEB 68%, #9F4CE9)",
               },
               {
                 metric: "More",
                 label: "Accountability",
-                desc: "Ownership that doesn't require constant oversight.",
-                color: "#E055CB",
+                desc: "Ownership happens naturally, without constant oversight or follow-up.",
+                textColor: "#9050E5",
+                gradient: "linear-gradient(to right, #9F4CE9, #8252E1)",
               },
             ].map((item) => (
               <div
                 key={item.label}
-                className="relative rounded-2xl p-6 text-center border border-gray-100 overflow-hidden"
+                className="relative rounded-2xl text-center border border-gray-100 overflow-hidden flex flex-col items-center px-6 pt-10"
+                style={{ height: 235, backgroundColor: "#F7F6F7" }}
               >
-                {/* Accent bar */}
+                {/* Gradient accent bar — each card's slice of the continuous gradient */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-1"
-                  style={{ backgroundColor: item.color }}
+                  className="absolute top-0 left-0 right-0 h-4"
+                  style={{ background: item.gradient }}
                 />
                 <p
-                  className="text-xs font-bold uppercase tracking-widest mb-1"
-                  style={{ color: item.color }}
+                  className="text-sm font-bold uppercase tracking-widest mb-2"
+                  style={{ color: item.textColor }}
                 >
                   {item.metric}
                 </p>
-                <p className="text-xl font-bold text-gray-900 mb-3">
+                <p className="text-2xl font-bold text-gray-900 mb-4">
                   {item.label}
                 </p>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                <p className="text-lg text-gray-500 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -217,14 +224,14 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Leadership development, <span className="text-[#6E3FCC]">without the overhead</span>
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Everything you need to scale world-class leadership
               development&mdash;without adding work to your plate or headcount
               to your team.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
             {[
               {
                 title: "Flexible Content",
@@ -258,10 +265,10 @@ export default function Home() {
                     className="w-20 h-20 object-contain"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
                   {card.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-snug">
+                <p className="text-gray-500 text-lg leading-snug">
                   {card.desc}
                 </p>
               </div>
@@ -381,10 +388,10 @@ export default function Home() {
       <section id="how-it-works" className="py-20 bg-[#1C1334]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Built to fit the rhythm of real work<br />&mdash; and <span className="text-[#6E3FCC]">drive lasting change</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
+              Built to fit the rhythm of real work &mdash; and <span className="text-[#6E3FCC]">drive lasting change</span>
             </h2>
-            <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
+            <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
               simple, repeatable flow that scales across your organization.
             </p>
@@ -429,15 +436,15 @@ export default function Home() {
                 style={{ border: `2px solid ${item.borderColor}` }}
               >
                 <p
-                  className="text-base font-bold mb-4"
+                  className="text-lg font-bold mb-4"
                   style={{ color: item.borderColor }}
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
+                <h3 className="text-xl font-bold text-white mb-3 leading-snug">
                   {item.titleJsx || item.title}
                 </h3>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-base text-white/80 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -452,8 +459,8 @@ export default function Home() {
       {/* ==================== PROOF ==================== */}
       <section className="relative overflow-hidden">
         <div className="py-16" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
-          <div className="relative z-10 max-w-5xl mx-auto px-6">
-            <p className="text-sm font-bold text-white/50 text-center mb-10 uppercase tracking-widest">
+          <div className="relative z-10 max-w-6xl mx-auto px-6">
+            <p className="text-base font-bold text-white/50 text-center mb-10 uppercase tracking-widest">
               Results you can trust
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -464,7 +471,7 @@ export default function Home() {
                 { number: "10,000+", label: "Leaders supported" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-5xl md:text-6xl font-bold text-white">
+                  <div className="text-6xl md:text-7xl font-bold text-white">
                     {stat.number}
                   </div>
                   <p className="mt-2 text-base font-semibold text-white/70 lowercase">{stat.label}</p>
@@ -620,7 +627,7 @@ export default function Home() {
             ].map((format) => (
               <div
                 key={format.title}
-                className="bg-[#F8F5FC] rounded-2xl p-8 border border-gray-200"
+                className="bg-[#F7F6F7] rounded-2xl p-8 border border-gray-200"
               >
                 <div className="flex justify-end mb-8">
                   <Image

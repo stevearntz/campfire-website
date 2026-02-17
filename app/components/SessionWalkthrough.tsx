@@ -36,7 +36,7 @@ const steps = [
 export default function SessionWalkthrough() {
   return (
     <section className="py-20 bg-[#F8F5FC]">
-      <div className="mx-auto px-6" style={{ maxWidth: "1329px" }}>
+      <div className="mx-auto px-6" style={{ maxWidth: "1000px" }}>
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Sessions that drive behavior change
@@ -48,7 +48,7 @@ export default function SessionWalkthrough() {
         </div>
 
         {/* Meet Sarah — full-width top card */}
-        <div className="bg-[#F8F5FC] rounded-2xl px-8 md:px-12 py-10">
+        <div className="bg-[#E8E2F9] rounded-2xl px-8 md:px-12 py-10">
           <div className="flex flex-col sm:flex-row items-start gap-6">
             <Image
               src="/sarah-110.webp"
@@ -62,10 +62,10 @@ export default function SessionWalkthrough() {
               <h3 className="text-xl font-bold text-gray-900 mb-1">
                 Meet Sarah
               </h3>
-              <p className="text-sm font-semibold text-[#6E3FCC] mb-3">
+              <p className="text-base font-semibold text-[#6E3FCC] mb-3">
                 Engineering Director at a 300-person company
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed">
                 Six months into being a new leader, Sarah finds herself
                 struggling to address some performance concerns with a member
                 of her team. She signs up for Campfire&apos;s Candid
@@ -84,9 +84,9 @@ export default function SessionWalkthrough() {
               left: "48px",
               top: "0",
               bottom: "0",
-              width: "2px",
+              width: "3px",
               backgroundImage:
-                "repeating-linear-gradient(to bottom, #6E3FCC40 0, #6E3FCC40 6px, transparent 6px, transparent 12px)",
+                "repeating-linear-gradient(to bottom, #9D88ED 0, #9D88ED 6px, transparent 6px, transparent 12px)",
             }}
           />
 
@@ -109,7 +109,7 @@ export default function SessionWalkthrough() {
                     {step.time}
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                <p className="text-base text-gray-500 leading-relaxed whitespace-pre-line">
                   {step.detail}
                 </p>
               </div>
@@ -127,13 +127,14 @@ export default function SessionWalkthrough() {
               >
                 {/* 27px circle centered on the dashed line, vertically centered with card */}
                 <div
-                  className="absolute rounded-full border-2 border-[#6E3FCC]/40 bg-[#F8F5FC]"
+                  className="absolute rounded-full bg-[#F8F5FC]"
                   style={{
                     width: "27px",
                     height: "27px",
                     left: "-87px",
                     top: "50%",
                     transform: "translateY(-50%)",
+                    border: "3px solid #9D88ED",
                   }}
                 />
 
@@ -145,7 +146,7 @@ export default function SessionWalkthrough() {
                     {step.time}
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                <p className="text-base text-gray-500 leading-relaxed whitespace-pre-line">
                   {step.detail}
                 </p>
               </div>
@@ -174,7 +175,7 @@ export default function SessionWalkthrough() {
               <h3 className="text-lg font-bold text-white mb-3">
                 The following week
               </h3>
-              <p className="text-white/90 leading-relaxed">
+              <p className="text-lg text-white/90 leading-relaxed">
                 Sarah used the framework in her 1:1 with Jordan. The
                 conversation wasn&apos;t easy, but it was clearer and more
                 productive than anything she&apos;d tried before. At the next

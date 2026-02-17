@@ -47,7 +47,7 @@ export default function ProductShowcase() {
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             See the magic of <span className="text-[#6E3FCC]">Campfire</span>
           </h2>
-          <p className="mt-4 text-lg text-white/80">
+          <p className="mt-4 text-xl text-white/80">
             A purpose-built platform and curated content library designed to
             support your leaders and amplify your impact.
           </p>
@@ -61,13 +61,13 @@ export default function ProductShowcase() {
               style={{ backgroundColor: "#403955", paddingTop: "calc(3.5rem + 25px)", paddingBottom: "calc(3.5rem + 25px)" }}
             >
               <div>
-                <p className="text-xs font-semibold tracking-wider uppercase mb-4 mt-6" style={{ color: "#9D88ED" }}>
+                <p className="text-sm font-semibold tracking-wider uppercase mb-4 mt-6" style={{ color: "#9D88ED" }}>
                   {s.label}
                 </p>
-                <h3 className="text-2xl md:text-[1.75rem] font-bold text-white leading-snug" style={{ maxWidth: "280px" }}>
+                <h3 className="text-3xl md:text-[2.2rem] font-bold text-white leading-snug" style={{ maxWidth: "340px" }}>
                   {s.headline}
                 </h3>
-                <p className="mt-4 text-white/70 text-sm leading-relaxed" style={{ maxWidth: "280px" }}>
+                <p className="mt-4 text-white/70 text-base leading-relaxed" style={{ maxWidth: "340px" }}>
                   {s.description}
                 </p>
               </div>

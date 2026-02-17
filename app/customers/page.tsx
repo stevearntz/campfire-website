@@ -97,13 +97,13 @@ export default function CustomersPage() {
           </p>
           <div className="flex flex-wrap items-center justify-between gap-y-8">
             {[
-              { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887 },
-              { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241 },
-              { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247 },
-              { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475 },
-              { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198 },
-              { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277 },
-              { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507 },
+              { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887, cls: "h-7 md:h-9" },
+              { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241, cls: "h-4 md:h-5" },
+              { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247, cls: "h-4 md:h-5" },
+              { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475, cls: "h-5 md:h-6" },
+              { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198, cls: "h-3 md:h-4" },
+              { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277, cls: "h-4 md:h-5" },
+              { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507, cls: "h-7 md:h-8" },
             ].map((logo) => (
               <div key={logo.alt}>
                 <Image
@@ -111,7 +111,7 @@ export default function CustomersPage() {
                   alt={logo.alt}
                   width={logo.w}
                   height={logo.h}
-                  className="h-4 md:h-5 w-auto brightness-0 invert opacity-90"
+                  className={`${logo.cls} w-auto brightness-0 invert opacity-90`}
                 />
               </div>
             ))}
