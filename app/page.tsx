@@ -620,7 +620,7 @@ export default function Home() {
             ].map((format) => (
               <div
                 key={format.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-200"
+                className="bg-[#F8F5FC] rounded-2xl p-8 border border-gray-200"
               >
                 <div className="flex justify-end mb-8">
                   <Image

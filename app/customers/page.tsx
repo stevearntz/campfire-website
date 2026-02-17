@@ -125,7 +125,7 @@ export default function CustomersPage() {
           {caseStudies.map((study, i) => (
             <div
               key={study.company}
-              className="bg-[#F5F4F1] rounded-2xl border border-gray-100 overflow-hidden"
+              className="bg-[#F8F5FC] rounded-2xl border border-gray-100 overflow-hidden"
             >
               {/* Header */}
               <div className="px-8 py-6" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -199,7 +199,7 @@ export default function CustomersPage() {
       </section>
 
       {/* Pull Quotes */}
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
             What people are saying

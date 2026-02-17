@@ -1,17 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import allSessions from "@/app/data/sessions.json";
 
 // Only show sessions that have their own illustration
 const sessions = allSessions.filter((s) => s.image !== null);
 
+const AUTOPLAY_S = 7;
+const RING_R = 16;
+const RING_C = 2 * Math.PI * RING_R;
+
 export default function ContentShowcase() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [tick, setTick] = useState(0);
   const s = sessions[active];
 
+  // Auto-advance every AUTOPLAY_S seconds; resets on any slide change
+  useEffect(() => {
+    if (paused) return;
+    const timer = setTimeout(() => {
+      setActive((prev) => (prev + 1) % sessions.length);
+    }, AUTOPLAY_S * 1000);
+    return () => clearTimeout(timer);
+  }, [active, paused, tick]);
+
+  const togglePause = () => {
+    if (paused) setTick((t) => t + 1); // restart ring animation on unpause
+    setPaused((p) => !p);
+  };
+
   return (
+    <>
+    <style>{`@keyframes ring-fill{from{stroke-dashoffset:${RING_C}}to{stroke-dashoffset:0}}`}</style>
     <div className="rounded-2xl overflow-hidden border border-white/10">
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_2fr]">
         {/* Left: Text */}
@@ -84,45 +106,106 @@ export default function ContentShowcase() {
           </div>
 
           {/* Navigation — below illustration */}
-          <div className="flex items-center justify-center gap-4 px-6 pb-6 pt-2">
-            <button
-              onClick={() => setActive((active - 1 + sessions.length) % sessions.length)}
-              className="w-9 h-9 rounded-full border flex items-center justify-center transition-colors shrink-0"
-              style={{ borderColor: "#9D88ED40", color: "#9D88ED" }}
-              aria-label="Previous slide"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M10 3L5 8L10 13" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+          <div className="flex items-center gap-3 px-6 md:px-8 pb-6 pt-2">
+            {/* Controls: prev / pause / next */}
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => setActive((active - 1 + sessions.length) % sessions.length)}
+                className="w-9 h-9 rounded-full border flex items-center justify-center transition-colors"
+                style={{ borderColor: "#9D88ED40", color: "#9D88ED" }}
+                aria-label="Previous slide"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M10 3L5 8L10 13" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
 
-            <div className="flex gap-1.5 flex-wrap justify-center max-w-[360px]">
-              {sessions.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className="w-2 h-2 rounded-full transition-all"
-                  style={{
-                    backgroundColor: i === active ? "#9D88ED" : "rgba(157, 136, 237, 0.3)",
-                  }}
-                  aria-label={`Session ${i + 1}`}
-                />
-              ))}
+              <button
+                onClick={togglePause}
+                className="w-9 h-9 rounded-full border flex items-center justify-center transition-colors"
+                style={{ borderColor: "#9D88ED40", color: "#9D88ED" }}
+                aria-label={paused ? "Play" : "Pause"}
+              >
+                {paused ? (
+                  <svg className="w-4 h-4 ml-0.5" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M4 2.5L13 8L4 13.5V2.5Z" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                    <rect x="3" y="2.5" width="3.5" height="11" rx="0.75" />
+                    <rect x="9.5" y="2.5" width="3.5" height="11" rx="0.75" />
+                  </svg>
+                )}
+              </button>
+
+              <button
+                onClick={() => setActive((active + 1) % sessions.length)}
+                className="relative w-9 h-9 rounded-full flex items-center justify-center"
+                style={{ color: "#9D88ED" }}
+                aria-label="Next slide"
+              >
+                {/* Track ring (faint) */}
+                <svg className="absolute inset-0" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" r={RING_R} fill="none" stroke="#9D88ED" strokeWidth="2" opacity="0.25" />
+                </svg>
+                {/* Animated progress ring */}
+                <svg key={`${active}-${tick}`} className="absolute inset-0 -rotate-90" viewBox="0 0 36 36">
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r={RING_R}
+                    fill="none"
+                    stroke="#9D88ED"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray={RING_C}
+                    strokeDashoffset={RING_C}
+                    style={{
+                      animationName: "ring-fill",
+                      animationDuration: `${AUTOPLAY_S}s`,
+                      animationTimingFunction: "linear",
+                      animationFillMode: "forwards",
+                      animationPlayState: paused ? "paused" : "running",
+                    }}
+                  />
+                </svg>
+                {/* Arrow */}
+                <svg className="relative w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M6 3L11 8L6 13" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
             </div>
 
-            <button
-              onClick={() => setActive((active + 1) % sessions.length)}
-              className="w-9 h-9 rounded-full border flex items-center justify-center transition-colors shrink-0"
-              style={{ borderColor: "#9D88ED40", color: "#9D88ED" }}
-              aria-label="Next slide"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M6 3L11 8L6 13" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            {/* Dots — fill remaining space */}
+            <div className="flex-1 flex flex-col items-center gap-2">
+              {(() => {
+                const total = sessions.length;
+                const rows = total > 20 ? 2 : 1;
+                const perRow = Math.ceil(total / rows);
+                return Array.from({ length: rows }, (_, r) => (
+                  <div key={r} className="flex gap-2 justify-center">
+                    {sessions.slice(r * perRow, (r + 1) * perRow).map((_, j) => {
+                      const i = r * perRow + j;
+                      return (
+                        <button
+                          key={i}
+                          onClick={() => setActive(i)}
+                          className="w-2.5 h-2.5 rounded-full transition-all cursor-pointer"
+                          style={{
+                            backgroundColor: i === active ? "#9D88ED" : "rgba(157, 136, 237, 0.3)",
+                          }}
+                          aria-label={`Session ${i + 1}`}
+                        />
+                      );
+                    })}
+                  </div>
+                ));
+              })()}
+            </div>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -36,7 +36,7 @@ export default function AboutPage() {
       </section>
 
       {/* ==================== WHO WE ARE ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-3xl mx-auto px-6 text-center" style={{ maxWidth: "52rem" }}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Who we are
@@ -174,7 +174,7 @@ export default function AboutPage() {
                 ))}
               </div>
 
-              <div className="mt-10 bg-[#F5F4F1] rounded-xl border border-gray-100 p-6">
+              <div className="mt-10 bg-[#F8F5FC] rounded-xl border border-gray-100 p-6">
                 <p className="text-sm text-gray-500 leading-relaxed">
                   Everything is designed to be{" "}
                   <span className="font-semibold text-gray-900">social</span>,{" "}
@@ -190,7 +190,7 @@ export default function AboutPage() {
       </section>
 
       {/* ==================== WHAT IT FEELS LIKE ==================== */}
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What it feels like
@@ -416,7 +416,7 @@ export default function AboutPage() {
             ].map((item) => (
               <div
                 key={item.belief}
-                className="bg-[#F5F4F1] rounded-xl border border-gray-100 p-6 relative overflow-hidden"
+                className="bg-[#F8F5FC] rounded-xl border border-gray-100 p-6 relative overflow-hidden"
               >
                 <div className={`absolute top-0 left-0 w-1 h-full ${item.accent} opacity-40`} />
                 <h3 className="font-bold text-gray-900 mb-2 pl-3">
@@ -434,7 +434,7 @@ export default function AboutPage() {
       </section>
 
       {/* ==================== OUR PEOPLE (TODO: add real names, bios, photos) ====================
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">

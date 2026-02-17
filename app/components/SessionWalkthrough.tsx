@@ -35,7 +35,7 @@ const steps = [
 
 export default function SessionWalkthrough() {
   return (
-    <section className="py-20 bg-[#F5F4F1]">
+    <section className="py-20 bg-[#F8F5FC]">
       <div className="mx-auto px-6" style={{ maxWidth: "1329px" }}>
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -127,7 +127,7 @@ export default function SessionWalkthrough() {
               >
                 {/* 27px circle centered on the dashed line, vertically centered with card */}
                 <div
-                  className="absolute rounded-full border-2 border-[#6E3FCC]/40 bg-[#F5F4F1]"
+                  className="absolute rounded-full border-2 border-[#6E3FCC]/40 bg-[#F8F5FC]"
                   style={{
                     width: "27px",
                     height: "27px",

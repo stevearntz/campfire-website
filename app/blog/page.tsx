@@ -108,7 +108,7 @@ export default async function BlogPage() {
               <Link href={`/blog/${posts[0].slug}`} className="block group mb-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   {posts[0].thumbnail_url && (
-                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#F5F4F1]">
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#F8F5FC]">
                       <Image
                         src={posts[0].thumbnail_url}
                         alt={posts[0].title}
@@ -149,7 +149,7 @@ export default async function BlogPage() {
                       href={`/blog/${post.slug}`}
                       className="group"
                     >
-                      <div className="rounded-2xl overflow-hidden bg-[#F5F4F1] border border-gray-100 h-full flex flex-col">
+                      <div className="rounded-2xl overflow-hidden bg-[#F8F5FC] border border-gray-100 h-full flex flex-col">
                         {post.thumbnail_url ? (
                           <div className="relative aspect-[16/10] overflow-hidden">
                             <Image

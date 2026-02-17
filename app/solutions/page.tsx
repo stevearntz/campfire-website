@@ -115,7 +115,7 @@ export default function SolutionsPage() {
             ].map((solution) => (
               <div
                 key={solution.title}
-                className="bg-[#F5F4F1] rounded-2xl p-8 border border-gray-100"
+                className="bg-[#F8F5FC] rounded-2xl p-8 border border-gray-100"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#6E3FCC]/10 flex items-center justify-center text-[#6E3FCC] mb-5">
                   {solution.icon}
@@ -143,7 +143,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Campfire vs. Traditional Solutions */}
-      <section className="py-20 bg-[#F5F4F1]">
+      <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">

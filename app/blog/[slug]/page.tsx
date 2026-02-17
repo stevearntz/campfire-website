@@ -240,7 +240,7 @@ export default async function BlogPostPage({
 
       {/* More posts */}
       {recentPosts.length > 0 && (
-        <section className="py-16 bg-[#F5F4F1]">
+        <section className="py-16 bg-[#F8F5FC]">
           <div className="max-w-5xl mx-auto px-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
               More from By the Campfire
