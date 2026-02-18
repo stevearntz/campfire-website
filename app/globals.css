@@ -8,19 +8,147 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-spartan);
+  --animate-fade-in: fade-in 0.5s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Topographic wave pattern overlay — uses ::after so it doesn't clobber bg-gradient */
+.topo-pattern {
+  position: relative;
+}
+.topo-pattern::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-50 100 Q100 60 250 100 T550 100 T850 100' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1.5'/%3E%3Cpath d='M-50 150 Q100 110 250 150 T550 150 T850 150' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3Cpath d='M-50 200 Q100 160 250 200 T550 200 T850 200' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1.5'/%3E%3Cpath d='M-50 250 Q100 210 250 250 T550 250 T850 250' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1.5'/%3E%3Cpath d='M-50 300 Q100 260 250 300 T550 300 T850 300' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1.5'/%3E%3Cpath d='M-50 350 Q100 310 250 350 T550 350 T850 350' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1.5'/%3E%3Cpath d='M-50 400 Q100 360 250 400 T550 400 T850 400' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1.5'/%3E%3Cpath d='M-50 450 Q100 410 250 450 T550 450 T850 450' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3Cpath d='M-50 500 Q100 460 250 500 T550 500 T850 500' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: cover;
+  pointer-events: none;
+}
+
+/* Hero wave animations */
+@keyframes waveFloat1 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-8px) translateX(5px); }
+  50% { transform: translateY(-4px) translateX(10px); }
+  75% { transform: translateY(-12px) translateX(3px); }
+}
+
+@keyframes waveFloat2 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-5px) translateX(-8px); }
+  50% { transform: translateY(-10px) translateX(-4px); }
+  75% { transform: translateY(-3px) translateX(-10px); }
+}
+
+@keyframes waveFloat3 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-6px) translateX(7px); }
+  66% { transform: translateY(-12px) translateX(3px); }
+}
+
+@keyframes waveFloat4 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes lineShimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.wave-layer-1 { animation: waveFloat1 12s ease-in-out infinite; }
+.wave-layer-2 { animation: waveFloat2 15s ease-in-out infinite; }
+.wave-layer-3 { animation: waveFloat3 18s ease-in-out infinite; }
+.wave-layer-4 { animation: waveFloat4 20s ease-in-out infinite; }
+.wave-layer-5 { animation: waveFloat2 14s ease-in-out infinite; }
+.topo-line-1 { animation: lineShimmer 8s ease-in-out infinite; }
+.topo-line-2 { animation: lineShimmer 10s ease-in-out infinite 1s; }
+.topo-line-3 { animation: lineShimmer 12s ease-in-out infinite 2s; }
+.topo-line-4 { animation: lineShimmer 9s ease-in-out infinite 3s; }
+.topo-line-5 { animation: lineShimmer 11s ease-in-out infinite 4s; }
+
+/* ==================== BEEHIIV BLOG CONTENT ==================== */
+.beehiiv-content {
+  color: #374151;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+.beehiiv-content h1,
+.beehiiv-content h2,
+.beehiiv-content h3 {
+  color: #111827;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  line-height: 1.3;
+}
+.beehiiv-content h1 { font-size: 1.875rem; }
+.beehiiv-content h2 { font-size: 1.5rem; }
+.beehiiv-content h3 { font-size: 1.25rem; }
+.beehiiv-content p {
+  margin-bottom: 1.25em;
+}
+.beehiiv-content a {
+  color: #6E3FCC;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.beehiiv-content a:hover { color: #5B34AB; }
+.beehiiv-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5em 0;
+}
+.beehiiv-content blockquote {
+  border-left: 3px solid #6E3FCC;
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  color: #6b7280;
+  font-style: italic;
+}
+.beehiiv-content ul,
+.beehiiv-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+}
+.beehiiv-content li {
+  margin-bottom: 0.5em;
+}
+.beehiiv-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 2em 0;
+}
+.beehiiv-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+.beehiiv-content td,
+.beehiiv-content th {
+  padding: 0.75em;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+/* Hide beehiiv branding/footer elements */
+.beehiiv-content .footer,
+.beehiiv-content [data-testid="footer"],
+.beehiiv-content .subscription-widget {
+  display: none;
+}
+
+.topo-pattern-dark {
+  background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-50 100 Q100 60 250 100 T550 100 T850 100' fill='none' stroke='rgba(139,92,199,0.12)' stroke-width='1.5'/%3E%3Cpath d='M-50 150 Q100 110 250 150 T550 150 T850 150' fill='none' stroke='rgba(139,92,199,0.08)' stroke-width='1.5'/%3E%3Cpath d='M-50 200 Q100 160 250 200 T550 200 T850 200' fill='none' stroke='rgba(139,92,199,0.1)' stroke-width='1.5'/%3E%3Cpath d='M-50 250 Q100 210 250 250 T550 250 T850 250' fill='none' stroke='rgba(139,92,199,0.06)' stroke-width='1.5'/%3E%3Cpath d='M-50 300 Q100 260 250 300 T550 300 T850 300' fill='none' stroke='rgba(139,92,199,0.09)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: cover;
 }
