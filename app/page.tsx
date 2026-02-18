@@ -375,7 +375,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
-              Built to fit the rhythm of real work<span className="text-[#6E3FCC]">&mdash;and drive lasting change</span>
+              Built to fit the rhythm of real work <span className="text-[#6E3FCC]">&mdash; and drive lasting change</span>
             </h2>
             <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -404,7 +404,7 @@ export default function Home() {
                 step: "03",
                 label: "Application",
                 title: "Apply insights to your real work",
-                desc: "Leaders put tools to use and practice new behaviors in meetings, one-on-ones, and day-to-day decisions.",
+                desc: "Leaders use tools and practice new behaviors in meetings, 1-on-1s, and decision-making.",
                 borderColor: "#D65CE9",
               },
               {
@@ -427,7 +427,7 @@ export default function Home() {
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-xl font-bold text-white mb-3 leading-snug">
+                <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">
                   {item.titleJsx || item.title}
                 </h3>
                 <p className="text-base text-white/80 leading-relaxed">
