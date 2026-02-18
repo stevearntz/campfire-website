@@ -57,9 +57,9 @@ export default function SessionWalkthrough() {
       <div className="mx-auto px-6" style={{ maxWidth: "1000px" }}>
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Sessions that drive behavior change
+            Sessions that drive <span className="text-[#6E3FCC]">behavior change</span>
           </h2>
-          <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
+          <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
             What it actually feels like when your managers show up to Campfire.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function SessionWalkthrough() {
 
         {/* The following week — full-width bottom card */}
         <div
-          className="rounded-2xl px-8 md:px-12 py-10"
+          className="mt-8 rounded-2xl px-8 md:px-12 py-10"
           style={{
             backgroundImage: "url('/pink-topo-session.webp')",
             backgroundSize: "cover",
