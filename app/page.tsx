@@ -300,7 +300,7 @@ export default function Home() {
             </h2>
             <p className="mt-3 text-base text-white/80">
               Sign up free, explore our full catalog, and try our
-              industry-leading platform. No credit card required.
+              industry-leading platform.<br />No credit card required.
             </p>
             <a
               href="https://meet.getcampfire.com/"
@@ -375,7 +375,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
-              Built to fit the rhythm of real work<span className="text-[#6E3FCC]"> &mdash;and drive lasting change</span>
+              Built to fit the rhythm of real work<span className="text-[#6E3FCC]">&mdash;and drive lasting change</span>
             </h2>
             <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -384,7 +384,7 @@ export default function Home() {
           </div>
 
           {/* Gradient-bordered cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 max-w-[90%] mx-auto">
             {[
               {
                 step: "01",
@@ -422,7 +422,7 @@ export default function Home() {
                 style={{ border: `2px solid ${item.borderColor}` }}
               >
                 <p
-                  className="text-lg font-bold mb-4"
+                  className="text-2xl font-bold mb-4"
                   style={{ color: item.borderColor }}
                 >
                   {item.step}: {item.label}
