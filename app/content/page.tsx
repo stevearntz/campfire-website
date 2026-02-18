@@ -111,7 +111,7 @@ export default function ContentPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-center">
             {/* Left: heading + description */}
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-[1.12]">
                 Our approach to<br />behavior change
               </h2>
               <p className="mt-5 text-lg text-gray-500 leading-relaxed max-w-md">
