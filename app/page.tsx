@@ -351,7 +351,7 @@ export default function Home() {
               }}
             >
               Sign up free, explore our full catalog, and try our
-              industry-leading platform. No credit card required.
+              industry-leading platform.<br />No credit card required.
             </p>
             <a
               href="https://meet.getcampfire.com/"
