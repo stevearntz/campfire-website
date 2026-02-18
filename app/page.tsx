@@ -411,7 +411,7 @@ export default function Home() {
                 step: "04",
                 label: "Reinforcement",
                 title: "Reinforce behavior change over time",
-                titleJsx: <>Reinforce <span className="text-[#6E3FCC]">behavior change</span> over time</>,
+                titleJsx: <>Reinforce behavior change over time</>,
                 desc: "Skills are revisited and strengthened through ongoing experiences and resources.",
                 borderColor: "#EE81DD",
               },
@@ -427,10 +427,10 @@ export default function Home() {
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-2xl font-semibold text-white mb-3 leading-snug">
+                <h3 className="text-[1.3rem] font-semibold text-white mb-3 leading-tight">
                   {item.titleJsx || item.title}
                 </h3>
-                <p className="text-base text-white/80 leading-relaxed">
+                <p className="text-base text-white/80 leading-snug">
                   {item.desc}
                 </p>
               </div>
@@ -473,14 +473,14 @@ export default function Home() {
         <div className="h-[3px] bg-gradient-to-r from-[#6E3FCC] to-[#3B82F6]" />
         <div className="py-20">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <blockquote className="font-bold text-[#1E2A4A] leading-[1.3] max-w-[1140px] mx-auto" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.75rem)" }}>
+            <blockquote className="font-semibold text-[#1E2A4A] leading-[1.3] max-w-[1140px] mx-auto" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.75rem)" }}>
               &ldquo;Our biggest priority right now is improving our
               <br />
               front-line managers because that&apos;s the
               <br />
-              <span className="text-[#6E3FCC]">single biggest lever we have</span> in improving our&nbsp;results.&rdquo;
+              <span className="text-[#6E3FCC]">single biggest lever</span> we have in improving our&nbsp;results.&rdquo;
             </blockquote>
-            <p className="mt-8 text-lg text-gray-500">
+            <p className="mt-8 text-2xl text-gray-500">
               &mdash; CEO, 1,200-employee company
             </p>
           </div>
@@ -524,7 +524,7 @@ export default function Home() {
                   desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
                 },
               ].map((impact, i) => {
-                const circleColors = ["#521DB5", "#896DF0", "#A84AEB", "#D65CE9", "#EE81DD"];
+                const circleColors = ["#521DB5", "#7A4CD9", "#A84AEB", "#D65CE9", "#EE81DD"];
                 return (
                 <div
                   key={impact.title}
