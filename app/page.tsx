@@ -222,19 +222,19 @@ export default function Home() {
               {
                 title: "Adaptable Content",
                 desc: "Choose and shape sessions around the leadership challenges your teams are facing right now.",
-                icon: "/kite-icon.webp",
+                icon: "/kite.webp",
                 iconAlt: "Kite icon representing adaptable content",
               },
               {
                 title: "Flexible Facilitation",
                 desc: "Deliver sessions with our facilitators or your own leaders\u2014whatever works best for your teams.",
-                icon: "/phoenix-icon.webp",
+                icon: "/phoenix.webp",
                 iconAlt: "Phoenix icon representing flexible facilitation",
               },
               {
                 title: "Program Support",
                 desc: "We handle the logistics behind the scenes so programs fit into your workflow without extra lift.",
-                icon: "/plant-icon.webp",
+                icon: "/plant.webp",
                 iconAlt: "Plant icon representing program support",
               },
             ].map((card) => (
