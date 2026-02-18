@@ -68,15 +68,15 @@ export default function Home() {
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight">
                 Build Better Leaders
                 <br />
-                &mdash;Your Way, at Scale
+                &mdash;Your Way
               </h1>
               <p
                 className="mt-6 text-lg md:text-xl leading-relaxed max-w-lg font-medium"
                 style={{ color: "#FFC28A" }}
               >
-                Everything you expect from leadership development—now
-                flexible, customizable, and built to scale effortlessly
-                across your organization.
+                Everything you expect from leadership development&mdash;made
+                flexible to fit your people, your culture, and the challenges
+                you&apos;re solving right now.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
@@ -98,10 +98,10 @@ export default function Home() {
             {/* Product screenshot */}
             <div className="flex-1 hidden md:block">
               <Image
-                src="/product-screen.webp"
+                src="/hero-image.webp"
                 alt="Campfire platform — live workshop with participants, activities, and facilitation tools"
-                width={1983}
-                height={1448}
+                width={3598}
+                height={2772}
                 className="w-full h-auto rounded-lg"
                 priority
               />
@@ -146,12 +146,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Scale an <span className="text-[#6E3FCC]">outcomes-driven</span> culture
+              Leadership development should <span className="text-[#6E3FCC]">fit your reality</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              When leaders paint a clear picture and trust their people to own
-              the outcomes that drive collective success, effort takes care of
-              itself. That&apos;s the culture Campfire helps you build.
+              Every company faces different leadership challenges, cultures, and
+              moments of growth. Development only works when it adapts to how your
+              people actually work&mdash;not the other way around.
             </p>
           </div>
 
@@ -161,54 +161,40 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
               {
-                metric: "Less",
-                label: "Burnout",
-                desc: "Effort becomes sustainable when it's connected to real purpose.",
-                textColor: "#E573E1",
+                label: "Different teams need different support",
+                desc: "New managers, experienced leaders, and growing teams rarely face the same challenges at the same time.",
                 gradient: "linear-gradient(to right, #EE81DD, #DC66E6)",
               },
               {
-                metric: "Less",
-                label: "Micromanagement",
-                desc: "Leaders trust their people to think clearly and make good decisions.",
-                textColor: "#D05AE9",
+                label: "Culture shapes how leadership shows up",
+                desc: "Leadership behaviors are shaped by the values, dynamics, and expectations within an organization.",
                 gradient: "linear-gradient(to right, #DC66E6, #D65CE9 36%, #C053EA)",
               },
               {
-                metric: "More",
-                label: "Alignment",
-                desc: "Teams move together with shared clarity and genuine confidence.",
-                textColor: "#AE4CEB",
+                label: "Timing matters as much as content",
+                desc: "Leaders need support when challenges appear\u2014not months later in a preset program.",
                 gradient: "linear-gradient(to right, #C053EA, #A84AEB 68%, #9F4CE9)",
               },
               {
-                metric: "More",
-                label: "Accountability",
-                desc: "Ownership happens naturally, without constant oversight or follow-up.",
-                textColor: "#9050E5",
+                label: "Development has to live inside real work",
+                desc: "Growth sticks when it fits into meetings, conversations, and decisions leaders already have.",
                 gradient: "linear-gradient(to right, #9F4CE9, #8252E1)",
               },
             ].map((item) => (
               <div
                 key={item.label}
                 className="relative rounded-2xl text-center border border-gray-100 overflow-hidden flex flex-col items-center px-6 pt-10"
-                style={{ height: 235, backgroundColor: "#F7F6F7" }}
+                style={{ height: 268, backgroundColor: "#F7F6F7" }}
               >
                 {/* Gradient accent bar — each card's slice of the continuous gradient */}
                 <div
                   className="absolute top-0 left-0 right-0 h-4"
                   style={{ background: item.gradient }}
                 />
-                <p
-                  className="text-sm font-bold uppercase tracking-widest mb-2"
-                  style={{ color: item.textColor }}
-                >
-                  {item.metric}
-                </p>
-                <p className="text-2xl font-bold text-gray-900 mb-4">
+                <p className="text-2xl font-semibold text-gray-900 mb-4">
                   {item.label}
                 </p>
-                <p className="text-lg text-gray-500 leading-relaxed">
+                <p className="text-base text-gray-500 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -222,7 +208,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Leadership development, <span className="text-[#6E3FCC]">without the overhead</span>
+              A flexible system, <span className="text-[#6E3FCC]">built around your needs</span>
             </h2>
             <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Everything you need to scale world-class leadership
@@ -234,22 +220,22 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
             {[
               {
-                title: "Flexible Content",
-                desc: "A curated library of practical, live leadership workshops you can mix, match, and customize to your needs.",
+                title: "Adaptable Content",
+                desc: "Choose and shape sessions around the leadership challenges your teams are facing right now.",
                 icon: "/kite-icon.webp",
-                iconAlt: "Kite icon representing flexible, adaptable content",
+                iconAlt: "Kite icon representing adaptable content",
               },
               {
-                title: "Scalable Facilitation",
-                desc: "Expert facilitators\u2014or your trained leaders\u2014for delivering consistent, high-quality experiences across teams and geographies.",
+                title: "Flexible Facilitation",
+                desc: "Deliver sessions with our facilitators or your own leaders\u2014whatever works best for your teams.",
                 icon: "/phoenix-icon.webp",
-                iconAlt: "Phoenix icon representing scalable growth and transformation",
+                iconAlt: "Phoenix icon representing flexible facilitation",
               },
               {
                 title: "Program Support",
-                desc: "End-to-end scheduling, coordination, tracking, and logistics to help lean talent teams run programs smoothly and scale with confidence.",
+                desc: "We handle the logistics behind the scenes so programs fit into your workflow without extra lift.",
                 icon: "/plant-icon.webp",
-                iconAlt: "Plant icon representing nurturing program support",
+                iconAlt: "Plant icon representing program support",
               },
             ].map((card) => (
               <div
@@ -277,7 +263,7 @@ export default function Home() {
 
           {/* Built For */}
           <p className="text-center mt-10 text-lg text-gray-500">
-            <span className="font-bold text-gray-800">Built For:</span>{" "}
+            <span className="font-bold text-gray-800">Built for:</span>{" "}
             HR leaders scaling leadership development{" "}
             + L&amp;D teams with lean headcount{" "}
             + Talent leaders building and shaping culture

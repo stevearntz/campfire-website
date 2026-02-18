@@ -16,10 +16,10 @@ const testimonials = [
   {
     logo: "/cotopaxi-logo.webp",
     logoAlt: "Cotopaxi",
-    name: "Liz Berry",
-    title: "Sr. Manager, Talent Development",
+    name: "Real Life Manager",
+    title: "",
     quote:
-      "What would have required months of work and significant budget to create internally, we now achieve with ease and efficiency.",
+      "What an incredible space to have, coming together with leaders I\u2019ve never met and in 45 minutes genuinely connecting on the topic and how we can apply the learnings. That\u2019s the power of a campfire, both figuratively and literally.",
   },
   {
     logo: "/cotopaxi-logo.webp",
@@ -184,12 +184,12 @@ export default function TestimonialCarousel() {
 
         {/* CTA */}
         <div className="text-center mt-8">
-          <Link
+          {/* <Link
             href="/customers"
             className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Explore Case Studies
-          </Link>
+          </Link> */}
         </div>
     </section>
   );

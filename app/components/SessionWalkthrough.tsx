@@ -2,34 +2,52 @@ import Image from "next/image";
 
 const steps = [
   {
-    time: "0–5 min",
-    title: "Spark & Connection",
-    detail:
-      "The facilitator opens with a prompt: Priya reflects on a recent moment when she held back instead of being direct. Others share similar patterns \u2014 cushioning feedback, avoiding discomfort, waiting for \u201Cbetter timing.\u201D\nOutcome: She realizes hesitation is common \u2014 and that she\u2019s not the only one navigating this tension.",
+    num: "1",
+    title: "Reflect \u2014 Identify the Real Challenge",
+    sarah: "Admits to herself she\u2019s been softening feedback to avoid discomfort.",
+    outcome: "The challenge is specific and real \u2014 not hypothetical.",
   },
   {
-    time: "5–20 min",
-    title: "Framework",
-    detail:
-      "The facilitator introduces a practical model for navigating difficult conversations \u2014 not theory from a textbook, but a simple structure Sarah can use in her next meeting.",
+    num: "2",
+    title: "Breakout \u2014 Get Insight & Support",
+    sarah: "Realizes she\u2019s been protecting herself more than helping her employee.",
+    outcome: "Perspective shifts before any framework is introduced.",
   },
   {
-    time: "20–40 min",
-    title: "Breakout discussion",
-    detail:
-      "In a small group of four, Sarah practices applying the framework to her real situation. Her peers ask questions she hadn\u2019t considered. She starts to see her 1:1 differently.",
+    num: "3",
+    title: "Discuss \u2014 Notice the Patterns",
+    sarah: "Sees her hesitation is common \u2014 and solvable.",
+    outcome: "The tension is normalized. The room is engaged.",
   },
   {
-    time: "40–55 min",
-    title: "Group debrief",
-    detail:
-      "The full group reconvenes. A few managers share breakthroughs from their breakouts. The facilitator connects patterns and reinforces the key concepts.",
+    num: "4",
+    title: "Teach \u2014 Introduce the Framework",
+    sarah: "Sees exactly where her past conversations broke down.",
+    outcome: "The framework feels usable \u2014 because it\u2019s connected to real situations.",
   },
   {
-    time: "55–60 min",
-    title: "Commitment",
-    detail:
-      "Sarah writes one specific thing she\u2019ll do differently before the next session. She picks: \u201CI\u2019ll use the framework in my 1:1 with Jordan on Thursday.\u201D She leaves with a plan, not just notes.",
+    num: "5",
+    title: "Challenge \u2014 Adapt the Thinking",
+    sarah: "Rewrites her opening line.",
+    outcome: "Insight becomes behavior.",
+  },
+  {
+    num: "6",
+    title: "Reflect & Apply \u2014 Make It Concrete",
+    sarah: "Commits to Thursday\u2019s 1:1.",
+    outcome: "Application is immediate.",
+  },
+  {
+    num: "7",
+    title: "Breakout \u2014 Anticipate Obstacles",
+    sarah: "Plans how she\u2019ll respond if Jordan gets defensive.",
+    outcome: "Confidence increases before the conversation happens.",
+  },
+  {
+    num: "8",
+    title: "Commit & Share \u2014 Lock It In",
+    sarah: "Leaves with a plan \u2014 not notes.",
+    outcome: "Action is defined before the hour ends.",
   },
 ];
 
@@ -42,8 +60,7 @@ export default function SessionWalkthrough() {
             Sessions that drive behavior change
           </h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-            What it actually feels like when your managers show up to a Campfire
-            workshop.
+            What it actually feels like when your managers show up to Campfire.
           </p>
         </div>
 
@@ -75,57 +92,55 @@ export default function SessionWalkthrough() {
           </div>
         </div>
 
-        {/* Timeline — gray page background shows through */}
-        <div className="relative" style={{ padding: "20px 0" }}>
-          {/* Dashed vertical line on the gray background */}
+        {/* Timeline */}
+        <div className="relative" style={{ marginTop: "32px" }}>
+          {/* Dashed vertical line */}
           <div
             className="absolute hidden sm:block"
             style={{
               left: "48px",
-              top: "0",
-              bottom: "0",
+              top: "-16px",
+              bottom: "-16px",
               width: "3px",
               backgroundImage:
                 "repeating-linear-gradient(to bottom, #9D88ED 0, #9D88ED 6px, transparent 6px, transparent 12px)",
             }}
           />
 
-          {/* Step cards — 1060px wide, offset right of the dashed line */}
+          {/* Mobile: full-width cards, no line */}
           <div
             className="flex flex-col sm:hidden"
             style={{ gap: "20px" }}
           >
-            {/* Mobile: full-width cards, no line */}
             {steps.map((step) => (
               <div
-                key={step.title}
+                key={step.num}
                 className="bg-white rounded-xl px-6 py-6"
               >
-                <div className="flex items-baseline justify-between mb-2">
-                  <h3 className="text-base font-bold text-gray-900">
-                    {step.title}
-                  </h3>
-                  <span className="text-sm text-gray-400 shrink-0 ml-4">
-                    {step.time}
-                  </span>
-                </div>
-                <p className="text-base text-gray-500 leading-relaxed whitespace-pre-line">
-                  {step.detail}
+                <h3 className="text-base font-bold text-gray-900 mb-2">
+                  <span className="text-[#9D88ED] mr-1">{step.num}.</span> {step.title}
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed">
+                  <span className="font-semibold">Sarah:</span> {step.sarah}
+                </p>
+                <p className="text-sm text-[#6E3FCC] font-medium mt-2 italic">
+                  {step.outcome}
                 </p>
               </div>
             ))}
           </div>
 
+          {/* Desktop: offset cards with timeline */}
           <div
             className="hidden sm:flex flex-col"
             style={{ gap: "20px", marginLeft: "122px", maxWidth: "1060px" }}
           >
             {steps.map((step) => (
               <div
-                key={step.title}
+                key={step.num}
                 className="relative bg-white rounded-xl px-8 md:px-10 py-8"
               >
-                {/* 27px circle centered on the dashed line, vertically centered with card */}
+                {/* Circle on the dashed line */}
                 <div
                   className="absolute rounded-full bg-[#F8F5FC]"
                   style={{
@@ -138,16 +153,14 @@ export default function SessionWalkthrough() {
                   }}
                 />
 
-                <div className="flex items-baseline justify-between mb-2">
-                  <h3 className="text-base font-bold text-gray-900">
-                    {step.title}
-                  </h3>
-                  <span className="text-sm text-gray-400 shrink-0 ml-4">
-                    {step.time}
-                  </span>
-                </div>
-                <p className="text-base text-gray-500 leading-relaxed whitespace-pre-line">
-                  {step.detail}
+                <h3 className="text-base font-bold text-gray-900 mb-2">
+                  <span className="text-[#9D88ED] mr-1">{step.num}.</span> {step.title}
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed">
+                  <span className="font-semibold">Sarah:</span> {step.sarah}
+                </p>
+                <p className="text-sm text-[#6E3FCC] font-medium mt-2 italic">
+                  {step.outcome}
                 </p>
               </div>
             ))}
@@ -176,15 +189,52 @@ export default function SessionWalkthrough() {
                 The following week
               </h3>
               <p className="text-lg text-white/90 leading-relaxed">
-                Sarah used the framework in her 1:1 with Jordan. The
-                conversation wasn&apos;t easy, but it was clearer and more
-                productive than anything she&apos;d tried before. At the next
-                Campfire session, she shared what happened &mdash; and two
-                other managers asked to learn the same approach. That&apos;s
-                how behavior change spreads.
+                Sarah has the conversation. It&apos;s not perfect. It&apos;s clearer.
+                It moves forward. At the next session, she shares what worked &mdash;
+                and what she&apos;d refine. That&apos;s how behavior change spreads.
+                Not through lectures. Through reflection, rehearsal, and accountability.
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Why Campfire Feels Different */}
+        <div className="mt-12 text-center">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Campfire Feels Different</h3>
+          <ul className="inline-block text-left text-base text-gray-600 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Managers reflect before speaking.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Real challenges drive the learning.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Frameworks are introduced <em>after</em> tension is surfaced.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Practice happens live.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Obstacles are anticipated.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Action is defined before the hour ends.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
+              Progress is revisited next session.
+            </li>
+          </ul>
+          <h3 className="mt-10 text-2xl md:text-3xl font-bold text-gray-900">
+            This isn&apos;t content delivery. It&apos;s structured{" "}
+            <span className="text-[#6E3FCC]">behavior change</span>.
+          </h3>
         </div>
       </div>
     </section>
