@@ -375,7 +375,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
-              Built to fit the rhythm of real work &mdash; and <span className="text-[#6E3FCC]">drive lasting change</span>
+              Built to fit the rhythm of real work<span className="text-[#6E3FCC]"> &mdash;and drive lasting change</span>
             </h2>
             <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a

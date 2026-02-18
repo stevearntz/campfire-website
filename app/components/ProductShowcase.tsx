@@ -64,7 +64,7 @@ export default function ProductShowcase() {
                 <p className="text-sm font-semibold tracking-wider uppercase mb-4 mt-6" style={{ color: "#9D88ED" }}>
                   {s.label}
                 </p>
-                <h3 className="text-3xl md:text-[2.2rem] font-bold text-white leading-[1.19]" style={{ maxWidth: "340px" }}>
+                <h3 className="text-3xl md:text-[2.2rem] font-bold text-white leading-[1.09]" style={{ maxWidth: "340px" }}>
                   {s.headline}
                 </h3>
                 <p className="mt-4 text-white/70 text-base leading-relaxed" style={{ maxWidth: "340px" }}>
