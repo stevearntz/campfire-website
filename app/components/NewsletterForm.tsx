@@ -38,7 +38,7 @@ export default function NewsletterForm() {
       <h4 className="text-white font-semibold text-sm mb-2">
         Subscribe to our newsletter
       </h4>
-      <p className="text-sm mb-4">Weekly insights on leadership.</p>
+      <p className="text-sm mb-4">Get weekly insights on leadership.</p>
       {status === "success" ? (
         <p className="text-sm text-green-400">{message}</p>
       ) : (
