@@ -422,12 +422,12 @@ export default function Home() {
                 style={{ border: `2px solid ${item.borderColor}` }}
               >
                 <p
-                  className="text-2xl font-bold mb-4"
+                  className="text-lg font-bold mb-4"
                   style={{ color: item.borderColor }}
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-[1.3rem] font-semibold text-white mb-3 leading-tight">
+                <h3 className="text-[1.7rem] font-semibold text-white mb-3 leading-tight">
                   {item.titleJsx || item.title}
                 </h3>
                 <p className="text-base text-white/80 leading-snug">
