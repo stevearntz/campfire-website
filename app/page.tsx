@@ -575,7 +575,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Flexible formats that meet leaders <span className="text-[#6E3FCC]">where they are</span>
             </h2>
-            <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
               Campfire offers flexible format options that work across different
               teams, timelines, and goals.
               <br />
