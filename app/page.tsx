@@ -74,9 +74,9 @@ export default function Home() {
                 className="mt-6 text-lg md:text-xl leading-relaxed max-w-lg font-medium"
                 style={{ color: "#FFC28A" }}
               >
-                Everything you expect from leadership development&mdash;made
-                flexible to fit your people, your culture, and the challenges
-                you&apos;re solving right now.
+                Everything you expect from leadership
+                development&mdash;made flexible to fit your people, culture,
+                and challenges.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
