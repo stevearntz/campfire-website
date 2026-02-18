@@ -390,7 +390,7 @@ export default function Home() {
                 step: "01",
                 label: "Content",
                 title: "Identify topics your leaders need most",
-                desc: "You design your program by choosing the sessions your people need most.",
+                desc: "You choose the sessions your leaders need most and adapt them to fit your culture and context.",
                 borderColor: "#8252E1",
               },
               {
@@ -422,12 +422,12 @@ export default function Home() {
                 style={{ border: `2px solid ${item.borderColor}` }}
               >
                 <p
-                  className="text-lg font-bold mb-4"
+                  className="text-lg font-bold mb-7"
                   style={{ color: item.borderColor }}
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-[1.7rem] font-semibold text-white mb-3 leading-tight">
+                <h3 className="text-[2.2rem] font-semibold text-white mb-3 leading-tight">
                   {item.titleJsx || item.title}
                 </h3>
                 <p className="text-base text-white/80 leading-snug">
