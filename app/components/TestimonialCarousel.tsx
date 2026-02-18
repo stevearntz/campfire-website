@@ -61,7 +61,7 @@ export default function TestimonialCarousel() {
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-xs font-bold text-gray-400 tracking-[0.2em] uppercase mb-12">
+        <p className="text-center text-sm font-bold tracking-wider uppercase mb-12" style={{ color: "rgba(147, 151, 171, 0.7)" }}>
           What People Are Saying
         </p>
       </div>
