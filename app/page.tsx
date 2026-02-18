@@ -490,10 +490,10 @@ export default function Home() {
       {/* ==================== OUTCOMES ==================== */}
       <section className="pt-20 pb-28 bg-[#F8F5FC]">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-[7.5rem] items-center">
             {/* Left heading */}
             <div className="lg:w-[420px] shrink-0">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
+              <h2 className="text-4xl md:text-5xl font-normal text-[#1E2A4A] leading-[1.2] whitespace-nowrap">
                 Impact you can feel,
                 <br />
                 <span className="text-[#6E3FCC]">company-wide</span>
@@ -504,23 +504,23 @@ export default function Home() {
             <div className="flex-1 space-y-4">
               {[
                 {
-                  title: "Better Conversations",
+                  title: "Better conversations",
                   desc: "Leaders communicate more clearly, listen more effectively, and navigate difficult conversations with confidence and care.",
                 },
                 {
-                  title: "Stronger Alignment",
+                  title: "Stronger alignment",
                   desc: "Teams operate with shared language, clearer expectations, and better decision-making\u2014reducing friction and confusion.",
                 },
                 {
-                  title: "Healthier Team Dynamics",
+                  title: "Healthier team dynamics",
                   desc: "Trust increases, feedback improves, and people feel more supported, engaged, and accountable.",
                 },
                 {
-                  title: "Consistent Leadership Behaviors",
+                  title: "Consistent leadership behaviors",
                   desc: "Leadership expectations don\u2019t live in a slide deck. They show up in meetings, 1:1s, and everyday decisions across the organization.",
                 },
                 {
-                  title: "Improved Performance + Results",
+                  title: "Improved performance + results",
                   desc: "Clearer priorities, better execution, and stronger follow-through lead to measurable improvements in how teams perform.",
                 },
               ].map((impact, i) => {
@@ -552,12 +552,12 @@ export default function Home() {
       </section>
 
       {/* ==================== HOW IT SHOWS UP ==================== */}
-      <section className="relative pb-20 bg-white" style={{ paddingTop: "178px" }}>
+      <section className="relative pb-20 bg-white" style={{ paddingTop: "89px" }}>
         {/* Purple CTA banner — bridges between sections */}
         <div className="absolute left-0 right-0 -top-9 z-10">
           <div className="max-w-5xl mx-auto px-6">
-            <div className="bg-[#6E3FCC] rounded-xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
-              <p className="text-white text-sm md:text-base text-center md:text-left">
+            <div className="rounded-xl px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg" style={{ background: "linear-gradient(to right, #6A3DC5, #896DF0)" }}>
+              <p className="text-white text-base md:text-xl text-center md:text-left">
                 <span className="font-bold">See it for yourself:</span>{" "}
                 Learn how Campfire can help your leaders build these habits and drive real results.
               </p>
@@ -572,7 +572,7 @@ export default function Home() {
         </div>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Flexible formats that meet leaders <span className="text-[#6E3FCC]">where they are</span>
             </h2>
             <p className="mt-5 text-base text-gray-500 max-w-3xl mx-auto leading-relaxed">
