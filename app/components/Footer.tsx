@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import NewsletterForm from "./NewsletterForm";
 
 export default function Footer() {
   return (
@@ -41,20 +42,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
+          {/* Newsletter */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Get Started</h4>
-            <p className="text-sm mb-4">
-              Ready to build better leaders? Let&apos;s talk.
-            </p>
-            <a
-              href="https://calendly.com/getcampfire/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-5 py-2.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
-            >
-              Book a Call
-            </a>
+            <NewsletterForm />
           </div>
         </div>
 
