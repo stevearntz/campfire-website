@@ -298,7 +298,7 @@ export default function Home() {
             <h2 className="text-xl font-bold text-white">
               You&apos;re 30 seconds away from experiencing Campfire
             </h2>
-            <p className="mt-3 text-sm text-white/80">
+            <p className="mt-3 text-base text-white/80">
               Sign up free, explore our full catalog, and try our
               industry-leading platform. No credit card required.
             </p>
@@ -346,7 +346,7 @@ export default function Home() {
             <p
               className="text-white/80 max-w-[840px] mx-auto"
               style={{
-                fontSize: "clamp(0.875rem, 1.1vw, 1.125rem)",
+                fontSize: "clamp(1.125rem, 1.4vw, 1.45rem)",
                 marginTop: "clamp(0.75rem, 1.2vw, 1.25rem)",
               }}
             >
