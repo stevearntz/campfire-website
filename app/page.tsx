@@ -515,7 +515,7 @@ export default function Home() {
                   className="relative bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_2fr] items-center gap-5 md:gap-4 pl-14 md:pl-12 pr-8 py-6"
                 >
                   <div
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 rounded-full text-white text-lg font-bold flex items-center justify-center z-10"
+                    className="absolute top-1/2 -translate-y-1/2 w-14 h-14 rounded-full text-white text-lg font-bold flex items-center justify-center z-10 left-[8px] md:left-0 md:-translate-x-1/2"
                     style={{ backgroundColor: circleColors[i] }}
                   >
                     {i + 1}
