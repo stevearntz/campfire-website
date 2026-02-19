@@ -142,59 +142,54 @@ export default function Home() {
       </section>
 
       {/* ==================== OUTCOMES-DRIVEN CULTURE ==================== */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="pt-32 pb-20 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 whitespace-nowrap">
               Leadership development should <span className="text-[#6E3FCC]">fit your reality</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              Every company faces different leadership challenges, cultures, and
-              moments of growth. Development only works when it adapts to how your
-              people actually work&mdash;not the other way around.
+              Every company faces different leadership challenges, cultures, and moments of growth.
+              Development only works when it adapts to how your people actually work&mdash;not the other way around.
             </p>
           </div>
 
-          {/* Outcome pillars — continuous gradient bar across all 4 cards
-              Full gradient: 0% #EE81DD → 34% #D65CE9 → 67% #A84AEB → 100% #8252E1
-              Each card shows its 25% slice with stops mapped to local coords */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="space-y-4 max-w-4xl mx-auto">
             {[
               {
-                label: "Different teams need different support",
+                title: "Different teams need different support",
                 desc: "New managers, experienced leaders, and growing teams rarely face the same challenges at the same time.",
-                gradient: "linear-gradient(to right, #EE81DD, #DC66E6)",
+                border: "linear-gradient(to bottom, #EE80DD, #DD66E5)",
               },
               {
-                label: "Culture shapes how leadership shows up",
+                title: "Culture shapes how leaders show up",
                 desc: "Leadership behaviors are shaped by the values, dynamics, and expectations within an organization.",
-                gradient: "linear-gradient(to right, #DC66E6, #D65CE9 36%, #C053EA)",
+                border: "linear-gradient(to bottom, #DC65E6, #C054EA)",
               },
               {
-                label: "Timing matters as much as content",
+                title: "Timing matters as much as content",
                 desc: "Leaders need support when challenges appear\u2014not months later in a preset program.",
-                gradient: "linear-gradient(to right, #C053EA, #A84AEB 68%, #9F4CE9)",
+                border: "linear-gradient(to bottom, #BE53EA, #A04CE9)",
               },
               {
-                label: "Development has to live inside real work",
+                title: "Development has to live inside real work",
                 desc: "Growth sticks when it fits into meetings, conversations, and decisions leaders already have.",
-                gradient: "linear-gradient(to right, #9F4CE9, #8252E1)",
+                border: "linear-gradient(to bottom, #9E4CE8, #8252E1)",
               },
             ].map((item) => (
               <div
-                key={item.label}
-                className="relative rounded-2xl text-center border border-gray-100 overflow-hidden flex flex-col items-center px-6 pt-10"
-                style={{ height: 268, backgroundColor: "#F7F6F7" }}
+                key={item.title}
+                className="relative bg-[#F7F6F7] rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1fr] items-center gap-5 md:gap-8 pl-8 pr-8 py-6"
               >
-                {/* Gradient accent bar — each card's slice of the continuous gradient */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-4"
-                  style={{ background: item.gradient }}
+                  className="absolute left-0 top-0 bottom-0 w-1 rounded-l-xl"
+                  style={{ background: item.border }}
                 />
-                <p className="text-2xl font-semibold text-gray-900 mb-4">
-                  {item.label}
-                </p>
-                <p className="text-base text-gray-500 leading-relaxed">
+                <h3 className="text-xl font-semibold text-[#1E2A4A]">
+                  {item.title}
+                </h3>
+                <div className="hidden md:block w-px h-full bg-gray-200" />
+                <p className="text-gray-500 text-base leading-relaxed">
                   {item.desc}
                 </p>
               </div>
