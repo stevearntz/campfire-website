@@ -38,7 +38,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-600 hover:text-[#6E3FCC] transition-colors"
+              className="text-[1.05rem] font-medium text-gray-600 hover:text-[#6E3FCC] transition-colors"
             >
               {link.label}
             </Link>
@@ -51,7 +51,7 @@ export default function Navbar() {
             href="https://calendly.com/getcampfire/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+            className="px-5 py-2 text-[1.05rem] font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Get Demo
           </a>
@@ -59,7 +59,7 @@ export default function Navbar() {
             href="https://meet.getcampfire.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 text-sm font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors uppercase tracking-wide"
+            className="px-5 py-2 text-[1.05rem] font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors uppercase tracking-wide"
           >
             Log In
           </a>

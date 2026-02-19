@@ -468,8 +468,7 @@ export default function Home() {
 
       {/* ==================== PULL QUOTE ==================== */}
       <section className="bg-white">
-        <div className="h-[3px] bg-gradient-to-r from-[#6E3FCC] to-[#3B82F6]" />
-        <div className="py-20">
+        <div className="py-30">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <blockquote className="font-semibold text-[#1E2A4A] leading-[1.3] max-w-[1140px] mx-auto" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.75rem)" }}>
               &ldquo;Our biggest priority right now is improving our
