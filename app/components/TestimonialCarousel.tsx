@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -49,6 +49,14 @@ const testimonials = [
 
 export default function TestimonialCarousel() {
   const [active, setActive] = useState(1);
+  const [cardWidth, setCardWidth] = useState(560);
+
+  useEffect(() => {
+    const update = () => setCardWidth(window.innerWidth < 768 ? 300 : 560);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const prev = () =>
     setActive((active - 1 + testimonials.length) % testimonials.length);
@@ -61,7 +69,7 @@ export default function TestimonialCarousel() {
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-sm font-bold tracking-wider uppercase mb-12" style={{ color: "rgba(147, 151, 171, 0.7)" }}>
+        <p className="text-center text-base font-bold tracking-wider uppercase mb-12" style={{ color: "rgba(147, 151, 171, 0.7)" }}>
           What People Are Saying
         </p>
       </div>
@@ -71,7 +79,7 @@ export default function TestimonialCarousel() {
           <div
             className="flex gap-3 transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(calc(50% - ${active * (560 + 12)}px - 280px))`,
+              transform: `translateX(calc(50% - ${active * (cardWidth + 12)}px - ${cardWidth / 2}px))`,
             }}
           >
             {testimonials.map((t, i) => {
@@ -80,7 +88,7 @@ export default function TestimonialCarousel() {
               return (
                 <div
                   key={`${t.logoAlt}-${i}`}
-                  className={`shrink-0 w-[560px] h-[340px] bg-[#F8F5FC] rounded-2xl p-10 flex flex-col justify-between transition-opacity duration-500 ${
+                  className={`shrink-0 w-[300px] md:w-[560px] md:h-[340px] bg-[#F8F5FC] rounded-2xl p-6 md:p-10 flex flex-col justify-between transition-opacity duration-500 ${
                     isCenter ? "opacity-100" : "opacity-50"
                   }`}
                 >
@@ -154,7 +162,7 @@ export default function TestimonialCarousel() {
                 className={`w-2.5 h-2.5 rounded-full transition-all ${
                   i === active
                     ? "bg-[#6E3FCC]/40 scale-110"
-                    : "bg-gray-800"
+                    : "bg-gray-300"
                 }`}
                 aria-label={`Testimonial ${i + 1}`}
               />
