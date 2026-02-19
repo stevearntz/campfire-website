@@ -4,7 +4,7 @@ export default function PlatformIllustration() {
 
   // Flow paths: left cards → into video player (right edge x=185 → ~60px into player at x=310)
   const brandFlow = "M 185 120 C 215 120, 240 135, 260 155 S 290 185, 310 200";
-  const frameworksFlow = "M 185 266 C 215 266, 240 266, 260 266 S 285 266, 310 266";
+  const frameworksFlow = "M 185 250 C 215 248, 240 240, 265 238 S 290 240, 310 245";
   const cultureFlow = "M 185 412 C 215 412, 240 400, 260 380 S 290 350, 310 335";
 
   // Flow paths: custom program → into video player (left edge x=1027 → ~60px into player at x=900)
