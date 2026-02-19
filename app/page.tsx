@@ -149,47 +149,51 @@ export default function Home() {
               Leadership development should <span className="text-[#6E3FCC]">fit your reality</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              Every company faces different leadership challenges, cultures, and moments of growth.
+              No two organizations share the same culture, leadership challenges, or moments of growth.
               Development only works when it adapts to how your people actually work&mdash;not the other way around.
             </p>
           </div>
 
-          <div className="space-y-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 max-w-6xl mx-auto">
             {[
               {
                 title: "Different teams need different support",
-                desc: "New managers, experienced leaders, and growing teams rarely face the same challenges at the same time.",
-                border: "linear-gradient(to bottom, #EE80DD, #DD66E5)",
+                desc: "New and experienced leaders face different challenges at different times.",
+                gradient: "linear-gradient(to right, #EE80DD, #DD66E5)",
+                dashColor: "#EE80DD",
               },
               {
-                title: "Culture shapes how leaders show up",
-                desc: "Leadership behaviors are shaped by the values, dynamics, and expectations within an organization.",
-                border: "linear-gradient(to bottom, #DC65E6, #C054EA)",
+                title: "Culture shapes how leadership shows up",
+                desc: "Behaviors are shaped by your company\u2019s values and dynamics.",
+                gradient: "linear-gradient(to right, #DC65E6, #C054EA)",
+                dashColor: "#DC65E6",
               },
               {
                 title: "Timing matters as much as content",
-                desc: "Leaders need support when challenges appear\u2014not months later in a preset program.",
-                border: "linear-gradient(to bottom, #BE53EA, #A04CE9)",
+                desc: "Leaders need support when challenges appear\u2014not months later.",
+                gradient: "linear-gradient(to right, #BE53EA, #A04CE9)",
+                dashColor: "#BE53EA",
               },
               {
                 title: "Development has to live inside real work",
-                desc: "Growth sticks when it fits into meetings, conversations, and decisions leaders already have.",
-                border: "linear-gradient(to bottom, #9E4CE8, #8252E1)",
+                desc: "Growth sticks when it happens in everyday conversations and decisions.",
+                gradient: "linear-gradient(to right, #9E4CE8, #8252E1)",
+                dashColor: "#9E4CE8",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="relative bg-[#F7F6F7] rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1fr] items-center gap-5 md:gap-8 pl-8 pr-8 py-6"
+                className="relative bg-[#F7F6F7] rounded-2xl text-center border border-gray-100 overflow-hidden flex flex-col items-center px-6 pt-10 pb-8"
               >
                 <div
-                  className="absolute left-0 top-0 bottom-0 w-1 rounded-l-xl"
-                  style={{ background: item.border }}
+                  className="absolute top-0 left-0 right-0 h-1.5"
+                  style={{ background: item.gradient }}
                 />
-                <h3 className="text-xl font-semibold text-[#1E2A4A]">
+                <h3 className="text-base font-bold text-[#1E2A4A] mb-4 leading-snug">
                   {item.title}
                 </h3>
-                <div className="hidden md:block w-px h-full bg-gray-200" />
-                <p className="text-gray-500 text-base leading-relaxed">
+                <div className="w-6 h-0.5 mb-4" style={{ backgroundColor: item.dashColor }} />
+                <p className="text-gray-500 text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -206,9 +210,8 @@ export default function Home() {
               A flexible system, <span className="text-[#6E3FCC]">built around your needs</span>
             </h2>
             <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              Everything you need to scale world-class leadership
-              development&mdash;without adding work to your plate or headcount
-              to your team.
+              Customize what you teach, how you deliver it, and how programs
+              run&mdash;so development fits your organization seamlessly.
             </p>
           </div>
 
@@ -633,6 +636,35 @@ export default function Home() {
 
       {/* ==================== SESSION WALKTHROUGH ==================== */}
       <SessionWalkthrough />
+
+      {/* ==================== WHY CAMPFIRE FEELS DIFFERENT ==================== */}
+      <section className="py-20 bg-[#F8F5FC]">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
+            Why Campfire <span className="text-[#6E3FCC]">feels different</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {[
+              "Learning is driven by real, in-the-moment challenges.",
+              "Participants reflect before speaking, so every voice is heard.",
+              "Ideas emerge from real conversations\u2014not slide decks.",
+              "Growth begins in the session and extends into everyday work.",
+              "Every session ends with action \u2014 not just ideas.",
+              "Leaders learn with peers facing the same realities.",
+              "Sessions are designed for engagement\u2014not consumption.",
+              "Experiences are shaped around your culture and context.",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-4 bg-white rounded-xl px-6 py-4"
+              >
+                <span className="text-[#9D88ED] text-lg shrink-0">&#10003;</span>
+                <p className="text-gray-600 text-sm">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ==================== FINAL CTA ==================== */}
       <section
