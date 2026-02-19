@@ -3,6 +3,7 @@ import Link from "next/link";
 import TestimonialCarousel from "./components/TestimonialCarousel";
 import ProductShowcase from "./components/ProductShowcase";
 import SessionWalkthrough from "./components/SessionWalkthrough";
+import PlatformIllustration from "./components/PlatformIllustration";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -58,54 +59,42 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 md:pt-28 pb-20 md:pb-24">
-          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-            {/* Text */}
-            <div className="flex-1 max-w-xl">
-              <p className="text-sm font-bold tracking-wider uppercase mb-4" style={{ color: "#ffffff" }}>
-                For HR &amp; Talent Development Leaders
-              </p>
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight">
-                Build Better Leaders
-                <br />
-                &mdash;Your Way
-              </h1>
-              <p
-                className="mt-6 text-lg md:text-xl leading-relaxed max-w-lg font-medium"
-                style={{ color: "#FFC28A" }}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 md:pt-[70px] pb-12 md:pb-16">
+          {/* Stacked hero: text centered on top */}
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.08] tracking-tight">
+              Build Better Leaders
+              <br />
+              &mdash;Your Way
+            </h1>
+            <p
+              className="mt-6 text-lg md:text-xl leading-relaxed font-medium max-w-2xl mx-auto"
+              style={{ color: "#FFC28A" }}
+            >
+              Everything you expect from leadership development
+              &mdash; made flexible to fit your brand, your frameworks, and your culture.
+              Designed for modern teams.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/solutions"
+                className="px-7 py-3.5 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
+                style={{ backgroundColor: "#E055CB" }}
               >
-                Everything you expect from leadership
-                development&mdash;made flexible to fit your people, culture,
-                and challenges.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/solutions"
-                  className="px-7 py-3.5 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
-                  style={{ backgroundColor: "#E055CB" }}
-                >
-                  Explore Solutions
-                </Link>
-                <Link
-                  href="/contact"
-                  className="px-7 py-3.5 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
-                >
-                  Talk to Us
-                </Link>
-              </div>
+                Explore Solutions
+              </Link>
+              <Link
+                href="/contact"
+                className="px-7 py-3.5 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+              >
+                Talk to Us
+              </Link>
             </div>
+          </div>
 
-            {/* Product screenshot */}
-            <div className="flex-1 hidden md:block">
-              <Image
-                src="/new-hero.webp"
-                alt="Campfire platform — content library with leadership sessions"
-                width={2985}
-                height={2623}
-                className="w-full h-auto rounded-lg"
-                priority
-              />
-            </div>
+          {/* Platform illustration — full width below */}
+          <div className="mt-12 md:mt-16 mx-auto" style={{ maxWidth: "1310px" }}>
+            <PlatformIllustration />
           </div>
         </div>
 
@@ -114,7 +103,7 @@ export default function Home() {
           <div className="absolute inset-0" style={{ backgroundColor: "rgba(58, 2, 168, 0.25)" }} />
           <div className="relative z-10 mx-auto px-2 pt-6 pb-10" style={{ maxWidth: "1200px" }}>
             <p className="text-center text-xs font-bold text-white tracking-wider uppercase mb-5">
-              Trusted by companies like...
+              Trusted by distributed, high-growth teams like...
             </p>
             <div className="grid grid-cols-2 md:flex md:flex-wrap items-center justify-between gap-y-8 gap-x-6 md:gap-x-0">
               {[
@@ -637,7 +626,7 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
             Why Campfire <span className="text-[#6E3FCC]">feels different</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto" style={{ maxWidth: "1146px" }}>
             {[
               "Learning is driven by real, in-the-moment challenges.",
               "Participants reflect before speaking, so every voice is heard.",
@@ -650,10 +639,13 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-4 bg-white rounded-xl px-6 py-4"
+                className="flex items-center gap-4 bg-white rounded-xl px-6"
+                style={{ width: "561px", maxWidth: "100%", height: "56px" }}
               >
-                <span className="text-[#9D88ED] text-lg shrink-0">&#10003;</span>
-                <p className="text-gray-600 text-sm">{item}</p>
+                <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#BF5DE9" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 12.5L9.5 18L20 6" />
+                </svg>
+                <p className="text-gray-600" style={{ fontSize: "0.945rem" }}>{item}</p>
               </div>
             ))}
           </div>
