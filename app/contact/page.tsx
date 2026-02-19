@@ -9,6 +9,8 @@ export default function ContactPage() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [loadTime] = useState(() => Date.now());
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -26,7 +28,7 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...fields, partial: false }),
+        body: JSON.stringify({ ...fields, partial: false, _hp: honeypot, _t: loadTime }),
       });
 
       const data = await res.json();
@@ -216,6 +218,20 @@ export default function ContactPage() {
                     onSubmit={handleSubmit}
                     className="space-y-5"
                   >
+                    {/* Honeypot — hidden from real users, bots fill it */}
+                    <div className="absolute opacity-0 -z-10" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+                      <label htmlFor="website">Website</label>
+                      <input
+                        type="text"
+                        id="website"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
