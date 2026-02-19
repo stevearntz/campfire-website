@@ -116,17 +116,17 @@ export default function Home() {
             <p className="text-center text-xs font-bold text-white tracking-wider uppercase mb-5">
               Trusted by companies like...
             </p>
-            <div className="flex flex-wrap items-center justify-between gap-y-8">
+            <div className="grid grid-cols-2 md:flex md:flex-wrap items-center justify-between gap-y-8 gap-x-6 md:gap-x-0">
               {[
                 { src: "/cotopaxi-logo.webp", alt: "Cotopaxi", w: 2696, h: 887, cls: "h-8 md:h-10" },
                 { src: "/dermalogica-logo.webp", alt: "Dermalogica", w: 2207, h: 241, cls: "h-5 md:h-6" },
                 { src: "/cricut-logo.webp", alt: "Cricut", w: 896, h: 247, cls: "h-5 md:h-6" },
-                { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475, cls: "h-6 md:h-7" },
-                { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198, cls: "h-4 md:h-5" },
+                { src: "/nuvei-logo.webp", alt: "Nuvei", w: 1428, h: 475, cls: "h-6 md:h-7", mobileHidden: true },
+                { src: "/pdq-logo.webp", alt: "PDQ", w: 510, h: 198, cls: "h-4 md:h-5", mobileHidden: true },
                 { src: "/plusgrade-logo.webp", alt: "Plusgrade", w: 1882, h: 277, cls: "h-5 md:h-6" },
-                { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507, cls: "h-8 md:h-9" },
+                { src: "/enveda-logo.webp", alt: "Enveda Biosciences", w: 1537, h: 507, cls: "h-8 md:h-9", mobileHidden: true },
               ].map((logo) => (
-                <div key={logo.alt}>
+                <div key={logo.alt} className={`flex items-center justify-center ${'mobileHidden' in logo && logo.mobileHidden ? 'hidden md:flex' : ''}`}>
                   <Image
                     src={logo.src}
                     alt={logo.alt}
@@ -145,7 +145,7 @@ export default function Home() {
       <section className="pt-32 pb-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 whitespace-nowrap">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
               Leadership development should <span className="text-[#6E3FCC]">fit your reality</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
@@ -447,7 +447,7 @@ export default function Home() {
             <p className="text-base font-bold text-white/50 text-center mb-10 uppercase tracking-widest">
               Results you can trust
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
               {[
                 { number: "6,000+", label: "Sessions delivered" },
                 { number: "25+", label: "Years of experience" },
@@ -472,10 +472,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 text-center">
             <blockquote className="font-semibold text-[#1E2A4A] leading-[1.3] max-w-[1140px] mx-auto" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.75rem)" }}>
               &ldquo;Our biggest priority right now is improving our
-              <br />
-              front-line managers because that&apos;s the
-              <br />
-              <span className="text-[#6E3FCC]">single biggest lever</span> we have in improving our&nbsp;results.&rdquo;
+              {" "}front-line managers because that&apos;s the
+              {" "}<span className="text-[#6E3FCC]">single biggest lever</span> we have in improving our&nbsp;results.&rdquo;
             </blockquote>
             <p className="mt-8 text-2xl text-gray-500">
               &mdash; CEO, 1,200-employee company
@@ -525,10 +523,10 @@ export default function Home() {
                 return (
                 <div
                   key={impact.title}
-                  className="relative bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_1fr] items-center gap-5 md:gap-4 pl-12 pr-8 py-6"
+                  className="relative bg-white rounded-xl grid grid-cols-1 md:grid-cols-[1fr_1px_2fr] items-center gap-5 md:gap-4 pl-14 md:pl-12 pr-8 py-6"
                 >
                   <div
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full text-white text-sm font-bold flex items-center justify-center z-10"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 rounded-full text-white text-lg font-bold flex items-center justify-center z-10"
                     style={{ backgroundColor: circleColors[i] }}
                   >
                     {i + 1}
