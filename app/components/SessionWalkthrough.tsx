@@ -198,44 +198,6 @@ export default function SessionWalkthrough() {
           </div>
         </div>
 
-        {/* Why Campfire Feels Different */}
-        <div className="mt-12 text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Campfire Feels Different</h3>
-          <ul className="inline-block text-left text-base text-gray-600 space-y-2">
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Managers reflect before speaking.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Real challenges drive the learning.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Frameworks are introduced <em>after</em> tension is surfaced.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Practice happens live.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Obstacles are anticipated.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Action is defined before the hour ends.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#9D88ED] mt-0.5">&#10003;</span>
-              Progress is revisited next session.
-            </li>
-          </ul>
-          <h3 className="mt-10 text-2xl md:text-3xl font-bold text-gray-900">
-            This isn&apos;t content delivery. It&apos;s structured{" "}
-            <span className="text-[#6E3FCC]">behavior change</span>.
-          </h3>
-        </div>
       </div>
     </section>
   );

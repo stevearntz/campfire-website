@@ -425,7 +425,7 @@ export default function Home() {
                 >
                   {item.step}: {item.label}
                 </p>
-                <h3 className="text-[2.2rem] font-semibold text-white mb-3 leading-tight">
+                <h3 className="text-xl font-semibold text-white mb-3 leading-tight">
                   {item.titleJsx || item.title}
                 </h3>
                 <p className="text-base text-white/80 leading-snug">
@@ -550,12 +550,12 @@ export default function Home() {
       </section>
 
       {/* ==================== HOW IT SHOWS UP ==================== */}
-      <section className="relative pb-20 bg-white" style={{ paddingTop: "89px" }}>
+      <section className="relative pb-20 bg-white" style={{ paddingTop: "178px" }}>
         {/* Purple CTA banner — bridges between sections */}
         <div className="absolute left-0 right-0 -top-9 z-10">
           <div className="max-w-5xl mx-auto px-6">
-            <div className="rounded-xl px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg" style={{ background: "linear-gradient(to right, #6A3DC5, #896DF0)" }}>
-              <p className="text-white text-base md:text-xl text-center md:text-left">
+            <div className="rounded-xl px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg" style={{ background: "linear-gradient(to right, #6A3DC5, #896DF0)" }}>
+              <p className="text-white text-sm md:text-base text-center md:text-left">
                 <span className="font-bold">See it for yourself:</span>{" "}
                 Learn how Campfire can help your leaders build these habits and drive real results.
               </p>
@@ -573,12 +573,9 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Flexible formats that meet leaders <span className="text-[#6E3FCC]">where they are</span>
             </h2>
-            <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              Campfire offers flexible format options that work across different
-              teams, timelines, and goals.
-              <br />
-              Organizations can start small or go
-              broad, choosing the right mix for their people.
+            <p className="mt-4 text-xl text-gray-500 max-w-4xl mx-auto leading-relaxed">
+              Campfire offers flexible format options that work across different teams, timelines, and goals.
+              Organizations can start small or go broad, choosing the right mix for their people.
             </p>
           </div>
 
@@ -638,7 +635,7 @@ export default function Home() {
       <SessionWalkthrough />
 
       {/* ==================== WHY CAMPFIRE FEELS DIFFERENT ==================== */}
-      <section className="py-20 bg-[#F8F5FC]">
+      <section className="pt-8 pb-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
             Why Campfire <span className="text-[#6E3FCC]">feels different</span>
