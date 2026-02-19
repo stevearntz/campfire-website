@@ -98,10 +98,10 @@ export default function Home() {
             {/* Product screenshot */}
             <div className="flex-1 hidden md:block">
               <Image
-                src="/lead-change.webp"
-                alt="Campfire platform — Leading Others Through Change session with activities and 1-on-1 coaching"
-                width={1560}
-                height={1197}
+                src="/new-hero.webp"
+                alt="Campfire platform — content library with leadership sessions"
+                width={2985}
+                height={2623}
                 className="w-full h-auto rounded-lg"
                 priority
               />
