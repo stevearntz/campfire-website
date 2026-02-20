@@ -51,12 +51,12 @@ function godMode() {
 
 function barrelRoll() {
   showToast("DO A BARREL ROLL!", "#2563EB");
-  document.documentElement.style.transition = "transform 1s ease-in-out";
+  document.documentElement.style.transition = "transform 2s ease-in-out";
   document.documentElement.style.transform = "rotate(360deg)";
   setTimeout(() => {
     document.documentElement.style.transition = "";
     document.documentElement.style.transform = "";
-  }, 1100);
+  }, 2100);
   spawnEmbers();
 }
 
@@ -75,6 +75,30 @@ function bloodCode() {
   document.body.appendChild(flash);
   setTimeout(() => { flash.style.opacity = "0"; }, 50);
   setTimeout(() => flash.remove(), 800);
+  spawnEmbers();
+}
+
+function campfireEmojis() {
+  const container = document.createElement("div");
+  Object.assign(container.style, {
+    position: "fixed", inset: "0", pointerEvents: "none", zIndex: "99999", overflow: "hidden",
+  });
+  document.body.appendChild(container);
+  for (let i = 0; i < 40; i++) {
+    const emoji = document.createElement("div");
+    const x = Math.random() * 100;
+    const delay = Math.random() * 1.5;
+    const duration = 2 + Math.random() * 2.5;
+    const size = 20 + Math.random() * 20;
+    emoji.textContent = "🏕️🔥"[Math.random() < 0.5 ? 0 : 1] === "🏕" ? "🏕️" : "🔥";
+    Object.assign(emoji.style, {
+      position: "absolute", bottom: "-40px", left: `${x}%`,
+      fontSize: `${size}px`,
+      animation: `ember-rise ${duration}s ${delay}s ease-out forwards`,
+    });
+    container.appendChild(emoji);
+  }
+  setTimeout(() => container.remove(), 6000);
   spawnEmbers();
 }
 
@@ -119,6 +143,10 @@ const CHEATS: Cheat[] = [
   {
     sequence: ["n", "o", "c", "l", "i", "p"],
     action: noClip,
+  },
+  {
+    sequence: ["c", "a", "m", "p", "f", "i", "r", "e"],
+    action: campfireEmojis,
   },
 ];
 
