@@ -146,7 +146,7 @@ export default function CustomersPage() {
                 {/* Challenge */}
                 <div>
                   <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
-                    The Challenge
+                    The challenge
                   </h4>
                   <p className="text-gray-500 text-sm leading-relaxed">
                     {study.challenge}
@@ -156,7 +156,7 @@ export default function CustomersPage() {
                 {/* Solution */}
                 <div>
                   <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
-                    What We Did
+                    What we did
                   </h4>
                   <p className="text-gray-500 text-sm leading-relaxed">
                     {study.solution}

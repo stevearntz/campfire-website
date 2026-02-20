@@ -43,7 +43,7 @@ export default function ContentPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Grounded in Proven Leadership Frameworks
+              Grounded in proven leadership frameworks
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Our content draws from established leadership research and proven
@@ -55,19 +55,19 @@ export default function ContentPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Communication & Feedback",
+                title: "Communication & feedback",
                 desc: "We integrate proven approaches to feedback, coaching, and adaptive leadership to help managers communicate clearly and lead with confidence.",
                 tags: ["Radical Candor", "Coaching Models", "Situational Leadership"],
                 topColor: "#0122B4",
               },
               {
-                title: "Culture & Mindset",
+                title: "Culture & mindset",
                 desc: "Our content is informed by research on trust, learning, and human potential to help teams create environments where people can do their best work.",
                 tags: ["Psychological Safety", "Growth Mindset", "Strengths-Based Development"],
                 topColor: "#6A3DC5",
               },
               {
-                title: "Change & Team Performance",
+                title: "Change & team performance",
                 desc: "We apply established models of change and team dynamics to strengthen alignment, accountability, and execution across teams.",
                 tags: ["Change Management", "Team Effectiveness"],
                 topColor: "#A84AEB",
@@ -127,19 +127,19 @@ export default function ContentPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {[
                 {
-                  title: "Built for Conversation, Not Consumption",
+                  title: "Built for conversation, not consumption",
                   desc: "Learning happens through dialogue. Our content is designed to be discussed, reflected on, and applied together\u2014not passively consumed.",
                 },
                 {
-                  title: "Practical by Design",
+                  title: "Practical by design",
                   desc: "Every session translates proven frameworks into clear language, usable tools, and concrete leadership moments.",
                 },
                 {
-                  title: "Reinforced Over Time",
+                  title: "Reinforced over time",
                   desc: "Behavior change requires repetition. Skills are revisited and strengthened so growth compounds instead of fading.",
                 },
                 {
-                  title: "Relevant to Real Leadership",
+                  title: "Relevant to real leadership",
                   desc: "Content is built around the actual pressures leaders face\u2014so development feels useful, not theoretical.",
                 },
               ].map((item) => (
@@ -165,7 +165,7 @@ export default function ContentPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              More Than Content. A Structured System.
+              More than content. A structured system.
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Most leadership solutions deliver information. Campfire delivers a
@@ -178,7 +178,7 @@ export default function ContentPage() {
             {/* Traditional side */}
             <div className="bg-gray-200 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none p-8">
               <h3 className="font-bold text-gray-900 mb-6">
-                Traditional Leadership Content
+                Traditional leadership content
               </h3>
               <ul className="space-y-4 text-sm text-gray-600">
                 {[
@@ -256,18 +256,18 @@ export default function ContentPage() {
               {/* For All Employees */}
               <div className="rounded-2xl p-5" style={{ border: "1.5px solid #7A4DFF" }}>
                 <p className="text-xs font-bold tracking-wider uppercase mb-5" style={{ color: "#7A4DFF" }}>
-                  For All Employees:
+                  For all employees:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {[
-                    { title: "Team Alignment", sessions: 5, color: "#EB6593", colorLight: "#F595B6", desc: "Help people understand how their work supports broader outcomes, building clarity, focus, and shared direction." },
-                    { title: "Personal Wellness", sessions: 5, color: "#F0C321", colorLight: "#FFF564", desc: "Support individuals in navigating stress and burnout with practical ways to restore balance and sustain their energy." },
-                    { title: "Growth Mindset", sessions: 5, color: "#F07435", colorLight: "#FCA376", desc: "Help people strengthen confidence, lean into challenges, and take meaningful ownership of their growth." },
+                    { title: "Team alignment", sessions: 5, color: "#EB6593", colorLight: "#F595B6", desc: "Help people understand how their work supports broader outcomes, building clarity, focus, and shared direction." },
+                    { title: "Personal wellness", sessions: 5, color: "#F0C321", colorLight: "#FFF564", desc: "Support individuals in navigating stress and burnout with practical ways to restore balance and sustain their energy." },
+                    { title: "Growth mindset", sessions: 5, color: "#F07435", colorLight: "#FCA376", desc: "Help people strengthen confidence, lean into challenges, and take meaningful ownership of their growth." },
                     { title: "Collaboration", sessions: 5, color: "#DB4839", colorLight: "#F08C81", desc: "Give teams the tools to communicate openly, stay aligned, and work through friction with ease." },
-                    { title: "Change & Resilience", sessions: 6, color: "#88B830", colorLight: "#B4D170", desc: "Help individuals manage change fatigue, strengthen emotional resilience, and stay steady during periods of transition." },
-                    { title: "Strategic Execution", sessions: 5, color: "#F09321", colorLight: "#FAAD65", desc: "Help teams sharpen their priorities, strengthen strategic thinking, and deliver work with greater consistency and focus." },
-                    { title: "Values in Action", sessions: 5, color: "#30B859", colorLight: "#70D18E", desc: "Help people translate values into action so decisions, communication, and behaviors are aligned and intentional." },
-                    { title: "Belonging & Inclusion", sessions: 5, color: "#30C7C7", colorLight: "#74DEDE", desc: "Develop teams that create inclusive spaces where everyone feels recognized, supported, and able to contribute fully." },
+                    { title: "Change & resilience", sessions: 6, color: "#88B830", colorLight: "#B4D170", desc: "Help individuals manage change fatigue, strengthen emotional resilience, and stay steady during periods of transition." },
+                    { title: "Strategic execution", sessions: 5, color: "#F09321", colorLight: "#FAAD65", desc: "Help teams sharpen their priorities, strengthen strategic thinking, and deliver work with greater consistency and focus." },
+                    { title: "Values in action", sessions: 5, color: "#30B859", colorLight: "#70D18E", desc: "Help people translate values into action so decisions, communication, and behaviors are aligned and intentional." },
+                    { title: "Belonging & inclusion", sessions: 5, color: "#30C7C7", colorLight: "#74DEDE", desc: "Develop teams that create inclusive spaces where everyone feels recognized, supported, and able to contribute fully." },
                   ].map((program) => (
                     <div
                       key={program.title}
@@ -295,14 +295,14 @@ export default function ContentPage() {
               {/* For Leaders */}
               <div className="rounded-2xl p-5" style={{ border: "1.5px solid #B660E7" }}>
                 <p className="text-xs font-bold tracking-wider uppercase mb-5" style={{ color: "#B660E7" }}>
-                  For Leaders:
+                  For leaders:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    { title: "Leader Essentials", sessions: 7, color: "#30ABC7", colorLight: "#74CEDE", desc: "Equip new and emerging leaders with core skills, confidence, and support to lead effectively from day one." },
-                    { title: "Leader Accelerator", sessions: 7, color: "#644BFC", colorLight: "#8B78FF", desc: "Help leaders strengthen their ability to coach others, develop talent, and handle challenging situations effectively." },
-                    { title: "Leader Alignment", sessions: 5, color: "#328BDC", colorLight: "#5EB0FC", desc: "Help leaders translate strategy into clear priorities and consistent communication that keeps teams aligned and focused." },
-                    { title: "Lead Through Change", sessions: 6, color: "#8C4BFC", colorLight: "#AE78FF", desc: "Develop leaders who can steady their teams, reduce resistance, and keep people focused through uncertainty." },
+                    { title: "Leader essentials", sessions: 7, color: "#30ABC7", colorLight: "#74CEDE", desc: "Equip new and emerging leaders with core skills, confidence, and support to lead effectively from day one." },
+                    { title: "Leader accelerator", sessions: 7, color: "#644BFC", colorLight: "#8B78FF", desc: "Help leaders strengthen their ability to coach others, develop talent, and handle challenging situations effectively." },
+                    { title: "Leader alignment", sessions: 5, color: "#328BDC", colorLight: "#5EB0FC", desc: "Help leaders translate strategy into clear priorities and consistent communication that keeps teams aligned and focused." },
+                    { title: "Lead through change", sessions: 6, color: "#8C4BFC", colorLight: "#AE78FF", desc: "Develop leaders who can steady their teams, reduce resistance, and keep people focused through uncertainty." },
                   ].map((program) => (
                     <div
                       key={program.title}
@@ -353,7 +353,7 @@ export default function ContentPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Flexible Access to Fit Your Team
+              Flexible access to fit your team
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Whether you need focused development or a comprehensive program,
@@ -366,19 +366,19 @@ export default function ContentPage() {
             {[
               {
                 tag: "Quick Start",
-                title: "Individual Sessions",
+                title: "Individual sessions",
                 desc: "Run a single live workshop to address a specific leadership challenge when it matters most.",
                 featured: false,
               },
               {
                 tag: "Most Popular",
-                title: "Full Library",
+                title: "Full library",
                 desc: "Ongoing access to the complete catalog, allowing you to run sessions as needs arise across teams.",
                 featured: true,
               },
               {
                 tag: "Targeted",
-                title: "Focused Bundles",
+                title: "Focused bundles",
                 desc: "A curated series focused on a specific leadership need, delivered over time to drive meaningful progress.",
                 featured: false,
               },
@@ -420,7 +420,7 @@ export default function ContentPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Custom Options, Built for You
+              Custom options, built for you
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               We work with you to tailor content so development reflects your
@@ -432,12 +432,12 @@ export default function ContentPage() {
             {[
               {
                 option: "Option 1",
-                title: "Session Branding",
+                title: "Session branding",
                 desc: "Integrate your language, values, and internal frameworks into existing sessions\u2014with light content adjustments to reflect your context.",
               },
               {
                 option: "Option 2",
-                title: "Fully Custom",
+                title: "Fully custom",
                 desc: "Partner with us to design and build entirely new sessions aligned to your priorities, initiatives, or internal strategy.",
               },
             ].map((item) => (
@@ -471,7 +471,7 @@ export default function ContentPage() {
       >
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Explore What&apos;s Possible for Your Team
+            Explore what&apos;s possible for your team
           </h2>
           <p className="mt-4 text-lg text-white/70">
             Schedule a conversation to review the library, discuss your
