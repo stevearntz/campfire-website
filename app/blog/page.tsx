@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import SubscribeForm from "../components/SubscribeForm";
+import ClickableHeading from "../components/ClickableHeading";
 
 export const metadata: Metadata = {
   title: "Blog — By the Campfire",
@@ -74,7 +75,7 @@ export default async function BlogPage() {
               Blog
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-              By the Campfire
+              <ClickableHeading clicks={3}>By the Campfire</ClickableHeading>
             </h1>
             <p className="mt-4 text-lg text-white/70">
               Ideas, insights, and practical advice on leadership development,

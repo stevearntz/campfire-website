@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { spawnEmbers } from "@/app/lib/embers";
 
 export default function SecretScale() {
   const [clicks, setClicks] = useState(0);
@@ -16,6 +17,7 @@ export default function SecretScale() {
     if (next >= 5) {
       setShow(true);
       setClicks(0);
+      spawnEmbers();
       setTimeout(() => setShow(false), 3000);
     }
   }

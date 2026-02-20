@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import allSessions from "@/app/data/sessions.json";
+import { spawnEmbers } from "@/app/lib/embers";
 
 // Only show sessions that have their own illustration
 const sessions = allSessions.filter((s) => s.image !== null);
@@ -24,6 +25,23 @@ export default function ContentShowcase() {
   const [ghostMode, setGhostMode] = useState(false);
   const lastDotClicks = useRef<number[]>([]);
   const s = ghostMode ? GHOST_SESSION : sessions[active];
+
+  // Easter egg: type "fire" on keyboard to spawn embers
+  useEffect(() => {
+    const word = "fire";
+    let pos = 0;
+    function onKey(e: KeyboardEvent) {
+      if ((e.target as HTMLElement).tagName === "INPUT" || (e.target as HTMLElement).tagName === "TEXTAREA") return;
+      if (e.key === word[pos]) {
+        pos++;
+        if (pos === word.length) { spawnEmbers(); pos = 0; }
+      } else {
+        pos = e.key === word[0] ? 1 : 0;
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   // Auto-advance every AUTOPLAY_S seconds; resets on any slide change
   useEffect(() => {
@@ -215,6 +233,7 @@ export default function ContentShowcase() {
                                 lastDotClicks.current = [];
                                 setGhostMode(true);
                                 setPaused(true);
+                                spawnEmbers();
                                 setTimeout(() => { setGhostMode(false); setPaused(false); }, 5000);
                               }
                             }

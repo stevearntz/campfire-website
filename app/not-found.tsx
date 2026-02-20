@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { spawnEmbers } from "@/app/lib/embers";
 
 const MESSAGES = [
   "Sorry, that page went missing",
@@ -31,7 +32,11 @@ export default function NotFound() {
       />
 
       <h1
-        onClick={() => setMsgIndex((i) => (i + 1) % MESSAGES.length)}
+        onClick={() => {
+          const next = (msgIndex + 1) % MESSAGES.length;
+          setMsgIndex(next);
+          if (next === MESSAGES.length - 1) spawnEmbers();
+        }}
         className="font-extrabold tracking-tight mb-6 cursor-default select-none"
         style={{
           color: "#9D88ED",
