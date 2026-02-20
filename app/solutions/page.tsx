@@ -76,7 +76,7 @@ export default function SolutionsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "Equip New & Growing Managers",
+                title: "Equip new & growing managers",
                 desc: "Support new and recently promoted managers as they step into leadership with clarity and confidence. Help them move from individual contributor to trusted leader without losing momentum.",
                 tags: ["Identity shift", "Lead former peers", "Set expectations early"],
                 icon: (
@@ -86,7 +86,7 @@ export default function SolutionsPage() {
                 ),
               },
               {
-                title: "Lead Through Change & Uncertainty",
+                title: "Lead through change & uncertainty",
                 desc: "Empower leaders to guide their teams through ambiguity with steadiness and credibility. Strengthen their ability to communicate clearly and maintain trust during transition.",
                 tags: ["Communicate vision", "Rebuild trust", "Sustain focus"],
                 icon: (
@@ -96,7 +96,7 @@ export default function SolutionsPage() {
                 ),
               },
               {
-                title: "Strengthen Team Culture & Alignment",
+                title: "Strengthen team culture & alignment",
                 desc: "Build a shared foundation that reduces friction and improves how teams work together. Align expectations, decision-making, and accountability across the organization.",
                 tags: ["Psychological safety", "Clear priorities", "Shared accountability"],
                 icon: (
@@ -106,7 +106,7 @@ export default function SolutionsPage() {
                 ),
               },
               {
-                title: "Build Everyday Manager Skills",
+                title: "Build everyday manager skills",
                 desc: "Strengthen the core habits that shape how managers show up each day. Turn routine leadership moments into opportunities for growth and performance.",
                 tags: ["Effective 1:1s", "Coaching for development", "Performance feedback"],
                 icon: (
@@ -172,24 +172,24 @@ export default function SolutionsPage() {
           <div className="space-y-6 max-w-4xl mx-auto">
             {[
               {
-                title: "Self-paced or E-learning",
-                campfireTitle: "Built for Real Conversation",
+                title: "Self-paced or e-learning",
+                campfireTitle: "Built for real conversation",
                 problem:
                   "People don't change behavior by watching videos. Without real conversation, reflection, and reinforcement, most learning fades quickly and never shows up in daily leadership moments.",
                 solution:
                   "Campfire pairs practical content with live, facilitated conversation and reinforcement over time — so skills are discussed, practiced, and applied in real leadership moments.",
               },
               {
-                title: "Executive Coaching",
-                campfireTitle: "Leadership Development That Scales",
+                title: "Executive coaching",
+                campfireTitle: "Leadership development that scales",
                 problem:
                   "Coaching is powerful — but expensive and limited to a small group. It rarely creates shared language or consistent leadership habits across an organization.",
                 solution:
                   "Campfire builds capability across teams, not just individuals, creating consistent leadership practices that scale beyond a few senior leaders.",
               },
               {
-                title: "Building In-House",
-                campfireTitle: "Ready to Run, Without the Lift",
+                title: "Building in-house",
+                campfireTitle: "Ready to run, without the lift",
                 problem:
                   "Building programs internally takes time, coordination, and expertise most lean teams don't have. Efforts often stall, lose momentum, or become inconsistent.",
                 solution:
