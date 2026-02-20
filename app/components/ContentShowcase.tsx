@@ -51,7 +51,7 @@ export default function ContentShowcase() {
           style={{ backgroundColor: "#403955", paddingTop: "3rem", paddingBottom: "3rem" }}
         >
           <p className="text-sm font-semibold tracking-wider uppercase mb-4" style={{ color: "#9D88ED" }}>
-            All Campfire Sessions
+            All Campfire sessions
           </p>
           <h3 className="text-3xl md:text-[2.2rem] font-bold text-white leading-snug mb-4" style={{ maxWidth: "340px" }}>
             {s.name}

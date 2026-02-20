@@ -253,17 +253,17 @@ export default function SolutionsPage() {
             {[
               {
                 step: "1",
-                title: "Identify Your Priority",
+                title: "Identify your priority",
                 desc: "Choose the leadership challenge that matters most right now.",
               },
               {
                 step: "2",
-                title: "Design Your Approach",
+                title: "Design your approach",
                 desc: "Select the sessions and format that fit your goals, culture, and timeline.",
               },
               {
                 step: "3",
-                title: "Launch and Reinforce",
+                title: "Launch and reinforce",
                 desc: "Deliver live experiences and reinforce skills over time so growth compounds.",
               },
             ].map((item) => (

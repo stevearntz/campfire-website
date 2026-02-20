@@ -207,19 +207,19 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
             {[
               {
-                title: "Adaptable Content",
+                title: "Adaptable content",
                 desc: "Choose and shape sessions around the leadership challenges your teams are facing right now.",
                 icon: "/kite.webp",
                 iconAlt: "Kite icon representing adaptable content",
               },
               {
-                title: "Flexible Facilitation",
+                title: "Flexible facilitation",
                 desc: "Deliver sessions with our facilitators or your own leaders\u2014whatever works best for your teams.",
                 icon: "/phoenix.webp",
                 iconAlt: "Phoenix icon representing flexible facilitation",
               },
               {
-                title: "Program Support",
+                title: "Program support",
                 desc: "We handle the logistics behind the scenes so programs fit into your workflow without extra lift.",
                 icon: "/plant.webp",
                 iconAlt: "Plant icon representing program support",
