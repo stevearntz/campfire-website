@@ -4,7 +4,6 @@ import TestimonialCarousel from "./components/TestimonialCarousel";
 import ProductShowcase from "./components/ProductShowcase";
 import SessionWalkthrough from "./components/SessionWalkthrough";
 import PlatformIllustration from "./components/PlatformIllustration";
-import KonamiCode from "./components/KonamiCode";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -47,7 +46,6 @@ const jsonLd = {
 export default function Home() {
   return (
     <main>
-      <KonamiCode />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

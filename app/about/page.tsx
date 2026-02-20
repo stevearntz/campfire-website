@@ -17,6 +17,7 @@ export default function AboutPage() {
   return (
     <main>
       <ScrollEmbers />
+      <style>{`.hidden-egg{color:transparent;font-size:0.7rem;user-select:all}.hidden-egg::selection{color:#6E3FCC;background:#F8F5FC}`}</style>
       {/* ==================== HERO ==================== */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -36,6 +37,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">You found the seam. Keep pulling.</p></div>
 
       {/* ==================== WHO WE ARE ==================== */}
       <section className="py-20 bg-[#F8F5FC]">
@@ -62,6 +64,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+      <div className="bg-white py-1 text-center"><p className="hidden-egg">Most people stop reading here.</p></div>
 
       {/* ==================== WHAT WE DO ==================== */}
       <section className="py-20 bg-white">
@@ -190,6 +193,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">Okay, you&apos;re definitely not a bot.</p></div>
 
       {/* ==================== WHAT IT FEELS LIKE ==================== */}
       <section className="py-20 bg-[#F8F5FC]">
@@ -312,6 +316,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">Still here? We respect the hustle.</p></div>
 
       {/* ==================== WHY WE EXIST ==================== */}
       <section className="relative overflow-hidden">
@@ -369,6 +374,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <div className="bg-white py-1 text-center"><p className="hidden-egg">Fun fact: this page has seven hidden messages.</p></div>
 
       {/* ==================== BELIEFS ==================== */}
       <section className="py-20 bg-white">
@@ -435,12 +441,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Hidden message — visible only when text is selected (Cmd+A) */}
-      <div className="bg-white py-1 text-center">
-        <p style={{ color: "white", fontSize: "0.7rem" }}>
-          You&apos;re thorough. We like that.
-        </p>
-      </div>
+      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">You&apos;re thorough. We like that.</p></div>
 
       {/* ==================== OUR PEOPLE (TODO: add real names, bios, photos) ====================
       <section className="py-20 bg-[#F8F5FC]">
@@ -670,6 +671,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">You made it. Welcome to the inner circle.</p></div>
 
       {/* ==================== CLOSING CTA ==================== */}
       <section className="relative overflow-hidden">

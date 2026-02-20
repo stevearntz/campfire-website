@@ -14,7 +14,7 @@ export default function PlatformIllustration() {
 
   return (
     <svg
-      viewBox="0 0 1310 533"
+      viewBox="-77 0 1387 533"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-auto"
       role="img"
@@ -184,7 +184,7 @@ export default function PlatformIllustration() {
 
 
       {/* ===== RIGHT: CUSTOM PROGRAM — x=1027, 283w x 417h, vertically centered ===== */}
-      <image href="/custom-program.png" x="1027" y="58" width="283" height="417" preserveAspectRatio="xMidYMid meet" />
+      <image href="/custom-program.png" x="1000" y="58" width="283" height="417" preserveAspectRatio="xMidYMid meet" />
     </svg>
   );
 }

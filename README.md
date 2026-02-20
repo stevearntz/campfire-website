@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Campfire Website
+
+Marketing website for [Campfire](https://getcampfire.com) — a leadership development platform with 50+ live workshops, scalable facilitation, and program support for growing companies.
+
+## Tech Stack
+
+- **Next.js 16** (App Router) with **React 19**, **TypeScript 5**, **Tailwind CSS 4**
+- **Font**: League Spartan via Google Fonts (`--font-spartan`)
+- **Hosting**: Vercel (auto-deploys on push)
+- **DNS**: Cloudflare
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Other Commands
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build      # Production build
+npm run start      # Serve production build
+npm run lint       # Run ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+Create `.env.local` with:
 
-To learn more about Next.js, take a look at the following resources:
+```
+HUBSPOT_ACCESS_TOKEN=       # HubSpot Private App token
+SLACK_CONTACT_WEBHOOK_URL=  # Slack Incoming Webhook for contact form notifications
+BEEHIIV_API_KEY=            # Beehiiv newsletter API key
+BEEHIIV_PUBLICATION_ID=     # Beehiiv publication ID
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Pages
 
-## Deploy on Vercel
+| Page | Route | Description |
+|------|-------|-------------|
+| Homepage | `/` | Hero with animated platform illustration, outcomes, testimonials, product showcase |
+| Solutions | `/solutions` | Platform capabilities and use cases |
+| Content | `/content` | Session catalog, bundles, and framework details |
+| About | `/about` | Team and company story |
+| Contact | `/contact` | Contact form with progressive capture + Calendly booking |
+| Blog | `/blog` | Dynamic routes via Beehiiv API |
+| Customers | `/customers` | Hidden (ready to re-enable in Navbar/Footer) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Key Components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Component | Description |
+|-----------|-------------|
+| `PlatformIllustration` | SVG composition with 5 product images and animated flow streams |
+| `SessionWalkthrough` | 8-step narrative timeline with activity details |
+| `TestimonialCarousel` | Horizontal carousel with peek cards and navigation |
+| `ContentShowcase` | Session carousel with autoplay (33 illustrated sessions) |
+| `ProductShowcase` | 3-slide product demo carousel (Content, Experience, Insights) |
+| `Navbar` | Sticky nav with Get Demo (Calendly) + Log In buttons |
+| `Footer` | Platform/Company/Get Started columns + newsletter signup |
+
+### Contact Form Hub (`app/api/contact/route.ts`)
+
+POST route that fans out with `Promise.allSettled`:
+- **Always**: Upsert contact in HubSpot (search by email, create or update)
+- **Full submit only**: Send Slack notification via webhook
+- **Partial captures**: Progressive capture hook auto-saves on page leave / 30s inactivity
+
+#### Spam Protection
+
+Three layers, all invisible to users:
+1. **Honeypot field** — hidden input bots auto-fill; server silently discards
+2. **Time-based check** — rejects submissions under 3 seconds
+3. **Field length limits** — names max 100 chars, email 254, message 5000
+
+### Integrations
+
+- **HubSpot** — Free CRM, contact upsert via Private App token
+- **Slack** — Contact form notifications via Incoming Webhook (Block Kit)
+- **Calendly** — Direct booking at `https://calendly.com/getcampfire/`
+- **Beehiiv** — Blog API for listing and individual post pages
+
+### Newsletter (`app/api/subscribe/route.ts`)
+
+Beehiiv API integration for newsletter signups from the footer.
+
+## Design System
+
+| Token | Value |
+|-------|-------|
+| Primary purple | `#6E3FCC` |
+| Accent purple | `#9D88ED` |
+| Dark background | `#1C1334` |
+| Light section bg | `#F8F5FC` (alternates with `bg-white`) |
+| Card background | `#F7F6F7` |
+| Pink accent | `#EE80DD` |
+
+### Patterns
+
+- **Card left borders**: Gradient via absolute-positioned `w-1` div
+- **CTA banners**: Gradient backgrounds, straddle section boundaries with `translate-y-1/2`
+- **Hero backgrounds**: Transparent topo textures over CSS gradients
+- **Logo sizing**: Optical per-logo heights to match wordmark text size
+
+## Deploy Workflow
+
+1. Work on `development` branch — Vercel auto-deploys previews
+2. Push to prod:
+   ```bash
+   gh pr create --base main --head development
+   gh pr merge <number> --merge
+   ```
+3. Vercel auto-deploys `main` to `getcampfire.com`
+
+## Data
+
+- **Session catalog**: `app/data/sessions.json` — 39 entries with name, description, and image (6 lack illustrations, filtered from carousel)
+- **Blog content**: Fetched from Beehiiv API at build time and on-demand
+
+## Git Conventions
+
+- Commit messages: descriptive, end with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
+- PRs from `development` → `main`
