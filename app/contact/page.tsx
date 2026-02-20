@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, useRef, FormEvent } from "react";
 import Image from "next/image";
 import { useProgressiveCapture } from "@/app/hooks/useProgressiveCapture";
+import { spawnEmbers } from "@/app/lib/embers";
 
 export default function ContactPage() {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +18,15 @@ export default function ContactPage() {
   const submitted = status === "success";
   const fields = { firstName, lastName, email, message };
   const smoresMode = message.toLowerCase().includes("s'mores");
+  const smoresFired = useRef(false);
+
+  useEffect(() => {
+    if (smoresMode && !smoresFired.current) {
+      smoresFired.current = true;
+      spawnEmbers();
+    }
+    if (!smoresMode) smoresFired.current = false;
+  }, [smoresMode]);
 
   useProgressiveCapture(fields, submitted);
 

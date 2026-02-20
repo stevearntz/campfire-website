@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollEmbers from "../components/ScrollEmbers";
 
 export const metadata: Metadata = {
   title: "About Campfire — Our Story and Mission",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
+      <ScrollEmbers />
       {/* ==================== HERO ==================== */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
