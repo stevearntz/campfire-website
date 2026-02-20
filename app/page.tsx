@@ -134,7 +134,7 @@ export default function Home() {
       <section className="pt-32 pb-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 whitespace-nowrap">
               Leadership development should <span className="text-[#6E3FCC]">fit your reality</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
