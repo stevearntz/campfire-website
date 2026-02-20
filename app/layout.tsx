@@ -7,6 +7,7 @@ import CrispChat from "./components/CrispChat";
 import Clarity from "./components/Clarity";
 import RB2B from "./components/RB2B";
 import ConsoleGreeting from "./components/ConsoleGreeting";
+import CheatCodes from "./components/CheatCodes";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
@@ -50,6 +51,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spartan.variable} antialiased font-sans`}>
+        <div id="easter-egg" hidden dangerouslySetInnerHTML={{ __html: `<!--
+
+        (  )
+       (    )
+        (  )
+       _|__|_
+      |      |
+      |______|
+
+   Warming up the logs...
+   Want to build something with us?
+   getcampfire.com/contact
+
+-->` }} />
         <Navbar />
         {children}
         <Footer />
@@ -57,6 +72,7 @@ export default function RootLayout({
         <Clarity />
         <RB2B />
         <ConsoleGreeting />
+        <CheatCodes />
       </body>
     </html>
   );
