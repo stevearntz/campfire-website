@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Explore Campfire",
     description:
       "Leadership development that is built to work with your brand, frameworks, and culture.",
-    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Explore Campfire" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Explore Campfire" }],
   },
   twitter: {
     card: "summary_large_image",
