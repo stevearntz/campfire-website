@@ -32,8 +32,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Campfire",
+    title: "Explore Campfire",
     description:
-      "Flexible leadership development designed for modern, growing teams. Scalable workshops and programs that create direction, grow skills, and align your people.",
+      "Leadership development that is built to work with your brand, frameworks, and culture.",
     images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Explore Campfire" }],
   },
   twitter: {
