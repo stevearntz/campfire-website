@@ -433,6 +433,13 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Hidden message — visible only when text is selected (Cmd+A) */}
+      <div className="bg-white py-1 text-center">
+        <p style={{ color: "white", fontSize: "0.7rem" }}>
+          You&apos;re thorough. We like that.
+        </p>
+      </div>
+
       {/* ==================== OUR PEOPLE (TODO: add real names, bios, photos) ====================
       <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">

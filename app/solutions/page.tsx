@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SecretScale from "../components/SecretScale";
 
 export const metadata: Metadata = {
   title: "Solutions — Scalable Leadership Programs",
@@ -49,7 +50,7 @@ export default function SolutionsPage() {
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
               Campfire supports the leadership moments your managers face every
-              day, with solutions that adapt to your culture and scale to your
+              day, with solutions that adapt to your culture and <SecretScale /> to your
               entire organization.
             </p>
           </div>

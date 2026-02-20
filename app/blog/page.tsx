@@ -215,6 +215,12 @@ export default async function BlogPage() {
           </div>
         </div>
       </section>
+      <span
+        dangerouslySetInnerHTML={{
+          __html:
+            "<!-- If you're reading this, you're our kind of person. getcampfire.com/contact -->",
+        }}
+      />
     </main>
   );
 }

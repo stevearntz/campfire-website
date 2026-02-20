@@ -16,6 +16,7 @@ export default function ContactPage() {
 
   const submitted = status === "success";
   const fields = { firstName, lastName, email, message };
+  const smoresMode = message.toLowerCase().includes("s'mores");
 
   useProgressiveCapture(fields, submitted);
 
@@ -288,9 +289,16 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide disabled:opacity-70"
+                      className="w-full py-3.5 text-sm font-semibold leading-none text-white rounded-lg transition-colors uppercase tracking-wide disabled:opacity-70"
+                      style={{
+                        backgroundColor: smoresMode ? "#D2691E" : "#6E3FCC",
+                      }}
                     >
-                      {status === "loading" ? "Sending..." : "Connect With Us"}
+                      {status === "loading"
+                        ? "Sending..."
+                        : smoresMode
+                          ? "Send S'mores"
+                          : "Connect With Us"}
                     </button>
 
                     {status === "error" && (
