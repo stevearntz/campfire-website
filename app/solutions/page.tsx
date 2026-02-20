@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SecretScale from "../components/SecretScale";
+import TypeTrigger from "../components/TypeTrigger";
 
 export const metadata: Metadata = {
   title: "Solutions — Scalable Leadership Programs",
@@ -34,6 +35,7 @@ const jsonLd = {
 export default function SolutionsPage() {
   return (
     <main>
+      <TypeTrigger word="solve" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

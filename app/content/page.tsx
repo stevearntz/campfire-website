@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ContentShowcase from "../components/ContentShowcase";
+import TypeTrigger from "../components/TypeTrigger";
 
 export const metadata: Metadata = {
   title: "Content Library — 40+ Leadership Topics",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function ContentPage() {
   return (
     <main>
+      <TypeTrigger word="fire" />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
