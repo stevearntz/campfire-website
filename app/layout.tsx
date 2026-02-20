@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Campfire",
     title: "Explore Campfire",
     description:
-      "Leadership development that is built to work with your brand, frameworks, and culture.",
+      "Everything you expect from leadership development \u2014 made flexible to fit your brand, your frameworks, and your culture. Designed for modern teams.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Explore Campfire" }],
   },
   twitter: {
