@@ -19,6 +19,7 @@ export default function ContactPage() {
   const fields = { firstName, lastName, email, message };
   const smoresMode = message.toLowerCase().includes("s'mores");
   const smoresFired = useRef(false);
+  const photoClicks = useRef<number[]>([]);
 
   useEffect(() => {
     if (smoresMode && !smoresFired.current) {
@@ -170,7 +171,16 @@ export default function ContactPage() {
                     alt="Liz Berry"
                     width={80}
                     height={80}
-                    className="w-12 h-12 rounded-full object-cover shrink-0"
+                    className="w-12 h-12 rounded-full object-cover shrink-0 cursor-default"
+                    onClick={() => {
+                      const now = Date.now();
+                      photoClicks.current.push(now);
+                      photoClicks.current = photoClicks.current.filter((t) => now - t < 2000);
+                      if (photoClicks.current.length >= 5) {
+                        photoClicks.current = [];
+                        spawnEmbers();
+                      }
+                    }}
                   />
                   <div>
                     <p className="text-sm text-gray-500 leading-relaxed italic">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { spawnEmbers } from "@/app/lib/embers";
@@ -14,6 +14,7 @@ const MESSAGES = [
 
 export default function NotFound() {
   const [msgIndex, setMsgIndex] = useState(0);
+  const logoClicks = useRef<number[]>([]);
 
   return (
     <main
@@ -28,7 +29,16 @@ export default function NotFound() {
         alt="Campfire"
         width={160}
         height={40}
-        className="mb-12 brightness-0 invert"
+        className="mb-12 brightness-0 invert cursor-default"
+        onClick={() => {
+          const now = Date.now();
+          logoClicks.current.push(now);
+          logoClicks.current = logoClicks.current.filter((t) => now - t < 2000);
+          if (logoClicks.current.length >= 5) {
+            logoClicks.current = [];
+            spawnEmbers();
+          }
+        }}
       />
 
       <h1
