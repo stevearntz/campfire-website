@@ -204,6 +204,14 @@ export default function Home() {
             </p>
           </div>
 
+          <style>{`
+            @keyframes wiggle{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+            @keyframes flap{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-6px) scaleY(1.05)}}
+            @keyframes sway{0%,100%{transform:rotate(0deg) scaleY(1)}33%{transform:rotate(-5deg) scaleY(1.03)}66%{transform:rotate(5deg) scaleY(1.03)}}
+            .icon-wiggle:hover img{animation:wiggle 0.5s ease-in-out infinite}
+            .icon-flap:hover img{animation:flap 0.4s ease-in-out infinite}
+            .icon-sway:hover img{animation:sway 0.8s ease-in-out infinite;transform-origin:bottom center}
+          `}</style>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
             {[
               {
@@ -211,25 +219,28 @@ export default function Home() {
                 desc: "Choose and shape sessions around the leadership challenges your teams are facing right now.",
                 icon: "/kite.webp",
                 iconAlt: "Kite icon representing adaptable content",
+                hoverClass: "icon-wiggle",
               },
               {
                 title: "Flexible facilitation",
                 desc: "Deliver sessions with our facilitators or your own leaders\u2014whatever works best for your teams.",
                 icon: "/phoenix.webp",
                 iconAlt: "Phoenix icon representing flexible facilitation",
+                hoverClass: "icon-flap",
               },
               {
                 title: "Program support",
                 desc: "We handle the logistics behind the scenes so programs fit into your workflow without extra lift.",
                 icon: "/plant.webp",
                 iconAlt: "Plant icon representing program support",
+                hoverClass: "icon-sway",
               },
             ].map((card) => (
               <div
                 key={card.title}
                 className="bg-white rounded-2xl p-8 border border-gray-100"
               >
-                <div className="mb-5">
+                <div className={`mb-5 ${card.hoverClass}`}>
                   <Image
                     src={card.icon}
                     alt={card.iconAlt}
