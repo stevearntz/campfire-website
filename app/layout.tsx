@@ -23,7 +23,7 @@ const baseUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Campfire — Build Better Leaders, Your Way, at Scale",
+    default: "Campfire - Learn More",
     template: "%s | Campfire",
   },
   description:
