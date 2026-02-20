@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import allSessions from "@/app/data/sessions.json";
 
@@ -11,11 +11,19 @@ const AUTOPLAY_S = 7;
 const RING_R = 16;
 const RING_C = 2 * Math.PI * RING_R;
 
+const GHOST_SESSION = {
+  name: "The Art of Finding Easter Eggs",
+  desc: "A masterclass in curiosity, persistence, and clicking things you probably shouldn\u2019t. Congratulations \u2014 you found it. Now go lead something.",
+  image: null as string | null,
+};
+
 export default function ContentShowcase() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [tick, setTick] = useState(0);
-  const s = sessions[active];
+  const [ghostMode, setGhostMode] = useState(false);
+  const lastDotClicks = useRef<number[]>([]);
+  const s = ghostMode ? GHOST_SESSION : sessions[active];
 
   // Auto-advance every AUTOPLAY_S seconds; resets on any slide change
   useEffect(() => {
@@ -59,6 +67,14 @@ export default function ContentShowcase() {
         >
           {/* Image area */}
           <div className="relative flex-1 p-6 md:px-8 pt-8 pb-4">
+            {ghostMode && (
+              <div className="absolute inset-0 z-20 flex items-center justify-center rounded-lg m-6 md:mx-8"
+                style={{ background: "linear-gradient(135deg, #6E3FCC 0%, #EE81DD 100%)" }}>
+                <p className="text-white/80 text-lg font-medium px-10 text-center max-w-md">
+                  {GHOST_SESSION.desc}
+                </p>
+              </div>
+            )}
             <div className="grid w-full">
               {sessions.map((session, i) => (
                 <div
@@ -189,7 +205,20 @@ export default function ContentShowcase() {
                       return (
                         <button
                           key={i}
-                          onClick={() => setActive(i)}
+                          onClick={() => {
+                            setActive(i);
+                            if (i === sessions.length - 1) {
+                              const now = Date.now();
+                              lastDotClicks.current.push(now);
+                              lastDotClicks.current = lastDotClicks.current.filter((t) => now - t < 1000);
+                              if (lastDotClicks.current.length >= 3) {
+                                lastDotClicks.current = [];
+                                setGhostMode(true);
+                                setPaused(true);
+                                setTimeout(() => { setGhostMode(false); setPaused(false); }, 5000);
+                              }
+                            }
+                          }}
                           className="w-2.5 h-2.5 rounded-full transition-all cursor-pointer"
                           style={{
                             backgroundColor: i === active ? "#9D88ED" : "rgba(157, 136, 237, 0.3)",

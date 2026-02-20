@@ -1,7 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+const MESSAGES = [
+  "Sorry, that page went missing",
+  "Okay, now you\u2019re just poking around",
+  "Seriously, there\u2019s nothing here",
+  "\u2026fine, here\u2019s a \uD83D\uDD25",
+];
+
 export default function NotFound() {
+  const [msgIndex, setMsgIndex] = useState(0);
+
   return (
     <main
       className="flex flex-col items-center justify-center text-center px-6"
@@ -19,14 +31,16 @@ export default function NotFound() {
       />
 
       <h1
-        className="font-extrabold tracking-tight mb-6"
+        onClick={() => setMsgIndex((i) => (i + 1) % MESSAGES.length)}
+        className="font-extrabold tracking-tight mb-6 cursor-default select-none"
         style={{
           color: "#9D88ED",
           fontSize: "clamp(2rem, 5vw, 3.5rem)",
           letterSpacing: "-1px",
+          transition: "opacity 0.2s",
         }}
       >
-        Sorry, that page went missing
+        {MESSAGES[msgIndex]}
       </h1>
 
       <p

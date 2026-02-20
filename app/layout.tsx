@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import CrispChat from "./components/CrispChat";
 import Clarity from "./components/Clarity";
 import RB2B from "./components/RB2B";
+import ConsoleGreeting from "./components/ConsoleGreeting";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Campfire",
     description:
       "Flexible leadership development designed for modern, growing teams. Scalable workshops and programs that create direction, grow skills, and align your people.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Campfire — Build Better Leaders, Your Way, at Scale" }],
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Explore Campfire" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -54,6 +55,7 @@ export default function RootLayout({
         <CrispChat />
         <Clarity />
         <RB2B />
+        <ConsoleGreeting />
       </body>
     </html>
   );
