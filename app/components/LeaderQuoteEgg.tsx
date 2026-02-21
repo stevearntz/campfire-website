@@ -32,6 +32,7 @@ export default function LeaderQuoteEgg() {
   const [visible, setVisible] = useState(false);
   const [fading, setFading] = useState(false);
   const [quote, setQuote] = useState(quotes[0]);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     if (!visible) return;
@@ -41,19 +42,25 @@ export default function LeaderQuoteEgg() {
       setFading(false);
     }, 10000);
     return () => { clearTimeout(fadeTimer); clearTimeout(hideTimer); };
-  }, [visible]);
+  }, [visible, tick]);
+
+  const pickRandom = () => {
+    let next;
+    do { next = quotes[Math.floor(Math.random() * quotes.length)]; } while (next === quote && quotes.length > 1);
+    return next;
+  };
 
   const handleClick = () => {
-    if (visible) return;
-    setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+    setQuote(pickRandom());
     setVisible(true);
     setFading(false);
+    setTick((t) => t + 1);
   };
 
   return (
     <div
       className="hidden sm:block sm:col-span-2 rounded-xl cursor-pointer"
-      style={{ minHeight: "80px" }}
+      style={{ height: "120px" }}
       onClick={handleClick}
     >
       {visible && (
