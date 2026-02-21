@@ -138,7 +138,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 whitespace-nowrap">
-              Leadership development should <span className="text-[#6E3FCC]">fit your reality</span>
+              Leadership development must <span className="text-[#6E3FCC]">fit your reality</span>
             </h2>
             <p className="mt-5 text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
               No two organizations share the same culture, leadership challenges, or moments of growth.
