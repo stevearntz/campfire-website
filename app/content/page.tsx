@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ContentShowcase from "../components/ContentShowcase";
 import TypeTrigger from "../components/TypeTrigger";
+import TypeRacer from "../components/TypeRacer";
 import EasterEggCard from "../components/EasterEggCard";
 import LeaderQuoteEgg from "../components/LeaderQuoteEgg";
 import BiteSizedEgg from "../components/BiteSizedEgg";
@@ -12,9 +13,17 @@ export const metadata: Metadata = {
   description:
     "Research-backed content for your leaders' unique challenges — designed to move beyond awareness and create lasting behavior change. 50+ live workshops available.",
   openGraph: {
-    title: "Content Library — 40+ Leadership Topics",
+    title: "Content Library — 40+ Leadership Topics | Campfire",
     description:
-      "Research-backed leadership development content designed to create lasting behavior change.",
+      "50+ live, discussion-based workshops grounded in proven leadership frameworks. Practical content designed to create lasting behavior change across your team.",
+    images: [{ url: "/content-og.png", width: 1200, height: 630, alt: "Campfire Content Library — 40+ Leadership Topics" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Content Library — 40+ Leadership Topics | Campfire",
+    description:
+      "50+ live, discussion-based workshops grounded in proven leadership frameworks. Practical content designed to create lasting behavior change across your team.",
+    images: ["/content-og.png"],
   },
 };
 
@@ -22,6 +31,7 @@ export default function ContentPage() {
   return (
     <main>
       <TypeTrigger word="fire" />
+      <TypeRacer />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -29,10 +39,10 @@ export default function ContentPage() {
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               Content &amp; Frameworks
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight" data-racer="0" data-racer-dark="">
               Content for Every Leadership Challenge
             </h1>
-            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto" data-racer="1" data-racer-dark="">
               Research-backed content for your leaders&apos; unique
               challenges&mdash;designed to move beyond awareness and create
               lasting behavior change.
@@ -45,10 +55,10 @@ export default function ContentPage() {
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900" data-racer="2">
               Grounded in proven leadership frameworks
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
+            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto" data-racer="3">
               Our content draws from established leadership research and proven
               models&mdash;translated into practical development leaders can
               apply immediately.
