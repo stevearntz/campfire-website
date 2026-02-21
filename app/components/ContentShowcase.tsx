@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import allSessions from "@/app/data/sessions.json";
 import { spawnEmbers } from "@/app/lib/embers";
@@ -23,7 +23,6 @@ export default function ContentShowcase() {
   const [paused, setPaused] = useState(false);
   const [tick, setTick] = useState(0);
   const [ghostMode, setGhostMode] = useState(false);
-  const lastDotClicks = useRef<number[]>([]);
   const s = ghostMode ? GHOST_SESSION : sessions[active];
 
   // Auto-advance every AUTOPLAY_S seconds; resets on any slide change
@@ -42,7 +41,7 @@ export default function ContentShowcase() {
 
   return (
     <>
-    <style>{`@keyframes ring-fill{from{stroke-dashoffset:${RING_C}}to{stroke-dashoffset:0}}`}</style>
+    <style>{`@keyframes ring-fill{from{stroke-dashoffset:${RING_C}}to{stroke-dashoffset:0}}@keyframes dot-pulse{0%,80%,100%{opacity:0.3;transform:scale(1)}90%{opacity:0.8;transform:scale(1.5)}}`}</style>
     <div className="rounded-2xl overflow-hidden border border-white/10">
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_2fr]">
         {/* Left: Text */}
@@ -209,21 +208,16 @@ export default function ContentShowcase() {
                           onClick={() => {
                             setActive(i);
                             if (i === sessions.length - 1) {
-                              const now = Date.now();
-                              lastDotClicks.current.push(now);
-                              lastDotClicks.current = lastDotClicks.current.filter((t) => now - t < 1000);
-                              if (lastDotClicks.current.length >= 3) {
-                                lastDotClicks.current = [];
-                                setGhostMode(true);
-                                setPaused(true);
-                                spawnEmbers();
-                                setTimeout(() => { setGhostMode(false); setPaused(false); }, 5000);
-                              }
+                              setGhostMode(true);
+                              setPaused(true);
+                              spawnEmbers();
+                              setTimeout(() => { setGhostMode(false); setPaused(false); }, 5000);
                             }
                           }}
                           className="w-2.5 h-2.5 rounded-full transition-all cursor-pointer"
                           style={{
                             backgroundColor: i === active ? "#9D88ED" : "rgba(157, 136, 237, 0.3)",
+                            ...(i === sessions.length - 1 && i !== active ? { animation: "dot-pulse 5s ease-in-out infinite" } : {}),
                           }}
                           aria-label={`Session ${i + 1}`}
                         />
