@@ -8,6 +8,7 @@ import Clarity from "./components/Clarity";
 import RB2B from "./components/RB2B";
 import ConsoleGreeting from "./components/ConsoleGreeting";
 import CheatCodes from "./components/CheatCodes";
+import AsteroidsEgg from "./components/AsteroidsEgg";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
@@ -73,6 +74,7 @@ export default function RootLayout({
         <RB2B />
         <ConsoleGreeting />
         <CheatCodes />
+        <AsteroidsEgg />
       </body>
     </html>
   );

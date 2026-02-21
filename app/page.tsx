@@ -7,6 +7,7 @@ import PlatformIllustration from "./components/PlatformIllustration";
 import MarshaEgg from "./components/MarshaEgg";
 import AirplaneEgg from "./components/AirplaneEgg";
 import RhythmEgg from "./components/RhythmEgg";
+import PongEgg from "./components/PongEgg";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -53,6 +54,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <PongEgg />
       {/* ==================== HERO ==================== */}
       <section
         className="relative overflow-hidden"
