@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SecretScale from "../components/SecretScale";
 import TypeTrigger from "../components/TypeTrigger";
+import StarfieldEgg from "../components/StarfieldEgg";
+import SunriseEgg from "../components/SunriseEgg";
+import RocketStepEgg from "../components/RocketStepEgg";
+import CampfireFireEgg from "../components/CampfireFireEgg";
 
 export const metadata: Metadata = {
   title: "Solutions — Scalable Leadership Programs",
@@ -36,6 +40,7 @@ export default function SolutionsPage() {
   return (
     <main>
       <TypeTrigger word="solve" />
+      <style>{`.hidden-egg{color:transparent;font-size:14px;text-align:center;padding:4px 0;user-select:all;line-height:1.4}.hidden-egg::selection{color:#6E3FCC;background:rgba(110,63,204,0.15)}`}</style>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -58,6 +63,8 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
+
+      <div className="hidden-egg bg-white">You found the first seam. The solution was curiosity all along.</div>
 
       {/* Our Solutions */}
       <section className="py-20 bg-white">
@@ -120,9 +127,23 @@ export default function SolutionsPage() {
                 key={solution.title}
                 className="bg-[#F8F5FC] rounded-2xl p-8 border border-gray-100"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#6E3FCC]/10 flex items-center justify-center text-[#6E3FCC] mb-5">
-                  {solution.icon}
-                </div>
+                {solution.title === "Build everyday manager skills" ? (
+                  <StarfieldEgg>
+                    <div className="w-12 h-12 rounded-xl bg-[#6E3FCC]/10 flex items-center justify-center text-[#6E3FCC] mb-5">
+                      {solution.icon}
+                    </div>
+                  </StarfieldEgg>
+                ) : solution.title === "Lead through change & uncertainty" ? (
+                  <SunriseEgg>
+                    <div className="w-12 h-12 rounded-xl bg-[#6E3FCC]/10 flex items-center justify-center text-[#6E3FCC] mb-5">
+                      {solution.icon}
+                    </div>
+                  </SunriseEgg>
+                ) : (
+                  <div className="w-12 h-12 rounded-xl bg-[#6E3FCC]/10 flex items-center justify-center text-[#6E3FCC] mb-5">
+                    {solution.icon}
+                  </div>
+                )}
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {solution.title}
                 </h3>
@@ -145,12 +166,14 @@ export default function SolutionsPage() {
         </div>
       </section>
 
+      <div className="hidden-egg bg-[#F8F5FC]">Between every section is a gap. Between every gap is a solution waiting to be found.</div>
+
       {/* Campfire vs. Traditional Solutions */}
       <section className="py-20 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Campfire vs. traditional solutions
+              <CampfireFireEgg /> vs. traditional solutions
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
               Campfire is a complete system for leadership growth that provides
@@ -236,6 +259,8 @@ export default function SolutionsPage() {
         </div>
       </section>
 
+      <div className="hidden-egg bg-white">Most people scroll right past this. You stopped. That&apos;s leadership.</div>
+
       {/* How to Get Started */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
@@ -267,8 +292,8 @@ export default function SolutionsPage() {
                 desc: "Deliver live experiences and reinforce skills over time so growth compounds.",
               },
             ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="w-12 h-12 rounded-full bg-[#6E3FCC] text-white text-lg font-bold flex items-center justify-center mx-auto mb-5">
+              <RocketStepEgg key={item.step} step={item.step}>
+                <div data-rocket-circle className="w-12 h-12 rounded-full bg-[#6E3FCC] text-white text-lg font-bold flex items-center justify-center mx-auto mb-5">
                   {item.step}
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">
@@ -277,11 +302,13 @@ export default function SolutionsPage() {
                 <p className="text-gray-500 text-sm leading-relaxed">
                   {item.desc}
                 </p>
-              </div>
+              </RocketStepEgg>
             ))}
           </div>
         </div>
       </section>
+
+      <div className="hidden-egg bg-white">Four seams. Four secrets. You found them all. The real solution? You were paying attention.</div>
 
       {/* CTA */}
       <section className="relative overflow-hidden">
