@@ -8,6 +8,10 @@ import MarshaEgg from "./components/MarshaEgg";
 import AirplaneEgg from "./components/AirplaneEgg";
 import RhythmEgg from "./components/RhythmEgg";
 import PongEgg from "./components/PongEgg";
+import BlockBreakerEgg from "./components/BlockBreakerEgg";
+import SnakeEgg from "./components/SnakeEgg";
+import FroggerEgg from "./components/FroggerEgg";
+import TimerBombEgg from "./components/TimerBombEgg";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -55,6 +59,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PongEgg />
+      <BlockBreakerEgg />
+      <SnakeEgg />
+      <FroggerEgg />
       {/* ==================== HERO ==================== */}
       <section
         className="relative overflow-hidden"
@@ -624,6 +631,9 @@ export default function Home() {
               );
               if (format.title === "Offsites and gatherings") {
                 return <AirplaneEgg key={format.title}>{card}</AirplaneEgg>;
+              }
+              if (format.title === "Time-bound programs") {
+                return <TimerBombEgg key={format.title}>{card}</TimerBombEgg>;
               }
               return card;
             })}
