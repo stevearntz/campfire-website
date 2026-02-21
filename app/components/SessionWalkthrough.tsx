@@ -1,4 +1,5 @@
 import Image from "next/image";
+import LightningEgg from "./LightningEgg";
 
 const steps = [
   {
@@ -177,13 +178,7 @@ export default function SessionWalkthrough() {
           }}
         >
           <div className="flex items-start gap-5">
-            <Image
-              src="/offline_bolt.webp"
-              alt="Lightning bolt"
-              width={40}
-              height={40}
-              className="w-[40px] h-[40px] shrink-0 object-contain brightness-0 invert"
-            />
+            <LightningEgg />
             <div>
               <h3 className="text-lg font-bold text-white mb-3">
                 The following week

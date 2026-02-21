@@ -4,6 +4,9 @@ import TestimonialCarousel from "./components/TestimonialCarousel";
 import ProductShowcase from "./components/ProductShowcase";
 import SessionWalkthrough from "./components/SessionWalkthrough";
 import PlatformIllustration from "./components/PlatformIllustration";
+import MarshaEgg from "./components/MarshaEgg";
+import AirplaneEgg from "./components/AirplaneEgg";
+import RhythmEgg from "./components/RhythmEgg";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -314,15 +317,7 @@ export default function Home() {
         {/* Desktop: image drives height, pink box overlays from left */}
         <div className="hidden md:block relative">
           {/* Image — right side, drives the section height */}
-          <div className="ml-auto w-[50%] max-w-[900px]">
-            <Image
-              src="/campfire.webp"
-              alt="Campfire session with participants collaborating"
-              width={800}
-              height={600}
-              className="w-full h-auto object-cover rounded-2xl"
-            />
-          </div>
+          <MarshaEgg />
 
           {/* Pink topo — fixed min-width, slides over image as viewport shrinks */}
           <div
@@ -373,7 +368,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
-              Built to fit the rhythm of real work <span className="text-[#6E3FCC]">&mdash; and drive lasting change</span>
+              Built to fit the <RhythmEgg /> of real work <span className="text-[#6E3FCC]">&mdash; and drive lasting change</span>
             </h2>
             <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -602,28 +597,34 @@ export default function Home() {
                 icon: "/flight_takeoff.webp",
                 iconAlt: "Takeoff icon",
               },
-            ].map((format) => (
-              <div
-                key={format.title}
-                className="bg-[#F7F6F7] rounded-2xl p-8 border border-gray-200"
-              >
-                <div className="flex justify-end mb-8">
-                  <Image
-                    src={format.icon}
-                    alt={format.iconAlt}
-                    width={36}
-                    height={36}
-                    className="w-9 h-9 object-contain"
-                  />
+            ].map((format) => {
+              const card = (
+                <div
+                  key={format.title}
+                  className="bg-[#F7F6F7] rounded-2xl p-8 border border-gray-200"
+                >
+                  <div className="flex justify-end mb-8">
+                    <Image
+                      src={format.icon}
+                      alt={format.iconAlt}
+                      width={36}
+                      height={36}
+                      className="w-9 h-9 object-contain"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">
+                    {format.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {format.desc}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {format.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {format.desc}
-                </p>
-              </div>
-            ))}
+              );
+              if (format.title === "Offsites and gatherings") {
+                return <AirplaneEgg key={format.title}>{card}</AirplaneEgg>;
+              }
+              return card;
+            })}
           </div>
         </div>
       </section>
