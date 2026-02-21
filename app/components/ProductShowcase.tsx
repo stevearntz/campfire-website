@@ -330,7 +330,7 @@ export default function ProductShowcase() {
               className="relative flex flex-col p-6 md:px-8"
               style={{ backgroundColor: "#2f2745", paddingTop: "calc(3rem + 25px)", paddingBottom: "calc(3rem + 25px)" }}
             >
-              <div className="grid w-full flex-1">
+              <div className="grid w-full flex-1 relative" data-pong-target>
                 {slides.map((slide, i) => (
                   <div
                     key={slide.label}

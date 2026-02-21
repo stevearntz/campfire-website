@@ -102,6 +102,26 @@ function campfireEmojis() {
   spawnEmbers();
 }
 
+function rock67() {
+  const rocks = 6 + Math.round(Math.random()); // 6 or 7
+  const el = document.documentElement;
+  el.style.transformOrigin = "50% 50vh";
+  el.style.transition = "transform 0.35s ease-in-out";
+  let i = 0;
+  const dirs = [1, -1];
+  function sway() {
+    if (i >= rocks) {
+      el.style.transform = "";
+      setTimeout(() => { el.style.transition = ""; el.style.transformOrigin = ""; }, 400);
+      return;
+    }
+    el.style.transform = `rotate(${dirs[i % 2] * 1.2}deg)`;
+    i++;
+    setTimeout(sway, 350);
+  }
+  sway();
+}
+
 function noClip() {
   showToast("NOCLIP — CLIPPING DISABLED", "#8B5CF6");
   const main = document.querySelector("main");
@@ -147,6 +167,10 @@ const CHEATS: Cheat[] = [
   {
     sequence: ["c", "a", "m", "p", "f", "i", "r", "e"],
     action: campfireEmojis,
+  },
+  {
+    sequence: ["6", "7"],
+    action: rock67,
   },
 ];
 
