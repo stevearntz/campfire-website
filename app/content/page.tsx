@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import ContentShowcase from "../components/ContentShowcase";
 import TypeTrigger from "../components/TypeTrigger";
+import EasterEggCard from "../components/EasterEggCard";
+import LeaderQuoteEgg from "../components/LeaderQuoteEgg";
 
 export const metadata: Metadata = {
   title: "Content Library — 40+ Leadership Topics",
@@ -289,6 +291,7 @@ export default function ContentPage() {
                       <p className="text-xs text-gray-500 leading-relaxed">{program.desc}</p>
                     </div>
                   ))}
+                  <EasterEggCard />
                 </div>
               </div>
 
@@ -324,6 +327,7 @@ export default function ContentPage() {
                       <p className="text-xs text-gray-500 leading-relaxed">{program.desc}</p>
                     </div>
                   ))}
+                  <LeaderQuoteEgg />
                 </div>
               </div>
             </div>
