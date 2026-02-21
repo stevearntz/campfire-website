@@ -10,60 +10,45 @@ export default function TimerBombEgg({ children }: { children: React.ReactNode }
     const img = (e.target as HTMLElement).closest("img");
     if (!img) return;
 
-    const section = containerRef.current?.closest("section");
-    if (!section) return;
+    // The card is the wrapper rendered by contents — find the actual card div
+    const card = containerRef.current?.querySelector(".rounded-2xl") as HTMLElement;
+    if (!card) return;
 
     // Prevent re-trigger
-    if (section.querySelector("[data-timer-bomb]")) return;
+    if (card.querySelector("[data-timer-bomb]")) return;
 
-    const sectionRect = section.getBoundingClientRect();
+    // Position countdown inside the card
+    card.style.position = "relative";
 
-    // Countdown overlay — fixed, positioned over the section
-    const overlay = document.createElement("div");
-    overlay.setAttribute("data-timer-bomb", "");
-    Object.assign(overlay.style, {
-      position: "fixed",
-      left: sectionRect.left + "px",
-      top: sectionRect.top + "px",
-      width: sectionRect.width + "px",
-      height: sectionRect.height + "px",
-      pointerEvents: "none",
-      zIndex: "50",
-    });
-    document.body.appendChild(overlay);
-
-    // Countdown number
     const numEl = document.createElement("div");
+    numEl.setAttribute("data-timer-bomb", "");
     Object.assign(numEl.style, {
       position: "absolute",
-      top: "24px",
-      left: "32px",
-      fontSize: "72px",
+      top: "12px",
+      left: "16px",
+      fontSize: "64px",
       fontWeight: "900",
       fontFamily: "system-ui, sans-serif",
       color: "#FF2020",
-      textShadow: "0 0 20px rgba(255,32,32,0.6), 0 0 40px rgba(255,32,32,0.3)",
       lineHeight: "1",
-      opacity: "0",
-      transition: "opacity 0.15s",
+      zIndex: "10",
+      transition: "transform 0.15s",
     });
-    overlay.appendChild(numEl);
+    card.appendChild(numEl);
 
     let count = 5;
     numEl.textContent = String(count);
-    numEl.style.opacity = "1";
 
     const tick = setInterval(() => {
       count--;
       if (count > 0) {
         numEl.textContent = String(count);
-        // Pulse effect
         numEl.style.transform = "scale(1.3)";
         setTimeout(() => { numEl.style.transform = "scale(1)"; }, 150);
       } else {
         clearInterval(tick);
-        numEl.style.opacity = "0";
-        explode(section, overlay);
+        numEl.remove();
+        explode(card);
       }
     }, 1000);
   }, []);
@@ -75,13 +60,19 @@ export default function TimerBombEgg({ children }: { children: React.ReactNode }
   );
 }
 
-function explode(section: HTMLElement, overlay: HTMLElement) {
-  // Flash
+function explode(card: HTMLElement) {
+  const rect = card.getBoundingClientRect();
+
+  // Flash over just the card
   const flash = document.createElement("div");
   Object.assign(flash.style, {
     position: "fixed",
-    inset: "0",
-    background: "rgba(255, 200, 50, 0.7)",
+    left: rect.left + "px",
+    top: rect.top + "px",
+    width: rect.width + "px",
+    height: rect.height + "px",
+    background: "rgba(255, 200, 50, 0.8)",
+    borderRadius: "16px",
     zIndex: "51",
     pointerEvents: "none",
     transition: "opacity 0.4s",
@@ -90,20 +81,7 @@ function explode(section: HTMLElement, overlay: HTMLElement) {
   setTimeout(() => { flash.style.opacity = "0"; }, 50);
   setTimeout(() => flash.remove(), 500);
 
-  // Get all direct children of the section's content area to shatter
-  const contentWrapper = section.querySelector(".grid") as HTMLElement;
-  if (!contentWrapper) return;
-
-  const cards = Array.from(contentWrapper.children) as HTMLElement[];
-  // Also grab the heading/description above
-  const textCenter = section.querySelector(".text-center") as HTMLElement;
-
-  // Collect all elements to shatter
-  const targets: HTMLElement[] = [];
-  if (textCenter) targets.push(textCenter);
-  targets.push(...cards);
-
-  // Create shards from each element
+  // Shard container
   const shardContainer = document.createElement("div");
   Object.assign(shardContainer.style, {
     position: "fixed",
@@ -114,76 +92,69 @@ function explode(section: HTMLElement, overlay: HTMLElement) {
   });
   document.body.appendChild(shardContainer);
 
-  // Hide originals and create flying copies
-  const origRects: { el: HTMLElement; rect: DOMRect }[] = [];
-  for (const el of targets) {
-    origRects.push({ el, rect: el.getBoundingClientRect() });
+  // Split card into fragments
+  const fragCount = 6;
+  for (let i = 0; i < fragCount; i++) {
+    const frag = document.createElement("div");
+    const clipTop = (i / fragCount) * 100;
+    const clipBottom = ((i + 1) / fragCount) * 100;
+
+    Object.assign(frag.style, {
+      position: "fixed",
+      left: rect.left + "px",
+      top: rect.top + "px",
+      width: rect.width + "px",
+      height: rect.height + "px",
+      background: "#F7F6F7",
+      borderRadius: "16px",
+      border: "1px solid #e5e7eb",
+      clipPath: `polygon(0% ${clipTop}%, 100% ${clipTop}%, 100% ${clipBottom}%, 0% ${clipBottom}%)`,
+      transition: "transform 1.2s cubic-bezier(0.25, 0, 0.6, 1), opacity 1.2s ease-out",
+      zIndex: "50",
+    });
+
+    // Clone card content into fragment
+    const clone = card.cloneNode(true) as HTMLElement;
+    // Remove the timer bomb marker from clone
+    clone.querySelector("[data-timer-bomb]")?.remove();
+    Object.assign(clone.style, {
+      width: "100%",
+      height: "100%",
+      margin: "0",
+      position: "static",
+    });
+    frag.appendChild(clone);
+    shardContainer.appendChild(frag);
+
+    // Random trajectory
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 200 + Math.random() * 500;
+    const tx = Math.cos(angle) * dist;
+    const ty = Math.sin(angle) * dist - 150;
+    const rot = (Math.random() - 0.5) * 720;
+
+    requestAnimationFrame(() => {
+      frag.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+      frag.style.opacity = "0";
+    });
   }
 
-  // Create fragments for each element
-  for (const { el, rect } of origRects) {
-    // Split each element into ~4 fragments
-    const fragCount = 4;
-    for (let i = 0; i < fragCount; i++) {
-      const frag = document.createElement("div");
-      const clipTop = (i / fragCount) * 100;
-      const clipBottom = ((i + 1) / fragCount) * 100;
+  // Hide original card
+  card.style.transition = "opacity 0.1s";
+  card.style.opacity = "0";
 
-      Object.assign(frag.style, {
-        position: "fixed",
-        left: rect.left + "px",
-        top: rect.top + "px",
-        width: rect.width + "px",
-        height: rect.height + "px",
-        background: getComputedStyle(el).background || "#F7F6F7",
-        borderRadius: "8px",
-        clipPath: `polygon(0% ${clipTop}%, 100% ${clipTop}%, 100% ${clipBottom}%, 0% ${clipBottom}%)`,
-        transition: "transform 1.2s cubic-bezier(0.25, 0, 0.6, 1), opacity 1.2s ease-out",
-        zIndex: "50",
-      });
+  // Debris particles centered on the card
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
 
-      // Clone inner content
-      const clone = el.cloneNode(true) as HTMLElement;
-      Object.assign(clone.style, {
-        width: "100%",
-        height: "100%",
-        margin: "0",
-      });
-      frag.appendChild(clone);
-      shardContainer.appendChild(frag);
-
-      // Random trajectory
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 300 + Math.random() * 600;
-      const tx = Math.cos(angle) * dist;
-      const ty = Math.sin(angle) * dist - 200; // bias upward
-      const rot = (Math.random() - 0.5) * 720;
-
-      requestAnimationFrame(() => {
-        frag.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
-        frag.style.opacity = "0";
-      });
-    }
-
-    // Hide original
-    el.style.transition = "opacity 0.1s";
-    el.style.opacity = "0";
-  }
-
-  // Spawn debris particles
-  const particleCount = 40;
-  const sectionRect = section.getBoundingClientRect();
-  const cx = sectionRect.left + sectionRect.width / 2;
-  const cy = sectionRect.top + sectionRect.height / 2;
-
-  for (let i = 0; i < particleCount; i++) {
+  for (let i = 0; i < 30; i++) {
     const p = document.createElement("div");
     const size = 4 + Math.random() * 8;
     const colors = ["#6E3FCC", "#9D88ED", "#EE81DD", "#F5C542", "#FF6B35"];
     Object.assign(p.style, {
       position: "fixed",
-      left: cx + (Math.random() - 0.5) * 100 + "px",
-      top: cy + (Math.random() - 0.5) * 60 + "px",
+      left: cx + (Math.random() - 0.5) * rect.width * 0.6 + "px",
+      top: cy + (Math.random() - 0.5) * rect.height * 0.6 + "px",
       width: size + "px",
       height: size + "px",
       borderRadius: Math.random() > 0.5 ? "50%" : "2px",
@@ -195,7 +166,7 @@ function explode(section: HTMLElement, overlay: HTMLElement) {
     shardContainer.appendChild(p);
 
     const angle = Math.random() * Math.PI * 2;
-    const dist = 200 + Math.random() * 500;
+    const dist = 150 + Math.random() * 400;
     const tx = Math.cos(angle) * dist;
     const ty = Math.sin(angle) * dist;
     const rot = (Math.random() - 0.5) * 1080;
@@ -206,13 +177,10 @@ function explode(section: HTMLElement, overlay: HTMLElement) {
     });
   }
 
-  // Restore everything after animation
+  // Restore card after animation
   setTimeout(() => {
     shardContainer.remove();
-    overlay.remove();
-    for (const { el } of origRects) {
-      el.style.transition = "opacity 0.6s";
-      el.style.opacity = "1";
-    }
+    card.style.transition = "opacity 0.6s";
+    card.style.opacity = "1";
   }, 2000);
 }
