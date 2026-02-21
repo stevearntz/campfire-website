@@ -46,8 +46,8 @@ export default function ContentShowcase() {
       <div className="grid grid-cols-1 md:grid-cols-[0.8fr_2fr]">
         {/* Left: Text */}
         <div
-          className="p-8 md:px-10 flex flex-col justify-center"
-          style={{ backgroundColor: "#403955", paddingTop: "3rem", paddingBottom: "3rem" }}
+          className="p-8 md:px-10 flex flex-col justify-center overflow-hidden"
+          style={{ backgroundColor: "#403955", paddingTop: "3rem", paddingBottom: "3rem", minHeight: "360px" }}
         >
           <p className="text-sm font-semibold tracking-wider uppercase mb-4" style={{ color: "#9D88ED" }}>
             All Campfire sessions

@@ -5,6 +5,7 @@ import ContentShowcase from "../components/ContentShowcase";
 import TypeTrigger from "../components/TypeTrigger";
 import EasterEggCard from "../components/EasterEggCard";
 import LeaderQuoteEgg from "../components/LeaderQuoteEgg";
+import BiteSizedEgg from "../components/BiteSizedEgg";
 
 export const metadata: Metadata = {
   title: "Content Library — 40+ Leadership Topics",
@@ -251,10 +252,10 @@ export default function ContentPage() {
         {/* Bite-sized programs — wider than carousel */}
         <div className="mt-20 max-w-[1600px] mx-auto px-6">
             <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-12">
-              Bite-sized programs to target specific challenges
+              <BiteSizedEgg /> programs to target specific challenges
             </h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6" data-bite-section>
               {/* For All Employees */}
               <div className="rounded-2xl p-5" style={{ border: "1.5px solid #7A4DFF" }}>
                 <p className="text-xs font-bold tracking-wider uppercase mb-5" style={{ color: "#7A4DFF" }}>
@@ -274,6 +275,7 @@ export default function ContentPage() {
                     <div
                       key={program.title}
                       className="bg-white rounded-xl p-4 overflow-hidden relative"
+                      data-bite-card
                     >
                       <div
                         className="absolute left-0 top-0 bottom-0 w-1"
@@ -310,6 +312,7 @@ export default function ContentPage() {
                     <div
                       key={program.title}
                       className="bg-white rounded-xl p-4 overflow-hidden relative"
+                      data-bite-card
                     >
                       <div
                         className="absolute left-0 top-0 bottom-0 w-1"

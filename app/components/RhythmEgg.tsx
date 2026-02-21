@@ -40,7 +40,7 @@ export default function RhythmEgg() {
   return (
     <button
       onClick={drumPulse}
-      className="cursor-pointer hover:text-[#9D88ED] transition-colors"
+      className="cursor-pointer"
       style={{ background: "none", border: "none", padding: 0, font: "inherit", color: "inherit" }}
     >
       rhythm
