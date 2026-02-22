@@ -78,6 +78,146 @@ function bloodCode() {
   spawnEmbers();
 }
 
+// — Love escalation state —
+let loveCount = 0;
+let loveTimer: ReturnType<typeof setTimeout> | null = null;
+
+function loveEscalation() {
+  loveCount++;
+  if (loveTimer) clearTimeout(loveTimer);
+  loveTimer = setTimeout(() => { loveCount = 0; }, 4000);
+
+  if (loveCount >= 5) {
+    heartFireworks();
+    loveCount = 0;
+    return;
+  }
+
+  // Hearts grow each repetition
+  const sizeBase = [20, 30, 45, 60][loveCount - 1];
+  const sizeRange = [20, 25, 30, 40][loveCount - 1];
+  const count = [25, 35, 45, 55][loveCount - 1];
+
+  const container = document.createElement("div");
+  Object.assign(container.style, {
+    position: "fixed", inset: "0", pointerEvents: "none", zIndex: "99999", overflow: "hidden",
+  });
+  document.body.appendChild(container);
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement("div");
+    const x = Math.random() * 100;
+    const delay = Math.random() * 1.5;
+    const duration = 2 + Math.random() * 2.5;
+    const size = sizeBase + Math.random() * sizeRange;
+    el.textContent = "💜";
+    Object.assign(el.style, {
+      position: "absolute", bottom: "-40px", left: `${x}%`,
+      fontSize: `${size}px`,
+      animation: `ember-rise ${duration}s ${delay}s ease-out forwards`,
+    });
+    container.appendChild(el);
+  }
+  setTimeout(() => container.remove(), 6000);
+  spawnEmbers();
+}
+
+function heartFireworks() {
+  // Inject firework keyframes if not present
+  if (!document.getElementById("heart-firework-keyframes")) {
+    const style = document.createElement("style");
+    style.id = "heart-firework-keyframes";
+    style.textContent = `
+      @keyframes heart-burst{
+        0%{transform:translate(-50%,-50%) scale(0.3);opacity:1}
+        60%{opacity:1}
+        100%{transform:translate(var(--hx),var(--hy)) scale(1);opacity:0}
+      }
+      @keyframes heart-glow{
+        0%{opacity:0;transform:translate(-50%,-50%) scale(0.5)}
+        30%{opacity:0.6;transform:translate(-50%,-50%) scale(1.2)}
+        100%{opacity:0;transform:translate(-50%,-50%) scale(2)}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Purple flash
+  const flash = document.createElement("div");
+  Object.assign(flash.style, {
+    position: "fixed", inset: "0", zIndex: "99998", pointerEvents: "none",
+    background: "radial-gradient(circle, rgba(110,63,204,0.5) 0%, rgba(157,136,237,0.2) 40%, transparent 70%)",
+    opacity: "1", transition: "opacity 1s ease-out",
+  });
+  document.body.appendChild(flash);
+  setTimeout(() => { flash.style.opacity = "0"; }, 50);
+  setTimeout(() => flash.remove(), 1200);
+
+  // Purple glow ring
+  const glow = document.createElement("div");
+  Object.assign(glow.style, {
+    position: "fixed", top: "50%", left: "50%",
+    width: "300px", height: "300px", borderRadius: "50%",
+    background: "radial-gradient(circle, rgba(110,63,204,0.6), rgba(157,136,237,0.3), transparent)",
+    zIndex: "99999", pointerEvents: "none",
+    animation: "heart-glow 1.2s ease-out forwards",
+  });
+  document.body.appendChild(glow);
+  setTimeout(() => glow.remove(), 1500);
+
+  // Exploding hearts from center
+  const container = document.createElement("div");
+  Object.assign(container.style, {
+    position: "fixed", inset: "0", pointerEvents: "none", zIndex: "99999", overflow: "hidden",
+  });
+  document.body.appendChild(container);
+
+  const heartCount = 80;
+  for (let i = 0; i < heartCount; i++) {
+    const el = document.createElement("div");
+    const angle = (Math.PI * 2 * i) / heartCount + (Math.random() - 0.5) * 0.4;
+    const dist = 200 + Math.random() * 500;
+    const hx = Math.cos(angle) * dist;
+    const hy = Math.sin(angle) * dist;
+    const size = 20 + Math.random() * 50;
+    const delay = Math.random() * 0.3;
+    const duration = 1 + Math.random() * 1.2;
+    el.textContent = "💜";
+    Object.assign(el.style, {
+      position: "absolute", top: "50%", left: "50%",
+      fontSize: `${size}px`,
+      "--hx": `${hx}px`, "--hy": `${hy}px`,
+      animation: `heart-burst ${duration}s ${delay}s ease-out forwards`,
+      opacity: "0",
+    } as Record<string, string>);
+    container.appendChild(el);
+  }
+
+  // Second wave — smaller, further
+  setTimeout(() => {
+    for (let i = 0; i < 40; i++) {
+      const el = document.createElement("div");
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 300 + Math.random() * 600;
+      const hx = Math.cos(angle) * dist;
+      const hy = Math.sin(angle) * dist;
+      const size = 14 + Math.random() * 30;
+      const duration = 1.2 + Math.random() * 1;
+      el.textContent = "💜";
+      Object.assign(el.style, {
+        position: "absolute", top: "50%", left: "50%",
+        fontSize: `${size}px`,
+        "--hx": `${hx}px`, "--hy": `${hy}px`,
+        animation: `heart-burst ${duration}s ease-out forwards`,
+        opacity: "0",
+      } as Record<string, string>);
+      container.appendChild(el);
+    }
+  }, 200);
+
+  setTimeout(() => container.remove(), 4000);
+  spawnEmbers();
+}
+
 function floatEmojis(emojis: string | string[], count = 30) {
   const container = document.createElement("div");
   Object.assign(container.style, {
@@ -187,7 +327,7 @@ const CHEATS: Cheat[] = [
   { sequence: ["l", "u", "c", "k"], action: () => floatEmojis("🤞") },
   { sequence: ["t", "h", "a", "n", "k", "s"], action: () => floatEmojis("🙏") },
   { sequence: ["h", "o", "o", "r", "a", "y"], action: () => floatEmojis("🙌") },
-  { sequence: ["l", "o", "v", "e"], action: () => floatEmojis("💜") },
+  { sequence: ["l", "o", "v", "e"], action: loveEscalation },
   { sequence: ["p", "a", "r", "t", "y"], action: () => floatEmojis("🎉") },
   { sequence: ["h", "u", "n", "d", "r", "e", "d"], action: () => floatEmojis("💯") },
   { sequence: ["f", "i", "r", "e"], action: () => floatEmojis("🔥") },
