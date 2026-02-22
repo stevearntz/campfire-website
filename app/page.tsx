@@ -13,6 +13,8 @@ import SnakeEgg from "./components/SnakeEgg";
 import FroggerEgg from "./components/FroggerEgg";
 import TimerBombEgg from "./components/TimerBombEgg";
 import ReflectEgg from "./components/ReflectEgg";
+import RacingEgg from "./components/RacingEgg";
+import DriveLink from "./components/DriveLink";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -63,6 +65,7 @@ export default function Home() {
       <BlockBreakerEgg />
       <SnakeEgg />
       <FroggerEgg />
+      <RacingEgg />
       <ReflectEgg />
       {/* ==================== HERO ==================== */}
       <section
@@ -379,7 +382,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
-              Built to fit the <RhythmEgg /> of real work <span className="text-[#6E3FCC]">&mdash; and drive lasting change</span>
+              Built to fit the <RhythmEgg /> of real work <span className="text-[#6E3FCC]">&mdash; and <DriveLink /> lasting change</span>
             </h2>
             <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
