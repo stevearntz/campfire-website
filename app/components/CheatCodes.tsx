@@ -153,16 +153,16 @@ function heartFireworks() {
 
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-  const heartCount = 35;
+  const heartCount = 50;
 
   for (let i = 0; i < heartCount; i++) {
     const el = document.createElement("div");
     const xPct = Math.random() * 100;
-    const size = 30 + Math.random() * 30;
-    const delay = Math.random() * 1.2;
-    // Each heart rises to a random height (20%–90% of viewport)
-    const stopHeight = vh * (0.2 + Math.random() * 0.7);
-    const riseDur = 1 + Math.random() * 1.5;
+    const size = 20 + Math.random() * 20;
+    const delay = Math.random() * 1.5;
+    // Each heart rises to a random height (15%–90% of viewport)
+    const stopHeight = vh * (0.15 + Math.random() * 0.75);
+    const riseDur = 0.8 + Math.random() * 1.5;
 
     // Compute final position mathematically (no DOM read needed)
     const finalX = (xPct / 100) * vw;
@@ -178,34 +178,33 @@ function heartFireworks() {
     } as Record<string, string>);
     container.appendChild(el);
 
-    // When the heart reaches its height, pop it and scatter children
+    // When the heart reaches its height, pop it and spray children
     const popTime = (riseDur + delay) * 1000;
     setTimeout(() => {
-      // Remove rising heart
       el.remove();
 
-      // Place a new heart at the computed position and pop it
+      // Pop the parent
       const popper = document.createElement("div");
       popper.textContent = "💜";
       Object.assign(popper.style, {
         position: "fixed", left: `${finalX}px`, top: `${finalY}px`,
         fontSize: `${size}px`,
         transform: "translate(-50%,-50%)",
-        animation: `heart-pop 0.3s ease-out forwards`,
+        animation: `heart-pop 0.25s ease-out forwards`,
       });
       container.appendChild(popper);
 
-      // Burst into smaller hearts
-      const children = 6 + Math.floor(Math.random() * 6);
+      // Spray out many small hearts
+      const children = 10 + Math.floor(Math.random() * 10);
       for (let j = 0; j < children; j++) {
         const child = document.createElement("div");
         const angle = Math.random() * Math.PI * 2;
-        const dist = 50 + Math.random() * 130;
+        const dist = 30 + Math.random() * 200;
         const sx = Math.cos(angle) * dist;
         const sy = Math.sin(angle) * dist;
-        const cSize = 10 + Math.random() * 16;
-        const cDur = 0.6 + Math.random() * 0.8;
-        const cDelay = Math.random() * 0.1;
+        const cSize = 6 + Math.random() * 12;
+        const cDur = 0.4 + Math.random() * 1;
+        const cDelay = Math.random() * 0.15;
         child.textContent = "💜";
         Object.assign(child.style, {
           position: "fixed", left: `${finalX}px`, top: `${finalY}px`,
