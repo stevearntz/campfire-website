@@ -127,55 +127,23 @@ function heartFireworks() {
     const style = document.createElement("style");
     style.id = "heart-firework-keyframes";
     style.textContent = `
-      @keyframes heart-launch{
-        0%{transform:translate(-50%,-50%) scale(0.2);opacity:1}
-        70%{opacity:1}
-        100%{transform:translate(var(--hx),var(--hy)) scale(1);opacity:1}
+      @keyframes heart-rise{
+        0%{transform:translateY(0) scale(1);opacity:0.9}
+        100%{transform:translateY(var(--rise)) scale(1);opacity:1}
       }
       @keyframes heart-pop{
         0%{transform:scale(1);opacity:1}
-        50%{transform:scale(1.8);opacity:1}
+        50%{transform:scale(1.6);opacity:1}
         100%{transform:scale(0);opacity:0}
       }
       @keyframes heart-scatter{
         0%{transform:translate(0,0) scale(1);opacity:1}
-        80%{opacity:0.8}
-        100%{transform:translate(var(--sx),var(--sy)) scale(0.3);opacity:0}
-      }
-      @keyframes heart-glow{
-        0%{opacity:0;transform:translate(-50%,-50%) scale(0.5)}
-        30%{opacity:0.6;transform:translate(-50%,-50%) scale(1.2)}
-        100%{opacity:0;transform:translate(-50%,-50%) scale(2.5)}
-      }
-      @keyframes heart-flash{
-        0%{opacity:0.7}
-        100%{opacity:0}
+        70%{opacity:0.8}
+        100%{transform:translate(var(--sx),var(--sy)) scale(0.2);opacity:0}
       }
     `;
     document.head.appendChild(style);
   }
-
-  // Big purple flash
-  const flash = document.createElement("div");
-  Object.assign(flash.style, {
-    position: "fixed", inset: "0", zIndex: "99998", pointerEvents: "none",
-    background: "radial-gradient(circle, rgba(110,63,204,0.6) 0%, rgba(157,136,237,0.3) 40%, transparent 70%)",
-    animation: "heart-flash 1.2s ease-out forwards",
-  });
-  document.body.appendChild(flash);
-  setTimeout(() => flash.remove(), 1400);
-
-  // Expanding glow ring
-  const glow = document.createElement("div");
-  Object.assign(glow.style, {
-    position: "fixed", top: "50%", left: "50%",
-    width: "400px", height: "400px", borderRadius: "50%",
-    background: "radial-gradient(circle, rgba(110,63,204,0.7), rgba(157,136,237,0.3), transparent)",
-    zIndex: "99999", pointerEvents: "none",
-    animation: "heart-glow 1.5s ease-out forwards",
-  });
-  document.body.appendChild(glow);
-  setTimeout(() => glow.remove(), 1800);
 
   const container = document.createElement("div");
   Object.assign(container.style, {
@@ -183,56 +151,57 @@ function heartFireworks() {
   });
   document.body.appendChild(container);
 
-  const cx = window.innerWidth / 2;
-  const cy = window.innerHeight / 2;
+  const vh = window.innerHeight;
+  const heartCount = 35;
 
-  // Phase 1: Launch big hearts outward from center
-  const shellCount = 24;
-  for (let i = 0; i < shellCount; i++) {
-    const angle = (Math.PI * 2 * i) / shellCount + (Math.random() - 0.5) * 0.3;
-    const dist = 150 + Math.random() * 250;
-    const hx = Math.cos(angle) * dist;
-    const hy = Math.sin(angle) * dist;
-    const size = 35 + Math.random() * 25;
-    const launchDur = 0.5 + Math.random() * 0.3;
-    const delay = Math.random() * 0.15;
-
+  for (let i = 0; i < heartCount; i++) {
     const el = document.createElement("div");
+    const x = Math.random() * 100;
+    const size = 30 + Math.random() * 30;
+    const delay = Math.random() * 1.2;
+    // Each heart rises to a random height (20%–90% of viewport)
+    const stopHeight = vh * (0.2 + Math.random() * 0.7);
+    const riseDur = 1 + Math.random() * 1.5;
+
     el.textContent = "💜";
     Object.assign(el.style, {
-      position: "absolute", top: "50%", left: "50%",
+      position: "absolute", bottom: "-40px", left: `${x}%`,
       fontSize: `${size}px`,
-      "--hx": `${hx}px`, "--hy": `${hy}px`,
-      animation: `heart-launch ${launchDur}s ${delay}s ease-out forwards`,
+      "--rise": `-${stopHeight}px`,
+      animation: `heart-rise ${riseDur}s ${delay}s ease-out forwards`,
       opacity: "0",
     } as Record<string, string>);
     container.appendChild(el);
 
-    // Phase 2: Each big heart pops and shatters into smaller hearts
-    const popTime = (launchDur + delay) * 1000;
+    // When the heart reaches its height, pop it and scatter children
+    const popTime = (riseDur + delay) * 1000;
     setTimeout(() => {
-      // Pop animation on the shell heart
+      // Get position before killing animation
+      const rect = el.getBoundingClientRect();
+      const lx = rect.left + rect.width / 2;
+      const ly = rect.top + rect.height / 2;
+
+      // Pop the parent heart
       el.style.animation = "none";
-      const landed = el.getBoundingClientRect();
-      const lx = landed.left + landed.width / 2;
-      const ly = landed.top + landed.height / 2;
       el.style.position = "fixed";
       el.style.left = `${lx}px`;
       el.style.top = `${ly}px`;
+      el.style.bottom = "auto";
       el.style.transform = "translate(-50%,-50%)";
+      el.style.opacity = "1";
       el.style.animation = `heart-pop 0.3s ease-out forwards`;
 
-      // Spawn child hearts scattering from this position
-      const children = 6 + Math.floor(Math.random() * 5);
+      // Burst into smaller hearts
+      const children = 6 + Math.floor(Math.random() * 6);
       for (let j = 0; j < children; j++) {
         const child = document.createElement("div");
-        const cAngle = Math.random() * Math.PI * 2;
-        const cDist = 60 + Math.random() * 140;
-        const sx = Math.cos(cAngle) * cDist;
-        const sy = Math.sin(cAngle) * cDist;
-        const cSize = 10 + Math.random() * 18;
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 50 + Math.random() * 130;
+        const sx = Math.cos(angle) * dist;
+        const sy = Math.sin(angle) * dist;
+        const cSize = 10 + Math.random() * 16;
         const cDur = 0.6 + Math.random() * 0.8;
-        const cDelay = Math.random() * 0.15;
+        const cDelay = Math.random() * 0.1;
         child.textContent = "💜";
         Object.assign(child.style, {
           position: "fixed", left: `${lx}px`, top: `${ly}px`,
@@ -246,63 +215,7 @@ function heartFireworks() {
     }, popTime);
   }
 
-  // Phase 3: Delayed second ring — bigger, further, also shatters
-  setTimeout(() => {
-    const ring2 = 16;
-    for (let i = 0; i < ring2; i++) {
-      const angle = (Math.PI * 2 * i) / ring2 + Math.PI / ring2;
-      const dist = 250 + Math.random() * 300;
-      const hx = Math.cos(angle) * dist;
-      const hy = Math.sin(angle) * dist;
-      const size = 28 + Math.random() * 20;
-      const launchDur = 0.6 + Math.random() * 0.3;
-
-      const el = document.createElement("div");
-      el.textContent = "💜";
-      Object.assign(el.style, {
-        position: "absolute", top: "50%", left: "50%",
-        fontSize: `${size}px`,
-        "--hx": `${hx}px`, "--hy": `${hy}px`,
-        animation: `heart-launch ${launchDur}s ease-out forwards`,
-        opacity: "0",
-      } as Record<string, string>);
-      container.appendChild(el);
-
-      setTimeout(() => {
-        el.style.animation = "none";
-        const landed = el.getBoundingClientRect();
-        const lx = landed.left + landed.width / 2;
-        const ly = landed.top + landed.height / 2;
-        el.style.position = "fixed";
-        el.style.left = `${lx}px`;
-        el.style.top = `${ly}px`;
-        el.style.transform = "translate(-50%,-50%)";
-        el.style.animation = `heart-pop 0.25s ease-out forwards`;
-
-        const children = 4 + Math.floor(Math.random() * 4);
-        for (let j = 0; j < children; j++) {
-          const child = document.createElement("div");
-          const cAngle = Math.random() * Math.PI * 2;
-          const cDist = 40 + Math.random() * 100;
-          const child_sx = Math.cos(cAngle) * cDist;
-          const child_sy = Math.sin(cAngle) * cDist;
-          const cSize = 8 + Math.random() * 14;
-          const cDur = 0.5 + Math.random() * 0.7;
-          child.textContent = "💜";
-          Object.assign(child.style, {
-            position: "fixed", left: `${lx}px`, top: `${ly}px`,
-            fontSize: `${cSize}px`,
-            transform: "translate(-50%,-50%)",
-            "--sx": `${child_sx}px`, "--sy": `${child_sy}px`,
-            animation: `heart-scatter ${cDur}s ease-out forwards`,
-          } as Record<string, string>);
-          container.appendChild(child);
-        }
-      }, launchDur * 1000);
-    }
-  }, 300);
-
-  setTimeout(() => container.remove(), 5000);
+  setTimeout(() => container.remove(), 7000);
   spawnEmbers();
 }
 
