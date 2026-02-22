@@ -151,21 +151,26 @@ function heartFireworks() {
   });
   document.body.appendChild(container);
 
+  const vw = window.innerWidth;
   const vh = window.innerHeight;
   const heartCount = 35;
 
   for (let i = 0; i < heartCount; i++) {
     const el = document.createElement("div");
-    const x = Math.random() * 100;
+    const xPct = Math.random() * 100;
     const size = 30 + Math.random() * 30;
     const delay = Math.random() * 1.2;
     // Each heart rises to a random height (20%–90% of viewport)
     const stopHeight = vh * (0.2 + Math.random() * 0.7);
     const riseDur = 1 + Math.random() * 1.5;
 
+    // Compute final position mathematically (no DOM read needed)
+    const finalX = (xPct / 100) * vw;
+    const finalY = vh + 40 - stopHeight;
+
     el.textContent = "💜";
     Object.assign(el.style, {
-      position: "absolute", bottom: "-40px", left: `${x}%`,
+      position: "absolute", bottom: "-40px", left: `${xPct}%`,
       fontSize: `${size}px`,
       "--rise": `-${stopHeight}px`,
       animation: `heart-rise ${riseDur}s ${delay}s ease-out forwards`,
@@ -176,20 +181,19 @@ function heartFireworks() {
     // When the heart reaches its height, pop it and scatter children
     const popTime = (riseDur + delay) * 1000;
     setTimeout(() => {
-      // Get position before killing animation
-      const rect = el.getBoundingClientRect();
-      const lx = rect.left + rect.width / 2;
-      const ly = rect.top + rect.height / 2;
+      // Remove rising heart
+      el.remove();
 
-      // Pop the parent heart
-      el.style.animation = "none";
-      el.style.position = "fixed";
-      el.style.left = `${lx}px`;
-      el.style.top = `${ly}px`;
-      el.style.bottom = "auto";
-      el.style.transform = "translate(-50%,-50%)";
-      el.style.opacity = "1";
-      el.style.animation = `heart-pop 0.3s ease-out forwards`;
+      // Place a new heart at the computed position and pop it
+      const popper = document.createElement("div");
+      popper.textContent = "💜";
+      Object.assign(popper.style, {
+        position: "fixed", left: `${finalX}px`, top: `${finalY}px`,
+        fontSize: `${size}px`,
+        transform: "translate(-50%,-50%)",
+        animation: `heart-pop 0.3s ease-out forwards`,
+      });
+      container.appendChild(popper);
 
       // Burst into smaller hearts
       const children = 6 + Math.floor(Math.random() * 6);
@@ -204,7 +208,7 @@ function heartFireworks() {
         const cDelay = Math.random() * 0.1;
         child.textContent = "💜";
         Object.assign(child.style, {
-          position: "fixed", left: `${lx}px`, top: `${ly}px`,
+          position: "fixed", left: `${finalX}px`, top: `${finalY}px`,
           fontSize: `${cSize}px`,
           transform: "translate(-50%,-50%)",
           "--sx": `${sx}px`, "--sy": `${sy}px`,
