@@ -338,6 +338,10 @@ const CHEATS: Cheat[] = [
   { sequence: ["a", "l", "a", "r", "m"], action: () => floatEmojis("⏰") },
   { sequence: ["i", "d", "e", "a"], action: () => floatEmojis("💡") },
   { sequence: ["l", "a", "u", "n", "c", "h"], action: () => floatEmojis("🚀") },
+  {
+    sequence: ["r", "e", "f", "l", "e", "c", "t"],
+    action: () => window.dispatchEvent(new Event("reflect-activate")),
+  },
 ];
 
 export default function CheatCodes() {

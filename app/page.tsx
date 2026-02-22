@@ -12,6 +12,7 @@ import BlockBreakerEgg from "./components/BlockBreakerEgg";
 import SnakeEgg from "./components/SnakeEgg";
 import FroggerEgg from "./components/FroggerEgg";
 import TimerBombEgg from "./components/TimerBombEgg";
+import ReflectEgg from "./components/ReflectEgg";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -62,6 +63,7 @@ export default function Home() {
       <BlockBreakerEgg />
       <SnakeEgg />
       <FroggerEgg />
+      <ReflectEgg />
       {/* ==================== HERO ==================== */}
       <section
         className="relative overflow-hidden"
