@@ -128,19 +128,17 @@ export default function ReflectEgg() {
         animation: "reflect-fade-in 0.6s ease-out",
       }}
     >
-      {/* Inject keyframes + star animations */}
+      {/* Inject keyframes + ember animations */}
       <style>{`
         @keyframes reflect-fade-in {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        @keyframes reflect-twinkle {
-          0%, 100% { opacity: 0.15; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-        @keyframes reflect-shoot {
-          0% { transform: translateX(0) translateY(0); opacity: 1; }
-          100% { transform: translateX(var(--sx)) translateY(var(--sy)); opacity: 0; }
+        @keyframes reflect-ember {
+          0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+          10% { opacity: var(--ember-peak); }
+          70% { opacity: var(--ember-peak); }
+          100% { transform: translateY(var(--rise)) translateX(var(--drift)) scale(0.3); opacity: 0; }
         }
         @keyframes reflect-pulse {
           0%, 100% { opacity: 0.6; }
@@ -148,7 +146,7 @@ export default function ReflectEgg() {
         }
       `}</style>
 
-      {/* Dark starfield background */}
+      {/* Dark background with floating embers */}
       <div
         style={{
           position: "absolute",
@@ -157,75 +155,46 @@ export default function ReflectEgg() {
           overflow: "hidden",
         }}
       >
-        {/* Twinkling stars */}
-        {Array.from({ length: 60 }).map((_, i) => {
-          const size = 1.5 + Math.random() * 3;
-          const isBlue = Math.random() < 0.3;
-          const color = isBlue
-            ? `hsl(${240 + Math.random() * 40}, 80%, 90%)`
-            : "#fff";
+        {/* Fire embers — weighted toward left/right edges */}
+        {Array.from({ length: 40 }).map((_, i) => {
+          const size = 3 + Math.random() * 5;
+          // 70% embers on edges (0-15% or 85-100%), 30% in middle
+          let x: number;
+          const edgeRoll = Math.random();
+          if (edgeRoll < 0.35) {
+            x = Math.random() * 15;
+          } else if (edgeRoll < 0.70) {
+            x = 85 + Math.random() * 15;
+          } else {
+            x = 20 + Math.random() * 60;
+          }
+          const duration = 4 + Math.random() * 6;
+          const delay = Math.random() * 5;
+          const drift = (Math.random() - 0.5) * 40;
+          const rise = -(100 + Math.random() * 300);
+          const peak = 0.3 + Math.random() * 0.5;
+          // Warm colors: oranges, ambers, soft reds
+          const hue = 15 + Math.random() * 30; // 15–45 range
+          const sat = 80 + Math.random() * 20;
+          const light = 50 + Math.random() * 20;
+          const color = `hsl(${hue}, ${sat}%, ${light}%)`;
           return (
             <div
-              key={`star-${i}`}
+              key={`ember-${i}`}
               style={{
                 position: "absolute",
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${x}%`,
+                bottom: `-${10 + Math.random() * 20}px`,
                 width: `${size}px`,
                 height: `${size}px`,
                 borderRadius: "50%",
                 background: color,
                 boxShadow: `0 0 ${size * 2}px ${color}`,
-                animation: `reflect-twinkle ${2 + Math.random() * 3}s ${Math.random() * 3}s ease-in-out infinite`,
-                opacity: 0.15,
-              }}
-            />
-          );
-        })}
-
-        {/* Sparkle cross stars */}
-        {Array.from({ length: 5 }).map((_, i) => {
-          const size = 10 + Math.random() * 14;
-          return (
-            <div
-              key={`sparkle-${i}`}
-              style={{
-                position: "absolute",
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `reflect-twinkle ${2.5 + Math.random() * 2}s ${1 + Math.random() * 2}s ease-in-out infinite`,
-                opacity: 0.15,
-                filter: `drop-shadow(0 0 ${size / 2}px rgba(180,160,255,0.8))`,
-              }}
-              dangerouslySetInnerHTML={{
-                __html: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="white"><path d="M12 0L13.5 9.5L24 12L13.5 14.5L12 24L10.5 14.5L0 12L10.5 9.5Z" opacity="0.9"/></svg>`,
-              }}
-            />
-          );
-        })}
-
-        {/* Shooting stars */}
-        {Array.from({ length: 3 }).map((_, i) => {
-          const sx = 200 + Math.random() * 300;
-          const sy = 150 + Math.random() * 200;
-          const len = 30 + Math.random() * 20;
-          return (
-            <div
-              key={`shoot-${i}`}
-              style={{
-                position: "absolute",
-                left: `${20 + Math.random() * 60}%`,
-                top: `${Math.random() * 30}%`,
-                width: `${len}px`,
-                height: "2px",
-                background: "linear-gradient(to right, transparent, white)",
-                borderRadius: "1px",
-                transform: `rotate(${30 + Math.random() * 15}deg)`,
-                "--sx": `${sx}px`,
-                "--sy": `${sy}px`,
-                animation: `reflect-shoot 0.8s ${3 + i * 4 + Math.random() * 2}s ease-out forwards`,
+                "--rise": `${rise}px`,
+                "--drift": `${drift}px`,
+                "--ember-peak": `${peak}`,
+                animation: `reflect-ember ${duration}s ${delay}s ease-out infinite`,
                 opacity: 0,
-                filter: "drop-shadow(0 0 3px rgba(255,255,255,0.8))",
               } as React.CSSProperties}
             />
           );
