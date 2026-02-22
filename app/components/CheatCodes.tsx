@@ -78,25 +78,26 @@ function bloodCode() {
   spawnEmbers();
 }
 
-function campfireEmojis() {
+function floatEmojis(emojis: string | string[], count = 30) {
   const container = document.createElement("div");
   Object.assign(container.style, {
     position: "fixed", inset: "0", pointerEvents: "none", zIndex: "99999", overflow: "hidden",
   });
   document.body.appendChild(container);
-  for (let i = 0; i < 40; i++) {
-    const emoji = document.createElement("div");
+  const emojiList = Array.isArray(emojis) ? emojis : [emojis];
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement("div");
     const x = Math.random() * 100;
     const delay = Math.random() * 1.5;
     const duration = 2 + Math.random() * 2.5;
     const size = 20 + Math.random() * 20;
-    emoji.textContent = "🏕️🔥"[Math.random() < 0.5 ? 0 : 1] === "🏕" ? "🏕️" : "🔥";
-    Object.assign(emoji.style, {
+    el.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+    Object.assign(el.style, {
       position: "absolute", bottom: "-40px", left: `${x}%`,
       fontSize: `${size}px`,
       animation: `ember-rise ${duration}s ${delay}s ease-out forwards`,
     });
-    container.appendChild(emoji);
+    container.appendChild(el);
   }
   setTimeout(() => container.remove(), 6000);
   spawnEmbers();
@@ -166,12 +167,33 @@ const CHEATS: Cheat[] = [
   },
   {
     sequence: ["c", "a", "m", "p", "f", "i", "r", "e"],
-    action: campfireEmojis,
+    action: () => floatEmojis(["🏕️", "🔥"], 40),
   },
   {
     sequence: ["6", "7"],
     action: rock67,
   },
+  // Emoji triggers — one word per Campfire platform emoji
+  { sequence: ["t", "h", "i", "n", "k"], action: () => floatEmojis("🤔") },
+  { sequence: ["l", "o", "l"], action: () => floatEmojis("😂") },
+  { sequence: ["s", "m", "i", "l", "e"], action: () => floatEmojis("😄") },
+  { sequence: ["w", "o", "w"], action: () => floatEmojis("🤩") },
+  { sequence: ["y", "i", "k", "e", "s"], action: () => floatEmojis("😬") },
+  { sequence: ["c", "r", "y"], action: () => floatEmojis("😭") },
+  { sequence: ["f", "l", "e", "x"], action: () => floatEmojis("💪") },
+  { sequence: ["y", "e", "s"], action: () => floatEmojis("👍") },
+  { sequence: ["n", "o", "p", "e"], action: () => floatEmojis("👎") },
+  { sequence: ["b", "r", "a", "v", "o"], action: () => floatEmojis("👏") },
+  { sequence: ["l", "u", "c", "k"], action: () => floatEmojis("🤞") },
+  { sequence: ["t", "h", "a", "n", "k", "s"], action: () => floatEmojis("🙏") },
+  { sequence: ["h", "o", "o", "r", "a", "y"], action: () => floatEmojis("🙌") },
+  { sequence: ["l", "o", "v", "e"], action: () => floatEmojis("💜") },
+  { sequence: ["p", "a", "r", "t", "y"], action: () => floatEmojis("🎉") },
+  { sequence: ["h", "u", "n", "d", "r", "e", "d"], action: () => floatEmojis("💯") },
+  { sequence: ["f", "i", "r", "e"], action: () => floatEmojis("🔥") },
+  { sequence: ["a", "l", "a", "r", "m"], action: () => floatEmojis("⏰") },
+  { sequence: ["i", "d", "e", "a"], action: () => floatEmojis("💡") },
+  { sequence: ["l", "a", "u", "n", "c", "h"], action: () => floatEmojis("🚀") },
 ];
 
 export default function CheatCodes() {
