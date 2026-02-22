@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 
 const QUESTIONS = [
   "What are you most proud of right now?",
@@ -44,7 +44,7 @@ function showToast(text: string) {
 export default function ReflectEgg() {
   const [active, setActive] = useState(false);
   const [question, setQuestion] = useState("");
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(60);
   const [response, setResponse] = useState("");
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const fadeRef = useRef<HTMLDivElement>(null);
@@ -68,7 +68,7 @@ export default function ReflectEgg() {
   useEffect(() => {
     function onActivate() {
       setQuestion(QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)]);
-      setTimeLeft(300);
+      setTimeLeft(60);
       setResponse("");
       setActive(true);
     }
@@ -102,6 +102,34 @@ export default function ReflectEgg() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [active, dismiss]);
+
+  // Pre-compute ember properties once per activation so typing doesn't re-roll them
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const embers = useMemo(() => {
+    return Array.from({ length: 40 }).map(() => {
+      const size = 3 + Math.random() * 5;
+      let x: number;
+      const edgeRoll = Math.random();
+      if (edgeRoll < 0.35) {
+        x = Math.random() * 15;
+      } else if (edgeRoll < 0.70) {
+        x = 85 + Math.random() * 15;
+      } else {
+        x = 20 + Math.random() * 60;
+      }
+      const duration = 4 + Math.random() * 6;
+      const delay = Math.random() * 5;
+      const drift = (Math.random() - 0.5) * 40;
+      const rise = -(100 + Math.random() * 300);
+      const peak = 0.3 + Math.random() * 0.5;
+      const hue = 15 + Math.random() * 30;
+      const sat = 80 + Math.random() * 20;
+      const light = 50 + Math.random() * 20;
+      const color = `hsl(${hue}, ${sat}%, ${light}%)`;
+      const bottom = 10 + Math.random() * 20;
+      return { size, x, duration, delay, drift, rise, peak, color, bottom };
+    });
+  }, [active]);
 
   if (!active) return null;
 
@@ -156,49 +184,26 @@ export default function ReflectEgg() {
         }}
       >
         {/* Fire embers — weighted toward left/right edges */}
-        {Array.from({ length: 40 }).map((_, i) => {
-          const size = 3 + Math.random() * 5;
-          // 70% embers on edges (0-15% or 85-100%), 30% in middle
-          let x: number;
-          const edgeRoll = Math.random();
-          if (edgeRoll < 0.35) {
-            x = Math.random() * 15;
-          } else if (edgeRoll < 0.70) {
-            x = 85 + Math.random() * 15;
-          } else {
-            x = 20 + Math.random() * 60;
-          }
-          const duration = 4 + Math.random() * 6;
-          const delay = Math.random() * 5;
-          const drift = (Math.random() - 0.5) * 40;
-          const rise = -(100 + Math.random() * 300);
-          const peak = 0.3 + Math.random() * 0.5;
-          // Warm colors: oranges, ambers, soft reds
-          const hue = 15 + Math.random() * 30; // 15–45 range
-          const sat = 80 + Math.random() * 20;
-          const light = 50 + Math.random() * 20;
-          const color = `hsl(${hue}, ${sat}%, ${light}%)`;
-          return (
-            <div
-              key={`ember-${i}`}
-              style={{
-                position: "absolute",
-                left: `${x}%`,
-                bottom: `-${10 + Math.random() * 20}px`,
-                width: `${size}px`,
-                height: `${size}px`,
-                borderRadius: "50%",
-                background: color,
-                boxShadow: `0 0 ${size * 2}px ${color}`,
-                "--rise": `${rise}px`,
-                "--drift": `${drift}px`,
-                "--ember-peak": `${peak}`,
-                animation: `reflect-ember ${duration}s ${delay}s ease-out infinite`,
-                opacity: 0,
-              } as React.CSSProperties}
-            />
-          );
-        })}
+        {embers.map((e, i) => (
+          <div
+            key={`ember-${i}`}
+            style={{
+              position: "absolute",
+              left: `${e.x}%`,
+              bottom: `-${e.bottom}px`,
+              width: `${e.size}px`,
+              height: `${e.size}px`,
+              borderRadius: "50%",
+              background: e.color,
+              boxShadow: `0 0 ${e.size * 2}px ${e.color}`,
+              "--rise": `${e.rise}px`,
+              "--drift": `${e.drift}px`,
+              "--ember-peak": `${e.peak}`,
+              animation: `reflect-ember ${e.duration}s ${e.delay}s ease-out infinite`,
+              opacity: 0,
+            } as React.CSSProperties}
+          />
+        ))}
       </div>
 
       {/* Top bar: timer + badge */}
