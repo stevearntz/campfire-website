@@ -9,12 +9,14 @@ export const metadata: Metadata = {
     title: "Easter Egg Hunt — 50+ Hidden Secrets | Campfire",
     description:
       "There are 50+ hidden easter eggs scattered across getcampfire.com. Can you find them all? Here are 10 clues to get you started.",
+    images: [{ url: "/eggs-og.png", width: 1200, height: 630, alt: "Campfire Easter Eggs — 50+ hidden secrets" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Easter Egg Hunt — 50+ Hidden Secrets | Campfire",
     description:
       "There are 50+ hidden easter eggs scattered across getcampfire.com. Can you find them all? Here are 10 clues to get you started.",
+    images: ["/eggs-og.png"],
   },
 };
 
