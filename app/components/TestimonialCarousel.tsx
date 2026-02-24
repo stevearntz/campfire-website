@@ -192,12 +192,12 @@ export default function TestimonialCarousel() {
 
         {/* CTA */}
         <div className="text-center mt-8">
-          {/* <Link
+          <Link
             href="/customers"
             className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
-            Explore Case Studies
-          </Link> */}
+            Explore Customer Stories
+          </Link>
         </div>
     </section>
   );
