@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <div className="mx-auto px-6 flex items-center justify-between h-16" style={{ maxWidth: "1350px" }}>
         {/* Logo */}
         <Link href="/">
           <Image
@@ -64,7 +64,7 @@ export default function Navbar() {
             href="https://calendly.com/getcampfire/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 text-[1.05rem] font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+            className="flex items-center justify-center px-5 h-9 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Get Demo
           </a>
@@ -72,7 +72,7 @@ export default function Navbar() {
             href="https://meet.getcampfire.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 text-[1.05rem] font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors uppercase tracking-wide"
+            className="flex items-center justify-center px-5 h-9 text-sm font-semibold text-gray-700 border border-gray-300 rounded-lg hover:border-[#6E3FCC] hover:text-[#6E3FCC] transition-colors uppercase tracking-wide"
           >
             Log In
           </a>
