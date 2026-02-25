@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollEmbers from "../components/ScrollEmbers";
 
 export const metadata: Metadata = {
-  title: "About Campfire — Our Story and Mission",
+  title: "About Campfire — The Human Side of Leadership Development",
   description:
-    "Campfire is a leadership development platform built for remote-first, growing companies with lean HR and talent teams. Learn about our mission and approach.",
+    "We started Campfire with a simple belief: leadership development should feel human — practical, honest, and built around the realities leaders face every day.",
   openGraph: {
-    title: "About Campfire — Our Story and Mission",
+    title: "About Campfire — The Human Side of Leadership Development",
     description:
-      "Campfire is a leadership development platform built for remote-first, growing companies with lean HR and talent teams.",
+      "We started Campfire with a simple belief: leadership development should feel human — practical, honest, and built around the realities leaders face every day.",
   },
 };
 
@@ -17,569 +18,323 @@ export default function AboutPage() {
   return (
     <main>
       <ScrollEmbers />
-      <style>{`.hidden-egg{color:transparent;font-size:0.7rem;user-select:all}.hidden-egg::selection{color:#6E3FCC;background:#F8F5FC}`}</style>
+      <style>{`.hidden-egg{color:transparent;font-size:0.7rem;user-select:all;text-align:center;padding-top:1rem}.hidden-egg::selection{color:#6E3FCC;background:#F8F5FC}`}</style>
       {/* ==================== HERO ==================== */}
       <section className="relative overflow-hidden">
-        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="py-20" style={{ backgroundImage: "url('/clear-topo.webp'), linear-gradient(to left, #A84AEB 19%, #7F28CC 55%, #4E0DA9 100%)", backgroundSize: "100% auto, cover", backgroundPosition: "center, center" }}>
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               About Us
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Leadership Development That Fits Your Company and Your Leaders
+              The Human Side of Leadership Development
             </h1>
             <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
-              Your managers carry your culture, navigate change, and hold your
-              values in the moments that matter. Campfire gives them practical
-              tools, real conversations, and ongoing support — without adding
-              burden to your team.
+              We started Campfire with a simple belief: leadership development
+              should feel human &mdash; practical, honest, and built around the
+              realities leaders face every day.
             </p>
           </div>
+          <p className="hidden-egg">You found the seam. Keep pulling.</p>
         </div>
       </section>
-      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">You found the seam. Keep pulling.</p></div>
-
-      {/* ==================== WHO WE ARE ==================== */}
-      <section className="py-20 bg-[#F8F5FC]">
-        <div className="max-w-3xl mx-auto px-6 text-center" style={{ maxWidth: "52rem" }}>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Who we are
+      {/* ==================== WHY WE BUILT CAMPFIRE ==================== */}
+      <section className="py-28 bg-white">
+        <div className="mx-auto px-6" style={{ maxWidth: "1320px" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Why we built Campfire
           </h2>
-          <p className="text-lg text-gray-500 leading-relaxed mb-6">
-            Campfire is a leadership development platform built for
-            remote-first, growing companies with lean HR and
-            talent teams.
+          <p className="text-center text-gray-500 mb-14">
+            Campfire didn&rsquo;t begin with a product idea &mdash; it began
+            with a pattern we couldn&rsquo;t ignore.
           </p>
-          <p className="text-lg text-gray-500 leading-relaxed mb-6">
-            We help you build better managers — not through one-off
-            training, but through a flexible, always-on system that
-            integrates direction, culture, and skills into the way your
-            company already works.
-          </p>
-          <div className="w-12 h-px bg-[#6E3FCC]/30 mx-auto my-8" />
-          <p className="text-lg text-gray-500 leading-relaxed">
-            We are the partner small teams rely on to diagnose needs, design
-            programs, and deliver leadership development at scale — without
-            building everything from scratch.
-          </p>
-        </div>
-      </section>
-      <div className="bg-white py-1 text-center"><p className="hidden-egg">Most people stop reading here.</p></div>
 
-      {/* ==================== WHAT WE DO ==================== */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              What we actually provide
-            </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              Everything you need to run leadership development programs that
-              actually work — without building it all yourself.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Platform capabilities */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-6">
-                The Platform
-              </p>
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                      </svg>
-                    ),
-                    text: "A growing library of 50+ ready-to-go leadership sessions",
-                  },
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
-                      </svg>
-                    ),
-                    text: "Custom sessions aligned to your mission, values, and strategy",
-                  },
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                      </svg>
-                    ),
-                    text: "Flexible facilitation — our facilitators or yours",
-                  },
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                      </svg>
-                    ),
-                    text: "Simple scheduling and program design tools",
-                  },
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                      </svg>
-                    ),
-                    text: "Reporting and analytics to make impact visible",
-                  },
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                      </svg>
-                    ),
-                    text: "Diagnostic tools to understand leader needs",
-                  },
-                  {
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1H20.58" />
-                      </svg>
-                    ),
-                    text: "Practical manager tools that can be applied immediately",
-                  },
-                ].map((item) => (
-                  <div key={item.text} className="flex items-start gap-3">
-                    <div className="text-[#6E3FCC] shrink-0 mt-0.5">{item.icon}</div>
-                    <p className="text-gray-600 leading-relaxed">{item.text}</p>
-                  </div>
-                ))}
-              </div>
+              <Image
+                src="/carry-load.webp"
+                alt="Hikers carrying gear together"
+                width={548}
+                height={452}
+                className="w-full h-auto max-w-md mx-auto"
+              />
             </div>
-
-            {/* Session topics */}
             <div>
-              <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-6">
-                Sessions Cover Real Challenges
+              <p className="text-lg text-gray-500 leading-relaxed mb-6">
+                Typical leadership development creates moments of inspiration
+                but rarely leads to lasting change. Leaders leave energized,
+                only to return to full calendars and challenges they
+                can&rsquo;t actually solve. Despite best efforts, development
+                is still built around events instead of everyday work.
               </p>
-              <div className="flex flex-wrap gap-2.5">
-                {[
-                  "Giving & receiving feedback",
-                  "Navigating change & uncertainty",
-                  "Building trust & psychological safety",
-                  "Coaching & developing your people",
-                  "Preventing burnout & building resilience",
-                  "Running effective meetings & 1:1s",
-                  "Strategic thinking & decision-making",
-                  "Handling conflict with confidence",
-                  "Communication & active listening",
-                  "Delegation, ownership & accountability",
-                ].map((topic) => (
-                  <span
-                    key={topic}
-                    className="px-4 py-2.5 bg-[#F8F5FC] text-[#6E3FCC] text-sm font-medium rounded-full border border-[#6E3FCC]/10"
-                  >
-                    {topic}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-10 bg-[#F8F5FC] rounded-xl border border-gray-100 p-6">
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  Everything is designed to be{" "}
-                  <span className="font-semibold text-gray-900">social</span>,{" "}
-                  <span className="font-semibold text-gray-900">applied</span>,
-                  and{" "}
-                  <span className="font-semibold text-gray-900">repeated</span>{" "}
-                  — because behavior change requires systems, not events.
-                </p>
-              </div>
+              <p className="text-lg font-bold leading-relaxed" style={{ color: "#1C1334" }}>
+                We built Campfire from the belief that leadership growth needs
+                to live inside real conversations and decisions.
+              </p>
             </div>
           </div>
+          <p className="hidden-egg">Most people stop reading here.</p>
         </div>
       </section>
-      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">Okay, you&apos;re definitely not a bot.</p></div>
-
-      {/* ==================== WHAT IT FEELS LIKE ==================== */}
-      <section className="py-20 bg-[#F8F5FC]">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            What it feels like
-          </h2>
-          <p className="text-lg text-gray-500 mb-12 max-w-2xl">
-            Great managers don&apos;t just sit back and watch.
-          </p>
-
-          {/* The experience */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-14 mb-16">
-            {[
-              {
-                num: "1",
-                color: "#3D2272",
-                line1: "They don\u2019t just join sessions \u2014",
-                line2: "they sit with peers facing the same hard realities.",
-              },
-              {
-                num: "2",
-                color: "#6E3FCC",
-                line1: "They slow down long enough",
-                line2: "to name what\u2019s actually happening on their teams.",
-              },
-              {
-                num: "3",
-                color: "#9B6AD8",
-                line1: "They practice the conversations",
-                line2: "they\u2019ve been avoiding \u2014 feedback, conflict, clarity.",
-              },
-              {
-                num: "4",
-                color: "#C882D4",
-                line1: "They leave with one specific shift",
-                line2: "they can apply in their very next 1:1.",
-              },
-            ].map((item) => (
-              <div
-                key={item.num}
-                className="relative bg-white rounded-xl border border-gray-100 p-6 pl-14 flex items-center"
-              >
-                <div
-                  className="absolute -left-5 w-10 h-10 rounded-full flex items-center justify-center shadow-sm"
-                  style={{ backgroundColor: item.color }}
-                >
-                  <span className="text-sm font-bold text-white">{item.num}</span>
-                </div>
-                <p className="text-gray-700 font-medium leading-relaxed">
-                  {item.line1}
-                  <br />
-                  {item.line2}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* The compound effect */}
-          <div className="text-center">
-            <p className="text-sm font-semibold text-[#6E3FCC] uppercase tracking-widest mb-8">
-              Over time, those small shifts compound
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {[
-                {
-                  text: "Teams communicate more openly and with less friction",
-                  icon: (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
-                    </svg>
-                  ),
-                },
-                {
-                  text: "Leaders handle hard conversations with confidence",
-                  icon: (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                    </svg>
-                  ),
-                },
-                {
-                  text: "Burnout risk is spotted earlier and addressed effectively",
-                  icon: (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                    </svg>
-                  ),
-                },
-                {
-                  text: "Change becomes easier to weather and navigate together",
-                  icon: (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                    </svg>
-                  ),
-                },
-                {
-                  text: "Culture becomes something people actually feel",
-                  icon: (
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 6.5 6.5 0 0012 12.5a6.5 6.5 0 003.362-7.286z" />
-                    </svg>
-                  ),
-                },
-              ].map((outcome) => (
-                <div
-                  key={outcome.text}
-                  className="bg-white rounded-lg border border-gray-100 p-4 text-center"
-                >
-                  <div className="text-[#6E3FCC] flex justify-center mb-2">
-                    {outcome.icon}
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                    {outcome.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">Still here? We respect the hustle.</p></div>
-
-      {/* ==================== WHY WE EXIST ==================== */}
-      <section className="relative overflow-hidden">
-        <div className="py-20" style={{ backgroundImage: "url('/purple-topo-tall.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
-          <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Why we exist
-              </h2>
-              <p className="text-xl text-white/70 max-w-xl mx-auto">
-                Most leadership development solves a learning problem.
-              </p>
-              <p className="text-2xl font-bold text-white mt-2">
-                We solve a business problem.
-              </p>
-            </div>
-
-            <p className="text-center text-white/60 mb-10 max-w-2xl mx-auto">
-              Leadership development only works when it improves what leaders
-              care about:
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-12 max-w-3xl mx-auto">
-              {[
-                "Retention",
-                "Outcomes",
-                "Alignment",
-                "Change",
-                "Culture",
-              ].map((metric) => (
-                <div
-                  key={metric}
-                  className="bg-white/10 backdrop-blur-sm rounded-lg border border-white/15 p-4 text-center"
-                >
-                  <p className="text-white font-semibold text-sm">{metric}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/15 p-8 text-center max-w-2xl mx-auto">
-              <p className="text-white/80 leading-relaxed">
-                Frontline and mid-level managers are the primary unit of change
-                in an organization.
-              </p>
-              <p className="text-white font-semibold leading-relaxed mt-3">
-                If managers and leaders don&apos;t learn and grow, nothing will
-                scale.
-              </p>
-              <p className="mt-4 text-white/60 text-sm">
-                We exist to make meaningful, practical, and engaging leadership
-                development accessible to every manager. Support and growth
-                should go beyond just executives and &ldquo;high-potentials&rdquo;.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <div className="bg-white py-1 text-center"><p className="hidden-egg">Fun fact: this page has seven hidden messages.</p></div>
-
       {/* ==================== BELIEFS ==================== */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-28 bg-[#F7F6F7]">
+        <div className="mx-auto px-6" style={{ maxWidth: "1275px" }}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-14">
-            What we believe
+            Our beliefs about leadership
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left — statement */}
+            <div>
+              <p className="text-3xl md:text-4xl font-bold leading-tight" style={{ color: "#1C1334" }}>
+                Our approach is grounded in a few simple beliefs about how
+                leaders{" "}
+                <span style={{ color: "#6E3FCC" }}>actually grow.</span>
+              </p>
+            </div>
+
+            {/* Right — belief cards */}
+            <div className="space-y-4" style={{ maxWidth: "742px" }}>
+              {[
+                {
+                  title: "Leadership grows through conversation, not consumption.",
+                  desc: "Real growth happens when leaders reflect, practice, and learn from one another \u2014 not when they passively absorb content.",
+                  gradient: "linear-gradient(to bottom, #8252E1, #9F4DE8)",
+                },
+                {
+                  title: "Development should live inside work, not outside it.",
+                  desc: "The moments that shape leadership happen in meetings, decisions, and difficult conversations, not separate programs.",
+                  gradient: "linear-gradient(to bottom, #A04CE9, #BF53EA)",
+                },
+                {
+                  title: "One size rarely fits anyone.",
+                  desc: "Every organization has its own culture, challenges, and pace of growth \u2014 development should adapt accordingly.",
+                  gradient: "linear-gradient(to bottom, #BF53EA, #DC65E6)",
+                },
+                {
+                  title: "Consistency matters more than intensity.",
+                  desc: "Lasting change comes from ongoing practice and reinforcement, not one-time experiences.",
+                  gradient: "linear-gradient(to bottom, #DC65E6, #EE81DD)",
+                },
+              ].map((belief) => (
+                <div
+                  key={belief.title}
+                  className="relative bg-white rounded-xl p-6 pl-9 overflow-hidden shadow-sm"
+                >
+                  <div
+                    className="absolute left-0 top-0 w-1 h-full"
+                    style={{ background: belief.gradient }}
+                  />
+                  <h3 className="font-bold text-gray-900 mb-1">
+                    {belief.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    {belief.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="hidden-egg">Fun fact: this page has seven hidden messages.</p>
+        </div>
+      </section>
+
+      {/* ==================== WHAT IT FEELS LIKE TO WORK WITH US ==================== */}
+      <section className="py-28 bg-white">
+        <div className="mx-auto px-6" style={{ maxWidth: "1250px" }}>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              What it feels like to work with us
+            </h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
+              These principles show up in how we design sessions, partner with
+              organizations, and support leaders day to day.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 mx-auto" style={{ maxWidth: "1350px", columnGap: "185px" }}>
             {[
               {
-                belief: "Leadership is a practice, not a title",
-                line1: "Leaders are built in the ordinary moments.",
-                line2: "It\u2019s how you show up on a hard Tuesday.",
-                accent: "bg-[#6E3FCC]",
+                icon: "/with-you-icon.webp",
+                iconW: 24,
+                iconH: 28,
+                title: "Built with you, not for you",
+                desc: "We collaborate closely with each organization so development reflects real challenges, culture, and priorities.",
               },
               {
-                belief: "Managers are the leverage point",
-                line1: "Culture, performance, and strategy all live",
-                line2: "in the daily behavior of your managers.",
-                accent: "bg-[#7E4FD0]",
+                icon: "/human-icon.webp",
+                iconW: 26,
+                iconH: 23,
+                title: "Human at every step",
+                desc: "Facilitation creates space for honest dialogue, reflection, and shared learning.",
               },
               {
-                belief: "Culture lives in everyday moments",
-                line1: "Not on the values slide.",
-                line2: "In meetings and small decisions.",
-                accent: "bg-[#8F65D9]",
+                icon: "/practical-icon.webp",
+                iconW: 23,
+                iconH: 29,
+                title: "Practical over theoretical",
+                desc: "Sessions focus on conversations and decisions leaders are facing right now \u2014 not abstract scenarios.",
               },
               {
-                belief: "Behavior beats content",
-                line1: "Frameworks help. Practice transforms.",
-                line2: "Leaders change with conversations.",
-                accent: "bg-[#6E3FCC]",
+                icon: "/voice-icon.webp",
+                iconW: 32,
+                iconH: 25,
+                title: "Everyone has a voice",
+                desc: "Sessions are designed so leaders reflect, contribute, and learn from one another \u2014 not just listen.",
               },
               {
-                belief: "Systems beat one-time events",
-                line1: "Ongoing reinforcement and tools change",
-                line2: "how teams actually operate.",
-                accent: "bg-[#7E4FD0]",
+                icon: "/structured-icon.webp",
+                iconW: 27,
+                iconH: 30,
+                title: "Structured but flexible",
+                desc: "Programs provide consistency while adapting to different teams, timelines, and moments of growth.",
               },
               {
-                belief: "Simple beats complex",
-                line1: "Tools need to fit into the flow of work",
-                line2: "or they won\u2019t stick.",
-                accent: "bg-[#8F65D9]",
+                icon: "/house-icon.webp",
+                iconW: 29,
+                iconH: 24,
+                title: "Designed to last",
+                desc: "Growth is reinforced over time so leadership development becomes part of how work happens, not a one-time event.",
               },
             ].map((item) => (
-              <div
-                key={item.belief}
-                className="bg-[#F8F5FC] rounded-xl border border-gray-100 p-6 relative overflow-hidden"
-              >
-                <div className={`absolute top-0 left-0 w-1 h-full ${item.accent} opacity-40`} />
-                <h3 className="font-bold text-gray-900 mb-2 pl-3">
-                  {item.belief}
+              <div key={item.title}>
+                <Image
+                  src={item.icon}
+                  alt=""
+                  width={item.iconW}
+                  height={item.iconH}
+                  className="mb-3"
+                  style={{ height: "30px", width: "auto" }}
+                />
+                <h3 className="font-bold text-gray-900 mb-2" style={{ fontSize: "1.2rem" }}>
+                  {item.title}
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed pl-3">
-                  {item.line1}
-                  <br />
-                  {item.line2}
+                <p className="text-gray-500 leading-relaxed" style={{ fontSize: "1.05rem" }}>
+                  {item.desc}
                 </p>
               </div>
             ))}
           </div>
+          <p className="hidden-egg">Okay, you&apos;re definitely not a bot.</p>
+        </div>
+      </section>
+      {/* ==================== OUR PURPOSE ==================== */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/purpose-topo.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
+          <p className="text-sm font-bold tracking-wider uppercase text-white/70 mb-6">
+            Our Purpose
+          </p>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+            Campfire exists to help every organization create a culture where
+            people do meaningful work &mdash; and go home feeling{" "}
+            <span style={{ color: "#EE81DD" }}>
+              better than when they started.
+            </span>
+          </h2>
+          <p className="hidden-egg">You&apos;re thorough. We like that.</p>
         </div>
       </section>
 
-      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">You&apos;re thorough. We like that.</p></div>
-
-      {/* ==================== OUR PEOPLE (TODO: add real names, bios, photos) ====================
-      <section className="py-20 bg-[#F8F5FC]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
+      {/* ==================== THE HUMANS BEHIND CAMPFIRE ==================== */}
+      <section className="py-28 bg-white">
+        <div className="mx-auto px-6" style={{ maxWidth: "1350px" }}>
+          <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              The people behind Campfire
+              The humans behind Campfire
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              A team of practitioners, facilitators, and builders who care
-              deeply about leadership development done right.
+            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
+              Behind Campfire is a team that cares deeply about creating
+              meaningful learning experiences and supporting leaders through real
+              challenges.
             </p>
           </div>
 
-          <div className="mb-14">
-            <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-8 text-center">
-              Founders
+          {/* Our Team */}
+          <div className="mt-14">
+            <p className="text-sm font-bold tracking-wider uppercase mb-8" style={{ color: "#262F56" }}>
+              Our Team
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
               {[
-                {
-                  initials: "SA",
-                  name: "Founder Name",
-                  role: "Co-Founder & CEO",
-                  bio: "Placeholder bio — passionate about making leadership development accessible and human. Background in talent strategy and organizational design.",
-                  color: "bg-[#6E3FCC]",
-                },
-                {
-                  initials: "JD",
-                  name: "Founder Name",
-                  role: "Co-Founder & COO",
-                  bio: "Placeholder bio — focused on building systems that help lean teams run leadership programs at scale. Background in operations and people development.",
-                  color: "bg-[#7E4FD0]",
-                },
-              ].map((founder) => (
-                <div
-                  key={founder.initials}
-                  className="bg-white rounded-2xl border border-gray-100 p-8 text-center"
-                >
-                  <div
-                    className={`w-24 h-24 ${founder.color} rounded-full mx-auto mb-5 flex items-center justify-center`}
-                  >
-                    <span className="text-2xl font-bold text-white">
-                      {founder.initials}
-                    </span>
+                { src: "/steve.webp", name: "Steve Arntz", title: "CEO & Co-founder" },
+                { src: "/marinne.webp", name: "Marinne Pearson", title: "Growth & Co-founder" },
+                { src: "/camara.webp", name: "Camara Pender", title: "Product & Experience" },
+                { src: "/carlos.webp", name: "Carlos Feliciano-Barba", title: "Engineering" },
+                { src: "/ella.webp", name: "Ella Wright", title: "Customer Experience" },
+              ].map((person) => (
+                <div key={person.name}>
+                  <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gray-200">
+                    <Image
+                      src={person.src}
+                      alt={person.name}
+                      width={400}
+                      height={400}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900">
-                    {founder.name}
-                  </h3>
-                  <p className="text-sm font-medium text-[#6E3FCC] mb-3">
-                    {founder.role}
-                  </p>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {founder.bio}
-                  </p>
+                  <p className="font-bold text-gray-900 text-sm">{person.name}</p>
+                  <p className="text-sm text-gray-500">{person.title}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mb-14">
-            <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-8 text-center">
-              Team
+          {/* Our Facilitators — coming soon */}
+          <div className="mt-20">
+            <p className="text-sm font-bold tracking-wider uppercase mb-8" style={{ color: "#262F56" }}>
+              Our Facilitators
             </p>
-            <div className="flex flex-wrap justify-center gap-8">
-              {[
-                { initials: "MR", name: "Team Member", role: "Head of Content" },
-                { initials: "KL", name: "Team Member", role: "Program Operations" },
-                { initials: "TP", name: "Team Member", role: "Client Success" },
-              ].map((member) => (
-                <div key={member.initials} className="text-center w-36">
-                  <div className="w-16 h-16 bg-[#8F65D9] rounded-full mx-auto mb-3 flex items-center justify-center">
-                    <span className="text-sm font-bold text-white">
-                      {member.initials}
-                    </span>
-                  </div>
-                  <p className="font-semibold text-gray-900 text-sm">
-                    {member.name}
-                  </p>
-                  <p className="text-xs text-gray-500">{member.role}</p>
+            <div className="relative rounded-2xl overflow-hidden border border-gray-100" style={{ backgroundImage: "url('/clear-topo.webp'), linear-gradient(to right, #6E3FCC 0%, #9D88ED 100%)", backgroundSize: "100% auto, cover", backgroundPosition: "center, center" }}>
+              <div className="px-8 py-14 md:py-16 text-center">
+                <p className="text-white/80 text-sm font-bold tracking-wider uppercase mb-3">
+                  Coming Soon
+                </p>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  Meet the people who bring Campfire to life
+                </h3>
+                <p className="text-white/70 max-w-xl mx-auto leading-relaxed">
+                  Our facilitators are experienced leaders, coaches, and practitioners
+                  who create space for honest conversations and real growth. We&apos;re
+                  putting the finishing touches on their profiles &mdash; check back
+                  soon.
+                </p>
+                <div className="mt-8 flex justify-center">
+                  {[...Array(5)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm flex items-end justify-center overflow-hidden"
+                      style={{ marginLeft: i > 0 ? "-8px" : "0" }}
+                    >
+                      <svg viewBox="0 0 60 60" className="w-10 h-10 md:w-12 md:h-12 opacity-40" fill="white">
+                        <circle cx="30" cy="20" r="9" />
+                        <ellipse cx="30" cy="52" rx="16" ry="14" />
+                      </svg>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-
-          <div>
-            <p className="text-xs font-bold text-[#6E3FCC] uppercase tracking-widest mb-4 text-center">
-              Facilitators & Content Developers
-            </p>
-            <p className="text-sm text-gray-500 text-center mb-8 max-w-lg mx-auto">
-              Our network of experienced facilitators and content creators bring
-              real-world leadership expertise to every session.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                { initials: "AL", color: "bg-[#6E3FCC]" },
-                { initials: "BK", color: "bg-[#7E4FD0]" },
-                { initials: "CM", color: "bg-[#8F65D9]" },
-                { initials: "DR", color: "bg-[#A88AE0]" },
-                { initials: "EW", color: "bg-[#6E3FCC]" },
-                { initials: "FH", color: "bg-[#7E4FD0]" },
-                { initials: "GS", color: "bg-[#8F65D9]" },
-                { initials: "HN", color: "bg-[#A88AE0]" },
-                { initials: "JT", color: "bg-[#6E3FCC]" },
-                { initials: "KP", color: "bg-[#7E4FD0]" },
-                { initials: "LB", color: "bg-[#8F65D9]" },
-                { initials: "MC", color: "bg-[#A88AE0]" },
-                { initials: "NV", color: "bg-[#6E3FCC]" },
-                { initials: "PG", color: "bg-[#7E4FD0]" },
-              ].map((person, i) => (
-                <div key={person.initials + i} className="text-center">
-                  <div
-                    className={`w-12 h-12 ${person.color} rounded-full flex items-center justify-center`}
-                  >
-                    <span className="text-xs font-bold text-white">
-                      {person.initials}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-center mt-6 text-sm text-gray-400">
-              14 facilitators and content developers across North America
-            </p>
           </div>
         </div>
       </section>
-      ==================== */}
 
       {/* ==================== IMPACT ==================== */}
-      <section className="py-20 bg-[#F8F5FC]">
+      <section className="py-28 bg-[#F8F5FC]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               The impact we see
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-              When leadership development fits the flow of work.
+              Over time, we&apos;ve seen the same shifts happen again and
+              again &mdash; in how leaders show up and how teams experience work.
             </p>
           </div>
 
@@ -648,31 +403,9 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Transformational statement */}
-          <div className="bg-white rounded-2xl border border-gray-100 p-10 text-center max-w-3xl mx-auto">
-            <p className="text-sm font-semibold text-[#6E3FCC] uppercase tracking-widest mb-6">
-              This is what transformation looks like
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                "Honest conversations",
-                "Human-centered leadership",
-                <>Aligned<br />decision-making</>,
-                "Sustainable performance",
-              ].map((phrase, i) => (
-                <p
-                  key={i}
-                  className="text-lg font-bold text-gray-900 leading-snug"
-                >
-                  {phrase}
-                </p>
-              ))}
-            </div>
-          </div>
+          <p className="hidden-egg">Still here? We respect the hustle.</p>
         </div>
       </section>
-      <div className="bg-[#F8F5FC] py-1 text-center"><p className="hidden-egg">You made it. Welcome to the inner circle.</p></div>
-
       {/* ==================== CLOSING CTA ==================== */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo-tall.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -700,6 +433,7 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
+          <p className="hidden-egg">You made it. Welcome to the inner circle.</p>
         </div>
       </section>
     </main>
