@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Solutions", href: "/solutions" },
   { label: "Content", href: "/content" },
   { label: "Customers", href: "/customers" },
@@ -16,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
@@ -34,15 +35,27 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 font-[family-name:var(--font-spartan)]">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[1.05rem] font-medium text-gray-600 hover:text-[#6E3FCC] transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative text-[1.05rem] font-medium pb-1 transition-colors ${
+                  isActive
+                    ? "text-[#6E3FCC]"
+                    : "text-gray-600 hover:text-[#6E3FCC]"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute left-0 bottom-0 h-[2px] bg-[#6E3FCC] rounded-full transition-all duration-300 pointer-events-none ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </div>
 
         {/* CTA Buttons */}
@@ -83,16 +96,21 @@ export default function Navbar() {
       {/* Mobile Nav */}
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block text-sm font-medium text-gray-600 hover:text-[#6E3FCC]"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`block text-sm font-medium ${
+                  isActive ? "text-[#6E3FCC]" : "text-gray-600 hover:text-[#6E3FCC]"
+                }`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <div className="flex gap-3 pt-3 border-t border-gray-100">
             <a href="https://calendly.com/getcampfire/" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
               Get Demo

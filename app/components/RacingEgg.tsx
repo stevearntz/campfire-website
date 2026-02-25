@@ -18,6 +18,9 @@ function startRacing() {
   const target = document.querySelector("[data-pong-target]") as HTMLElement;
   if (!target || target.querySelector("[data-pong-game]")) return;
 
+  // Scroll showcase into view since "drive" link is below it
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+
   const rect = target.getBoundingClientRect();
   const W = Math.round(rect.width);
   const H = Math.round(rect.height);
@@ -116,20 +119,31 @@ function startRacing() {
   const ENEMY_COLORS = ["#EE81DD", "#9D88ED", "#B06ECC", "#CC6EA0"];
 
   function spawnEnemy() {
-    const lane = Math.floor(Math.random() * LANE_COUNT);
-    // Check if another enemy is too close in the same lane
-    const tooClose = enemies.some(
-      (e) => e.lane === lane && e.y < CAR_H * 2.5
-    );
-    if (tooClose) return;
-
     const eW = LANE_W * 0.5;
     const eH = eW * 1.8;
+    const MIN_GAP = CAR_H * 3.5; // vertical gap needed to be passable
+
+    // Find which lanes are clear near the top of the screen
+    const laneClear = [true, true, true];
+    for (const e of enemies) {
+      if (e.y < MIN_GAP) {
+        laneClear[e.lane] = false;
+      }
+    }
+
+    // Never spawn if it would block all lanes — always leave at least one open
+    const openLanes = laneClear.filter(Boolean).length;
+    if (openLanes <= 1) return;
+
+    // Pick from available lanes only
+    const available = [0, 1, 2].filter((l) => laneClear[l]);
+    const lane = available[Math.floor(Math.random() * available.length)];
+
     enemies.push({
       x: ROAD_X + LANE_W * lane + LANE_W / 2,
       y: -eH,
       lane,
-      speed: speed * (0.4 + Math.random() * 0.4), // slower than road scroll
+      speed: speed * (0.4 + Math.random() * 0.3),
       width: eW,
       height: eH,
       color: ENEMY_COLORS[Math.floor(Math.random() * ENEMY_COLORS.length)],
@@ -197,7 +211,7 @@ function startRacing() {
 
       // Spawn enemies
       spawnTimer += dt;
-      const spawnInterval = Math.max(30, 80 - score / 50); // spawn faster over time
+      const spawnInterval = Math.max(50, 120 - score / 80); // spawn faster over time
       if (spawnTimer > spawnInterval) {
         spawnEnemy();
         spawnTimer = 0;
