@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ScrollEmbers from "../components/ScrollEmbers";
+import DancingMarshmallows from "../components/DancingMarshmallows";
+import GrowingVines from "../components/GrowingVines";
 
 export const metadata: Metadata = {
   title: "About Campfire — The Human Side of Leadership Development",
@@ -89,7 +91,7 @@ export default function AboutPage() {
               <p className="text-3xl md:text-4xl font-bold leading-tight" style={{ color: "#1C1334" }}>
                 Our approach is grounded in a few simple beliefs about how
                 leaders{" "}
-                <span style={{ color: "#6E3FCC" }}>actually grow.</span>
+                <GrowingVines>actually grow.</GrowingVines>
               </p>
             </div>
 
@@ -317,23 +319,7 @@ export default function AboutPage() {
                   putting the finishing touches on their profiles &mdash; check back
                   soon.
                 </p>
-                <div className="mt-8 flex justify-center">
-                  {[...Array(5)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm flex items-end justify-center overflow-hidden"
-                      style={{ marginLeft: i > 0 ? "-8px" : "0" }}
-                    >
-                      <Image
-                        src="/marsha.webp"
-                        alt=""
-                        width={80}
-                        height={80}
-                        className="w-[65%] h-auto opacity-50 grayscale mb-[2px]"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <DancingMarshmallows />
               </div>
             </div>
           </div>
