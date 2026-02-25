@@ -266,19 +266,31 @@ export default function AboutPage() {
                 { src: "/steve.webp", name: "Steve Arntz", title: "CEO & Co-founder" },
                 { src: "/marinne.webp", name: "Marinne Pearson", title: "Growth & Co-founder" },
                 { src: "/camara.webp", name: "Camara Pender", title: "Product & Experience" },
-                { src: "/carlos.webp", name: "Carlos Feliciano-Barba", title: "Engineering" },
                 { src: "/ella.webp", name: "Ella Wright", title: "Customer Experience" },
+                { src: "/marsha.webp", name: "Engineering Team", title: "Real humans, real code, real fire", marsha: true },
               ].map((person) => (
                 <div key={person.name}>
-                  <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gray-200">
-                    <Image
-                      src={person.src}
-                      alt={person.name}
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {"marsha" in person && person.marsha ? (
+                    <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gradient-to-b from-[#E8E0F4] to-[#D4C8E8] flex items-center justify-center">
+                      <Image
+                        src={person.src}
+                        alt={person.name}
+                        width={400}
+                        height={400}
+                        className="w-3/5 h-auto drop-shadow-md"
+                      />
+                    </div>
+                  ) : (
+                    <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gray-200">
+                      <Image
+                        src={person.src}
+                        alt={person.name}
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <p className="font-bold text-gray-900 text-sm">{person.name}</p>
                   <p className="text-sm text-gray-500">{person.title}</p>
                 </div>
@@ -312,10 +324,13 @@ export default function AboutPage() {
                       className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm flex items-end justify-center overflow-hidden"
                       style={{ marginLeft: i > 0 ? "-8px" : "0" }}
                     >
-                      <svg viewBox="0 0 60 60" className="w-10 h-10 md:w-12 md:h-12 opacity-40" fill="white">
-                        <circle cx="30" cy="20" r="9" />
-                        <ellipse cx="30" cy="52" rx="16" ry="14" />
-                      </svg>
+                      <Image
+                        src="/marsha.webp"
+                        alt=""
+                        width={80}
+                        height={80}
+                        className="w-[65%] h-auto opacity-50 grayscale mb-[2px]"
+                      />
                     </div>
                   ))}
                 </div>

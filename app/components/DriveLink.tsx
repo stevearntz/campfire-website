@@ -4,7 +4,7 @@ export default function DriveLink() {
   return (
     <span
       onClick={() => window.dispatchEvent(new Event("racing-activate"))}
-      className="cursor-pointer hover:underline"
+      className="cursor-pointer"
     >
       drive
     </span>

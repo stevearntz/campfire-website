@@ -138,8 +138,12 @@ function startBlockBreaker() {
   }
   canvas.addEventListener("mousemove", onMove);
 
-  // Keyboard control
+  // Keyboard control with smooth acceleration
   const keys: Record<string, boolean> = {};
+  let paddleVelocity = 0;
+  const PADDLE_ACCEL = W * 0.0015;
+  const PADDLE_MAX_SPEED = W * 0.014;
+  const PADDLE_FRICTION = 0.85;
   function onKeyDown(e: KeyboardEvent) {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       e.preventDefault();
@@ -171,10 +175,17 @@ function startBlockBreaker() {
   function update() {
     if (!running) return;
 
-    // Keyboard paddle movement
-    const kSpeed = W * 0.012;
-    if (keys["ArrowLeft"]) paddleX = Math.max(0, paddleX - kSpeed);
-    if (keys["ArrowRight"]) paddleX = Math.min(W - PADDLE_W, paddleX + kSpeed);
+    // Keyboard paddle movement with smooth acceleration
+    if (keys["ArrowLeft"]) {
+      paddleVelocity -= PADDLE_ACCEL;
+    } else if (keys["ArrowRight"]) {
+      paddleVelocity += PADDLE_ACCEL;
+    } else {
+      paddleVelocity *= PADDLE_FRICTION;
+    }
+    paddleVelocity = Math.max(-PADDLE_MAX_SPEED, Math.min(PADDLE_MAX_SPEED, paddleVelocity));
+    if (Math.abs(paddleVelocity) < 0.1) paddleVelocity = 0;
+    paddleX = Math.max(0, Math.min(W - PADDLE_W, paddleX + paddleVelocity));
 
     if (!over) {
       bx += vx * speedMult;
