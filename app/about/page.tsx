@@ -267,7 +267,7 @@ export default function AboutPage() {
                 { src: "/marinne.webp", name: "Marinne Pearson", title: "Growth & Co-founder" },
                 { src: "/camara.webp", name: "Camara Pender", title: "Product & Experience" },
                 { src: "/ella.webp", name: "Ella Wright", title: "Customer Experience" },
-                { src: "/marsha.webp", name: "Engineering Team", title: "Real humans, real code, real fire", marsha: true },
+                { src: "/marsha.webp", name: "Carlos Feliciano-Barba", title: "Engineering", marsha: true },
               ].map((person) => (
                 <div key={person.name}>
                   {"marsha" in person && person.marsha ? (
