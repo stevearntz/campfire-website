@@ -334,8 +334,8 @@ function RegistrationAction({
 
   if (registered || justRegistered) {
     return (
-      <div className="mt-5 flex items-center gap-3">
-        <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2.5">
+      <div className="mt-5">
+        <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2.5 mb-3">
           <svg
             className="w-4 h-4 text-green-600 shrink-0"
             fill="none"
@@ -353,16 +353,18 @@ function RegistrationAction({
             You&apos;re registered!
           </span>
         </div>
-        <button
-          onClick={() => {
-            onUnregister(eventId);
-            setJustRegistered(false);
-          }}
-          disabled={loading}
-          className="text-sm text-gray-400 hover:text-red-500 transition-colors disabled:opacity-50"
-        >
-          {loading ? "..." : "Unregister"}
-        </button>
+        <div>
+          <button
+            onClick={() => {
+              onUnregister(eventId);
+              setJustRegistered(false);
+            }}
+            disabled={loading}
+            className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-gray-400 border border-gray-300 rounded-lg hover:border-gray-400 hover:text-gray-500 transition-colors uppercase tracking-wide disabled:opacity-50"
+          >
+            {loading ? "..." : "Unregister"}
+          </button>
+        </div>
       </div>
     );
   }
