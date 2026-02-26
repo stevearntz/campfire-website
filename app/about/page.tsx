@@ -5,6 +5,7 @@ import ScrollEmbers from "../components/ScrollEmbers";
 import DancingMarshmallows from "../components/DancingMarshmallows";
 import GrowingVines from "../components/GrowingVines";
 import ImpactCards from "../components/ImpactCards";
+import DancingCarlos from "../components/DancingCarlos";
 
 export const metadata: Metadata = {
   title: "About Campfire — The Human Side of Leadership Development",
@@ -274,15 +275,7 @@ export default function AboutPage() {
               ].map((person) => (
                 <div key={person.name}>
                   {"marsha" in person && person.marsha ? (
-                    <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gradient-to-b from-[#E8E0F4] to-[#D4C8E8] flex items-center justify-center">
-                      <Image
-                        src={person.src}
-                        alt={person.name}
-                        width={400}
-                        height={400}
-                        className="w-3/5 h-auto drop-shadow-md"
-                      />
-                    </div>
+                    <DancingCarlos />
                   ) : (
                     <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gray-200">
                       <Image
