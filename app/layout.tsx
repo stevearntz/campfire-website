@@ -9,6 +9,7 @@ import RB2B from "./components/RB2B";
 import ConsoleGreeting from "./components/ConsoleGreeting";
 import CheatCodes from "./components/CheatCodes";
 import AsteroidsEgg from "./components/AsteroidsEgg";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
@@ -25,7 +26,7 @@ const baseUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Campfire - Learn More",
+    default: "Campfire — Flexible Leadership Development for Growing Teams",
     template: "%s | Campfire",
   },
   description:
@@ -41,6 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
@@ -66,12 +70,14 @@ export default function RootLayout({
    getcampfire.com/contact
 
 -->` }} />
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-[#6E3FCC] focus:rounded-lg focus:shadow-lg focus:font-semibold focus:text-sm">Skip to main content</a>
         <Navbar />
-        {children}
+        <div id="main-content">{children}</div>
         <Footer />
         <CrispChat />
         <Clarity />
         <RB2B />
+        <GoogleAnalytics />
         <ConsoleGreeting />
         <CheatCodes />
         <AsteroidsEgg />

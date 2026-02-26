@@ -59,6 +59,7 @@ export default function SubscribeForm() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
+            aria-label="Email address"
             className="flex-1 px-5 py-3.5 text-sm text-gray-900 bg-white outline-none placeholder:text-gray-400 min-w-0"
           />
           <button

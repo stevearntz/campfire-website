@@ -67,6 +67,18 @@ export default async function BlogPage() {
 
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Blog — By the Campfire",
+        description: "Leadership development ideas, stories, and practical advice from the Campfire team.",
+        url: "https://getcampfire.com/blog",
+        publisher: {
+          "@type": "Organization",
+          name: "Campfire",
+          url: "https://getcampfire.com",
+        },
+      }) }} />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -114,6 +126,7 @@ export default async function BlogPage() {
                         src={posts[0].thumbnail_url}
                         alt={posts[0].title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
@@ -157,6 +170,7 @@ export default async function BlogPage() {
                               src={post.thumbnail_url}
                               alt={post.title}
                               fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
                               className="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
