@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Book a Call",
-  description:
-    "Schedule a conversation with the Campfire team. Learn how we can help your managers build leadership skills at scale. No pitch deck, no pressure.",
+  title: "Contact Campfire — Let's Talk About Your Team",
+  description: "Get in touch with Campfire to explore flexible leadership development for your organization. Book a call or send us a message.",
   openGraph: {
-    title: "Contact Us — Book a Call",
-    description:
-      "Schedule a conversation with the Campfire team about leadership development for your organization.",
+    title: "Contact Campfire — Let's Talk About Your Team",
+    description: "Get in touch with Campfire to explore flexible leadership development for your organization.",
   },
 };
 

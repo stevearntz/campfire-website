@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/", "/eggs"],
       },
     ],
     sitemap: "https://getcampfire.com/sitemap.xml",

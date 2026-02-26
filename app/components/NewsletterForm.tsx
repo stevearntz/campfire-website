@@ -42,26 +42,29 @@ export default function NewsletterForm() {
       {status === "success" ? (
         <p className="text-sm text-green-400">{message}</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex items-stretch gap-0 rounded-lg overflow-hidden">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="flex-1 min-w-0 px-3 py-2 text-xs text-gray-900 bg-white placeholder:text-gray-400 focus:outline-none"
-          />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="shrink-0 px-4 text-xs font-semibold text-white bg-[#6E3FCC] hover:bg-[#5B34AB] transition-colors uppercase tracking-wide disabled:opacity-50"
-          >
-            {status === "loading" ? "..." : "Subscribe"}
-          </button>
+        <>
+          <form onSubmit={handleSubmit} className="flex items-stretch gap-0 rounded-lg overflow-hidden">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              aria-label="Email address"
+              className="flex-1 min-w-0 px-3 py-2 text-xs text-gray-900 bg-white placeholder:text-gray-400 focus:outline-none"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="shrink-0 px-4 text-xs font-semibold text-white bg-[#6E3FCC] hover:bg-[#5B34AB] transition-colors uppercase tracking-wide disabled:opacity-50"
+            >
+              {status === "loading" ? "..." : "Subscribe"}
+            </button>
+          </form>
           {status === "error" && (
-            <p className="text-sm text-red-400">{message}</p>
+            <p className="text-sm text-red-400 mt-2">{message}</p>
           )}
-        </form>
+        </>
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TestimonialCarousel from "./components/TestimonialCarousel";
@@ -15,6 +16,15 @@ import TimerBombEgg from "./components/TimerBombEgg";
 import ReflectEgg from "./components/ReflectEgg";
 import RacingEgg from "./components/RacingEgg";
 import DriveLink from "./components/DriveLink";
+
+export const metadata: Metadata = {
+  title: "Campfire — Flexible Leadership Development for Growing Teams",
+  description: "Campfire delivers scalable, human-centered leadership development that fits inside real work. Trusted by Cotopaxi, Dermalogica, Enveda, and more.",
+  openGraph: {
+    title: "Campfire — Flexible Leadership Development for Growing Teams",
+    description: "Scalable, human-centered leadership development that fits inside real work.",
+  },
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -139,6 +149,7 @@ export default function Home() {
                     width={logo.w}
                     height={logo.h}
                     className={`${logo.cls} w-auto brightness-0 invert`}
+                    sizes="120px"
                   />
                 </div>
               ))}
@@ -264,6 +275,7 @@ export default function Home() {
                     width={80}
                     height={80}
                     className="w-20 h-20 object-contain"
+                    sizes="80px"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">
@@ -624,6 +636,7 @@ export default function Home() {
                       width={36}
                       height={36}
                       className="w-9 h-9 object-contain"
+                      sizes="36px"
                     />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-3">

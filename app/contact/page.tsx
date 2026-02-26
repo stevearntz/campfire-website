@@ -9,6 +9,7 @@ export default function ContactPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [loadTime] = useState(() => Date.now());
@@ -16,7 +17,7 @@ export default function ContactPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const submitted = status === "success";
-  const fields = { firstName, lastName, email, message };
+  const fields = { firstName, lastName, email, company, message };
   const smoresMode = message.toLowerCase().includes("s'mores");
   const smoresFired = useRef(false);
   const photoClicks = useRef<number[]>([]);
@@ -255,10 +256,11 @@ export default function ContactPage() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
                           First name <span className="text-red-400">*</span>
                         </label>
                         <input
+                          id="firstName"
                           type="text"
                           required
                           value={firstName}
@@ -267,10 +269,11 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
                           Last name <span className="text-red-400">*</span>
                         </label>
                         <input
+                          id="lastName"
                           type="text"
                           required
                           value={lastName}
@@ -281,10 +284,11 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                         Work email <span className="text-red-400">*</span>
                       </label>
                       <input
+                        id="email"
                         type="email"
                         required
                         value={email}
@@ -294,10 +298,25 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                        Company
+                      </label>
+                      <input
+                        id="company"
+                        type="text"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none focus:border-[#6E3FCC] focus:ring-1 focus:ring-[#6E3FCC] transition-colors"
+                        placeholder="Your company name"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                         What are you looking for?
                       </label>
                       <textarea
+                        id="message"
                         rows={4}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}

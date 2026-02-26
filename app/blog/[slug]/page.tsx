@@ -204,6 +204,7 @@ export default async function BlogPostPage({
                 src={post.thumbnail_url}
                 alt={post.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 896px"
                 className="object-cover"
                 priority
               />
@@ -255,6 +256,7 @@ export default async function BlogPostPage({
                           src={p.thumbnail_url}
                           alt={p.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
@@ -279,6 +281,34 @@ export default async function BlogPostPage({
           </div>
         </section>
       )}
+
+      {/* Sales CTA */}
+      <section className="bg-white">
+        <div className="max-w-3xl mx-auto px-6 pb-16">
+          <div className="rounded-2xl border border-[#6E3FCC]/20 bg-[#F8F5FC] p-8 text-center">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+              Ready to develop stronger leaders?
+            </h2>
+            <p className="text-gray-500 max-w-lg mx-auto mb-6">
+              Campfire helps organizations build leadership skills through real conversations — not just content. See how it works for your team.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link
+                href="/contact"
+                className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
+              >
+                Talk to Us
+              </Link>
+              <Link
+                href="/solutions"
+                className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-[#6E3FCC] border border-[#6E3FCC] rounded-lg hover:bg-[#6E3FCC]/5 transition-colors uppercase tracking-wide"
+              >
+                See Solutions
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Subscribe CTA */}
       <section
