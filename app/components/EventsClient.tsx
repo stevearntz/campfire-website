@@ -335,35 +335,35 @@ function RegistrationAction({
   if (registered || justRegistered) {
     return (
       <div className="mt-5">
-        <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2.5 mb-3">
-          <svg
-            className="w-4 h-4 text-green-600 shrink-0"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            viewBox="0 0 24 24"
+        <div className="flex flex-col sm:flex-row gap-2">
+          <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2.5 flex-1">
+            <svg
+              className="w-4 h-4 text-green-600 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+            <span className="text-green-800 font-semibold text-sm">
+              Looks like you&apos;re already registered!
+            </span>
+          </div>
+          <button
+            onClick={() => {
+              onUnregister(eventId);
+              setJustRegistered(false);
+            }}
+            disabled={loading}
+            className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-gray-400 border border-gray-300 rounded-lg hover:border-gray-400 hover:text-gray-500 transition-colors uppercase tracking-wide disabled:opacity-50 shrink-0"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.5 12.75l6 6 9-13.5"
-            />
-          </svg>
-          <span className="text-green-800 font-semibold text-sm">
-            Looks like you&apos;re already registered!
-          </span>
-        </div>
-        <div className="flex justify-end">
-        <button
-          onClick={() => {
-            onUnregister(eventId);
-            setJustRegistered(false);
-          }}
-          disabled={loading}
-          className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-gray-400 border border-gray-300 rounded-lg hover:border-gray-400 hover:text-gray-500 transition-colors uppercase tracking-wide disabled:opacity-50 shrink-0"
-        >
-          {loading ? "..." : "Unregister"}
-        </button>
+            {loading ? "..." : "Unregister"}
+          </button>
         </div>
       </div>
     );
