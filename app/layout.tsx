@@ -55,6 +55,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://client.crisp.chat" />
+        <link rel="preconnect" href="https://www.clarity.ms" />
+      </head>
       <body className={`${spartan.variable} antialiased font-sans`}>
         <div id="easter-egg" hidden dangerouslySetInnerHTML={{ __html: `<!--
 

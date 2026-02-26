@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 export default function ContentPage() {
   return (
     <main>
+      <link rel="preload" as="image" href="/purple-topo.webp" type="image/webp" />
       <TypeTrigger word="fire" />
       <TypeRacer />
       {/* Hero */}

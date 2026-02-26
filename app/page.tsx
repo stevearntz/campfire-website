@@ -68,6 +68,7 @@ const jsonLd = {
 export default function Home() {
   return (
     <main>
+      <link rel="preload" as="image" href="/hero-bg.webp" type="image/webp" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -109,7 +110,7 @@ export default function Home() {
                 eventName="cta_click"
                 eventParams={{ cta_text: "Explore Solutions", page: "homepage", location: "hero" }}
                 className="px-7 py-3.5 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
-                style={{ backgroundColor: "#E055CB" }}
+                style={{ backgroundColor: "#C43FAE" }}
               >
                 Explore Solutions
               </TrackedLink>
@@ -215,7 +216,7 @@ export default function Home() {
                   {item.title}
                 </h3>
                 <div className="w-6 h-0.5 mb-4" style={{ backgroundColor: item.dashColor }} />
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-[#636b7c] text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -231,7 +232,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               A flexible system, <span className="text-[#6E3FCC]">built around your needs</span>
             </h2>
-            <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-4 text-xl text-[#636b7c] max-w-3xl mx-auto leading-relaxed">
               Customize what you teach, how you deliver it, and how programs
               run&mdash;so development fits your organization seamlessly.
             </p>
@@ -294,7 +295,7 @@ export default function Home() {
           </div>
 
           {/* Built For */}
-          <p className="text-center mt-10 text-lg text-gray-500">
+          <p className="text-center mt-10 text-lg text-[#636b7c]">
             <span className="font-bold text-gray-800">Built for:</span>{" "}
             HR leaders scaling leadership development{" "}
             + L&amp;D teams with lean headcount{" "}
@@ -403,7 +404,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-white max-w-5xl mx-auto">
-              Built to fit the <RhythmEgg /> of real work <span className="text-[#6E3FCC]">&mdash; and <DriveLink /> lasting change</span>
+              Built to fit the <RhythmEgg /> of real work <span className="text-[#9D88ED]">&mdash; and <DriveLink /> lasting change</span>
             </h2>
             <p className="mt-4 text-xl text-white/80 max-w-2xl mx-auto">
               Campfire brings leadership development into everyday work through a
@@ -653,7 +654,7 @@ export default function Home() {
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
                     {format.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
+                  <p className="text-[#636b7c] text-sm leading-relaxed">
                     {format.desc}
                   </p>
                 </div>
@@ -729,7 +730,7 @@ export default function Home() {
               eventName="cta_click"
               eventParams={{ cta_text: "Book a Call", page: "homepage", location: "final_cta" }}
               className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
-              style={{ backgroundColor: "#E055CB" }}
+              style={{ backgroundColor: "#C43FAE" }}
             >
               Book a Call
             </TrackedLink>

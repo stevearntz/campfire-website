@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
+      <link rel="preload" as="image" href="/clear-topo.webp" type="image/webp" />
       <ScrollEmbers />
       <style>{`.hidden-egg{color:transparent;font-size:0.7rem;user-select:all;text-align:center;padding-top:1rem}.hidden-egg::selection{color:#6E3FCC;background:#F8F5FC}`}</style>
       {/* ==================== HERO ==================== */}

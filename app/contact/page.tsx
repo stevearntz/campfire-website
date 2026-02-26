@@ -63,6 +63,7 @@ export default function ContactPage() {
 
   return (
     <main>
+      <link rel="preload" as="image" href="/purple-topo.webp" type="image/webp" />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -194,7 +195,7 @@ export default function ContactPage() {
                     <p className="mt-2 text-xs font-semibold text-gray-900">
                       Liz Berry
                     </p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-500">
                       Sr. Manager, Talent Development &middot; Cotopaxi
                     </p>
                   </div>
@@ -346,13 +347,13 @@ export default function ContactPage() {
                       <p className="text-red-600 text-sm text-center">{errorMsg}</p>
                     )}
 
-                    <p className="text-xs text-gray-400 text-center">
+                    <p className="text-xs text-[#636b7c] text-center">
                       We&apos;ll respond within one business day. No spam, ever.
                     </p>
 
                     <div className="flex items-center gap-3 pt-1">
                       <div className="h-px flex-1 bg-gray-200" />
-                      <span className="text-xs text-gray-400 uppercase tracking-wide">or</span>
+                      <span className="text-xs text-[#636b7c] uppercase tracking-wide">or</span>
                       <div className="h-px flex-1 bg-gray-200" />
                     </div>
 

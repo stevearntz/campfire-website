@@ -40,6 +40,7 @@ const jsonLd = {
 export default function SolutionsPage() {
   return (
     <main>
+      <link rel="preload" as="image" href="/clear-topo.webp" type="image/webp" />
       <TypeTrigger word="solve" />
       <style>{`.hidden-egg{color:transparent;font-size:14px;text-align:center;padding:4px 0;user-select:all;line-height:1.4}.hidden-egg::selection{color:#6E3FCC;background:rgba(110,63,204,0.15)}`}</style>
       <script
@@ -148,7 +149,7 @@ export default function SolutionsPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {solution.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-5">
+                <p className="text-[#636b7c] text-sm leading-relaxed mb-5">
                   {solution.desc}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -176,7 +177,7 @@ export default function SolutionsPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               <CampfireFireEgg /> vs. traditional solutions
             </h2>
-            <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
+            <p className="mt-4 text-lg text-[#636b7c] max-w-3xl mx-auto">
               Campfire is a complete system for leadership growth that provides
               the structure, reinforcement, and support needed to build
               leadership capability company-wide.
@@ -237,9 +238,9 @@ export default function SolutionsPage() {
 
                   {/* Campfire side */}
                   <div className="p-8 md:rounded-r-2xl" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
-                    <h4 className="text-lg font-bold text-white mb-3">
+                    <h3 className="text-lg font-bold text-white mb-3">
                       {item.campfireTitle}
-                    </h4>
+                    </h3>
                     <p className="text-white/90 text-sm leading-relaxed">
                       {item.solution}
                     </p>
