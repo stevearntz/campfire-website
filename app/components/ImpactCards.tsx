@@ -135,64 +135,80 @@ function triggerRocketLaunch(cardEl: HTMLElement) {
 }
 
 /* ───────── 4. Chat Bubbles — Office Phrases ─────────
-   Speech bubbles with funny workplace phrases float up */
+   Speech bubbles escalate in size every 5 clicks until they pop */
+const chatPhrases = [
+  "Let\u2019s circle back on that\u2026",
+  "Per my last email\u2026",
+  "Can I give you some feedback?",
+  "We need to talk.",
+  "Great question!",
+  "Let\u2019s take this offline.",
+  "I have a quick question\u2026",
+  "Just to piggyback on that\u2026",
+  "Can everyone see my screen?",
+  "You\u2019re on mute.",
+  "Let\u2019s put a pin in that.",
+  "Synergy!",
+  "Let\u2019s double-click on that.",
+  "Just to level-set\u2026",
+  "Can we align on this?",
+  "What does success look like here?",
+  "Let\u2019s not boil the ocean.",
+  "We\u2019re not trying to reinvent the wheel.",
+  "Help me understand\u2026",
+  "I\u2019m curious\u2026",
+  "What\u2019s the ask?",
+  "What\u2019s the takeaway?",
+  "What\u2019s the lesson?",
+  "Don\u2019t mess with Maui when he\u2019s on a break-away.",
+  "I\u2019m not sure we\u2019re on the same page.",
+  "Can we unpack that?",
+  "Let\u2019s zoom out for a second.",
+  "What problem are we actually trying to solve?",
+  "That feels like a separate conversation.",
+  "I want to push back a little.",
+  "Let me challenge that.",
+  "That\u2019s a fair point\u2026",
+  "In the interest of time\u2026",
+  "Quick gut check\u2026",
+  "Can we tighten this up?",
+  "Let\u2019s land the plane.",
+  "We\u2019re coming up on time.",
+  "Can we take that as an action item?",
+  "Just flagging\u2026",
+  "As a reminder\u2026",
+  "Just resurfacing this\u2026",
+  "Following up here\u2026",
+  "Circling back to the thread\u2026",
+  "Bumping this up.",
+  "Let\u2019s brainstorm.",
+  "No wrong answers!",
+  "Building on that\u2026",
+  "Does anyone have strong feelings?",
+  "Any reactions?",
+  "Thoughts?",
+  "Any last comments?",
+  "We\u2019ll follow up async.",
+  "Thanks everyone!",
+  "I\u2019ll give you a few minutes back.",
+];
+
+let chatClickCount = 0;
+
 function triggerChatBubbles() {
-  const phrases = [
-    "Let\u2019s circle back on that\u2026",
-    "Per my last email\u2026",
-    "Can I give you some feedback?",
-    "We need to talk.",
-    "Great question!",
-    "Let\u2019s take this offline.",
-    "I have a quick question\u2026",
-    "Just to piggyback on that\u2026",
-    "Can everyone see my screen?",
-    "You\u2019re on mute.",
-    "Let\u2019s put a pin in that.",
-    "Synergy!",
-    "Let\u2019s double-click on that.",
-    "Just to level-set\u2026",
-    "Can we align on this?",
-    "What does success look like here?",
-    "Let\u2019s not boil the ocean.",
-    "We\u2019re not trying to reinvent the wheel.",
-    "Help me understand\u2026",
-    "I\u2019m curious\u2026",
-    "What\u2019s the ask?",
-    "What\u2019s the takeaway?",
-    "What\u2019s the lesson?",
-    "Don\u2019t mess with Maui when he\u2019s on a break-away.",
-    "I\u2019m not sure we\u2019re on the same page.",
-    "Can we unpack that?",
-    "Let\u2019s zoom out for a second.",
-    "What problem are we actually trying to solve?",
-    "That feels like a separate conversation.",
-    "I want to push back a little.",
-    "Let me challenge that.",
-    "That\u2019s a fair point\u2026",
-    "In the interest of time\u2026",
-    "Quick gut check\u2026",
-    "Can we tighten this up?",
-    "Let\u2019s land the plane.",
-    "We\u2019re coming up on time.",
-    "Can we take that as an action item?",
-    "Just flagging\u2026",
-    "As a reminder\u2026",
-    "Just resurfacing this\u2026",
-    "Following up here\u2026",
-    "Circling back to the thread\u2026",
-    "Bumping this up.",
-    "Let\u2019s brainstorm.",
-    "No wrong answers!",
-    "Building on that\u2026",
-    "Does anyone have strong feelings?",
-    "Any reactions?",
-    "Thoughts?",
-    "Any last comments?",
-    "We\u2019ll follow up async.",
-    "Thanks everyone!",
-    "I\u2019ll give you a few minutes back.",
+  chatClickCount++;
+  const stage = Math.min(Math.floor((chatClickCount - 1) / 5), 4);
+  const popping = stage >= 4;
+
+  // Size escalation per stage
+  const sizes = [
+    { font: 14, pad: "10px 16px", radius: "16px" },
+    { font: 20, pad: "14px 22px", radius: "18px" },
+    { font: 28, pad: "18px 28px", radius: "22px" },
+    { font: 38, pad: "24px 36px", radius: "26px" },
+    { font: 50, pad: "30px 44px", radius: "30px" },
   ];
+  const size = sizes[stage];
 
   const id = "chat-bubble-keyframes";
   if (!document.getElementById(id)) {
@@ -204,6 +220,19 @@ function triggerChatBubbles() {
         15% { transform: translateY(-20px) scale(1); opacity: 1; }
         85% { opacity: 1; }
         100% { transform: translateY(-180px) scale(0.9); opacity: 0; }
+      }
+      @keyframes bubble-pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        20% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.15); opacity: 1; }
+        60% { transform: scale(1.3); opacity: 1; }
+        70% { transform: scale(1.5); opacity: 0.8; border-radius: 50%; }
+        80% { transform: scale(2); opacity: 0.3; }
+        100% { transform: scale(2.5); opacity: 0; }
+      }
+      @keyframes pop-fragment {
+        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+        100% { transform: translate(var(--fx), var(--fy)) scale(0); opacity: 0; }
       }
     `;
     document.head.appendChild(s);
@@ -217,30 +246,68 @@ function triggerChatBubbles() {
   for (let i = 0; i < count; i++) {
     let idx: number;
     do {
-      idx = Math.floor(Math.random() * phrases.length);
-    } while (used.has(idx) && used.size < phrases.length);
+      idx = Math.floor(Math.random() * chatPhrases.length);
+    } while (used.has(idx) && used.size < chatPhrases.length);
     used.add(idx);
 
+    const maxLeft = Math.max(60, vw - size.font * 15);
     const bubble = document.createElement("div");
     Object.assign(bubble.style, {
       position: "fixed",
-      left: `${60 + Math.random() * (vw - 280)}px`,
+      left: `${60 + Math.random() * (maxLeft - 60)}px`,
       top: `${100 + Math.random() * (vh - 250)}px`,
       background: "white",
       color: "#374151",
-      fontSize: "14px",
-      fontWeight: "500",
-      padding: "10px 16px",
-      borderRadius: "16px",
-      boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+      fontSize: `${size.font}px`,
+      fontWeight: popping ? "700" : "500",
+      padding: size.pad,
+      borderRadius: size.radius,
+      boxShadow: popping
+        ? "0 8px 40px rgba(110,63,204,0.25)"
+        : "0 4px 20px rgba(0,0,0,0.12)",
       zIndex: "999",
       pointerEvents: "none",
       whiteSpace: "nowrap",
-      animation: `bubble-float ${2.5 + Math.random()}s ease-out ${i * 0.3}s both`,
+      animation: popping
+        ? `bubble-pop ${1.5 + Math.random() * 0.5}s ease-out ${i * 0.25}s both`
+        : `bubble-float ${2.5 + Math.random()}s ease-out ${i * 0.3}s both`,
     });
-    bubble.textContent = phrases[idx];
+    bubble.textContent = chatPhrases[idx];
     document.body.appendChild(bubble);
-    setTimeout(() => bubble.remove(), (2.5 + 1 + i * 0.3) * 1000 + 500);
+
+    if (popping) {
+      // Spawn fragments when the bubble "pops"
+      const popTime = (1.5 * 0.65 + i * 0.25) * 1000;
+      setTimeout(() => {
+        const bRect = bubble.getBoundingClientRect();
+        const cx = bRect.left + bRect.width / 2;
+        const cy = bRect.top + bRect.height / 2;
+        for (let f = 0; f < 8; f++) {
+          const frag = document.createElement("div");
+          const angle = (f / 8) * Math.PI * 2;
+          const dist = 40 + Math.random() * 60;
+          Object.assign(frag.style, {
+            position: "fixed",
+            left: `${cx}px`,
+            top: `${cy}px`,
+            width: `${6 + Math.random() * 8}px`,
+            height: `${6 + Math.random() * 8}px`,
+            borderRadius: "50%",
+            background: ["#6E3FCC", "#9D88ED", "#EE81DD", "#FFB74D"][Math.floor(Math.random() * 4)],
+            zIndex: "1000",
+            pointerEvents: "none",
+            "--fx": `${Math.cos(angle) * dist}px`,
+            "--fy": `${Math.sin(angle) * dist}px`,
+            animation: `pop-fragment 0.5s ease-out forwards`,
+          } as Record<string, string>);
+          document.body.appendChild(frag);
+          setTimeout(() => frag.remove(), 600);
+        }
+      }, popTime);
+      setTimeout(() => bubble.remove(), (1.5 + 0.5 + i * 0.25) * 1000 + 500);
+    } else {
+      setTimeout(() => bubble.remove(), (2.5 + 1 + i * 0.3) * 1000 + 500);
+    }
   }
 }
 
