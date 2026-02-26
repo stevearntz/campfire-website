@@ -143,3 +143,31 @@ export async function checkRegistration(
     guest: data.guest,
   };
 }
+
+export async function unregisterGuest(
+  eventId: string,
+  email: string
+): Promise<{ success: boolean; error?: string }> {
+  // First get the guest to find their api_id
+  const check = await checkRegistration(eventId, email);
+  if (!check.registered || !check.guest) {
+    return { success: true }; // already not registered
+  }
+
+  const res = await fetch(`${LUMA_BASE}/event/update-guest-status`, {
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify({
+      event_api_id: eventId,
+      guest: { type: "api_id", api_id: check.guest.id },
+      status: "declined",
+    }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    return { success: false, error: `Luma returned ${res.status}: ${text}` };
+  }
+
+  return { success: true };
+}
