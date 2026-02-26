@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CustomerStories from "../components/CustomerStories";
+import TrackedLink from "../components/TrackedLink";
 
 export const metadata: Metadata = {
   title: "Customer Stories — Leadership Development, Your Way",
@@ -77,14 +78,15 @@ export default function CustomersPage() {
             <p className="mt-4 text-lg text-white/70">
               Let&apos;s talk about what Campfire can do for your managers.
             </p>
-            <a
+            <TrackedLink
               href="https://calendly.com/getcampfire/"
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              eventName="calendly_click"
+              eventParams={{ page: "customers", location: "final_cta" }}
               className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Book a Call
-            </a>
+            </TrackedLink>
           </div>
         </div>
       </section>

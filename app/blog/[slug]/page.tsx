@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import SubscribeForm from "../../components/SubscribeForm";
+import TrackedLink from "../../components/TrackedLink";
 
 interface BeehiivPost {
   id: string;
@@ -293,18 +294,22 @@ export default async function BlogPostPage({
               Campfire helps organizations build leadership skills through real conversations — not just content. See how it works for your team.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link
+              <TrackedLink
                 href="/contact"
+                eventName="cta_click"
+                eventParams={{ cta_text: "Talk to Us", page: "blog_post", location: "sales_cta" }}
                 className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
               >
                 Talk to Us
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/solutions"
+                eventName="cta_click"
+                eventParams={{ cta_text: "See Solutions", page: "blog_post", location: "sales_cta" }}
                 className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-[#6E3FCC] border border-[#6E3FCC] rounded-lg hover:bg-[#6E3FCC]/5 transition-colors uppercase tracking-wide"
               >
                 See Solutions
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         </div>

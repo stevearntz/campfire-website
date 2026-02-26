@@ -114,7 +114,7 @@ export default function Navbar() {
             );
           })}
           <div className="flex gap-3 pt-3 border-t border-gray-100">
-            <a href="https://calendly.com/getcampfire/" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
+            <a href="https://calendly.com/getcampfire/" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("calendly_click", { location: "navbar_mobile" })} className="px-5 py-2 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg">
               Get Demo
             </a>
             <a href="https://meet.getcampfire.com/" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold leading-none text-gray-700 border border-gray-300 rounded-lg">

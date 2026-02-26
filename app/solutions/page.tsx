@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import TrackedLink from "../components/TrackedLink";
 import SecretScale from "../components/SecretScale";
 import TypeTrigger from "../components/TypeTrigger";
 import StarfieldEgg from "../components/StarfieldEgg";
@@ -249,12 +250,14 @@ export default function SolutionsPage() {
           </div>
 
           <div className="text-center mt-10">
-            <Link
+            <TrackedLink
               href="/content"
+              eventName="cta_click"
+              eventParams={{ cta_text: "Explore Content", page: "solutions", location: "vs_traditional" }}
               className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               Explore Content
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -320,12 +323,14 @@ export default function SolutionsPage() {
             <p className="mt-4 text-lg text-white/70">
               Schedule a conversation with us, and we&apos;ll help you figure out what your managers need most right&nbsp;now.
             </p>
-            <Link
+            <TrackedLink
               href="/contact"
+              eventName="cta_click"
+              eventParams={{ cta_text: "Book a Call", page: "solutions", location: "final_cta" }}
               className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Book a Call
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>
