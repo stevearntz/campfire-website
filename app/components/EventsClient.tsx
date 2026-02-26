@@ -386,7 +386,7 @@ function RegistrationAction({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Your name"
+          placeholder="Full name"
           required
           className="px-4 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-200 rounded-lg outline-none placeholder:text-gray-400 focus:border-[#6E3FCC] focus:ring-1 focus:ring-[#6E3FCC] transition-colors"
         />
