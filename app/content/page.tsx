@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import TrackedLink from "../components/TrackedLink";
 import Image from "next/image";
 import ContentShowcase from "../components/ContentShowcase";
 import TypeTrigger from "../components/TypeTrigger";
@@ -247,14 +248,15 @@ export default function ContentPage() {
           <ContentShowcase />
 
           <div className="text-center mt-10">
-            <a
+            <TrackedLink
               href="https://tools.getcampfire.com/courses"
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              eventName="cta_click"
+              eventParams={{ cta_text: "Explore Full Library", page: "content", location: "session_carousel" }}
               className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               Explore Full Library
-            </a>
+            </TrackedLink>
           </div>
 
         </div>
@@ -353,14 +355,15 @@ export default function ContentPage() {
                 <span className="font-bold">See it for yourself:</span>{" "}
                 Learn how Campfire can help your leaders build these habits and drive real results.
               </p>
-              <a
+              <TrackedLink
                 href="https://calendly.com/getcampfire/"
-                target="_blank"
-                rel="noopener noreferrer"
+                external
+                eventName="calendly_click"
+                eventParams={{ page: "content", location: "see_it_banner" }}
                 className="shrink-0 px-6 py-2.5 text-xs font-semibold text-white bg-[#6E3FCC] rounded-md hover:bg-[#5B34AB] transition-colors uppercase tracking-wider"
               >
                 Book a Call
-              </a>
+              </TrackedLink>
             </div>
           </div>
       </section>
@@ -494,13 +497,15 @@ export default function ContentPage() {
             Schedule a conversation to review the library, discuss your
             priorities, and design an approach that fits.
           </p>
-          <Link
+          <TrackedLink
             href="/contact"
+            eventName="cta_click"
+            eventParams={{ cta_text: "Book a Call", page: "content", location: "final_cta" }}
             className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide shadow-lg"
             style={{ backgroundColor: "#E055CB" }}
           >
             Book a Call
-          </Link>
+          </TrackedLink>
         </div>
       </section>
     </main>

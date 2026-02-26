@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import TrackedLink from "../components/TrackedLink";
 import Image from "next/image";
 import ScrollEmbers from "../components/ScrollEmbers";
 import DancingMarshmallows from "../components/DancingMarshmallows";
@@ -351,18 +352,22 @@ export default function AboutPage() {
               scalable, and proven — we&apos;d love to learn about your team.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
+              <TrackedLink
                 href="/contact"
+                eventName="cta_click"
+                eventParams={{ cta_text: "Talk to Us", page: "about", location: "final_cta" }}
                 className="flex items-center justify-center px-7 h-11 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
               >
                 Talk to Us
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/solutions"
+                eventName="cta_click"
+                eventParams={{ cta_text: "See How It Fits", page: "about", location: "final_cta" }}
                 className="flex items-center justify-center px-7 h-11 text-sm font-semibold text-white border-2 border-white/50 rounded-lg hover:bg-white/10 hover:border-white/70 transition-colors uppercase tracking-wide"
               >
                 See How It Fits
-              </Link>
+              </TrackedLink>
             </div>
           </div>
           <p className="hidden-egg">You made it. Welcome to the inner circle.</p>

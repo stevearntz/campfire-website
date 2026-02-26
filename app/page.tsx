@@ -16,6 +16,7 @@ import TimerBombEgg from "./components/TimerBombEgg";
 import ReflectEgg from "./components/ReflectEgg";
 import RacingEgg from "./components/RacingEgg";
 import DriveLink from "./components/DriveLink";
+import TrackedLink from "./components/TrackedLink";
 
 export const metadata: Metadata = {
   title: "Campfire — Flexible Leadership Development for Growing Teams",
@@ -103,19 +104,23 @@ export default function Home() {
               Designed for modern teams.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
+              <TrackedLink
                 href="/solutions"
+                eventName="cta_click"
+                eventParams={{ cta_text: "Explore Solutions", page: "homepage", location: "hero" }}
                 className="px-7 py-3.5 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
                 style={{ backgroundColor: "#E055CB" }}
               >
                 Explore Solutions
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/contact"
+                eventName="cta_click"
+                eventParams={{ cta_text: "Talk to Us", page: "homepage", location: "hero" }}
                 className="px-7 py-3.5 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
               >
                 Talk to Us
-              </Link>
+              </TrackedLink>
             </div>
           </div>
 
@@ -297,12 +302,14 @@ export default function Home() {
           </p>
 
           <div className="text-center mt-8">
-            <Link
+            <TrackedLink
               href="/solutions"
+              eventName="cta_click"
+              eventParams={{ cta_text: "Explore Solutions", page: "homepage", location: "flexible_system" }}
               className="inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               Explore Solutions
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -329,14 +336,15 @@ export default function Home() {
               Sign up free, explore our full catalog, and try our
               industry-leading platform.<br />No credit card required.
             </p>
-            <a
+            <TrackedLink
               href="https://meet.getcampfire.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              eventName="cta_click"
+              eventParams={{ cta_text: "Try Campfire", page: "homepage", location: "free_trial_mobile" }}
               className="mt-6 inline-block px-7 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
             >
               Try Campfire
-  </a>
+            </TrackedLink>
           </div>
         </div>
 
@@ -372,10 +380,11 @@ export default function Home() {
               Sign up free, explore our full catalog, and try our
               industry-leading platform.<br />No credit card required.
             </p>
-            <a
+            <TrackedLink
               href="https://meet.getcampfire.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              eventName="cta_click"
+              eventParams={{ cta_text: "Try Campfire", page: "homepage", location: "free_trial_desktop" }}
               className="inline-block font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
               style={{
                 fontSize: "clamp(0.875rem, 1vw, 1rem)",
@@ -384,7 +393,7 @@ export default function Home() {
               }}
             >
               Try Campfire
-            </a>
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -577,12 +586,14 @@ export default function Home() {
                 <span className="font-bold">See it for yourself:</span>{" "}
                 Learn how Campfire can help your leaders build these habits and drive real results.
               </p>
-              <Link
+              <TrackedLink
                 href="/contact"
+                eventName="cta_click"
+                eventParams={{ cta_text: "Book a Call", page: "homepage", location: "see_it_banner" }}
                 className="shrink-0 px-6 py-2.5 text-xs font-semibold text-[#6E3FCC] bg-white rounded-md hover:bg-gray-100 transition-colors uppercase tracking-wider"
               >
                 Book a Call
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         </div>
@@ -713,21 +724,24 @@ export default function Home() {
             steps.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
+            <TrackedLink
               href="/contact"
+              eventName="cta_click"
+              eventParams={{ cta_text: "Book a Call", page: "homepage", location: "final_cta" }}
               className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
               style={{ backgroundColor: "#E055CB" }}
             >
               Book a Call
-            </Link>
-            <a
+            </TrackedLink>
+            <TrackedLink
               href="https://tools.getcampfire.com/courses"
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              eventName="cta_click"
+              eventParams={{ cta_text: "Explore Workshops", page: "homepage", location: "final_cta" }}
               className="px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
               Explore Workshops
-            </a>
+            </TrackedLink>
           </div>
         </div>
       </section>
