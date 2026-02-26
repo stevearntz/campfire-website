@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Platform */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Platform</h4>
+            <h3 className="text-white font-semibold text-sm mb-4">Platform</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/solutions" className="hover:text-white transition-colors">Solutions</Link></li>
               <li><Link href="/content" className="hover:text-white transition-colors">Content</Link></li>
@@ -35,7 +35,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Company</h4>
+            <h3 className="text-white font-semibold text-sm mb-4">Company</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>

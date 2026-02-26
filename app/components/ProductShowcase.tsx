@@ -232,7 +232,7 @@ export default function ProductShowcase() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            See the magic of <span className="text-[#6E3FCC]">Campfire</span>
+            See the magic of <span className="text-[#9D88ED]">Campfire</span>
           </h2>
           <p className="mt-4 text-xl text-white/80">
             A purpose-built platform and curated content library designed to
@@ -248,7 +248,7 @@ export default function ProductShowcase() {
               style={{ backgroundColor: "#403955", paddingTop: "calc(3.5rem + 25px)", paddingBottom: "calc(3.5rem + 25px)" }}
             >
               <div>
-                <p className="text-sm font-semibold tracking-wider uppercase mb-4 mt-6" style={{ color: "#9D88ED" }}>
+                <p className="text-sm font-semibold tracking-wider uppercase mb-4 mt-6" style={{ color: "#B8A6F0" }}>
                   {s.label}
                 </p>
                 <h3 className="text-3xl md:text-[2.2rem] font-bold text-white leading-[1.09]" style={{ maxWidth: "340px" }}>

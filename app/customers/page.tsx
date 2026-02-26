@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 export default function CustomersPage() {
   return (
     <main>
+      <link rel="preload" as="image" href="/purple-topo.webp" type="image/webp" />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div
