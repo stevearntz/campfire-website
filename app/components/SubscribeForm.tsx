@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { trackEvent } from "@/app/lib/analytics";
 
 export default function SubscribeForm() {
   const [email, setEmail] = useState("");
@@ -28,6 +29,7 @@ export default function SubscribeForm() {
       }
 
       setStatus("success");
+      trackEvent("newsletter_subscribe", { location: "cta_banner" });
     } catch {
       setErrorMsg("Something went wrong. Please try again.");
       setStatus("error");

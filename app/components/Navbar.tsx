@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { trackEvent } from "@/app/lib/analytics";
 
 const navLinks = [
   { label: "Solutions", href: "/solutions" },
@@ -64,6 +65,7 @@ export default function Navbar() {
             href="https://calendly.com/getcampfire/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("calendly_click", { location: "navbar" })}
             className="flex items-center justify-center px-5 h-9 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
           >
             Get Demo

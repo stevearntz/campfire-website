@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useCallback, FormEvent } from "react";
+import { trackEvent } from "@/app/lib/analytics";
 
 // ── Types ──────────────────────────────────────────────
 
@@ -109,6 +110,7 @@ export default function EventsClient({ upcoming, past }: Props) {
           setSavedEmail(email);
           setSavedName(name);
           setRegistrations((prev) => ({ ...prev, [eventId]: true }));
+          trackEvent("event_registration", { event_id: eventId });
           return true;
         }
         return false;

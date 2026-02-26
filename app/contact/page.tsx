@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, FormEvent } from "react";
 import Image from "next/image";
 import { useProgressiveCapture } from "@/app/hooks/useProgressiveCapture";
 import { spawnEmbers } from "@/app/lib/embers";
+import { trackEvent } from "@/app/lib/analytics";
 
 export default function ContactPage() {
   const [firstName, setFirstName] = useState("");
@@ -53,6 +54,7 @@ export default function ContactPage() {
       }
 
       setStatus("success");
+      trackEvent("contact_form_submit", { company });
     } catch {
       setErrorMsg("Something went wrong. Please try again.");
       setStatus("error");
@@ -358,6 +360,7 @@ export default function ContactPage() {
                       href="https://calendly.com/getcampfire/"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackEvent("calendly_click", { location: "contact_page" })}
                       className="w-full py-3.5 text-sm font-semibold leading-none text-[#6E3FCC] bg-white border border-[#6E3FCC]/30 rounded-lg hover:bg-[#6E3FCC]/5 transition-colors uppercase tracking-wide text-center block"
                     >
                       Book a Time Directly
