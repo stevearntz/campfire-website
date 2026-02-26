@@ -103,7 +103,7 @@ export async function registerGuest(
     method: "POST",
     headers: headers(),
     body: JSON.stringify({
-      event_id: eventId,
+      event_api_id: eventId,
       guests: [{ email, name }],
     }),
   });
@@ -122,7 +122,7 @@ export async function checkRegistration(
   email: string
 ): Promise<{ registered: boolean; guest?: LumaGuest }> {
   const res = await fetch(
-    `${LUMA_BASE}/event/get-guest?event_id=${encodeURIComponent(eventId)}&id=${encodeURIComponent(email)}`,
+    `${LUMA_BASE}/event/get-guest?event_api_id=${encodeURIComponent(eventId)}&email=${encodeURIComponent(email)}`,
     { headers: headers() }
   );
 
