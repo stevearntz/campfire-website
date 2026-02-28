@@ -324,14 +324,22 @@ export default function SolutionsPage() {
             <p className="mt-4 text-lg text-white/70">
               Schedule a conversation with us, and we&apos;ll help you figure out what your managers need most right&nbsp;now.
             </p>
-            <TrackedLink
-              href="/contact"
-              eventName="cta_click"
-              eventParams={{ cta_text: "Book a Call", page: "solutions", location: "final_cta" }}
-              className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
-            >
-              Book a Call
-            </TrackedLink>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <TrackedLink
+                href="/contact"
+                eventName="cta_click"
+                eventParams={{ cta_text: "Book a Call", page: "solutions", location: "final_cta" }}
+                className="px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+              >
+                Book a Call
+              </TrackedLink>
+              <Link
+                href="/customers"
+                className="px-8 py-4 text-sm font-semibold leading-none text-white border border-white/30 rounded-lg hover:bg-white/10 transition-colors uppercase tracking-wide"
+              >
+                See Customer Stories
+              </Link>
+            </div>
           </div>
         </div>
       </section>

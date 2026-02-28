@@ -507,6 +507,16 @@ export default function ContentPage() {
           >
             Book a Call
           </TrackedLink>
+          <p className="mt-6 text-sm text-white/50">
+            See how other teams use this content:{" "}
+            <Link href="/customers" className="text-white/70 hover:text-white underline">
+              Customer Stories
+            </Link>
+            {" "}&middot;{" "}
+            <Link href="/blog" className="text-white/70 hover:text-white underline">
+              Blog
+            </Link>
+          </p>
         </div>
       </section>
     </main>
