@@ -59,6 +59,24 @@ export default function CustomersPage() {
           <p className="text-lg font-semibold text-[#6E3FCC]">
             Cohort-based. Conversation-driven. Built for behavior change.
           </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm">
+            <TrackedLink
+              href="/solutions"
+              eventName="cta_click"
+              eventParams={{ cta_text: "Explore Solutions", page: "customers", location: "summary" }}
+              className="font-medium text-[#6E3FCC] hover:underline"
+            >
+              Explore our solutions &rarr;
+            </TrackedLink>
+            <TrackedLink
+              href="/content"
+              eventName="cta_click"
+              eventParams={{ cta_text: "Browse Content", page: "customers", location: "summary" }}
+              className="font-medium text-[#6E3FCC] hover:underline"
+            >
+              Browse the content library &rarr;
+            </TrackedLink>
+          </div>
         </div>
       </section>
 

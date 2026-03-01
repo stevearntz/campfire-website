@@ -208,6 +208,24 @@ export default async function BlogPage() {
         </div>
       </section>
 
+      {/* Keep exploring */}
+      <section className="py-16 bg-[#F8F5FC]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Keep exploring</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/solutions" className="px-5 py-2.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg border border-gray-200 hover:border-[#6E3FCC] transition-colors">
+              Our Solutions
+            </Link>
+            <Link href="/content" className="px-5 py-2.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg border border-gray-200 hover:border-[#6E3FCC] transition-colors">
+              Content Library
+            </Link>
+            <Link href="/customers" className="px-5 py-2.5 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg border border-gray-200 hover:border-[#6E3FCC] transition-colors">
+              Customer Stories
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section
         className="relative overflow-hidden py-20"

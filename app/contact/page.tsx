@@ -167,6 +167,23 @@ export default function ContactPage() {
                 </div>
               </div>
 
+              <div className="pt-6 border-t border-gray-100">
+                <h3 className="font-semibold text-gray-900 text-sm mb-1">
+                  Still exploring?
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  Learn more about{" "}
+                  <a href="/solutions" className="text-[#6E3FCC] font-medium hover:underline">
+                    how Campfire works
+                  </a>
+                  {" "}or browse our{" "}
+                  <a href="/content" className="text-[#6E3FCC] font-medium hover:underline">
+                    content library
+                  </a>
+                  .
+                </p>
+              </div>
+
               {/* Trust signal — testimonial */}
               <div className="mt-10 pt-8 border-t border-gray-100">
                 <div className="flex gap-4">

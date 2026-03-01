@@ -509,6 +509,12 @@ export default function Home() {
             <p className="mt-8 text-2xl text-gray-500">
               &mdash; CEO, 1,200-employee company
             </p>
+            <Link
+              href="/customers"
+              className="mt-6 inline-block text-sm font-medium text-[#6E3FCC] hover:underline"
+            >
+              See how companies like this work with Campfire &rarr;
+            </Link>
           </div>
         </div>
       </section>
