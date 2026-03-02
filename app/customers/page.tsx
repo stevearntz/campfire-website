@@ -104,7 +104,7 @@ export default function CustomersPage() {
               eventParams={{ page: "customers", location: "final_cta" }}
               className="mt-8 inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
             >
-              Book a Call
+              Build Something Like This
             </TrackedLink>
           </div>
         </div>
