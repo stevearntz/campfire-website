@@ -190,15 +190,6 @@ export default function CustomerStories() {
               key={story.company}
               className="relative rounded-xl bg-white border border-gray-100 shadow-sm overflow-hidden"
             >
-              {/* Gradient left border */}
-              <div
-                className="absolute left-0 top-0 w-1 h-full z-10"
-                style={{
-                  background:
-                    "linear-gradient(to bottom, #EE81DD, #6E3FCC)",
-                }}
-              />
-
               {/* Header bar — always visible */}
               <button
                 onClick={() => toggleCard(i)}
@@ -362,7 +353,7 @@ export default function CustomerStories() {
                         {/* Narrative column */}
                         <div className="space-y-6">
                           <div>
-                            <h4 className="text-sm font-bold text-[#6E3FCC] uppercase tracking-wider mb-2">
+                            <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
                               Hired us to...
                             </h4>
                             <p className="text-gray-600 text-sm leading-relaxed">
@@ -370,7 +361,7 @@ export default function CustomerStories() {
                             </p>
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-[#6E3FCC] uppercase tracking-wider mb-2">
+                            <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2">
                               Together we...
                             </h4>
                             <p className="text-gray-600 text-sm leading-relaxed">
