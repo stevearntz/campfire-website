@@ -356,10 +356,10 @@ export default function AboutPage() {
               <TrackedLink
                 href="/contact"
                 eventName="cta_click"
-                eventParams={{ cta_text: "Talk to Us", page: "about", location: "final_cta" }}
+                eventParams={{ cta_text: "Start a Conversation", page: "about", location: "final_cta" }}
                 className="flex items-center justify-center px-7 h-11 text-sm font-semibold text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
               >
-                Talk to Us
+                Start a Conversation
               </TrackedLink>
               <TrackedLink
                 href="/solutions"

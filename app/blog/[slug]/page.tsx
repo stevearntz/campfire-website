@@ -297,10 +297,10 @@ export default async function BlogPostPage({
               <TrackedLink
                 href="/contact"
                 eventName="cta_click"
-                eventParams={{ cta_text: "Talk to Us", page: "blog_post", location: "sales_cta" }}
+                eventParams={{ cta_text: "Let's Talk About This", page: "blog_post", location: "sales_cta" }}
                 className="flex items-center justify-center px-6 h-10 text-sm font-semibold text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
               >
-                Talk to Us
+                Let&apos;s Talk About This
               </TrackedLink>
               <TrackedLink
                 href="/solutions"

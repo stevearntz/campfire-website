@@ -188,7 +188,7 @@ export default function ContactPage() {
               <div className="mt-10 pt-8 border-t border-gray-100">
                 <div className="flex gap-4">
                   <Image
-                    src="/liz berry.png"
+                    src="/liz-berry.webp"
                     alt="Liz Berry"
                     width={80}
                     height={80}
