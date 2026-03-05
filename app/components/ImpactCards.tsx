@@ -243,13 +243,33 @@ function triggerChatBubbles() {
   const count = 5 + Math.floor(Math.random() * 3);
   const used = new Set<number>();
 
+  // Build phrase list
+  const selected: string[] = [];
   for (let i = 0; i < count; i++) {
     let idx: number;
     do {
       idx = Math.floor(Math.random() * chatPhrases.length);
     } while (used.has(idx) && used.size < chatPhrases.length);
     used.add(idx);
+    selected.push(chatPhrases[idx]);
+  }
 
+  // Enforce "What's the lesson?" → "What's the takeaway?" → Maui sequence
+  const lessonPos = selected.indexOf("What\u2019s the lesson?");
+  if (lessonPos !== -1) {
+    const takeaway = "What\u2019s the takeaway?";
+    const maui = "Don\u2019t mess with Maui when he\u2019s on a break-away.";
+    // Remove duplicates of the follow-ups
+    const filtered = selected.filter((s, j) =>
+      j === lessonPos || (s !== takeaway && s !== maui)
+    );
+    const pos = filtered.indexOf("What\u2019s the lesson?");
+    filtered.splice(pos + 1, 0, takeaway, maui);
+    selected.length = 0;
+    selected.push(...filtered);
+  }
+
+  for (let i = 0; i < selected.length; i++) {
     const maxLeft = Math.max(60, vw - size.font * 15);
     const bubble = document.createElement("div");
     Object.assign(bubble.style, {
@@ -272,7 +292,7 @@ function triggerChatBubbles() {
         ? `bubble-pop ${1.5 + Math.random() * 0.5}s ease-out ${i * 0.25}s both`
         : `bubble-float ${2.5 + Math.random()}s ease-out ${i * 0.3}s both`,
     });
-    bubble.textContent = chatPhrases[idx];
+    bubble.textContent = selected[i];
     document.body.appendChild(bubble);
 
     if (popping) {
