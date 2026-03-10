@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { trackEvent } from "@/app/lib/analytics";
 
 const navLinks = [
+  { label: "Product", href: "/product" },
   { label: "Solutions", href: "/solutions" },
   { label: "Content", href: "/content" },
   { label: "Customers", href: "/customers" },
