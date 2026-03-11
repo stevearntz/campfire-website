@@ -89,11 +89,35 @@ export default function ProductPage() {
       </section>
 
       {/* A Custom Classroom + Testimonials + CTA — one continuous gradient */}
-      <section
-        style={{
-          background: "linear-gradient(to bottom, #1C1334 42%, #53389A 100%)",
-        }}
-      >
+      <section className="relative overflow-hidden">
+        {/* Bottom layer: purple diagonal gradient (bottom ~62.5%) */}
+        <div
+          className="absolute bottom-0 left-0 right-0"
+          style={{
+            height: "62.5%",
+            background: "linear-gradient(135deg, #0122B4 0%, #6A3DC5 56%, #A84AEB 100%)",
+          }}
+        />
+        {/* Topo texture */}
+        <div
+          className="absolute bottom-0 left-0 right-0"
+          style={{
+            height: "62.5%",
+            backgroundImage: "url('/clear-big-topo.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.2,
+          }}
+        />
+        {/* Dark overlay: solid at top, fades to transparent to reveal purple */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, #1C1334 42%, rgba(28, 19, 52, 0) 100%)",
+          }}
+        />
+        {/* Content */}
+        <div className="relative z-10">
         {/* A Custom Classroom */}
         <div className="py-20">
           <div className="mx-auto px-6" style={{ maxWidth: "1475px" }}>
@@ -116,27 +140,29 @@ export default function ProductPage() {
         </div>
 
         {/* Testimonials */}
-        <div className="py-20">
+        <div className="pt-20">
           <ProductTestimonials />
         </div>
 
         {/* CTA */}
-        <div className="py-20">
-          <div className="max-w-3xl mx-auto px-6">
+        <div style={{ paddingTop: "75px" }}>
+          <div className="mx-auto px-6" style={{ maxWidth: "1550px" }}>
             <div
-              className="rounded-2xl p-10 md:p-14 text-center"
+              className="rounded-t-2xl px-10 md:px-14 text-center"
               style={{
-                background: "linear-gradient(135deg, #6E3FCC, #A84AEB)",
+                backgroundColor: "#9D88ED",
+                paddingTop: "105px",
+                paddingBottom: "60px",
               }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 You&apos;re 30 seconds away from your own Campfire experience
               </h2>
-              <p className="text-white/70 mb-1">
+              <p className="text-white/70 text-lg mb-1">
                 Sign up free, explore our full catalog, and try our
                 industry-leading platform.
               </p>
-              <p className="text-white/70 mb-8">No credit card required.</p>
+              <p className="text-white/70 text-lg mb-8">No credit card required.</p>
               <TrackedLink
                 href="https://meet.getcampfire.com/"
                 external
@@ -146,13 +172,14 @@ export default function ProductPage() {
                   page: "product",
                   location: "final_cta",
                 }}
-                className="inline-block px-8 py-4 text-sm font-semibold leading-none text-[#6E3FCC] bg-white rounded-lg hover:bg-gray-100 transition-colors uppercase tracking-wide"
+                className="inline-block px-8 py-4 text-sm font-semibold leading-none text-white bg-[#6E3FCC] rounded-lg hover:bg-[#5B34AB] transition-colors uppercase tracking-wide"
               >
                 Try Campfire
               </TrackedLink>
             </div>
           </div>
         </div>
+        </div>{/* close z-10 content wrapper */}
       </section>
     </main>
   );
