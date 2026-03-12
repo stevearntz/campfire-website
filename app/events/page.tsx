@@ -75,7 +75,9 @@ export default async function EventsPage() {
     date: formatEventDate(entry.event.start_at, entry.event.end_at, entry.event.timezone),
     shortDate: formatShortDate(entry.event.start_at, entry.event.timezone),
     timezone: entry.event.timezone,
-    image: eventImages[i % eventImages.length],
+    image: i === 0
+      ? (entry.event.cover_url || eventImages[i % eventImages.length])
+      : eventImages[i % eventImages.length],
     lumaUrl: entry.event.url,
   }));
 

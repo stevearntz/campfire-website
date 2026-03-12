@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       { hostname: "media.beehiiv.com" },
       { hostname: "*.beehiiv.com" },
       { hostname: "beehiiv-images-production.s3.amazonaws.com" },
+      { hostname: "images.lumacdn.com" },
     ],
   },
   async headers() {
