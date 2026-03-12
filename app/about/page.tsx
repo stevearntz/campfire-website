@@ -3,10 +3,10 @@ import Link from "next/link";
 import TrackedLink from "../components/TrackedLink";
 import Image from "next/image";
 import ScrollEmbers from "../components/ScrollEmbers";
-import DancingMarshmallows from "../components/DancingMarshmallows";
 import GrowingVines from "../components/GrowingVines";
 import ImpactCards from "../components/ImpactCards";
 import DancingCarlos from "../components/DancingCarlos";
+import FacilitatorGrid from "../components/FacilitatorGrid";
 
 export const metadata: Metadata = {
   title: "About Campfire — The Human Side of Leadership Development",
@@ -269,15 +269,25 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
               {[
-                { src: "/steve.webp", name: "Steve Arntz", title: "CEO & Co-founder" },
-                { src: "/marinne.webp", name: "Marinne Pearson", title: "Growth & Co-founder" },
-                { src: "/camara.webp", name: "Camara Pender", title: "Product & Experience" },
-                { src: "/ella.webp", name: "Ella Wright", title: "Customer Experience" },
+                { src: "/steve.webp", name: "Steve Arntz", title: "CEO & Co-founder", linkedin: "https://www.linkedin.com/in/stevearntz/" },
+                { src: "/marinne.webp", name: "Marinne Pearson", title: "Growth & Co-founder", linkedin: "https://www.linkedin.com/in/marinnepearson/" },
+                { src: "/camara.webp", name: "Camara Pender", title: "Product & Experience", linkedin: "https://www.linkedin.com/in/camara-pender-nabrotzky-4615738a/" },
+                { src: "/ella.webp", name: "Ella Wright", title: "Customer Experience", linkedin: "https://www.linkedin.com/in/ellawright801/" },
                 { src: "/marsha.webp", name: "Carlos Feliciano-Barba", title: "Engineering", marsha: true },
               ].map((person) => (
                 <div key={person.name}>
                   {"marsha" in person && person.marsha ? (
                     <DancingCarlos />
+                  ) : "linkedin" in person && person.linkedin ? (
+                    <a href={person.linkedin} target="_blank" rel="noopener noreferrer" className="block aspect-square rounded-xl overflow-hidden mb-3 bg-gray-200">
+                      <Image
+                        src={person.src}
+                        alt={person.name}
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </a>
                   ) : (
                     <div className="aspect-square rounded-xl overflow-hidden mb-3 bg-gray-200">
                       <Image
@@ -289,35 +299,31 @@ export default function AboutPage() {
                       />
                     </div>
                   )}
-                  <p className="font-bold text-gray-900 text-sm">{person.name}</p>
-                  <p className="text-sm text-gray-500">{person.title}</p>
+                  <p className="font-bold text-gray-900 text-lg flex items-center gap-1.5">
+                    {"linkedin" in person && person.linkedin ? (
+                      <a href={person.linkedin} target="_blank" rel="noopener noreferrer" className="text-inherit no-underline [&:visited]:text-inherit [&:hover]:text-inherit">{person.name}</a>
+                    ) : (
+                      person.name
+                    )}
+                    {"linkedin" in person && person.linkedin && (
+                      <a href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn`}>
+                        <svg className="w-4 h-4 text-[#0A66C2] relative top-[-1px]" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
+                  </p>
+                  <p className="text-base text-gray-500">{person.title}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Our Facilitators — coming soon */}
+          {/* Our Facilitators */}
           <div className="mt-20">
-            <p className="text-sm font-bold tracking-wider uppercase mb-8" style={{ color: "#262F56" }}>
+            <p className="text-sm font-bold tracking-wider uppercase mb-2" style={{ color: "#262F56" }}>
               Our Facilitators
             </p>
-            <div className="relative rounded-2xl overflow-hidden border border-gray-100" style={{ backgroundImage: "url('/clear-topo.webp'), linear-gradient(to right, #6E3FCC 0%, #9D88ED 100%)", backgroundSize: "100% auto, cover", backgroundPosition: "center, center" }}>
-              <div className="px-8 py-14 md:py-16 text-center">
-                <p className="text-white/80 text-sm font-bold tracking-wider uppercase mb-3">
-                  Coming Soon
-                </p>
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Meet the people who bring Campfire to life
-                </h3>
-                <p className="text-white/70 max-w-xl mx-auto leading-relaxed">
-                  Our facilitators are experienced leaders, coaches, and practitioners
-                  who create space for honest conversations and real growth. We&apos;re
-                  putting the finishing touches on their profiles &mdash; check back
-                  soon.
-                </p>
-                <DancingMarshmallows />
-              </div>
-            </div>
+            <div className="w-full h-px bg-gray-200 mb-10" />
+            <FacilitatorGrid />
           </div>
         </div>
       </section>

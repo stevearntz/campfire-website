@@ -7,13 +7,12 @@ import { usePathname } from "next/navigation";
 import { trackEvent } from "@/app/lib/analytics";
 
 const navLinks = [
-  { label: "Product", href: "/product" },
   { label: "Solutions", href: "/solutions" },
   { label: "Content", href: "/content" },
   { label: "Customers", href: "/customers" },
+  { label: "Product", href: "/product" },
   { label: "Events", href: "/events" },
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
@@ -36,7 +35,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 font-[family-name:var(--font-spartan)]">
+        <div className="hidden lg:flex items-center gap-8 font-[family-name:var(--font-spartan)]">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -61,7 +60,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3 font-[family-name:var(--font-spartan)]">
+        <div className="hidden lg:flex items-center gap-3 font-[family-name:var(--font-spartan)]">
           <a
             href="https://calendly.com/getcampfire/"
             target="_blank"
@@ -83,7 +82,7 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2"
+          className="lg:hidden p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
         >
@@ -99,7 +98,7 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
+        <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
