@@ -261,13 +261,13 @@ function UpcomingCard({
 }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-0">
-        <div className="aspect-[16/10] md:min-h-[320px]">
+      <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-0">
+        <div className="aspect-[16/10] md:aspect-square md:h-[320px]">
           <Image
             src={event.image}
             alt={event.name}
-            width={600}
-            height={400}
+            width={320}
+            height={320}
             className="w-full h-full object-cover"
           />
         </div>
