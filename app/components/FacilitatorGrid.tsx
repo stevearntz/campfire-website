@@ -163,7 +163,7 @@ export default function FacilitatorGrid() {
             </p>
             <p className="text-base text-[#6E3FCC]">{f.location}</p>
             <p className="text-base text-gray-400">{f.sessions}</p>
-            <p className="text-sm text-gray-500 mt-2 leading-relaxed">{f.bio}</p>
+            <p className="text-sm text-gray-500 mt-2 leading-relaxed">{f.bio} <button onClick={() => setSelected(f)} className="text-[#6E3FCC] font-medium cursor-pointer hover:underline">more...</button></p>
           </div>
         ))}
       </div>
