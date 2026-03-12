@@ -262,7 +262,7 @@ function UpcomingCard({
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-0">
-        <div className="aspect-[16/10] md:aspect-auto">
+        <div className="aspect-[16/10] md:min-h-[320px]">
           <Image
             src={event.image}
             alt={event.name}
