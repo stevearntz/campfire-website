@@ -81,7 +81,7 @@ export default async function BlogPage() {
       }) }} />
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="py-20" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="py-24 md:py-28" style={{ backgroundImage: "url('/purple-topo.webp')", backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <p className="text-sm font-bold tracking-wider uppercase text-white/80 mb-4">
               Blog
@@ -93,6 +93,12 @@ export default async function BlogPage() {
               Ideas, insights, and practical advice on leadership development,
               team culture, and building better managers.
             </p>
+            <p className="mt-8 text-sm text-white/50">
+              Get new posts delivered to your inbox
+            </p>
+            <div className="mt-3">
+              <SubscribeForm />
+            </div>
           </div>
         </div>
       </section>
