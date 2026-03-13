@@ -110,7 +110,7 @@ export default function Home() {
                 eventName="cta_click"
                 eventParams={{ cta_text: "Explore Solutions", page: "homepage", location: "hero" }}
                 className="px-7 py-3.5 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
-                style={{ backgroundColor: "#C43FAE" }}
+                style={{ backgroundColor: "#E055CB" }}
               >
                 Explore Solutions
               </TrackedLink>
@@ -736,7 +736,7 @@ export default function Home() {
               eventName="cta_click"
               eventParams={{ cta_text: "Book a Call", page: "homepage", location: "final_cta" }}
               className="px-8 py-4 text-sm font-semibold leading-none text-white rounded-lg hover:opacity-90 transition-opacity uppercase tracking-wide"
-              style={{ backgroundColor: "#C43FAE" }}
+              style={{ backgroundColor: "#E055CB" }}
             >
               Book a Call
             </TrackedLink>

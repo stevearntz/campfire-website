@@ -67,7 +67,8 @@ export default function SubscribeForm() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="px-6 py-3.5 text-sm font-semibold leading-none text-white bg-[#6E3FCC] hover:bg-[#5B34AB] transition-colors uppercase tracking-wide shrink-0 disabled:opacity-70"
+            className="px-6 py-3.5 text-sm font-semibold leading-none text-white hover:opacity-90 transition-opacity uppercase tracking-wide shrink-0 disabled:opacity-70"
+            style={{ backgroundColor: "#E055CB" }}
           >
             {status === "loading" ? "..." : "Subscribe"}
           </button>
