@@ -48,7 +48,7 @@ export default function EventsManualClient({ upcoming }: Props) {
   }, [modalEvent]);
 
   const handleRegister = useCallback(
-    async (eventId: string, name: string, email: string) => {
+    async (eventId: string, name: string, email: string): Promise<{ ok: boolean; error?: string }> => {
       setLoadingReg((prev) => ({ ...prev, [eventId]: true }));
       try {
         const res = await fetch("/api/events/register", {
@@ -57,9 +57,12 @@ export default function EventsManualClient({ upcoming }: Props) {
           body: JSON.stringify({ eventId, name, email }),
         });
         const data = await res.json();
-        return res.ok && data.success;
-      } catch {
-        return false;
+        if (res.ok && data.success) {
+          return { ok: true };
+        }
+        return { ok: false, error: data.error || `HTTP ${res.status}` };
+      } catch (err) {
+        return { ok: false, error: err instanceof Error ? err.message : "Network error" };
       } finally {
         setLoadingReg((prev) => ({ ...prev, [eventId]: false }));
       }
@@ -121,7 +124,7 @@ function ManualCard({
 }: {
   event: EventData;
   loading: boolean;
-  onRegister: (eventId: string, name: string, email: string) => Promise<boolean>;
+  onRegister: (eventId: string, name: string, email: string) => Promise<{ ok: boolean; error?: string }>;
   onSeeMore: () => void;
 }) {
   return (
@@ -174,7 +177,7 @@ function ManualRegistrationForm({
 }: {
   eventId: string;
   loading: boolean;
-  onRegister: (eventId: string, name: string, email: string) => Promise<boolean>;
+  onRegister: (eventId: string, name: string, email: string) => Promise<{ ok: boolean; error?: string }>;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -186,14 +189,14 @@ function ManualRegistrationForm({
     setError("");
     setSuccess(false);
     if (!name.trim() || !email.trim()) return;
-    const ok = await onRegister(eventId, name.trim(), email.trim());
-    if (ok) {
+    const result = await onRegister(eventId, name.trim(), email.trim());
+    if (result.ok) {
       setSuccess(true);
       setName("");
       setEmail("");
       setTimeout(() => setSuccess(false), 3000);
     } else {
-      setError("Registration failed. Please try again.");
+      setError(result.error || "Registration failed. Please try again.");
     }
   }
 
@@ -249,7 +252,7 @@ function ManualModal({
 }: {
   event: EventData;
   loading: boolean;
-  onRegister: (eventId: string, name: string, email: string) => Promise<boolean>;
+  onRegister: (eventId: string, name: string, email: string) => Promise<{ ok: boolean; error?: string }>;
   onClose: () => void;
 }) {
   const paragraphs = event.descriptionMd
