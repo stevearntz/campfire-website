@@ -21,7 +21,18 @@ export async function POST(request: Request) {
   }
 
   // Check if already registered
-  const existing = await checkRegistration(eventId, email);
+  let existing;
+  try {
+    existing = await checkRegistration(eventId, email);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("Luma checkRegistration threw:", msg);
+    return NextResponse.json(
+      { error: `Registration check failed: ${msg}` },
+      { status: 500 }
+    );
+  }
+
   if (existing.registered) {
     return NextResponse.json({ success: true, alreadyRegistered: true });
   }
@@ -32,7 +43,7 @@ export async function POST(request: Request) {
   if (!result.success) {
     console.error("Luma registration failed:", result.error);
     return NextResponse.json(
-      { error: "Registration failed. Please try again." },
+      { error: `Luma registration failed: ${result.error}` },
       { status: 500 }
     );
   }
