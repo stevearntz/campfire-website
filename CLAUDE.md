@@ -46,7 +46,15 @@ Beehiiv API integration for newsletter signups. Requires `BEEHIIV_API_KEY` and `
 
 ### Blog (`app/blog/`)
 
-Dynamic routes via `[slug]/page.tsx` pulling content from Beehiiv. Remote images configured in `next.config.ts`.
+Dynamic routes via `[slug]/page.tsx` pulling content from Beehiiv. Remote images configured in `next.config.ts`. Hero section includes an inline newsletter subscribe form.
+
+### Events (`app/events/`)
+
+Pulls upcoming and past events from Luma API (`app/lib/luma.ts`). First upcoming event uses Luma cover image (`cover_url`), rest use rotating illustrations. Registration via `add-guests` API (counts as Luma "import" against plan limit). Cookie-based detection shows returning visitors their registration status.
+
+### Events Manual (`app/events-manual/`)
+
+Hidden admin page (`noindex`) for registering participants without cookie state. Form always shows fresh and resets after each successful registration. Uses the same Luma registration API. Shows detailed error messages for debugging.
 
 ## Environment Variables
 
@@ -55,10 +63,12 @@ Required in `.env.local`:
 - `SLACK_CONTACT_WEBHOOK_URL` — Slack Incoming Webhook
 - `BEEHIIV_API_KEY` — Beehiiv newsletter API key
 - `BEEHIIV_PUBLICATION_ID` — Beehiiv publication ID
+- `LUMA_API_KEY` — Luma calendar API key for events
 
 ## Design System
 
 - **Primary purple**: `#6E3FCC`, accent `#9D88ED`, dark bg `#1C1334`
+- **Pink CTA button**: `#E055CB` — used for prominent action buttons (homepage hero, subscribe, content CTA)
 - **Light bg**: `#F8F5FC` (alternates with `bg-white` between sections)
 - **Card left borders**: Gradient via absolute-positioned `w-1` div
 - **CTA banners**: Gradient backgrounds, straddle sections with `translate-y-1/2`

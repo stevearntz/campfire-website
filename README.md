@@ -33,6 +33,7 @@ HUBSPOT_ACCESS_TOKEN=       # HubSpot Private App token
 SLACK_CONTACT_WEBHOOK_URL=  # Slack Incoming Webhook for contact form notifications
 BEEHIIV_API_KEY=            # Beehiiv newsletter API key
 BEEHIIV_PUBLICATION_ID=     # Beehiiv publication ID
+LUMA_API_KEY=               # Luma calendar API key for events
 ```
 
 ## Architecture
@@ -46,8 +47,11 @@ BEEHIIV_PUBLICATION_ID=     # Beehiiv publication ID
 | Content | `/content` | Session catalog, bundles, and framework details |
 | About | `/about` | Team and company story |
 | Contact | `/contact` | Contact form with progressive capture + Calendly booking |
-| Blog | `/blog` | Dynamic routes via Beehiiv API |
-| Customers | `/customers` | Hidden (ready to re-enable in Navbar/Footer) |
+| Blog | `/blog` | Dynamic routes via Beehiiv API, inline subscribe form in hero |
+| Customers | `/customers` | Customer stories and case studies |
+| Product | `/product` | Platform features, testimonials, CTA |
+| Events | `/events` | Upcoming/past events with Luma API registration |
+| Events Manual | `/events-manual` | Hidden admin page for registering participants (no cookies) |
 
 ### Key Components
 
@@ -81,10 +85,15 @@ Three layers, all invisible to users:
 - **Slack** — Contact form notifications via Incoming Webhook (Block Kit)
 - **Calendly** — Direct booking at `https://calendly.com/getcampfire/`
 - **Beehiiv** — Blog API for listing and individual post pages
+- **Luma** — Events API for listing events and guest registration (`LUMA_API_KEY`)
 
 ### Newsletter (`app/api/subscribe/route.ts`)
 
-Beehiiv API integration for newsletter signups from the footer.
+Beehiiv API integration for newsletter signups from the footer and blog hero.
+
+### Event Registration (`app/api/events/register/route.ts`)
+
+Registers guests via Luma `add-guests` API, also upserts to HubSpot. Note: Luma counts API registrations as "imports" against your plan limit (self-registrations via Luma event page are unlimited).
 
 ## Design System
 
@@ -96,6 +105,7 @@ Beehiiv API integration for newsletter signups from the footer.
 | Light section bg | `#F8F5FC` (alternates with `bg-white`) |
 | Card background | `#F7F6F7` |
 | Pink accent | `#EE80DD` |
+| Pink CTA button | `#E055CB` |
 
 ### Patterns
 

@@ -29,7 +29,7 @@ Last updated: Feb 28, 2026
 
 ## Unresolved questions
 
-- **6 new illustration PNGs** (bike, binoculars, fire, hammock, lantern, raft) — purpose unknown, WebP versions created. Not wired into sessions.json (they don't match the 6 missing session names).
+- **6 illustration PNGs** (bike, binoculars, fire, hammock, lantern, raft) — now used as rotating event images on `/events` and `/events-manual` pages. Source PNGs still in public/ alongside WebP versions.
 - **liz-berry.webp** — new image, now used on contact page. Old `liz berry.png` can be deleted.
 - **6 missing session illustrations** — Adapting to Change, Adapt Your Strengths, Cross-Cultural Collaboration, Emotional Intelligence: Self-Regulation, Executive Communication, Finance for Better Decisions
 
