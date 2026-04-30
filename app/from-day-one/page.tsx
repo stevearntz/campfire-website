@@ -248,10 +248,10 @@ export default function FromDayOnePage() {
             </div>
             <div className="rounded-2xl overflow-hidden border border-[#E5E0DA] shadow-sm">
               <Image
-                src="/fdo-event-listing.webp"
-                alt="From Purpose to Outcomes session at From Day One Seattle — Steve Arntz, CEO, Campfire"
-                width={1638}
-                height={1106}
+                src="/fdo-steve-speaking.webp"
+                alt="Steve Arntz presenting the Strategic Alignment Framework at From Day One Seattle"
+                width={3967}
+                height={4277}
                 className="w-full h-auto"
               />
             </div>
