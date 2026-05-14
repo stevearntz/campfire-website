@@ -3,13 +3,13 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
-    "Campfire Signal — Strategic Alignment That Drives Execution | Campfire",
+    "Campfire Signal | Strategic Alignment That Drives Execution | Campfire",
   description:
-    "Most organizations have a strategy. Few have a system to make it real. Campfire Signal connects purpose to outcomes — and outcomes to the daily behaviors that drive execution.",
+    "Most organizations have a strategy. Few have a system to make it real. Campfire Signal connects purpose to outcomes, and outcomes to the daily behaviors that drive execution.",
   openGraph: {
-    title: "Campfire Signal — Strategic Alignment That Drives Execution",
+    title: "Campfire Signal | Strategic Alignment That Drives Execution",
     description:
-      "Connect purpose to outcomes — and outcomes to the daily behaviors that drive execution. A system for closing the gap between strategy and what people actually do.",
+      "Connect purpose to outcomes, and outcomes to the daily behaviors that drive execution. A system for closing the gap between strategy and what people actually do.",
     type: "website",
   },
 };
@@ -21,19 +21,19 @@ const FRAMEWORK_LEVELS = [
     label: "Purpose",
     definition: "Why we exist.",
     description:
-      "The enduring reason your organization was created. It doesn\u2019t change with market conditions or leadership turnover. Everything else builds on this.",
+      "The reason your organization was created. It doesn't change with market conditions or leadership turnover. Everything else builds on this.",
     color: "#C084FC",
   },
   {
     label: "Mission",
-    definition: "What we\u2019re focused on now.",
+    definition: "What we're focused on now.",
     description:
       "Mission translates purpose into a current, time-bound objective. It answers: what are we focused on right now to bring our purpose to life?",
     color: "#A855F7",
   },
   {
     label: "Strategy",
-    definition: "How we\u2019ll get there.",
+    definition: "How we'll get there.",
     description:
       "Strategy is the set of choices about where to play and how to win. It turns the mission into a plan of action with clear priorities.",
     color: "#8B5CF6",
@@ -49,7 +49,7 @@ const FRAMEWORK_LEVELS = [
     label: "Behaviors",
     definition: "How we operate daily.",
     description:
-      "Behaviors are the daily actions and norms that either accelerate or undermine your strategy. Culture lives here \u2014 not on a poster.",
+      "Behaviors are the daily actions and norms that either accelerate or undermine your strategy. Culture lives here, not on a poster.",
     color: "#6D28D9",
   },
 ];
@@ -57,12 +57,12 @@ const FRAMEWORK_LEVELS = [
 const PROBLEM_STATS = [
   {
     stat: "28%",
-    body: "of executives and middle managers can list three of their company\u2019s strategic priorities.",
+    body: "of executives and middle managers can list three of their company's strategic priorities.",
     source: "MIT Sloan Management Review",
   },
   {
     stat: "67%",
-    body: "of well-formulated strategies fail \u2014 not because the strategy was wrong, but because of poor execution.",
+    body: "of well-formulated strategies fail, not because the strategy was wrong, but because of poor execution.",
     source: "Harvard Business Review",
   },
   {
@@ -75,22 +75,22 @@ const PROBLEM_STATS = [
 const GAP_INSIGHTS = [
   {
     title: "The perception gap",
-    body: "Executives overestimate their organization\u2019s strategic alignment by two to three times. Leaders mistake \u201cmessage sent\u201d for \u201cmessage received.\u201d",
+    body: 'Executives overestimate their organization\'s strategic alignment by two to three times. Leaders mistake "message sent" for "message received."',
     source: "Harvard Business Review, 2023",
   },
   {
     title: "The say-do gap",
-    body: "89% of CEOs say CHROs should play a central role in profitable growth \u2014 but only 45% are creating the conditions to let them do so.",
+    body: "89% of CEOs say CHROs should play a central role in profitable growth, but only 45% are creating the conditions to let them do so.",
     source: "Accenture",
   },
   {
     title: "Values on a wall",
-    body: "There is zero correlation between a company\u2019s official stated values and how well employees say the company lives up to those values.",
+    body: "There is zero correlation between a company's official stated values and how well employees say the company lives up to those values.",
     source: "MIT Sloan Management Review",
   },
   {
     title: "Content without behavior",
-    body: "The market is saturated with information and content. Most organizations aren\u2019t struggling because they lack information \u2014 but because behavior change doesn\u2019t happen consistently.",
+    body: "There's no shortage of information and content. Most organizations aren't struggling because they lack information. They struggle because behavior change doesn't happen consistently across teams.",
     source: "Campfire POV",
   },
 ];
@@ -123,7 +123,7 @@ const OFFERING_PILLARS = [
     title: "Strategic Offsites",
     subtitle: "Align the team around what matters.",
     description:
-      "Facilitated sessions that create the conditions for honest conversation, then guide teams through purpose, mission, strategy, and behavior definition. Not a retreat \u2014 a strategic inflection point.",
+      "Facilitated sessions that create the conditions for honest conversation, then guide teams through purpose, mission, strategy, and behavior definition. Not a retreat. A turning point.",
     tags: [
       "Purpose alignment",
       "Mission definition",
@@ -136,7 +136,7 @@ const OFFERING_PILLARS = [
     title: "Alignment Programs",
     subtitle: "Reinforce priorities through ongoing conversation.",
     description:
-      "Structured, facilitated conversations that keep strategic priorities alive across the organization. Not training \u2014 a communication and reinforcement system that scales.",
+      "Structured, facilitated conversations that keep strategic priorities alive across the organization. Not training. A communication and reinforcement system that scales.",
     tags: [
       "Recurring cadence",
       "Cross-functional",
@@ -149,7 +149,7 @@ const OFFERING_PILLARS = [
     title: "Behavior Architecture",
     subtitle: "Turn values into daily action.",
     description:
-      "Work with teams to surface the behaviors your system actually reinforces, then design the behavioral shifts needed to support your strategy. Values mean nothing without behaviors to back them up.",
+      "Work with teams to surface the behaviors your system actually reinforces, then design the shifts needed to support your strategy. Values mean nothing without behaviors to back them up.",
     tags: [
       "Behavior audits",
       "Reward alignment",
@@ -162,7 +162,7 @@ const OFFERING_PILLARS = [
     title: "Manager Enablement",
     subtitle: "Equip the people who shape execution.",
     description:
-      "Managers are the translation layer between strategy and daily work. Signal equips them with the language, frameworks, and facilitation skills to drive alignment at the team level.",
+      "Managers are the bridge between strategy and daily work. Signal gives them the language, frameworks, and facilitation skills to build alignment at the team level.",
     tags: [
       "Strategic communication",
       "Team alignment",
@@ -207,7 +207,7 @@ const CASE_STUDY_JOURNEY = [
     step: 1,
     title: "Created the conditions",
     description:
-      "Started with psychological safety, presence, and genuine connection \u2014 before any strategy conversation.",
+      "Started with psychological safety, presence, and genuine connection. Before any strategy conversation.",
     color: "#C084FC",
   },
   {
@@ -221,7 +221,7 @@ const CASE_STUDY_JOURNEY = [
     step: 3,
     title: "Built behavioral standards",
     description:
-      "Translated four core values into specific, observable behaviors \u2014 not aspirational statements, but daily commitments.",
+      "Translated four core values into specific, observable behaviors. Not aspirational statements. Daily commitments.",
     color: "#8B5CF6",
   },
   {
@@ -248,7 +248,7 @@ const EVIDENCE_STATS = [
   },
   {
     stat: "72%",
-    body: "more profitable \u2014 highly aligned organizations vs. their misaligned peers.",
+    body: "more profitable: highly aligned organizations vs. their misaligned peers.",
     source: "LSA Global",
   },
   {
@@ -263,28 +263,28 @@ const HOW_IT_WORKS = [
     step: "01",
     title: "Diagnose",
     description:
-      "Map your alignment chain. Surface the gaps between what your strategy says and what your people experience. Identify where the connection breaks.",
+      "Map your alignment chain. Surface the gaps between what your strategy says and what your people experience. Find where the connection breaks.",
     color: "#C084FC",
   },
   {
     step: "02",
     title: "Align",
     description:
-      "Facilitated sessions that connect purpose, mission, strategy, outcomes, and behaviors. Create shared understanding \u2014 not just shared slides.",
+      "Facilitated sessions that connect purpose, mission, strategy, outcomes, and behaviors. Create shared understanding, not just shared slides.",
     color: "#A855F7",
   },
   {
     step: "03",
     title: "Embed",
     description:
-      "Ongoing, structured conversations that reinforce strategic priorities through practice. Equip managers to be the translation layer.",
+      "Ongoing, structured conversations that reinforce strategic priorities through practice. Equip managers to be the bridge between strategy and teams.",
     color: "#8B5CF6",
   },
   {
     step: "04",
     title: "Sustain",
     description:
-      "Systems and rhythms that make alignment the operating default \u2014 not a one-time event. Behavior change that compounds.",
+      "Systems and rhythms that make alignment the operating default, not a one-time event. Behavior change that compounds.",
     color: "#7C3AED",
   },
 ];
@@ -292,15 +292,15 @@ const HOW_IT_WORKS = [
 const WHY_NOW_POINTS = [
   {
     title: "AI is changing how organizations operate",
-    body: "Teams are getting smaller. Expectations are rising. Managers are overseeing broader scopes with more complexity. The human side of work is becoming more fragile \u2014 and more important.",
+    body: "Teams are getting smaller. Expectations are rising. Managers are overseeing broader scopes with more complexity. The human side of work is becoming more fragile, and more important.",
   },
   {
     title: "Managers are becoming force multipliers",
-    body: "A single manager\u2019s ability to create clarity, drive accountability, and reinforce priorities has compounding impact. 70% of the variance in team engagement is attributable to the manager.",
+    body: "A single manager's ability to create clarity, drive accountability, and reinforce priorities compounds across the organization. 70% of the variance in team engagement is attributable to the manager.",
   },
   {
-    title: "Content isn\u2019t the bottleneck",
-    body: "Most organizations already know what good leadership looks like. The real challenge is embedding behaviors into day-to-day work \u2014 consistently, across teams, over time.",
+    title: "Content isn't the bottleneck",
+    body: "Most organizations already know what good leadership looks like. The real challenge is embedding behaviors into day-to-day work. Consistently, across teams, over time.",
   },
   {
     title: "Budgets are tied to outcomes, not programs",
@@ -342,8 +342,8 @@ export default function StrategicAlignmentPage() {
           </h1>
           <p className="text-xl md:text-2xl font-light text-white/60 leading-relaxed max-w-[600px] mb-10">
             Most organizations have a strategy. Few have a system to make it
-            real. Campfire Signal connects purpose to outcomes &mdash; and
-            outcomes to the daily behaviors that drive execution.
+            real. Campfire Signal connects purpose to outcomes, and outcomes
+            to the daily behaviors that drive execution.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
@@ -383,10 +383,10 @@ export default function StrategicAlignmentPage() {
             business
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
-            Organizations invest heavily in strategy &mdash; then watch it
-            dissolve into busywork, misaligned priorities, and disconnected
-            teams. The gap between what leadership intends and what people
-            actually do is where most organizations lose.
+            Organizations invest heavily in strategy, then watch it dissolve
+            into busywork, misaligned priorities, and disconnected teams. The
+            gap between what leadership intends and what people actually do is
+            where most organizations lose.
           </p>
 
           <div className="grid sm:grid-cols-3 gap-5 mb-14">
@@ -410,10 +410,9 @@ export default function StrategicAlignmentPage() {
             Strategic Alignment Is a Chain, Not a Checklist
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
-            Five connected levels &mdash; from the enduring reason you exist to
-            the daily behaviors that make it real. When the chain holds, people
-            move with clarity and confidence. When a link breaks, even great
-            teams drift.
+            Five connected levels, from the reason you exist to the daily
+            behaviors that make it real. When the chain holds, people move with
+            clarity and confidence. When a link breaks, even great teams drift.
           </p>
 
           <div className="space-y-4 mb-14">
@@ -474,8 +473,8 @@ export default function StrategicAlignmentPage() {
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             Most organizations have some version of purpose, mission, and
             strategy written down somewhere. The problem isn&apos;t that these
-            things don&apos;t exist. It&apos;s that they don&apos;t connect
-            &mdash; and nobody talks about the gaps.
+            things don&apos;t exist. It&apos;s that they don&apos;t connect,
+            and nobody talks about the gaps.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5 mb-14">
@@ -489,8 +488,8 @@ export default function StrategicAlignmentPage() {
               The #1 barrier to business reinvention?{" "}
               <strong>
                 The disconnect between planning and execution
-              </strong>{" "}
-              &mdash; ranked above talent shortages, technology limitations,
+              </strong>
+              , ranked above talent shortages, technology limitations,
               and budget constraints. In a world where 93% of executives say
               they must reinvent their business model every 2&ndash;5 years,
               this gap is existential.
@@ -528,8 +527,8 @@ export default function StrategicAlignmentPage() {
           <p className="text-lg text-white/50 leading-relaxed max-w-[700px] mb-12">
             Most organizations can recite their values. Few can honestly
             describe what actually gets rewarded, punished, promoted, or
-            ignored. This is where the real culture lives &mdash; and where
-            strategy either accelerates or dies.
+            ignored. That&apos;s where the real culture lives. And it&apos;s
+            where strategy either accelerates or dies.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5 mb-14">
@@ -587,7 +586,7 @@ export default function StrategicAlignmentPage() {
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             As organizations become more AI-enabled, the human side of work
             becomes more fragile and more important. Companies don&apos;t need
-            more content &mdash; they need strategic alignment and consistent
+            more content. They need strategic alignment and consistent
             execution.
           </p>
 
@@ -626,9 +625,9 @@ export default function StrategicAlignmentPage() {
           </p>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             Signal is not a training program. It&apos;s organizational
-            infrastructure &mdash; a system of facilitated conversations,
-            behavioral frameworks, and operating rhythms that close the gap
-            between what your strategy says and what your people actually do.
+            infrastructure: a system of facilitated conversations, behavioral
+            frameworks, and operating rhythms that close the gap between what
+            your strategy says and what your people actually do.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -684,10 +683,9 @@ export default function StrategicAlignmentPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-5">
             A senior marketing leadership team at a global organization was
-            stuck. Talented people, meaningful work &mdash; but operating
-            reactively, individually, without shared direction. They
-            weren&apos;t seen as strategic partners. They were seen as a
-            support function.
+            stuck. Talented people, meaningful work, but operating reactively,
+            individually, without shared direction. They weren&apos;t seen as
+            strategic partners. They were seen as a support function.
           </p>
           <p className="text-[1.05rem] text-[#4A4A4A] leading-relaxed max-w-[700px] font-medium mb-12">
             In a single facilitated offsite, Campfire helped them redefine who
@@ -773,7 +771,7 @@ export default function StrategicAlignmentPage() {
           </div>
 
           <Blockquote
-            quote="The team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic force — not just a support function."
+            quote="The team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic force. Not just a support function."
             attribution="Offsite summary"
           />
         </div>
@@ -788,8 +786,8 @@ export default function StrategicAlignmentPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             When purpose, strategy, and behavior connect, the impact is
-            measurable. Organizations that get this right don&apos;t just feel
-            more aligned &mdash; they outperform.
+            measurable. Organizations that get this right don&apos;t just
+            feel more aligned. They outperform.
           </p>
 
           <div className="grid sm:grid-cols-3 gap-5 mb-14">
@@ -803,10 +801,9 @@ export default function StrategicAlignmentPage() {
               Managers account for{" "}
               <strong>
                 70% of the variance in team engagement
-              </strong>{" "}
-              &mdash; making manager capability the single largest
-              controllable lever for organizational performance. Engaged teams
-              drive{" "}
+              </strong>
+              , making manager capability the single biggest lever for
+              organizational performance. Engaged teams see{" "}
               <strong>23% higher profitability</strong> and{" "}
               <strong>78% less absenteeism</strong>.
             </p>
@@ -852,9 +849,8 @@ export default function StrategicAlignmentPage() {
             A system, not a one-time event
           </h2>
           <p className="text-lg text-white/50 leading-relaxed max-w-[700px] mb-12">
-            Campfire Signal is designed to create alignment that lasts &mdash;
-            through a repeatable process that meets your organization where it
-            is.
+            Campfire Signal creates alignment that lasts, through a repeatable
+            process that meets your organization where it is.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -898,9 +894,9 @@ export default function StrategicAlignmentPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             Campfire has facilitated thousands of leadership conversations
-            across hundreds of organizations. Signal takes that foundation
-            &mdash; live facilitation, structured reflection, peer learning,
-            applied discussion &mdash; and points it directly at the
+            across hundreds of organizations. Signal takes that same
+            foundation (live facilitation, structured reflection, peer
+            learning, applied discussion) and points it directly at the
             strategy-execution gap.
           </p>
 
@@ -933,11 +929,11 @@ export default function StrategicAlignmentPage() {
 
           <div className="grid sm:grid-cols-2 gap-5">
             {[
-              "Live, facilitated conversations \u2014 not self-paced content",
+              "Live, facilitated conversations, not self-paced content",
               "Structured reflection before speaking, so every voice is heard",
               "Applied discussion that connects to real work",
               "Behavioral practice, not just concept delivery",
-              "Designed for engagement, not consumption",
+              "Built for engagement, not consumption",
               "Scales from a single team to the entire organization",
             ].map((item) => (
               <div
@@ -967,14 +963,14 @@ export default function StrategicAlignmentPage() {
         <div className="max-w-[900px] mx-auto px-6">
           <SectionLabel>Who It&apos;s For</SectionLabel>
           <h2 className="text-2xl md:text-4xl font-bold text-[#1C1334] leading-tight mb-12">
-            Signal is built for leaders navigating real complexity
+            Signal is built for leaders dealing with real complexity
           </h2>
 
           <div className="grid sm:grid-cols-2 gap-5">
             {[
               {
                 title: "Executive teams",
-                body: "Aligning around purpose, mission, and strategic priorities \u2014 and translating them into behaviors the whole organization can follow.",
+                body: "Aligning around purpose, mission, and strategic priorities, and translating them into behaviors the whole organization can follow.",
               },
               {
                 title: "HR & People leaders",
@@ -986,7 +982,7 @@ export default function StrategicAlignmentPage() {
               },
               {
                 title: "Organizations in transition",
-                body: "Navigating restructuring, transformation, or rapid change where alignment is the difference between momentum and drift.",
+                body: "Going through restructuring, transformation, or rapid change where alignment is the difference between momentum and drift.",
               },
             ].map((audience) => (
               <div
@@ -1031,9 +1027,9 @@ export default function StrategicAlignmentPage() {
             strategy and execution?
           </h2>
           <p className="text-lg text-white/60 leading-relaxed mb-4">
-            Campfire Signal helps organizations turn strategic intent into
-            daily behavior &mdash; through facilitated alignment, behavioral
-            architecture, and systems that sustain the change.
+            Campfire Signal turns strategic intent into daily behavior
+            through facilitated alignment, behavioral architecture, and
+            systems that sustain the change.
           </p>
           <p className="text-lg text-white/60 leading-relaxed mb-10">
             Let&apos;s start with a conversation about where your chain
