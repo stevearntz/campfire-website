@@ -56,9 +56,9 @@ const FRAMEWORK_LEVELS = [
 
 const PROBLEM_STATS = [
   {
-    stat: "28%",
-    body: "of executives and middle managers can list three of their company's strategic priorities.",
-    source: "MIT Sloan Management Review",
+    stat: "95%",
+    body: "of employees are unaware of or do not understand their company's strategy.",
+    source: "Harvard Business Review",
   },
   {
     stat: "67%",
@@ -66,9 +66,9 @@ const PROBLEM_STATS = [
     source: "Harvard Business Review",
   },
   {
-    stat: "12%",
-    body: "of employees transfer new skills learned in training programs back to their actual jobs.",
-    source: "Training Industry",
+    stat: "70%",
+    body: "of strategic transformations fail to achieve their objectives. Every organization is going through one right now.",
+    source: "McKinsey & Company",
   },
 ];
 
@@ -133,41 +133,41 @@ const OFFERING_PILLARS = [
     color: "#C084FC",
   },
   {
-    title: "Alignment Programs",
-    subtitle: "Reinforce priorities through ongoing conversation.",
+    title: "Behavioral Assessment",
+    subtitle: "Own your own development.",
     description:
-      "Structured, facilitated conversations that keep strategic priorities alive across the organization. Not training. A communication and reinforcement system that scales.",
+      "A custom 360-feedback tool built around your team's specific observable behaviors. No neutral scores, no hiding behind averages. Individuals own their results, choose who to ask, and decide what to work on. Development starts with honest feedback, not mandates from above.",
     tags: [
-      "Recurring cadence",
-      "Cross-functional",
-      "Manager-led",
-      "Outcome-tied",
+      "12 observable behaviors",
+      "6-point scale, no neutrals",
+      "Self-directed feedback",
+      "Private results",
     ],
     color: "#A855F7",
   },
   {
-    title: "Behavior Architecture",
-    subtitle: "Turn values into daily action.",
+    title: "Follow-On Sessions",
+    subtitle: "Reinforce through peer conversation.",
     description:
-      "Work with teams to surface the behaviors your system actually reinforces, then design the shifts needed to support your strategy. Values mean nothing without behaviors to back them up.",
+      "Facilitated small-group sessions on the Campfire platform that keep alignment alive after the offsite. Teams discuss real behaviors, give peer coaching, and commit to action. Not a check-in. A system for ongoing behavioral development.",
     tags: [
-      "Behavior audits",
-      "Reward alignment",
-      "Culture diagnostics",
-      "Accountability systems",
+      "Peer coaching",
+      "Small-group breakouts",
+      "Behavior practice",
+      "Ongoing cadence",
     ],
     color: "#8B5CF6",
   },
   {
-    title: "Manager Enablement",
-    subtitle: "Equip the people who shape execution.",
+    title: "Performance Integration",
+    subtitle: "From voluntary practice to organizational standard.",
     description:
-      "Managers are the bridge between strategy and daily work. Signal gives them the language, frameworks, and facilitation skills to build alignment at the team level.",
+      "After teams have had time to assess, get feedback, and develop on their own terms, behaviors integrate into your formal performance management process. By the time it becomes official, people are already living it.",
     tags: [
-      "Strategic communication",
-      "Team alignment",
-      "Coaching for execution",
-      "Decision frameworks",
+      "Phased rollout",
+      "Workday-compatible",
+      "Objective setting",
+      "Accountability systems",
     ],
     color: "#7C3AED",
   },
@@ -194,11 +194,11 @@ const CASE_STUDY_AFTER = [
   },
   {
     label: "Behavior-driven",
-    detail: "Values translated into specific daily actions",
+    detail: "12 observable behaviors defined and owned by the team",
   },
   {
-    label: "Partner-oriented",
-    detail: "Seen as trusted, strategic partners across the organization",
+    label: "Self-developing",
+    detail: "Each person owns their behavioral development with a custom assessment tool and peer feedback",
   },
 ];
 
@@ -219,24 +219,31 @@ const CASE_STUDY_JOURNEY = [
   },
   {
     step: 3,
-    title: "Built behavioral standards",
+    title: "Built 12 observable behaviors",
     description:
-      "Translated four core values into specific, observable behaviors. Not aspirational statements. Daily commitments.",
+      "Translated core values into specific, observable, concrete behaviors. Not aspirational statements. Daily commitments that the team could assess and develop around.",
     color: "#8B5CF6",
   },
   {
     step: 4,
-    title: "Designed a strategic path",
+    title: "Gave the team ownership",
     description:
-      "Created a five-step execution sequence: listen, unify, define behaviors, align processes, and evangelize the new team.",
+      "Built a custom behavioral assessment tool. Each person chooses who to ask for feedback, owns their results privately, and picks the behavior they want to develop. No mandates. No punishment. Just honest self-directed growth.",
     color: "#7C3AED",
   },
   {
     step: 5,
-    title: "Defined success on their terms",
+    title: "Reinforced through follow-on sessions",
     description:
-      "Identified specific outcomes: high-performing team, unified trust, recognized expertise, clear demonstration of value.",
+      "Facilitated virtual sessions where the team discussed behaviors in small groups, gave peer coaching, and committed to creating a cadence of ongoing feedback with the people they work with most.",
     color: "#6D28D9",
+  },
+  {
+    step: 6,
+    title: "Integrated into performance management",
+    description:
+      "After months of voluntary practice, the behavioral framework was adopted into the organization's formal objective-setting process for the new fiscal year. By the time it became official, people were already living it.",
+    color: "#581C87",
   },
 ];
 
@@ -261,50 +268,50 @@ const EVIDENCE_STATS = [
 const HOW_IT_WORKS = [
   {
     step: "01",
-    title: "Diagnose",
+    title: "Align",
     description:
-      "Map your alignment chain. Surface the gaps between what your strategy says and what your people experience. Find where the connection breaks.",
+      "A facilitated offsite that connects purpose, mission, strategy, and behaviors. Create shared understanding and define the observable behaviors that will drive execution.",
     color: "#C084FC",
   },
   {
     step: "02",
-    title: "Align",
+    title: "Assess",
     description:
-      "Facilitated sessions that connect purpose, mission, strategy, outcomes, and behaviors. Create shared understanding, not just shared slides.",
+      "A custom behavioral assessment tool built for your team. Each person owns their feedback, chooses their respondents, and gets private results. Development starts before anyone is watching.",
     color: "#A855F7",
   },
   {
     step: "03",
-    title: "Embed",
+    title: "Reinforce",
     description:
-      "Ongoing, structured conversations that reinforce strategic priorities through practice. Equip managers to be the bridge between strategy and teams.",
+      "Facilitated follow-on sessions where teams discuss behaviors in small groups, give peer coaching, and build a cadence of ongoing feedback with the people they work with most.",
     color: "#8B5CF6",
   },
   {
     step: "04",
-    title: "Sustain",
+    title: "Integrate",
     description:
-      "Systems and rhythms that make alignment the operating default, not a one-time event. Behavior change that compounds.",
+      "Behaviors move from voluntary practice into your formal performance management and objective-setting processes. By the time it becomes official, your people are already living it.",
     color: "#7C3AED",
   },
 ];
 
 const WHY_NOW_POINTS = [
   {
-    title: "AI is changing how organizations operate",
-    body: "Teams are getting smaller. Expectations are rising. Managers are overseeing broader scopes with more complexity. The human side of work is becoming more fragile, and more important.",
+    title: "AI makes misalignment more expensive, not less",
+    body: "People are moving 10 times faster with AI tools. If they're not strategically aligned, they go faster in different directions. More speed without shared direction means more meetings, more coordination, and more wasted effort. The alignment problem gets worse, not better.",
   },
   {
-    title: "Managers are becoming force multipliers",
-    body: "A single manager's ability to create clarity, drive accountability, and reinforce priorities compounds across the organization. 70% of the variance in team engagement is attributable to the manager.",
+    title: "Budgets are moving to department heads",
+    body: "HR budgets are decentralizing. Department heads are getting the money and making their own decisions about development. Their language isn't behavior change and outcomes. It's strategy and execution. The organizations that win will meet them where they are.",
   },
   {
     title: "Content isn't the bottleneck",
-    body: "Most organizations already know what good leadership looks like. The real challenge is embedding behaviors into day-to-day work. Consistently, across teams, over time.",
+    body: "AI can generate content, courses, and coaching at scale. What it can't do is create genuine alignment across a team, facilitate the hard conversations, or build the trust needed for honest feedback. The human side of this work is what matters.",
   },
   {
-    title: "Budgets are tied to outcomes, not programs",
-    body: "Leadership development framed as discretionary spending is getting cut. Organizations will continue to invest in strategic alignment, organizational effectiveness, and execution systems.",
+    title: "Every organization is in transformation right now",
+    body: "70% of strategic transformations fail. Every organization on the planet is going through one right now around AI. The ones that invest in alignment and execution systems will be the 30% that don't.",
   },
 ];
 
@@ -670,8 +677,8 @@ export default function StrategicAlignmentPage() {
 
       {/* ════════ QUOTE: INFRASTRUCTURE ════════ */}
       <QuoteSection
-        line1="Not content. Not coursework. Not training."
-        line2="Facilitated clarity. Strategic alignment. Execution support."
+        line1="It&rsquo;s making me think and look at things differently."
+        line2="It feels a little transformational on this side as well."
       />
 
       {/* ════════ CASE STUDY ════════ */}
@@ -687,11 +694,16 @@ export default function StrategicAlignmentPage() {
             individually, without shared direction. They weren&apos;t seen as
             strategic partners. They were seen as a support function.
           </p>
-          <p className="text-[1.05rem] text-[#4A4A4A] leading-relaxed max-w-[700px] font-medium mb-12">
-            In a single facilitated offsite, Campfire helped them redefine who
-            they are, align around a shared mission, and build the behavioral
-            system to make it stick.
+          <p className="text-[1.05rem] text-[#4A4A4A] leading-relaxed max-w-[700px] font-medium mb-5">
+            Campfire helped them redefine who they are, align around a shared
+            mission, build 12 observable behaviors, and create a system
+            for ongoing development that the team owns.
           </p>
+          <Blockquote
+            quote="It was a transformational experience for our team. Unanimously, the feedback is that your session was incredibly valuable. Folks want more of that and more of your time."
+            attribution="Senior Director, Global Organization"
+          />
+          <div className="h-8" />
 
           {/* Before / After */}
           <div className="grid md:grid-cols-2 gap-8 mb-14">
@@ -771,8 +783,69 @@ export default function StrategicAlignmentPage() {
           </div>
 
           <Blockquote
-            quote="The team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic force. Not just a support function."
-            attribution="Offsite summary"
+            quote="You have exceeded my expectations. I can see a path now for how this is all coming together."
+            attribution="Senior Director, Global Organization"
+          />
+        </div>
+      </section>
+
+      {/* ════════ QUOTE: OWNERSHIP ════════ */}
+      <QuoteSection
+        line1="You signed up for this. You raised your hand and said you&rsquo;re in."
+        line2="Now own it."
+      />
+
+      {/* ════════ THE APPROACH ════════ */}
+      <section className="bg-[#F8F5FC] py-20 md:py-28">
+        <div className="max-w-[900px] mx-auto px-6">
+          <SectionLabel>The Approach</SectionLabel>
+          <h2 className="text-2xl md:text-4xl font-bold text-[#1C1334] leading-tight mb-4">
+            Behavioral development that people actually want to do
+          </h2>
+          <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
+            Most feedback systems start with surveillance and end with
+            resentment. Signal starts with ownership. People assess themselves,
+            choose who to ask, get private results, and decide what to work on.
+            By the time behaviors become part of formal performance management,
+            the team is already practicing them.
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-5 mb-14">
+            {[
+              {
+                title: "Start without punishment",
+                body: "Early feedback is private and voluntary. No one is looking over your shoulder. The goal is honest self-awareness, not compliance.",
+              },
+              {
+                title: "Observable and concrete",
+                body: "Every behavior is specific enough to see in action. Not \"be a better communicator.\" More like \"actively seeks input before making decisions that affect others.\"",
+              },
+              {
+                title: "No neutral scores",
+                body: "A six-point scale with no middle ground. You lean one way or the other. This creates clearer signal and more useful feedback.",
+              },
+              {
+                title: "Phased integration",
+                body: "Voluntary practice first. Peer coaching second. Formal integration into objectives and performance reviews only after people have had months to develop on their own terms.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="bg-white rounded-2xl p-6 border border-[#E5E0DA]"
+              >
+                <h3 className="text-base font-bold text-[#1C1334] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#6B7370] leading-relaxed">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <Blockquote
+            quote="I would like for you to be able to assess regularly and without punishment. At first, the results are yours. We're not even going to look at them. You're going to use them to calibrate your own behavior."
+            attribution="Steve Arntz, CEO of Campfire"
           />
         </div>
       </section>
