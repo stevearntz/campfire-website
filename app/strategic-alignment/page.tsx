@@ -773,7 +773,7 @@ export default function StrategicAlignmentPage() {
           </div>
 
           <Blockquote
-            quote="The team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic force \u2014 not just a support function."
+            quote="The team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic force — not just a support function."
             attribution="Offsite summary"
           />
         </div>

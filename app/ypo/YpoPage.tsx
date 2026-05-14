@@ -649,7 +649,7 @@ export default function YpoPage() {
           </div>
 
           <Blockquote
-            quote="This team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic partner \u2014 not just a support function."
+            quote="This team aligned around a clear mission, defined the behaviors to support it, and committed to becoming a trusted, strategic partner — not just a support function."
             attribution="Session summary"
           />
         </div>
