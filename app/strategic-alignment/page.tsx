@@ -4,11 +4,11 @@ import StrategicAlignmentHero from "./StrategicAlignmentHero";
 
 export const metadata: Metadata = {
   title:
-    "Campfire Signal | Strategic Alignment That Drives Execution | Campfire",
+    "Strategic Alignment That Drives Execution | Campfire",
   description:
-    "Most organizations have a strategy. Few have a system to make it real. Campfire Signal connects purpose to outcomes, and outcomes to the daily behaviors that drive execution.",
+    "Most organizations have a strategy. Few have a system to make it real. Campfire connects purpose to outcomes, and outcomes to the daily behaviors that drive execution.",
   openGraph: {
-    title: "Campfire Signal | Strategic Alignment That Drives Execution",
+    title: "Strategic Alignment That Drives Execution | Campfire",
     description:
       "Connect purpose to outcomes, and outcomes to the daily behaviors that drive execution. A system for closing the gap between strategy and what people actually do.",
     type: "website",
@@ -20,37 +20,32 @@ export const metadata: Metadata = {
 const FRAMEWORK_LEVELS = [
   {
     label: "Purpose",
-    definition: "Why we exist.",
     description:
-      "The reason your organization was created. It doesn't change with market conditions or leadership turnover. Everything else builds on this.",
+      "Why we exist. The reason your organization was created. It doesn't change with market conditions or leadership turnover. Everything else builds on this.",
     color: "#C084FC",
   },
   {
     label: "Mission",
-    definition: "What we're focused on now.",
     description:
-      "Mission translates purpose into a current, time-bound objective. It answers: what are we focused on right now to bring our purpose to life?",
+      "What we're focused on now. Mission translates purpose into a current, time-bound objective. It answers: what are we focused on right now to bring our purpose to life?",
     color: "#A855F7",
   },
   {
     label: "Strategy",
-    definition: "How we'll get there.",
     description:
-      "Strategy is the set of choices about where to play and how to win. It turns the mission into a plan of action with clear priorities.",
+      "How we'll get there. The set of choices about where to play and how to win. Strategy turns the mission into a plan of action with clear priorities.",
     color: "#8B5CF6",
   },
   {
     label: "Outcomes",
-    definition: "How we measure success.",
     description:
-      "Outcomes are the measurable results that tell you whether strategy is working. They create accountability and make progress visible.",
+      "How we measure success. The measurable results that tell you whether strategy is working. Outcomes create accountability and make progress visible.",
     color: "#7C3AED",
   },
   {
     label: "Behaviors",
-    definition: "How we operate daily.",
     description:
-      "Behaviors are the daily actions and norms that either accelerate or undermine your strategy. Culture lives here, not on a poster.",
+      "How we operate daily. The actions and norms that either accelerate or undermine your strategy. Culture lives here, not on a poster.",
     color: "#6D28D9",
   },
 ];
@@ -366,24 +361,19 @@ export default function StrategicAlignmentPage() {
           </p>
 
           <div className="space-y-4 mb-14">
-            {FRAMEWORK_LEVELS.map((level, i) => (
+            {FRAMEWORK_LEVELS.map((level) => (
               <div
                 key={level.label}
                 className="rounded-2xl border border-[#E5E0DA] bg-white overflow-hidden"
               >
                 <div className="flex flex-col sm:flex-row">
                   <div
-                    className="sm:w-[200px] flex-shrink-0 flex items-center justify-center px-6 py-4 sm:py-6"
+                    className="sm:w-[220px] flex-shrink-0 flex items-center justify-center px-6 py-5 sm:py-7"
                     style={{ background: level.color }}
                   >
-                    <div className="text-center sm:text-left w-full">
-                      <p className="text-white font-extrabold text-lg uppercase tracking-wide">
-                        {level.label}
-                      </p>
-                      <p className="text-white/70 text-sm font-light">
-                        {level.definition}
-                      </p>
-                    </div>
+                    <p className="text-white font-extrabold text-xl uppercase tracking-wide text-center sm:text-left w-full">
+                      {level.label}
+                    </p>
                   </div>
                   <div className="px-6 py-5 sm:py-6 flex items-center">
                     <p className="text-[#4A4A4A] text-[0.95rem] leading-relaxed">
@@ -391,17 +381,12 @@ export default function StrategicAlignmentPage() {
                     </p>
                   </div>
                 </div>
-                {i < FRAMEWORK_LEVELS.length - 1 && (
-                  <div className="flex justify-center -mb-4 relative z-10">
-                    <div className="w-[2px] h-4 bg-[#E5E0DA]" />
-                  </div>
-                )}
               </div>
             ))}
           </div>
 
           <Blockquote
-            quote="Alignment is not a workshop outcome. It's an operating system. Campfire Signal builds the system."
+            quote="Alignment is not a workshop outcome. It's an operating system. Campfire builds the system."
             attribution="Campfire"
           />
         </div>
@@ -563,18 +548,18 @@ export default function StrategicAlignmentPage() {
         </div>
       </section>
 
-      {/* ════════ WHAT SIGNAL DOES ════════ */}
+      {/* ════════ THE OFFERING ════════ */}
       <section className="bg-[#F8F5FC] py-20 md:py-28">
         <div className="max-w-[900px] mx-auto px-6">
           <SectionLabel>The Offering</SectionLabel>
           <h2 className="text-2xl md:text-4xl font-bold text-[#1C1334] leading-tight mb-2">
-            Campfire Signal
+            Strategic Alignment by Campfire
           </h2>
           <p className="text-xl md:text-2xl font-light text-[#6E3FCC] leading-snug mb-6">
             From strategy to manager behavior to team execution.
           </p>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
-            Signal is not a training program. It&apos;s organizational
+            This is not a training program. It&apos;s organizational
             infrastructure: a system of facilitated conversations, behavioral
             frameworks, and operating rhythms that close the gap between what
             your strategy says and what your people actually do.
@@ -747,7 +732,7 @@ export default function StrategicAlignmentPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             Most feedback systems start with surveillance and end with
-            resentment. Signal starts with ownership. People assess themselves,
+            resentment. Campfire starts with ownership. People assess themselves,
             choose who to ask, get private results, and decide what to work on.
             By the time behaviors become part of formal performance management,
             the team is already practicing them.
@@ -865,7 +850,7 @@ export default function StrategicAlignmentPage() {
             A system, not a one-time event
           </h2>
           <p className="text-lg text-white/50 leading-relaxed max-w-[700px] mb-12">
-            Campfire Signal creates alignment that lasts, through a repeatable
+            Campfire creates alignment that lasts, through a repeatable
             process that meets your organization where it is.
           </p>
 
@@ -910,7 +895,7 @@ export default function StrategicAlignmentPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             Campfire has facilitated thousands of leadership conversations
-            across hundreds of organizations. Signal takes that same
+            across hundreds of organizations. Strategic Alignment takes that same
             foundation (live facilitation, structured reflection, peer
             learning, applied discussion) and points it directly at the
             strategy-execution gap.
@@ -979,7 +964,7 @@ export default function StrategicAlignmentPage() {
         <div className="max-w-[900px] mx-auto px-6">
           <SectionLabel>Who It&apos;s For</SectionLabel>
           <h2 className="text-2xl md:text-4xl font-bold text-[#1C1334] leading-tight mb-12">
-            Signal is built for leaders dealing with real complexity
+            Built for leaders dealing with real complexity
           </h2>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -1043,7 +1028,7 @@ export default function StrategicAlignmentPage() {
             strategy and execution?
           </h2>
           <p className="text-lg text-white/60 leading-relaxed mb-4">
-            Campfire Signal turns strategic intent into daily behavior
+            Campfire turns strategic intent into daily behavior
             through facilitated alignment, behavioral architecture, and
             systems that sustain the change.
           </p>
