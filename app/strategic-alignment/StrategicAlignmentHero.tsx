@@ -257,12 +257,11 @@ export default function StrategicAlignmentHero() {
         }
 
         .hero-cta-button {
-          background: #E055CB;
-          box-shadow: 0 4px 20px rgba(224, 85, 203, 0.3);
+          background: linear-gradient(90deg, #FC5C11 0%, #FC5D16 100%);
+          box-shadow: 0 4px 20px rgba(252, 92, 17, 0.3);
         }
         .hero-cta-button:hover {
-          background: #d44bbc;
-          box-shadow: 0 8px 32px rgba(224, 85, 203, 0.45);
+          box-shadow: 0 8px 32px rgba(252, 92, 17, 0.45);
           transform: translateY(-2px);
         }
       `}</style>
