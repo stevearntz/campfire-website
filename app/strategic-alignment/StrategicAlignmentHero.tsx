@@ -145,7 +145,7 @@ export default function StrategicAlignmentHero() {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-64 md:pb-80 lg:pb-[28.5rem]">
           <div className="max-w-4xl">
-            <p className="text-xs md:text-sm font-bold tracking-[0.18em] uppercase mb-6 hero-fade-in"
+            <p className="text-sm md:text-lg font-extrabold tracking-[0.18em] uppercase mb-6 hero-fade-in"
                style={{ color: "#E87D3E" }}>
               Strategic Alignment
             </p>
@@ -193,7 +193,7 @@ export default function StrategicAlignmentHero() {
         </div>
 
         {/* ════════ VALUE STRIP — inside hero ════════ */}
-        <div className="absolute -bottom-6 left-0 right-0 z-20 px-6">
+        <div className="absolute -bottom-2 left-0 right-0 z-20 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="bg-white/50 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/8 border border-white/50 px-8 py-7 md:px-12 md:py-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
@@ -213,10 +213,10 @@ export default function StrategicAlignmentHero() {
                       {item.icon}
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-[#1C1334] leading-snug">
+                      <p className="text-lg font-bold text-[#1C1334] leading-snug">
                         {item.label}
                       </p>
-                      <p className="text-xs text-[#6B7370] leading-relaxed mt-0.5">
+                      <p className="text-sm text-[#6B7370] leading-relaxed mt-0.5">
                         {item.description}
                       </p>
                     </div>
