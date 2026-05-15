@@ -126,7 +126,7 @@ export default function StrategicAlignmentHero() {
   return (
     <>
       {/* ════════ HERO ════════ */}
-      <section className="relative overflow-hidden bg-[#D8C8E8]">
+      <section className="relative overflow-hidden bg-white">
         {/* Full-bleed illustration as the scene */}
         <div
           ref={imageRef}
@@ -143,8 +143,8 @@ export default function StrategicAlignmentHero() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-20 md:pt-28 lg:pt-32 pb-36 md:pb-44 lg:pb-48">
-          <div className="max-w-xl">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-28 md:pb-32 lg:pb-36">
+          <div className="max-w-2xl">
             <p className="text-xs md:text-sm font-bold tracking-[0.18em] uppercase mb-6 hero-fade-in"
                style={{ color: "#E87D3E" }}>
               Strategic Alignment
