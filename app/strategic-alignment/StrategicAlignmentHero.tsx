@@ -219,11 +219,11 @@ export default function StrategicAlignmentHero() {
               {VALUE_ITEMS.map((item, i) => (
                 <div
                   key={item.label}
-                  className="flex items-start gap-3.5 hero-fade-in"
+                  className="flex items-center gap-4 hero-fade-in"
                   style={{ animationDelay: `${0.6 + i * 0.1}s` }}
                 >
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                    className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 [&>svg]:w-7 [&>svg]:h-7"
                     style={{
                       backgroundColor: `${item.color}12`,
                       color: item.color,
