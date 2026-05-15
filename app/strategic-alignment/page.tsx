@@ -1129,11 +1129,11 @@ function Blockquote({
   attribution: string;
 }) {
   return (
-    <div className="border-l-[3px] border-[#9D88ED] pl-6 py-2">
-      <p className="text-[1.1rem] text-[#4A4A4A] leading-relaxed italic mb-2">
+    <div className="border-l-4 border-[#9D88ED] pl-8 py-4">
+      <p className="text-2xl md:text-3xl text-[#1C1334] leading-snug italic mb-3">
         &ldquo;{quote}&rdquo;
       </p>
-      <p className="text-sm text-[#8A9590]">&mdash; {attribution}</p>
+      <p className="text-base text-[#8A9590]">&mdash; {attribution}</p>
     </div>
   );
 }
