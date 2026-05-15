@@ -143,7 +143,7 @@ export default function StrategicAlignmentHero() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-44 md:pb-56 lg:pb-64">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-56 md:pb-72 lg:pb-96">
           <div className="max-w-2xl">
             <p className="text-xs md:text-sm font-bold tracking-[0.18em] uppercase mb-6 hero-fade-in"
                style={{ color: "#E87D3E" }}>
