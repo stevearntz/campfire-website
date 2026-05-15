@@ -151,7 +151,7 @@ export default function StrategicAlignmentHero() {
             </p>
 
             <h1
-              className="text-[3rem] md:text-[4rem] lg:text-[5rem] leading-[1.08] mb-7 text-white hero-fade-in-delay-1"
+              className="text-[3rem] md:text-[4rem] lg:text-[5rem] leading-[1.08] mb-7 text-[#1C1334] hero-fade-in-delay-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Clarity leads.
@@ -172,7 +172,7 @@ export default function StrategicAlignmentHero() {
                 href="https://calendly.com/getcampfire/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hero-cta-button inline-flex items-center gap-2.5 text-white font-bold px-9 py-4 rounded-full text-lg transition-all duration-300"
+                className="hero-cta-button inline-flex items-center gap-2.5 text-white font-bold px-9 py-4 rounded-lg text-lg transition-all duration-300"
               >
                 Build Strategic Alignment
                 <svg
