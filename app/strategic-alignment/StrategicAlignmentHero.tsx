@@ -193,7 +193,7 @@ export default function StrategicAlignmentHero() {
         </div>
 
         {/* ════════ VALUE STRIP — inside hero ════════ */}
-        <div className="absolute -bottom-2 left-0 right-0 z-20 px-6">
+        <div className="absolute bottom-4 left-0 right-0 z-20 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="bg-white/50 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/8 border border-white/50 px-8 py-7 md:px-12 md:py-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
