@@ -151,7 +151,7 @@ export default function StrategicAlignmentHero() {
             </p>
 
             <h1
-              className="text-[3rem] md:text-[4rem] lg:text-[5rem] leading-[1.08] mb-7 text-[#1C1334] hero-fade-in-delay-1"
+              className="text-[3rem] md:text-[4rem] lg:text-[5rem] leading-[1.08] mb-7 text-white hero-fade-in-delay-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Clarity leads.
