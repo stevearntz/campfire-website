@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import StrategicAlignmentHero from "./StrategicAlignmentHero";
 
 export const metadata: Metadata = {
   title:
@@ -321,65 +322,7 @@ export default function StrategicAlignmentPage() {
   return (
     <main className="bg-white">
       {/* ════════ HERO ════════ */}
-      <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(165deg, #1C1334 0%, #4E0DA9 35%, #6E3FCC 60%, #9D88ED 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url(/clear-topo.webp)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.15,
-          }}
-        />
-        <div className="relative z-10 max-w-[900px] mx-auto px-6 py-32 md:py-44">
-          <p className="text-sm font-semibold tracking-[0.14em] uppercase text-white/50 mb-6">
-            Campfire Signal
-          </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-6">
-            Turn Strategy
-            <br />
-            Into Behavior
-          </h1>
-          <p className="text-xl md:text-2xl font-light text-white/60 leading-relaxed max-w-[600px] mb-10">
-            Most organizations have a strategy. Few have a system to make it
-            real. Campfire Signal connects purpose to outcomes, and outcomes
-            to the daily behaviors that drive execution.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="https://calendly.com/getcampfire/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-[#E055CB] hover:bg-[#c94ab5] text-white font-bold px-8 py-4 rounded-full text-lg transition-colors duration-200"
-            >
-              Book a Conversation
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="inline-block border border-white/30 hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors duration-200"
-            >
-              See How It Works
-            </Link>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <div
-            className="w-[2px] h-10"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%)",
-              animation: "scrollPulse 2s ease-in-out infinite",
-            }}
-          />
-        </div>
-      </section>
+      <StrategicAlignmentHero />
 
       {/* ════════ THE PROBLEM ════════ */}
       <section className="bg-white py-20 md:py-28">
@@ -1119,13 +1062,6 @@ export default function StrategicAlignmentPage() {
         </div>
       </section>
 
-      {/* inline keyframes */}
-      <style>{`
-        @keyframes scrollPulse {
-          0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
-          50% { opacity: 0.8; transform: scaleY(1); }
-        }
-      `}</style>
     </main>
   );
 }

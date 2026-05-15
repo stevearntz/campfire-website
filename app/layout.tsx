@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { League_Spartan } from "next/font/google";
+import { League_Spartan, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,6 +13,12 @@ import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const spartan = League_Spartan({
   variable: "--font-spartan",
+  subsets: ["latin"],
+});
+
+const dmSerif = DM_Serif_Display({
+  weight: "400",
+  variable: "--font-serif",
   subsets: ["latin"],
 });
 
@@ -60,7 +66,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://client.crisp.chat" />
         <link rel="preconnect" href="https://www.clarity.ms" />
       </head>
-      <body className={`${spartan.variable} antialiased font-sans`}>
+      <body className={`${spartan.variable} ${dmSerif.variable} antialiased font-sans`}>
         <div id="easter-egg" hidden dangerouslySetInnerHTML={{ __html: `<!--
 
         (  )
