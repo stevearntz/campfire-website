@@ -9,80 +9,90 @@ import Link from "next/link";
 const VALUE_ITEMS = [
   {
     label: "Shared Direction",
+    description: "Align on priorities that drive results.",
+    color: "#6E3FCC",
     icon: (
       <svg
-        width="40"
-        height="40"
-        viewBox="0 0 40 40"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <path d="M20 8L20 32" />
-        <path d="M12 16L20 8L28 16" />
-        <circle cx="20" cy="20" r="14" strokeDasharray="4 3" opacity="0.4" />
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+        <path d="M12 3V5" />
+        <path d="M12 19V21" />
+        <path d="M3 12H5" />
+        <path d="M19 12H21" />
       </svg>
     ),
   },
   {
     label: "Connected Teams",
+    description: "Break down silos and move as one.",
+    color: "#E87D3E",
     icon: (
       <svg
-        width="40"
-        height="40"
-        viewBox="0 0 40 40"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="12" cy="14" r="3" />
-        <circle cx="28" cy="14" r="3" />
-        <circle cx="20" cy="28" r="3" />
-        <path d="M14.5 16L18 26" />
-        <path d="M25.5 16L22 26" />
-        <path d="M15 14H25" />
+        <circle cx="8" cy="8" r="2.5" />
+        <circle cx="16" cy="8" r="2.5" />
+        <circle cx="12" cy="16" r="2.5" />
+        <path d="M10 9.5L11 14" />
+        <path d="M14 9.5L13 14" />
+        <path d="M10.5 8H13.5" />
       </svg>
     ),
   },
   {
     label: "Confident Decisions",
+    description: "Make better calls with clarity and context.",
+    color: "#2D9F5C",
     icon: (
       <svg
-        width="40"
-        height="40"
-        viewBox="0 0 40 40"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="20" cy="20" r="14" />
-        <circle cx="20" cy="20" r="7" opacity="0.5" />
-        <circle cx="20" cy="20" r="2" fill="currentColor" stroke="none" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="M8 12.5L10.5 15L16 9.5" />
       </svg>
     ),
   },
   {
     label: "Stronger Impact",
+    description: "Multiply momentum and achieve more together.",
+    color: "#6E3FCC",
     icon: (
       <svg
-        width="40"
-        height="40"
-        viewBox="0 0 40 40"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        <circle cx="20" cy="20" r="5" />
-        <circle cx="20" cy="20" r="10" opacity="0.5" />
-        <circle cx="20" cy="20" r="15" opacity="0.25" />
+        <path d="M4 18L9 13L13 16L20 6" />
+        <path d="M16 6H20V10" />
       </svg>
     ),
   },
@@ -91,7 +101,7 @@ const VALUE_ITEMS = [
 /* ─── component ─── */
 
 export default function StrategicAlignmentHero() {
-  const illustrationRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -102,9 +112,8 @@ export default function StrategicAlignmentHero() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        if (illustrationRef.current) {
-          const scrollY = window.scrollY;
-          illustrationRef.current.style.transform = `translateY(${scrollY * 0.12}px)`;
+        if (imageRef.current) {
+          imageRef.current.style.transform = `translateY(${window.scrollY * 0.08}px)`;
         }
         ticking = false;
       });
@@ -117,128 +126,145 @@ export default function StrategicAlignmentHero() {
   return (
     <>
       {/* ════════ HERO ════════ */}
-      <section
-        className="relative overflow-hidden"
-        style={{ minHeight: "90vh" }}
-      >
-        {/* Background: warm sunset gradient */}
+      <section className="relative overflow-hidden bg-[#1C1334]">
+        {/* Full-bleed illustration as the scene */}
         <div
-          className="absolute inset-0"
+          ref={imageRef}
+          className="absolute inset-0 will-change-transform"
+        >
+          <Image
+            src="/hero-image-strategy.png"
+            alt="Lighthouse guiding sailboats across calm waters at sunset, representing strategic alignment bringing teams together"
+            fill
+            className="object-cover object-[center_30%]"
+            priority
+            sizes="100vw"
+          />
+          {/* Warm overlay to blend illustration with brand palette */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(28,19,52,0.35) 0%, rgba(28,19,52,0.1) 30%, rgba(28,19,52,0.0) 50%, rgba(28,19,52,0.15) 80%, rgba(28,19,52,0.6) 100%)",
+            }}
+          />
+        </div>
+
+        {/* Left text overlay gradient — readability for headline */}
+        <div
+          className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(155deg, #1C1334 0%, #2D1B4E 20%, #4E2A6E 40%, #6E3FCC 55%, #8B5DA8 68%, #B87DA0 80%, #D4A0B9 92%, #E8C4B8 100%)",
+              "linear-gradient(90deg, rgba(28,19,52,0.75) 0%, rgba(28,19,52,0.55) 30%, rgba(28,19,52,0.15) 55%, transparent 70%)",
           }}
         />
 
-        {/* Topo texture overlay */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url(/clear-topo.webp)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.08,
-          }}
-        />
-
-        {/* Atmospheric glow layer */}
+        {/* Atmospheric glow */}
         <div className="absolute inset-0 pointer-events-none hero-atmosphere" />
 
+        {/* Lighthouse glow effect */}
+        <div
+          className="absolute pointer-events-none hero-lighthouse-glow"
+          style={{
+            top: "12%",
+            right: "22%",
+            width: "200px",
+            height: "200px",
+          }}
+        />
+
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-            {/* LEFT: Text content */}
-            <div className="max-w-[540px]">
-              <p className="text-sm font-semibold tracking-[0.14em] uppercase text-white/40 mb-8 hero-fade-in">
-                Campfire Signal
-              </p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-28 md:pt-36 lg:pt-40 pb-48 md:pb-56 lg:pb-64">
+          <div className="max-w-[520px]">
+            <p className="text-xs md:text-sm font-bold tracking-[0.18em] uppercase mb-6 hero-fade-in"
+               style={{ color: "#E87D3E" }}>
+              Strategic Alignment
+            </p>
 
-              <h1
-                className="text-[2.5rem] md:text-[3.25rem] lg:text-[3.75rem] leading-[1.15] mb-8 text-white hero-fade-in-delay-1"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                Clarity leads.
-                <br />
-                Alignment follows.
-                <br />
-                <span className="hero-accent-text">Progress together.</span>
-              </h1>
-
-              <div className="space-y-4 mb-10 hero-fade-in-delay-2">
-                <p className="text-base md:text-lg font-light text-white/55 leading-relaxed">
-                  When your organization is aligned on what matters most, teams
-                  move with confidence, decisions get easier, and you achieve
-                  more&mdash;together.
-                </p>
-                <p className="text-base md:text-lg font-semibold text-white/75 leading-relaxed">
-                  One direction. Greater impact.
-                </p>
-              </div>
-
-              <div className="hero-fade-in-delay-3">
-                <Link
-                  href="https://calendly.com/getcampfire/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hero-cta-button inline-block text-white font-bold px-8 py-4 rounded-xl text-lg transition-all duration-300"
-                >
-                  Build Strategic Alignment
-                </Link>
-              </div>
-            </div>
-
-            {/* RIGHT: Illustration */}
-            <div
-              ref={illustrationRef}
-              className="relative flex justify-center lg:justify-end will-change-transform"
+            <h1
+              className="text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] leading-[1.08] mb-7 text-white hero-fade-in-delay-1"
+              style={{ fontFamily: "var(--font-serif)" }}
             >
-              <div className="relative hero-float">
-                {/* Lighthouse glow */}
-                <div className="absolute -top-4 right-[28%] w-40 h-40 hero-glow pointer-events-none z-10" />
+              Clarity leads.
+              <br />
+              Alignment follows.
+              <br />
+              <span className="hero-accent-text">Progress together.</span>
+            </h1>
 
-                <Image
-                  src="/hero-image-strategy.png"
-                  alt="Lighthouse guiding sailboats across calm waters at sunset, representing strategic alignment bringing teams together"
-                  width={800}
-                  height={534}
-                  className="w-full h-auto max-w-[420px] md:max-w-[500px] lg:max-w-[580px] rounded-2xl"
-                  priority
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 60vw, 580px"
-                />
+            <p className="text-base md:text-[1.125rem] font-light text-white/60 leading-relaxed max-w-[440px] mb-8 hero-fade-in-delay-2">
+              When your organization is aligned on what matters most, teams
+              move with confidence, decisions get easier, and you achieve
+              more&mdash;together.
+            </p>
 
-                {/* Water reflection shimmer */}
-                <div className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none hero-water-shimmer rounded-b-2xl" />
-              </div>
+            <div className="hero-fade-in-delay-3">
+              <Link
+                href="https://calendly.com/getcampfire/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-cta-button inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full text-base transition-all duration-300"
+              >
+                Build Strategic Alignment
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M4 9H14" />
+                  <path d="M9 4L14 9L9 14" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom gradient fade */}
+        {/* Bottom gradient for value strip overlap */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-32"
+          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, transparent 0%, #F8F5FC 100%)",
+              "linear-gradient(180deg, transparent 0%, rgba(28,19,52,0.7) 100%)",
           }}
         />
       </section>
 
-      {/* ════════ VALUE STRIP ════════ */}
-      <section className="relative z-10 bg-[#F8F5FC] pt-4 pb-14 md:pb-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
-            {VALUE_ITEMS.map((item, i) => (
-              <div
-                key={item.label}
-                className="flex flex-col items-center text-center gap-3 hero-fade-in"
-                style={{ animationDelay: `${0.6 + i * 0.1}s` }}
-              >
-                <div className="w-10 h-10 text-[#6E3FCC]/70">{item.icon}</div>
-                <p className="text-sm font-bold text-[#1C1334] tracking-wide">
-                  {item.label}
-                </p>
-              </div>
-            ))}
+      {/* ════════ VALUE STRIP — floating card overlapping hero ════════ */}
+      <section className="relative z-20 -mt-20 md:-mt-16 pb-8">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-white rounded-2xl shadow-xl shadow-black/8 border border-[#E5E0DA]/50 px-6 py-6 md:px-10 md:py-7">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {VALUE_ITEMS.map((item, i) => (
+                <div
+                  key={item.label}
+                  className="flex items-start gap-3.5 hero-fade-in"
+                  style={{ animationDelay: `${0.6 + i * 0.1}s` }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                    style={{
+                      backgroundColor: `${item.color}12`,
+                      color: item.color,
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#1C1334] leading-snug">
+                      {item.label}
+                    </p>
+                    <p className="text-xs text-[#6B7370] leading-relaxed mt-0.5">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -249,22 +275,13 @@ export default function StrategicAlignmentHero() {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes heroFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
         @keyframes heroGlow {
-          0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
-          50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.15); }
         }
         @keyframes atmosphereShift {
-          0%, 100% { opacity: 0.06; }
-          33% { opacity: 0.1; }
-          66% { opacity: 0.04; }
-        }
-        @keyframes waterShimmer {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 0.15; }
+          0%, 100% { opacity: 0.04; }
+          50% { opacity: 0.08; }
         }
 
         .hero-fade-in {
@@ -281,41 +298,28 @@ export default function StrategicAlignmentHero() {
         }
 
         .hero-accent-text {
-          background: linear-gradient(135deg, #E8A0C0 0%, #D4A0B9 40%, #C9A0D4 100%);
+          background: linear-gradient(135deg, #E87D3E 0%, #D4603A 60%, #C04838 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
-        .hero-float {
-          animation: heroFloat 8s ease-in-out infinite;
-        }
-
-        .hero-glow {
-          background: radial-gradient(circle, rgba(255, 200, 140, 0.35) 0%, rgba(232, 160, 192, 0.15) 40%, transparent 70%);
+        .hero-lighthouse-glow {
+          background: radial-gradient(circle, rgba(255, 210, 140, 0.3) 0%, rgba(255, 180, 100, 0.1) 40%, transparent 70%);
           animation: heroGlow 5s ease-in-out infinite;
-          left: 50%;
-          top: 0;
-          transform: translate(-50%, -50%);
         }
 
         .hero-atmosphere {
-          background: radial-gradient(ellipse at 75% 25%, rgba(232, 125, 62, 0.07) 0%, transparent 55%),
-                      radial-gradient(ellipse at 25% 75%, rgba(110, 63, 204, 0.05) 0%, transparent 55%);
+          background: radial-gradient(ellipse at 70% 20%, rgba(232, 125, 62, 0.06) 0%, transparent 50%);
           animation: atmosphereShift 20s ease-in-out infinite;
-        }
-
-        .hero-water-shimmer {
-          background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
-          animation: waterShimmer 6s ease-in-out infinite;
         }
 
         .hero-cta-button {
           background: linear-gradient(135deg, #E87D3E 0%, #D4603A 50%, #C04838 100%);
-          box-shadow: 0 4px 20px rgba(232, 125, 62, 0.25);
+          box-shadow: 0 4px 20px rgba(232, 125, 62, 0.3);
         }
         .hero-cta-button:hover {
-          box-shadow: 0 8px 32px rgba(232, 125, 62, 0.4);
+          box-shadow: 0 8px 32px rgba(232, 125, 62, 0.45);
           transform: translateY(-2px);
         }
       `}</style>
