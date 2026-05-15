@@ -159,7 +159,7 @@ export default function StrategicAlignmentHero() {
               <span className="hero-accent-text">Direction is.</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-[#3D3550] leading-relaxed max-w-[540px] mb-8 hero-fade-in-delay-2">
+            <p className="text-base md:text-lg text-[#3D3550] leading-relaxed max-w-[540px] mb-8 hero-fade-in-delay-2">
               Your teams are moving faster than ever. AI is accelerating
               everything. But speed without shared direction is just
               expensive chaos. Make sure everyone is moving the right
