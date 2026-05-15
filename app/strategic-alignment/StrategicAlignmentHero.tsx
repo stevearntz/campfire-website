@@ -136,14 +136,14 @@ export default function StrategicAlignmentHero() {
             src="/hero-image-strategy.png"
             alt="Lighthouse guiding sailboats across calm waters at sunset, representing strategic alignment bringing teams together"
             fill
-            className="object-cover object-[center_30%] -translate-y-[30px]"
+            className="object-cover object-[center_30%] -translate-y-[40px]"
             priority
             sizes="100vw"
           />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-64 md:pb-80 lg:pb-[26rem]">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-64 md:pb-80 lg:pb-[28.5rem]">
           <div className="max-w-4xl">
             <p className="text-xs md:text-sm font-bold tracking-[0.18em] uppercase mb-6 hero-fade-in"
                style={{ color: "#E87D3E" }}>
@@ -192,8 +192,43 @@ export default function StrategicAlignmentHero() {
           </div>
         </div>
 
+        {/* ════════ VALUE STRIP — inside hero ════════ */}
+        <div className="absolute bottom-6 left-0 right-0 z-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/8 border border-white/50 px-8 py-7 md:px-12 md:py-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+                {VALUE_ITEMS.map((item, i) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-4 hero-fade-in"
+                    style={{ animationDelay: `${0.6 + i * 0.1}s` }}
+                  >
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 [&>svg]:w-7 [&>svg]:h-7"
+                      style={{
+                        backgroundColor: `${item.color}20`,
+                        color: item.color,
+                      }}
+                    >
+                      {item.icon}
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-[#1C1334] leading-snug">
+                        {item.label}
+                      </p>
+                      <p className="text-xs text-[#6B7370] leading-relaxed mt-0.5">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Animated scroll arrow */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hero-scroll-arrow">
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 hero-scroll-arrow">
           <svg
             width="28"
             height="28"
@@ -207,41 +242,6 @@ export default function StrategicAlignmentHero() {
           >
             <path d="M6 9L12 15L18 9" />
           </svg>
-        </div>
-      </section>
-
-      {/* ════════ VALUE STRIP — floating card overlapping hero ════════ */}
-      <section className="relative z-20 -mt-20 md:-mt-16 pb-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="bg-white rounded-2xl shadow-xl shadow-black/8 border border-[#E5E0DA]/50 px-8 py-7 md:px-12 md:py-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
-              {VALUE_ITEMS.map((item, i) => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-4 hero-fade-in"
-                  style={{ animationDelay: `${0.6 + i * 0.1}s` }}
-                >
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 [&>svg]:w-7 [&>svg]:h-7"
-                    style={{
-                      backgroundColor: `${item.color}12`,
-                      color: item.color,
-                    }}
-                  >
-                    {item.icon}
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-[#1C1334] leading-snug">
-                      {item.label}
-                    </p>
-                    <p className="text-xs text-[#6B7370] leading-relaxed mt-0.5">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
