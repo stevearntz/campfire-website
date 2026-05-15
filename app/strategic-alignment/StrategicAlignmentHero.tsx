@@ -154,17 +154,16 @@ export default function StrategicAlignmentHero() {
               className="text-[3rem] md:text-[4rem] lg:text-[5rem] leading-[1.08] mb-7 text-[#1C1334] hero-fade-in-delay-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Clarity leads.
+              Speed isn&apos;t the problem.
               <br />
-              Alignment follows.
-              <br />
-              <span className="hero-accent-text">Progress together.</span>
+              <span className="hero-accent-text">Direction is.</span>
             </h1>
 
-            <p className="text-base md:text-lg text-[#3D3550] leading-relaxed max-w-[460px] mb-8 hero-fade-in-delay-2">
-              When your organization is aligned on what matters most, teams
-              move with confidence, decisions get easier, and you achieve
-              more&mdash;together.
+            <p className="text-xl md:text-2xl text-[#3D3550] leading-relaxed max-w-[540px] mb-8 hero-fade-in-delay-2">
+              Your teams are moving faster than ever. AI is accelerating
+              everything. But speed without shared direction is just
+              expensive chaos. Make sure everyone is moving the right
+              way&mdash;together.
             </p>
 
             <div className="hero-fade-in-delay-3">
