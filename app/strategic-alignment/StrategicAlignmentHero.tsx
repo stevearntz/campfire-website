@@ -136,7 +136,7 @@ export default function StrategicAlignmentHero() {
             src="/hero-image-strategy.png"
             alt="Lighthouse guiding sailboats across calm waters at sunset, representing strategic alignment bringing teams together"
             fill
-            className="object-cover object-[center_30%]"
+            className="object-cover object-[center_30%] -translate-y-[30px]"
             priority
             sizes="100vw"
           />
