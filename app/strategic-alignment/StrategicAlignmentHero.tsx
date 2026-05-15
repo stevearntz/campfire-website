@@ -250,7 +250,7 @@ export default function StrategicAlignmentHero() {
         }
 
         .hero-accent-text {
-          background: linear-gradient(90deg, #E87D3E 0%, #C04838 100%);
+          background: linear-gradient(135deg, #E86C7A 0%, #C04FA3 50%, #9F58B7 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
