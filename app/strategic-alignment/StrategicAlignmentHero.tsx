@@ -143,7 +143,7 @@ export default function StrategicAlignmentHero() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-56 md:pb-72 lg:pb-96">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-20 lg:pt-24 pb-64 md:pb-80 lg:pb-[26rem]">
           <div className="max-w-2xl">
             <p className="text-xs md:text-sm font-bold tracking-[0.18em] uppercase mb-6 hero-fade-in"
                style={{ color: "#E87D3E" }}>
@@ -191,6 +191,23 @@ export default function StrategicAlignmentHero() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* Animated scroll arrow */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hero-scroll-arrow">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="opacity-70"
+          >
+            <path d="M6 9L12 15L18 9" />
+          </svg>
         </div>
       </section>
 
@@ -260,6 +277,15 @@ export default function StrategicAlignmentHero() {
           background: linear-gradient(90deg, #FC5C11 0%, #FC5D16 100%);
           box-shadow: 0 4px 20px rgba(252, 92, 17, 0.3);
         }
+        @keyframes heroBounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(6px); }
+        }
+
+        .hero-scroll-arrow {
+          animation: heroBounce 2s ease-in-out infinite;
+        }
+
         .hero-cta-button:hover {
           box-shadow: 0 8px 32px rgba(252, 92, 17, 0.45);
           transform: translateY(-2px);
