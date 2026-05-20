@@ -567,16 +567,27 @@ function SectionNav({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavTap = (id: string, index: number) => {
-    onScrollTo(id);
+  // Auto-scroll the nav when active section changes (scrollspy or tap)
+  useEffect(() => {
     const container = navScrollRef.current;
     if (!container) return;
+    const index = NAV_ITEMS.findIndex((item) => item.id === active);
+    if (index < 0) return;
+    // First item: scroll all the way home
+    if (index === 0) {
+      container.scrollTo({ left: 0, behavior: "smooth" });
+      return;
+    }
     const tab = container.children[index] as HTMLElement | null;
     if (!tab) return;
     container.scrollTo({
       left: tab.offsetLeft - container.offsetLeft,
       behavior: "smooth",
     });
+  }, [active]);
+
+  const handleNavTap = (id: string) => {
+    onScrollTo(id);
   };
 
   return (
@@ -593,7 +604,7 @@ function SectionNav({
           {NAV_ITEMS.map((item, i) => (
             <button
               key={item.id}
-              onClick={() => handleNavTap(item.id, i)}
+              onClick={() => handleNavTap(item.id)}
               className={`text-[13px] font-semibold whitespace-nowrap transition-colors shrink-0 ${
                 active === item.id
                   ? "text-[#6E3FCC]"
