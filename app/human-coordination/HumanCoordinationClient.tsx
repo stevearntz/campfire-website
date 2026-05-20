@@ -557,6 +557,7 @@ function SectionNav({
   onOpenForm: () => void;
 }) {
   const [visible, setVisible] = useState(false);
+  const navScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -566,35 +567,47 @@ function SectionNav({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNavTap = (id: string, index: number) => {
+    onScrollTo(id);
+    const container = navScrollRef.current;
+    if (!container) return;
+    const tab = container.children[index] as HTMLElement | null;
+    if (!tab) return;
+    container.scrollTo({
+      left: tab.offsetLeft - container.offsetLeft,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <nav
       className={`fixed top-[64px] left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/60 transition-all duration-300 ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-10">
-        <div className="flex items-center gap-6">
-          {NAV_ITEMS.map((item) => (
+      <div className="flex items-center h-[44px]">
+        <div
+          ref={navScrollRef}
+          className="flex items-center gap-5 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
+        >
+          {NAV_ITEMS.map((item, i) => (
             <button
               key={item.id}
-              onClick={() => onScrollTo(item.id)}
-              className={`relative text-[13px] font-semibold tracking-wide transition-colors py-2.5 ${
+              onClick={() => handleNavTap(item.id, i)}
+              className={`text-[13px] font-semibold whitespace-nowrap transition-colors shrink-0 ${
                 active === item.id
                   ? "text-[#6E3FCC]"
                   : "text-gray-400 hover:text-gray-700"
               }`}
             >
               {item.label}
-              {active === item.id && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#6E3FCC] rounded-full" />
-              )}
             </button>
           ))}
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden lg:block shrink-0 pr-5 pl-4">
           <button
             onClick={onOpenForm}
-            className="text-[13px] font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] px-4 py-1.5 rounded-md transition-colors"
+            className="text-[13px] font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] px-4 py-1.5 rounded-md transition-colors whitespace-nowrap"
           >
             Book a conversation
           </button>
