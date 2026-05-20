@@ -568,36 +568,33 @@ function SectionNav({
 
   return (
     <nav
-      className={`fixed top-[64px] left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300 ${
+      className={`fixed top-[64px] left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/60 transition-all duration-300 ${
         visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-11">
-        <div className="flex items-center gap-1">
+      <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-10">
+        <div className="flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
               onClick={() => onScrollTo(item.id)}
-              className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+              className={`relative text-[13px] font-semibold tracking-wide transition-colors py-2.5 ${
                 active === item.id
-                  ? "text-[#6E3FCC] bg-[#F8F5FC]"
-                  : "text-gray-500 hover:text-gray-900"
+                  ? "text-[#6E3FCC]"
+                  : "text-gray-400 hover:text-gray-700"
               }`}
             >
               {item.label}
+              {active === item.id && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#6E3FCC] rounded-full" />
+              )}
             </button>
           ))}
         </div>
-        <div className="hidden md:flex items-center gap-2">
-          <button
-            onClick={() => onScrollTo("how")}
-            className="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-1.5"
-          >
-            See how it works
-          </button>
+        <div className="hidden lg:block">
           <button
             onClick={onOpenForm}
-            className="text-sm font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] px-4 py-1.5 rounded-lg transition-colors"
+            className="text-[13px] font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] px-4 py-1.5 rounded-md transition-colors"
           >
             Book a conversation
           </button>
