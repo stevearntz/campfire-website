@@ -645,6 +645,20 @@ export default function HumanCoordinationClient() {
 
   // Pain tabs
   const [activePain, setActivePain] = useState(PAINS[0].id);
+  const painTabsRef = useRef<HTMLDivElement>(null);
+
+  const selectPain = (id: string, index: number) => {
+    setActivePain(id);
+    // On mobile, scroll the tab list so the tapped tab aligns to the left edge
+    const container = painTabsRef.current;
+    if (!container) return;
+    const tab = container.children[index] as HTMLElement | null;
+    if (!tab) return;
+    container.scrollTo({
+      left: tab.offsetLeft - container.offsetLeft,
+      behavior: "smooth",
+    });
+  };
 
   // Offer cards
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
@@ -851,13 +865,13 @@ export default function HumanCoordinationClient() {
 
           <div className="flex flex-col lg:flex-row gap-6">
             {/* Tab list */}
-            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:w-72 shrink-0 pb-2 lg:pb-0" role="tablist" aria-label="Coordination pains">
+            <div ref={painTabsRef} className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:w-72 shrink-0 pb-2 lg:pb-0 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" role="tablist" aria-label="Coordination pains">
               {PAINS.map((p, i) => (
                 <button
                   key={p.id}
                   role="tab"
                   aria-selected={p.id === activePain}
-                  onClick={() => setActivePain(p.id)}
+                  onClick={() => selectPain(p.id, i)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left whitespace-nowrap lg:whitespace-normal transition-all shrink-0 ${
                     p.id === activePain
                       ? "bg-[#F8F5FC] border border-[#6E3FCC]/20 text-[#1C1334]"
