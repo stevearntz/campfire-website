@@ -337,7 +337,7 @@ export default function EffectiveOrgClient() {
             <br />
             <span className="text-[#E055CB]">coordinated execution.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-white/60 max-w-[720px] mx-auto mb-10 leading-relaxed">
             Campfire helps companies, departments, and teams increase clarity, align strategically, and reduce coordination costs — so you can execute on your strategic objectives without the drift, rework, and friction that slow everything down.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
