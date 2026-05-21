@@ -23,28 +23,19 @@ const C = {
    SVG DIAGRAMS
    ═══════════════════════════════════════════════════════════════════ */
 
-function CapacityIcon() {
+function ClarityIcon() {
   return (
     <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="w-16 h-16">
-      <defs>
-        <radialGradient id="cap-g" cx="50%" cy="60%" r="50%">
-          <stop offset="0%" stopColor={C.warmHot} stopOpacity="1" />
-          <stop offset="70%" stopColor={C.warm} stopOpacity="0.4" />
-          <stop offset="100%" stopColor={C.warm} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="40" cy="44" r="28" fill="url(#cap-g)" />
-      <circle cx="40" cy="44" r="10" fill={C.warmHot} opacity="0.9" />
-      {/* Rising spark lines */}
-      <g stroke={C.warm} strokeWidth="1.5" strokeLinecap="round" opacity="0.6">
-        <line x1="40" y1="28" x2="40" y2="14" />
-        <line x1="30" y1="30" x2="24" y2="18" />
-        <line x1="50" y1="30" x2="56" y2="18" />
-      </g>
-      <g fill={C.warmHot} opacity="0.7">
-        <circle cx="40" cy="12" r="2" />
-        <circle cx="23" cy="16" r="1.5" />
-        <circle cx="57" cy="16" r="1.5" />
+      {/* Lens / focus circle */}
+      <circle cx="40" cy="40" r="24" fill="none" stroke={C.warmHot} strokeWidth="2" strokeOpacity="0.3" />
+      <circle cx="40" cy="40" r="14" fill="none" stroke={C.warmHot} strokeWidth="2" strokeOpacity="0.5" />
+      <circle cx="40" cy="40" r="5" fill={C.warmHot} opacity="0.9" />
+      {/* Crosshair lines */}
+      <g stroke={C.warmHot} strokeWidth="1.5" strokeLinecap="round" opacity="0.4">
+        <line x1="40" y1="8" x2="40" y2="16" />
+        <line x1="40" y1="64" x2="40" y2="72" />
+        <line x1="8" y1="40" x2="16" y2="40" />
+        <line x1="64" y1="40" x2="72" y2="40" />
       </g>
     </svg>
   );
@@ -347,7 +338,7 @@ export default function EffectiveOrgClient() {
             <span className="text-[#E055CB]">coordinated execution.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Your people are moving faster than ever. The challenge is making sure they&apos;re moving together. Campfire helps growing companies build the leadership habits that increase alignment, reduce coordination cost, and turn strategy into results.
+            Campfire helps companies, departments, and teams increase clarity, align strategically, and improve coordination — so strategy actually becomes execution.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <button
@@ -385,12 +376,12 @@ export default function EffectiveOrgClient() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 mb-16">
             <div className="bg-[#F8F5FC] rounded-2xl px-6 py-5 text-center">
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/50 mb-1">Result</p>
-              <p className="text-lg md:text-xl font-extrabold text-[#1C1334]">Effectiveness</p>
+              <p className="text-lg md:text-xl font-extrabold text-[#1C1334]">Execution</p>
             </div>
             <span className="text-2xl font-bold text-gray-300">=</span>
             <div className="bg-[#FFF8F0] rounded-2xl px-6 py-5 text-center border border-orange-100">
-              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#F59E2C]/70 mb-1">Growing</p>
-              <p className="text-lg md:text-xl font-extrabold text-[#1C1334]">Capacity</p>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#F59E2C]/70 mb-1">Foundation</p>
+              <p className="text-lg md:text-xl font-extrabold text-[#1C1334]">Clarity</p>
             </div>
             <span className="text-2xl font-bold text-gray-300">&times;</span>
             <div className="bg-[#F8F5FC] rounded-2xl px-6 py-5 text-center border border-[#6E3FCC]/10">
@@ -408,11 +399,11 @@ export default function EffectiveOrgClient() {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="text-center md:text-left">
               <div className="flex justify-center md:justify-start mb-4">
-                <CapacityIcon />
+                <ClarityIcon />
               </div>
-              <h3 className="text-lg font-bold text-[#1C1334] mb-2">Capacity</h3>
+              <h3 className="text-lg font-bold text-[#1C1334] mb-2">Clarity</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                The skills, tools, energy, and speed each person brings to the work. AI and better tools are increasing this every quarter.
+                Knowing what matters, why it matters, and what good looks like. If clarity is zero, alignment and coordination are just organized confusion.
               </p>
             </div>
             <div className="text-center md:text-left">
@@ -421,7 +412,7 @@ export default function EffectiveOrgClient() {
               </div>
               <h3 className="text-lg font-bold text-[#1C1334] mb-2">Alignment</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                The shared understanding of what matters, where we're going, and how decisions get made. This is the multiplier.
+                Shared understanding of priorities, direction, and how decisions get made. Alignment is the multiplier that turns individual effort into collective progress.
               </p>
             </div>
             <div className="text-center md:text-left">
@@ -430,14 +421,14 @@ export default function EffectiveOrgClient() {
               </div>
               <h3 className="text-lg font-bold text-[#1C1334] mb-2">Coordination Cost</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                The meetings, rework, confusion, handoffs, and friction required to move together. This is the drag.
+                The meetings, rework, confusion, handoffs, and friction required to move together. This is the drag. Better leadership reduces it.
               </p>
             </div>
           </div>
 
           <div className="max-w-2xl mx-auto text-center bg-[#F8F5FC] rounded-2xl p-8">
             <p className="text-base md:text-lg text-[#1C1334] leading-relaxed font-medium">
-              When capacity increases but alignment stays flat, coordination costs rise. Campfire helps leaders make the new capacity count.
+              Campfire helps leaders increase clarity, strengthen alignment, and reduce coordination cost — so strategy actually turns into execution.
             </p>
           </div>
         </div>
@@ -451,10 +442,10 @@ export default function EffectiveOrgClient() {
               Why now
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-[#1C1334] mb-5">
-              Work is getting faster. That does not automatically make organizations <em className="not-italic text-[#6E3FCC]">more effective.</em>
+              People are moving faster than ever. That only helps if they&apos;re moving <em className="not-italic text-[#6E3FCC]">in the same direction.</em>
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              AI can help individuals write, build, analyze, and decide faster. But organizations win through shared direction, clear priorities, strong managers, and coordinated execution. Without those, speed creates more noise.
+              AI and better tools are increasing individual capacity every quarter. But capacity without clarity, alignment, and coordination creates more noise, not more progress.
             </p>
           </div>
 
@@ -462,14 +453,16 @@ export default function EffectiveOrgClient() {
             <div className="bg-white rounded-2xl p-8 text-center">
               <div className="w-12 h-12 rounded-full bg-[#FFF8F0] flex items-center justify-center mx-auto mb-5">
                 <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" stroke={C.warmHot} strokeWidth="2" strokeLinecap="round">
-                  <path d="M13 3l4 9h-8l4-9z" />
-                  <line x1="12" y1="12" x2="12" y2="21" />
-                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <circle cx="12" cy="12" r="3" />
+                  <line x1="12" y1="3" x2="12" y2="6" />
+                  <line x1="12" y1="18" x2="12" y2="21" />
+                  <line x1="3" y1="12" x2="6" y2="12" />
+                  <line x1="18" y1="12" x2="21" y2="12" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-[#1C1334] mb-2">More capacity</h3>
+              <h3 className="text-lg font-bold text-[#1C1334] mb-2">Without clarity</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                People can produce, analyze, and decide faster than ever. Individual output is at an all-time high.
+                Speed creates confusion. Teams move fast on the wrong things. Leaders announce priorities that get interpreted six different ways.
               </p>
             </div>
 
@@ -481,29 +474,29 @@ export default function EffectiveOrgClient() {
                   <path d="M12 5l3 7-3 7" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-[#1C1334] mb-2">More drift</h3>
+              <h3 className="text-lg font-bold text-[#1C1334] mb-2">Without alignment</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Faster individuals moving in slightly different directions creates rework, misalignment, and meetings that solve nothing.
+                Teams drift. Everyone is busy, but effort pulls in different directions. The strategy stays on the slide deck.
               </p>
             </div>
 
             <div className="bg-white rounded-2xl p-8 text-center">
               <div className="w-12 h-12 rounded-full bg-[#FCF0F9] flex items-center justify-center mx-auto mb-5">
                 <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" stroke={C.pink} strokeWidth="2" strokeLinecap="round">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
+                  <path d="M15 25 Q 30 35 25 45 Q 20 55 35 55" />
+                  <path d="M8 8l8 8M16 8l-8 8" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-[#1C1334] mb-2">More need for leadership</h3>
+              <h3 className="text-lg font-bold text-[#1C1334] mb-2">Without coordination</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                The faster work moves, the more organizations depend on leaders who can clarify, coordinate, and keep people connected to what matters.
+                Execution fragments. Rework, escalations, and meetings multiply. The cost of moving together outweighs the benefit of moving fast.
               </p>
             </div>
           </div>
 
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-base md:text-lg text-[#1C1334] leading-relaxed font-medium">
-              Campfire helps teams build the alignment and leadership behaviors that keep speed connected to strategy.
+              Campfire gives leaders the tools to build all three — so speed creates progress, not friction.
             </p>
           </div>
         </div>
@@ -517,22 +510,38 @@ export default function EffectiveOrgClient() {
               What Campfire does
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-[#1C1334] mb-5">
-              Leadership development that helps faster teams <em className="not-italic text-[#6E3FCC]">move in the same direction.</em>
+              Three things that turn strategy into <em className="not-italic text-[#6E3FCC]">coordinated execution.</em>
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Campfire helps organizations solve three business problems through practical, scalable leadership development that fits inside real work.
+              Campfire builds all three through practical, scalable leadership development that fits inside real work. Not a workshop. A system.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <article className="bg-[#F8F5FC] rounded-2xl p-8 border-t-4 border-[#6E3FCC]">
-              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/50 mb-3">A</p>
-              <h3 className="text-xl font-bold text-[#1C1334] mb-3">Increase alignment</h3>
+            <article className="bg-[#F8F5FC] rounded-2xl p-8 border-t-4 border-[#F59E2C]">
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#F59E2C]/60 mb-3">01</p>
+              <h3 className="text-xl font-bold text-[#1C1334] mb-3">Increase clarity</h3>
               <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                Sessions and programs that help leaders clarify direction, set expectations, communicate priorities, and connect work to outcomes.
+                Help leaders define what matters, why it matters, and what good looks like — so everyone reads the priority the same way.
               </p>
               <ul className="space-y-2">
-                {["Strategic clarity", "Priority setting", "Expectations and accountability", "Connecting work to outcomes"].map((item) => (
+                {["Defining priorities and outcomes", "Setting clear expectations", "Communicating the why", "Making strategy concrete"].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F59E2C]/50 mt-1.5 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="bg-[#F8F5FC] rounded-2xl p-8 border-t-4 border-[#6E3FCC]">
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/50 mb-3">02</p>
+              <h3 className="text-xl font-bold text-[#1C1334] mb-3">Align strategically</h3>
+              <p className="text-sm text-gray-600 leading-relaxed mb-5">
+                Connect priorities, decisions, and behaviors across levels — so individual effort adds up instead of pulling apart.
+              </p>
+              <ul className="space-y-2">
+                {["Connecting work to strategy", "Cross-functional alignment", "Manager translation of priorities", "Decision-making frameworks"].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6E3FCC]/40 mt-1.5 shrink-0" />
                     {item}
@@ -541,30 +550,14 @@ export default function EffectiveOrgClient() {
               </ul>
             </article>
 
-            <article className="bg-[#F8F5FC] rounded-2xl p-8 border-t-4 border-[#9D88ED]">
-              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/50 mb-3">B</p>
-              <h3 className="text-xl font-bold text-[#1C1334] mb-3">Reduce coordination cost</h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                Leadership habits that improve meetings, delegation, decision-making, feedback, coaching, and cross-functional collaboration.
-              </p>
-              <ul className="space-y-2">
-                {["Better meetings and decisions", "Delegation and ownership", "Feedback and coaching", "Cross-functional collaboration"].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9D88ED]/50 mt-1.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
-
             <article className="bg-[#F8F5FC] rounded-2xl p-8 border-t-4 border-[#E055CB]">
-              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/50 mb-3">C</p>
-              <h3 className="text-xl font-bold text-[#1C1334] mb-3">Build manager capability</h3>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/50 mb-3">03</p>
+              <h3 className="text-xl font-bold text-[#1C1334] mb-3">Improve coordination</h3>
               <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                Practical development that helps managers lead change, strengthen trust, support performance, and make better day-to-day decisions.
+                Reduce the friction between strategy and execution — fewer meetings, less rework, clearer handoffs, better follow-through.
               </p>
               <ul className="space-y-2">
-                {["Leading through change", "Building and repairing trust", "Performance conversations", "Day-to-day decision-making"].map((item) => (
+                {["Better meetings and delegation", "Feedback and coaching habits", "Accountability and follow-through", "Reducing rework and confusion"].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E055CB]/40 mt-1.5 shrink-0" />
                     {item}
@@ -584,7 +577,7 @@ export default function EffectiveOrgClient() {
               How Campfire helps
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-white mb-5">
-              Practical leadership habits that <em className="not-italic text-[#E055CB]">turn capacity into outcomes.</em>
+              Leadership habits that make <em className="not-italic text-[#E055CB]">the equation work.</em>
             </h2>
             <p className="text-lg text-white/60 leading-relaxed">
               Content, conversations, and reinforcement. Not a one-off workshop. A system that fits inside how your teams already work.
@@ -593,14 +586,15 @@ export default function EffectiveOrgClient() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { h: "Clarify what matters", p: "Help leaders and managers define priorities so everyone reads them the same way." },
-              { h: "Communicate direction", p: "Give managers the tools to translate strategy into conversations their teams can act on." },
-              { h: "Coordinate work", p: "Reduce the friction between teams with better handoffs, decisions, and shared commitments." },
-              { h: "Build trust", p: "Create the psychological safety that makes honest conversation and fast execution possible." },
-              { h: "Coach people through change", p: "Help managers support their teams when priorities shift, roles evolve, and uncertainty rises." },
-              { h: "Turn conversations into action", p: "Every session ends in a commitment. Reinforcement makes the behavior stick." },
+              { h: "Define what matters", p: "Help leaders get specific about priorities so the whole organization reads them the same way.", tag: "Clarity" },
+              { h: "Translate strategy down", p: "Give managers the language and practice to carry priorities into their teams in their own voice.", tag: "Clarity" },
+              { h: "Connect work to outcomes", p: "Link daily decisions to strategic priorities so people see how their work moves the business.", tag: "Alignment" },
+              { h: "Build trust across teams", p: "Create the psychological safety that makes honest conversation and fast execution possible.", tag: "Alignment" },
+              { h: "Improve how teams coordinate", p: "Better meetings, clearer handoffs, stronger follow-through. Less friction, more forward.", tag: "Coordination" },
+              { h: "Turn conversations into action", p: "Every session ends in a commitment. Reinforcement makes the behavior stick.", tag: "Coordination" },
             ].map((item) => (
               <div key={item.h} className="bg-white/5 border border-white/10 rounded-xl p-6">
+                <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/30 mb-2">{item.tag}</p>
                 <h3 className="text-base font-bold text-white mb-2">{item.h}</h3>
                 <p className="text-sm text-white/50 leading-relaxed">{item.p}</p>
               </div>
@@ -652,7 +646,7 @@ export default function EffectiveOrgClient() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Optimizing individual parts does not automatically optimize the whole. The interactions between teams matter more than the output of any single team.
               </p>
-              <p className="text-xs text-gray-400 mt-4 font-medium">Systems thinking</p>
+              <p className="text-xs text-gray-400 mt-4 font-medium">Supports: alignment</p>
             </div>
 
             <div className="bg-white rounded-2xl p-8">
@@ -663,7 +657,7 @@ export default function EffectiveOrgClient() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Adding capacity or contributors can increase communication overhead. The cost of moving together rises faster than the benefit of moving faster alone.
               </p>
-              <p className="text-xs text-gray-400 mt-4 font-medium">Coordination theory</p>
+              <p className="text-xs text-gray-400 mt-4 font-medium">Supports: coordination</p>
             </div>
 
             <div className="bg-white rounded-2xl p-8">
@@ -674,7 +668,7 @@ export default function EffectiveOrgClient() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Organizations perform better when goals, priorities, measures, and behaviors connect. Alignment is not a feeling. It is an observable, buildable system.
               </p>
-              <p className="text-xs text-gray-400 mt-4 font-medium">Strategic alignment research</p>
+              <p className="text-xs text-gray-400 mt-4 font-medium">Supports: clarity</p>
             </div>
           </div>
         </div>
@@ -684,10 +678,10 @@ export default function EffectiveOrgClient() {
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-2xl md:text-3xl font-extrabold text-[#1C1334] leading-snug mb-4">
-            Capacity is increasing. <span className="text-[#6E3FCC]">Alignment has to keep up.</span>
+            Clarity. Alignment. Coordination. <span className="text-[#6E3FCC]">That&apos;s how strategy becomes execution.</span>
           </p>
           <p className="text-base text-gray-500">
-            The future of work is faster. The best organizations will be clearer.
+            The future of work is faster. The best organizations will be clearer, more aligned, and better coordinated.
           </p>
         </div>
       </section>
@@ -711,7 +705,7 @@ export default function EffectiveOrgClient() {
                   <div className="flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#9D88ED] mt-2 shrink-0" />
                     <p className="text-white/70">
-                      <strong className="text-white/90">30-minute call.</strong> You share where capacity is growing and where coordination is dragging. We listen.
+                      <strong className="text-white/90">30-minute call.</strong> You share where clarity is lacking, alignment is off, or coordination is dragging. We listen.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
@@ -866,11 +860,11 @@ export default function EffectiveOrgClient() {
                           className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg outline-none transition-colors focus:border-[#6E3FCC] focus:ring-1 focus:ring-[#6E3FCC]/20 bg-white"
                         >
                           <option value="">Pick the one closest to your reality...</option>
-                          <option value="alignment">Teams are misaligned on priorities</option>
-                          <option value="coordination">Too much coordination overhead</option>
+                          <option value="clarity">We lack clarity on priorities</option>
+                          <option value="alignment">Teams aren&apos;t aligned</option>
+                          <option value="coordination">Coordination is costing us</option>
                           <option value="managers">Managers need better tools</option>
                           <option value="change">Leading through rapid change</option>
-                          <option value="ai">Navigating AI adoption</option>
                           <option value="other">Something else</option>
                         </select>
                       </div>
