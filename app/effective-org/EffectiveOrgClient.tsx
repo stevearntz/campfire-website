@@ -342,9 +342,9 @@ export default function EffectiveOrgClient() {
             Leadership development for the AI era of work
           </p>
           <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-extrabold leading-[1.05] tracking-tight text-white mb-4">
-            Your capacity is increasing.
+            Turn strategy into
             <br />
-            <span className="text-[#E055CB]">Make it count.</span>
+            <span className="text-[#E055CB]">coordinated execution.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             AI and new tools are helping people move faster. But speed only creates value when teams are aligned, coordinated, and led well. Campfire helps growing companies build the leadership habits that turn capacity into outcomes.
