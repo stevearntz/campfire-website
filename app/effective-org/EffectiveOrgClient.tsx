@@ -569,6 +569,111 @@ export default function EffectiveOrgClient() {
         </div>
       </section>
 
+      {/* ─── USE CASES ─── */}
+      <section className="py-20 md:py-28 bg-[#F8F5FC]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-3xl mb-14">
+            <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#6E3FCC] mb-4">
+              Built for your priorities
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-[#1C1334] mb-5">
+              Different teams. Different goals.<br />
+              <em className="not-italic text-[#6E3FCC]">Same execution challenge.</em>
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Every organization is trying to accomplish something different. Campfire helps teams improve the clarity, alignment, and coordination needed to execute the priorities that matter most.
+            </p>
+          </div>
+
+          {/* Desktop table */}
+          <div className="hidden md:block mb-10">
+            <div className="grid grid-cols-[1fr_1.2fr_1.5fr_1.3fr] gap-px bg-gray-200 rounded-2xl overflow-hidden">
+              {/* Header */}
+              <div className="bg-[#1C1334] px-5 py-3.5">
+                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Team</p>
+              </div>
+              <div className="bg-[#1C1334] px-5 py-3.5">
+                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Strategic goal</p>
+              </div>
+              <div className="bg-[#1C1334] px-5 py-3.5">
+                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Execution challenge</p>
+              </div>
+              <div className="bg-[#1C1334] px-5 py-3.5">
+                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Business outcome</p>
+              </div>
+
+              {/* Rows */}
+              {[
+                { team: "Sales", goal: "Grow revenue", challenge: "Managers interpret priorities differently", outcome: "More consistent pipeline execution" },
+                { team: "Customer Success", goal: "Improve retention", challenge: "Teams coordinate inconsistently around customer needs", outcome: "Better customer experience and renewal motion" },
+                { team: "Product", goal: "Increase adoption", challenge: "Roadmap priorities drift across functions", outcome: "Clearer launches and stronger product adoption" },
+                { team: "People / HR", goal: "Lead change well", challenge: "Managers communicate change inconsistently", outcome: "Smoother change adoption across teams" },
+                { team: "Operations", goal: "Scale efficiently", challenge: "Handoffs, meetings, and decisions create friction", outcome: "Less rework and faster execution" },
+              ].map((row, i) => (
+                <React.Fragment key={row.team}>
+                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
+                    <p className="text-sm font-bold text-[#1C1334]">{row.team}</p>
+                  </div>
+                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
+                    <p className="text-sm text-gray-600">{row.goal}</p>
+                  </div>
+                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
+                    <p className="text-sm text-gray-500">{row.challenge}</p>
+                  </div>
+                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
+                    <p className="text-sm font-medium text-[#6E3FCC]">{row.outcome}</p>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile cards */}
+          <div className="md:hidden space-y-4 mb-10">
+            {[
+              { team: "Sales", goal: "Grow revenue", challenge: "Managers interpret priorities differently", outcome: "More consistent pipeline execution" },
+              { team: "Customer Success", goal: "Improve retention", challenge: "Teams coordinate inconsistently around customer needs", outcome: "Better customer experience and renewal motion" },
+              { team: "Product", goal: "Increase adoption", challenge: "Roadmap priorities drift across functions", outcome: "Clearer launches and stronger product adoption" },
+              { team: "People / HR", goal: "Lead change well", challenge: "Managers communicate change inconsistently", outcome: "Smoother change adoption across teams" },
+              { team: "Operations", goal: "Scale efficiently", challenge: "Handoffs, meetings, and decisions create friction", outcome: "Less rework and faster execution" },
+            ].map((row) => (
+              <div key={row.team} className="bg-white rounded-xl p-5">
+                <p className="text-sm font-bold text-[#1C1334] mb-3">{row.team}</p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex gap-3">
+                    <span className="text-gray-400 shrink-0 w-20 font-medium">Goal</span>
+                    <span className="text-gray-600">{row.goal}</span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="text-gray-400 shrink-0 w-20 font-medium">Challenge</span>
+                    <span className="text-gray-500">{row.challenge}</span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="text-gray-400 shrink-0 w-20 font-medium">Outcome</span>
+                    <span className="text-[#6E3FCC] font-medium">{row.outcome}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <p className="text-base md:text-lg text-[#1C1334] font-medium mb-6">
+              Whatever your strategic priority, Campfire helps your leaders turn it into coordinated execution.
+            </p>
+            <button
+              onClick={onOpenForm}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#6E3FCC] hover:text-[#5a2fb3] transition-colors"
+            >
+              Talk through your priority
+              <svg className="w-3.5 h-3.5" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* ─── HOW CAMPFIRE HELPS ─── */}
       <section id="how" className="py-20 md:py-28 bg-[#1C1334]">
         <div className="max-w-5xl mx-auto px-6">
