@@ -339,7 +339,7 @@ export default function EffectiveOrgClient() {
         />
         <div className="relative max-w-5xl mx-auto px-6 pt-28 md:pt-36 lg:pt-44 pb-20 md:pb-28 text-center">
           <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-6">
-            Leadership development for the AI era of work
+            Organizational effectiveness for the AI era
           </p>
           <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-extrabold leading-[1.05] tracking-tight text-white mb-4">
             Turn strategy into
@@ -347,7 +347,7 @@ export default function EffectiveOrgClient() {
             <span className="text-[#E055CB]">coordinated execution.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            AI and new tools are helping people move faster. But speed only creates value when teams are aligned, coordinated, and led well. Campfire helps growing companies build the leadership habits that turn capacity into outcomes.
+            Your people are moving faster than ever. The challenge is making sure they&apos;re moving together. Campfire helps growing companies build the leadership habits that increase alignment, reduce coordination cost, and turn strategy into results.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <button
