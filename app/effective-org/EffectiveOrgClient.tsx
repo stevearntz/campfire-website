@@ -377,7 +377,7 @@ export default function EffectiveOrgClient() {
               The equation
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-[#1C1334]">
-              What actually drives <em className="not-italic text-[#6E3FCC]">organizational effectiveness.</em>
+              What actually drives<br /><em className="not-italic text-[#6E3FCC]">organizational effectiveness.</em>
             </h2>
           </div>
 
