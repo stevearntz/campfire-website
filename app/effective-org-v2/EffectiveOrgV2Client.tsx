@@ -744,7 +744,7 @@ export default function EffectiveOrgV2Client() {
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#E055CB]/60 mb-2">03</p>
               <h3 className="text-xl font-bold text-white mb-3">Ongoing reinforcement</h3>
               <p className="text-sm text-white/50 leading-relaxed mb-5">
-                Conversations that maintain alignment and execution consistency over time. Behavior change that sticks because it&apos;s practiced, not just taught.
+                Conversations that keep managers reinforcing strategy consistently across their teams — so alignment doesn&apos;t decay between offsites. Behavior change that sticks because it&apos;s practiced, not just taught.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-white/40">
@@ -820,7 +820,7 @@ export default function EffectiveOrgV2Client() {
             Clarity. Alignment. Coordination.<br /><span className="text-[#6E3FCC]">That&apos;s how strategy becomes execution.</span>
           </p>
           <p className="text-base text-gray-500">
-            The future of work is faster. The best organizations will be clearer, more aligned, and better coordinated.
+            The organizations that win won&apos;t just move faster. They&apos;ll drift less — especially during change.
           </p>
         </div>
       </section>
