@@ -413,7 +413,7 @@ export default function EffectiveOrgV2Client() {
             ))}
 
             {/* CTA card */}
-            <div className="bg-[#6E3FCC] rounded-2xl p-7 flex flex-col justify-center text-center">
+            <div className="bg-[#6E3FCC] rounded-2xl p-7 px-10 flex flex-col justify-center text-center">
               <p className="text-lg font-extrabold text-white leading-snug mb-3">
                 Sound familiar?
               </p>
