@@ -781,7 +781,7 @@ export default function EffectiveOrgV2Client() {
               <div className="w-10 h-10 rounded-full bg-[#F8F5FC] flex items-center justify-center mb-5">
                 <span className="text-sm font-bold text-[#6E3FCC]">01</span>
               </div>
-              <h3 className="text-lg font-bold text-[#1C1334] mb-3">Systems outperform when the parts work together</h3>
+              <h3 className="text-lg font-bold text-[#1C1334] mb-3">Systems outperform when the parts work together, not just faster</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
                 Optimizing individual parts does not automatically optimize the whole. The interactions between teams matter more than the output of any single team.
               </p>
