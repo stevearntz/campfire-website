@@ -522,7 +522,7 @@ export default function EffectiveOrgClient() {
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#F59E2C]/60 mb-3">01</p>
               <h3 className="text-xl font-bold text-[#1C1334] mb-3">Increase clarity</h3>
               <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                Help leaders define what matters, why it matters, and what good looks like — so everyone reads the priority the same way.
+                Help leaders define what matters, why it matters, and what good looks like so everyone reads the priority the same way.
               </p>
               <ul className="space-y-2">
                 {["Defining priorities and outcomes", "Setting clear expectations", "Communicating the why", "Making strategy concrete"].map((item) => (
