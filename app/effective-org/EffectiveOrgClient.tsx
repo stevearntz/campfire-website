@@ -624,7 +624,6 @@ export default function EffectiveOrgClient() {
               },
             ].map((row) => (
               <div key={row.team} className="bg-white rounded-2xl overflow-hidden flex flex-col">
-                {/* Card top */}
                 <div className="p-6 flex-1">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-lg bg-[#F8F5FC] text-[#6E3FCC] flex items-center justify-center shrink-0">
@@ -635,28 +634,31 @@ export default function EffectiveOrgClient() {
                   <p className="text-xs font-bold tracking-[0.12em] uppercase text-gray-400 mb-1">Goal: {row.goal}</p>
                   <p className="text-sm text-gray-500 leading-relaxed">{row.challenge}</p>
                 </div>
-                {/* Card bottom — outcome highlight */}
                 <div className="bg-[#1C1334] px-6 py-4">
                   <p className="text-xs font-bold tracking-[0.12em] uppercase text-[#9D88ED]/60 mb-1">Outcome</p>
                   <p className="text-sm font-semibold text-white">{row.outcome}</p>
                 </div>
               </div>
             ))}
-          </div>
 
-          <div className="text-center">
-            <p className="text-base md:text-lg text-[#1C1334] font-medium mb-6">
-              Whatever your strategic priority, Campfire helps your leaders turn it into coordinated execution.
-            </p>
-            <button
-              onClick={onOpenForm}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#6E3FCC] hover:text-[#5a2fb3] transition-colors"
-            >
-              Talk through your priority
-              <svg className="w-3.5 h-3.5" viewBox="0 0 12 12" fill="none">
-                <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            {/* CTA card */}
+            <div className="bg-[#6E3FCC] rounded-2xl overflow-hidden flex flex-col justify-center p-8 text-center">
+              <p className="text-xl md:text-2xl font-extrabold text-white leading-snug mb-3">
+                Whatever your priority, Campfire helps you execute on it.
+              </p>
+              <p className="text-sm text-white/60 mb-6">
+                Tell us what you&apos;re working on. We&apos;ll show you what coordinated execution looks like.
+              </p>
+              <button
+                onClick={onOpenForm}
+                className="inline-flex items-center gap-2 mx-auto px-6 py-3 text-sm font-semibold text-[#6E3FCC] bg-white hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                Talk through your priority
+                <svg className="w-3.5 h-3.5" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
