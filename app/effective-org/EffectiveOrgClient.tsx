@@ -772,7 +772,7 @@ export default function EffectiveOrgClient() {
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-2xl md:text-3xl font-extrabold text-[#1C1334] leading-snug mb-4">
-            Clarity. Alignment. Coordination. <span className="text-[#6E3FCC]">That&apos;s how strategy becomes execution.</span>
+            Clarity. Alignment. Coordination.<br /><span className="text-[#6E3FCC]">That&apos;s how strategy becomes execution.</span>
           </p>
           <p className="text-base text-gray-500">
             The future of work is faster. The best organizations will be clearer, more aligned, and better coordinated.
