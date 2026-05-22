@@ -415,10 +415,10 @@ export default function EffectiveOrgV2Client() {
             {/* CTA card */}
             <div className="bg-[#6E3FCC] rounded-2xl p-7 flex flex-col justify-center text-center">
               <p className="text-lg font-extrabold text-white leading-snug mb-3">
-                Sound familiar? There&apos;s a reason it keeps happening.
+                Sound familiar?
               </p>
               <p className="text-sm text-white/60 mb-5">
-                These five symptoms trace back to the same root cause. See the equation that explains it.
+                These five symptoms have the same root cause.
               </p>
               <button
                 onClick={() => scrollTo("equation")}
