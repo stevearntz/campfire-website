@@ -744,7 +744,7 @@ export default function EffectiveOrgV2Client() {
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#E055CB]/60 mb-2">03</p>
               <h3 className="text-xl font-bold text-white mb-3">Ongoing reinforcement</h3>
               <p className="text-sm text-white/50 leading-relaxed mb-5">
-                Conversations and operating rhythms that keep managers reinforcing strategy consistently across their teams — so alignment doesn&apos;t decay between offsites.
+                Conversations and operating rhythms that keep managers reinforcing strategy consistently across their teams — so alignment doesn&apos;t decay between offsites. Every session ends in a commitment. Reinforcement makes the behavior stick.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-white/40">
