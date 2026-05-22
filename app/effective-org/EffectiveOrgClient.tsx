@@ -585,73 +585,60 @@ export default function EffectiveOrgClient() {
             </p>
           </div>
 
-          {/* Desktop table */}
-          <div className="hidden md:block mb-10">
-            <div className="grid grid-cols-[1fr_1.2fr_1.5fr_1.3fr] gap-px bg-gray-200 rounded-2xl overflow-hidden">
-              {/* Header */}
-              <div className="bg-[#1C1334] px-5 py-3.5">
-                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Team</p>
-              </div>
-              <div className="bg-[#1C1334] px-5 py-3.5">
-                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Strategic goal</p>
-              </div>
-              <div className="bg-[#1C1334] px-5 py-3.5">
-                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Execution challenge</p>
-              </div>
-              <div className="bg-[#1C1334] px-5 py-3.5">
-                <p className="text-xs font-bold tracking-[0.15em] uppercase text-white/50">Business outcome</p>
-              </div>
-
-              {/* Rows */}
-              {[
-                { team: "Sales", goal: "Grow revenue", challenge: "Managers interpret priorities differently", outcome: "More consistent pipeline execution" },
-                { team: "Customer Success", goal: "Improve retention", challenge: "Teams coordinate inconsistently around customer needs", outcome: "Better customer experience and renewal motion" },
-                { team: "Product", goal: "Increase adoption", challenge: "Roadmap priorities drift across functions", outcome: "Clearer launches and stronger product adoption" },
-                { team: "People / HR", goal: "Lead change well", challenge: "Managers communicate change inconsistently", outcome: "Smoother change adoption across teams" },
-                { team: "Operations", goal: "Scale efficiently", challenge: "Handoffs, meetings, and decisions create friction", outcome: "Less rework and faster execution" },
-              ].map((row, i) => (
-                <React.Fragment key={row.team}>
-                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
-                    <p className="text-sm font-bold text-[#1C1334]">{row.team}</p>
-                  </div>
-                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
-                    <p className="text-sm text-gray-600">{row.goal}</p>
-                  </div>
-                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
-                    <p className="text-sm text-gray-500">{row.challenge}</p>
-                  </div>
-                  <div className={`${i % 2 === 0 ? "bg-white" : "bg-[#F8F5FC]"} px-5 py-4`}>
-                    <p className="text-sm font-medium text-[#6E3FCC]">{row.outcome}</p>
-                  </div>
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile cards */}
-          <div className="md:hidden space-y-4 mb-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
             {[
-              { team: "Sales", goal: "Grow revenue", challenge: "Managers interpret priorities differently", outcome: "More consistent pipeline execution" },
-              { team: "Customer Success", goal: "Improve retention", challenge: "Teams coordinate inconsistently around customer needs", outcome: "Better customer experience and renewal motion" },
-              { team: "Product", goal: "Increase adoption", challenge: "Roadmap priorities drift across functions", outcome: "Clearer launches and stronger product adoption" },
-              { team: "People / HR", goal: "Lead change well", challenge: "Managers communicate change inconsistently", outcome: "Smoother change adoption across teams" },
-              { team: "Operations", goal: "Scale efficiently", challenge: "Handoffs, meetings, and decisions create friction", outcome: "Less rework and faster execution" },
+              {
+                team: "Sales",
+                icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="M7 16l4-6 4 3 5-7" /></svg>,
+                goal: "Grow revenue",
+                challenge: "Managers interpret priorities differently across the team.",
+                outcome: "More consistent pipeline execution",
+              },
+              {
+                team: "Customer Success",
+                icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
+                goal: "Improve retention",
+                challenge: "Teams coordinate inconsistently around customer needs.",
+                outcome: "Better customer experience and renewal motion",
+              },
+              {
+                team: "Product",
+                icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>,
+                goal: "Increase adoption",
+                challenge: "Roadmap priorities drift across functions.",
+                outcome: "Clearer launches and stronger product adoption",
+              },
+              {
+                team: "People / HR",
+                icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 110 20 10 10 0 010-20z" /><path d="M12 8v4l3 3" /></svg>,
+                goal: "Lead change well",
+                challenge: "Managers communicate change inconsistently.",
+                outcome: "Smoother change adoption across teams",
+              },
+              {
+                team: "Operations",
+                icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" /></svg>,
+                goal: "Scale efficiently",
+                challenge: "Handoffs, meetings, and decisions create friction.",
+                outcome: "Less rework and faster execution",
+              },
             ].map((row) => (
-              <div key={row.team} className="bg-white rounded-xl p-5">
-                <p className="text-sm font-bold text-[#1C1334] mb-3">{row.team}</p>
-                <div className="space-y-2 text-sm">
-                  <div className="flex gap-3">
-                    <span className="text-gray-400 shrink-0 w-20 font-medium">Goal</span>
-                    <span className="text-gray-600">{row.goal}</span>
+              <div key={row.team} className="bg-white rounded-2xl overflow-hidden flex flex-col">
+                {/* Card top */}
+                <div className="p-6 flex-1">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-lg bg-[#F8F5FC] text-[#6E3FCC] flex items-center justify-center shrink-0">
+                      {row.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-[#1C1334]">{row.team}</h3>
                   </div>
-                  <div className="flex gap-3">
-                    <span className="text-gray-400 shrink-0 w-20 font-medium">Challenge</span>
-                    <span className="text-gray-500">{row.challenge}</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="text-gray-400 shrink-0 w-20 font-medium">Outcome</span>
-                    <span className="text-[#6E3FCC] font-medium">{row.outcome}</span>
-                  </div>
+                  <p className="text-xs font-bold tracking-[0.12em] uppercase text-gray-400 mb-1">Goal: {row.goal}</p>
+                  <p className="text-sm text-gray-500 leading-relaxed">{row.challenge}</p>
+                </div>
+                {/* Card bottom — outcome highlight */}
+                <div className="bg-[#1C1334] px-6 py-4">
+                  <p className="text-xs font-bold tracking-[0.12em] uppercase text-[#9D88ED]/60 mb-1">Outcome</p>
+                  <p className="text-sm font-semibold text-white">{row.outcome}</p>
                 </div>
               </div>
             ))}
