@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Turn strategy into coordinated execution. Campfire builds the clarity, alignment, and coordination that growing organizations need.",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Campfire — Turn strategy into coordinated execution" }],
   },
 };
 
