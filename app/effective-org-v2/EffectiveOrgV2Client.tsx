@@ -698,7 +698,7 @@ export default function EffectiveOrgV2Client() {
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#FFC28A]/60 mb-2">01</p>
               <h3 className="text-xl font-bold text-white mb-3">Alignment sessions</h3>
               <p className="text-sm text-white/50 leading-relaxed mb-5">
-                Facilitated conversations that create shared understanding across leaders, managers, and teams. This is where clarity gets built and alignment gets real — not through a slide deck, but through structured dialogue that surfaces what actually matters.
+                Facilitated conversations that create shared understanding across leaders, managers, and teams. This is where clarity gets built and alignment gets real — through structured dialogue that surfaces what actually matters.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-white/40">
@@ -721,7 +721,7 @@ export default function EffectiveOrgV2Client() {
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#9D88ED]/60 mb-2">02</p>
               <h3 className="text-xl font-bold text-white mb-3">Living documentation</h3>
               <p className="text-sm text-white/50 leading-relaxed mb-5">
-                Strategy translated into actionable priorities and behaviors that managers can carry into their teams. Not a slide deck that lives in a folder. A working reference that connects daily decisions to strategic outcomes and evolves as the organization does.
+                Strategy translated into actionable priorities and behaviors that managers can carry into their teams. Not a slide deck. A working reference that connects daily decisions to strategic outcomes and evolves as the organization does.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-white/40">
