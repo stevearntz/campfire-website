@@ -585,7 +585,7 @@ export default function EffectiveOrgClient() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-5 mb-10">
             {[
               {
                 team: "Sales",
@@ -643,7 +643,7 @@ export default function EffectiveOrgClient() {
 
             {/* CTA card */}
             <div className="bg-[#6E3FCC] rounded-2xl overflow-hidden flex flex-col justify-center p-8 text-center">
-              <p className="text-xl md:text-2xl font-extrabold text-white leading-snug mb-3">
+              <p className="text-lg md:text-xl font-extrabold text-white leading-snug mb-3">
                 Whatever your priority, Campfire helps you execute on it.
               </p>
               <p className="text-sm text-white/60 mb-6">
