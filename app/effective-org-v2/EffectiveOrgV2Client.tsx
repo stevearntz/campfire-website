@@ -329,11 +329,8 @@ export default function EffectiveOrgV2Client() {
             <br />
             <span className="text-[#E055CB]">coordinated execution.</span>
           </h1>
-          <p className="text-base md:text-lg text-white/50 max-w-2xl mx-auto mb-4 leading-relaxed">
-            Strategy gets interpreted differently. Managers can&apos;t translate fast enough. Teams feel busy but disconnected.
-          </p>
-          <p className="text-lg md:text-xl text-white/70 max-w-[720px] mx-auto mb-10 leading-relaxed">
-            Campfire helps leaders increase clarity, align strategically, and reduce coordination costs so strategy actually becomes execution.
+          <p className="text-lg md:text-xl text-white/60 max-w-[720px] mx-auto mb-10 leading-relaxed">
+            Strategy gets interpreted differently. Managers can&apos;t translate fast enough. Teams feel busy but disconnected. Campfire helps leaders increase clarity, align strategically, and reduce coordination costs so strategy actually becomes execution.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 justify-center">
             <button
