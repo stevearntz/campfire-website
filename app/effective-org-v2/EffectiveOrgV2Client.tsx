@@ -108,7 +108,7 @@ const NAV_ITEMS = [
   { id: "problem", label: "The problem" },
   { id: "equation", label: "The equation" },
   { id: "what", label: "What we do" },
-  { id: "how", label: "How it helps" },
+  { id: "how", label: "How it works" },
   { id: "research", label: "The research" },
 ];
 
@@ -367,7 +367,7 @@ export default function EffectiveOrgV2Client() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-5 mb-12">
             {[
               {
                 pain: "Strategy gets interpreted differently across teams",
@@ -411,13 +411,27 @@ export default function EffectiveOrgV2Client() {
                 <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#6E3FCC]/40 mt-4">{item.pillar}</p>
               </div>
             ))}
+
+            {/* CTA card */}
+            <div className="bg-[#6E3FCC] rounded-2xl p-7 flex flex-col justify-center text-center">
+              <p className="text-lg font-extrabold text-white leading-snug mb-3">
+                Sound familiar? There&apos;s a reason it keeps happening.
+              </p>
+              <p className="text-sm text-white/60 mb-5">
+                These five symptoms trace back to the same root cause. See the equation that explains it.
+              </p>
+              <button
+                onClick={() => scrollTo("equation")}
+                className="inline-flex items-center gap-2 mx-auto px-5 py-2.5 text-sm font-semibold text-[#6E3FCC] bg-white hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                See the equation
+                <svg className="w-3.5 h-3.5" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 2v8M3 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          <div className="mx-auto text-center">
-            <p className="text-base md:text-lg text-[#1C1334] leading-relaxed font-medium">
-              These aren&apos;t five separate problems. They&apos;re five symptoms of the same root cause.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -509,7 +523,7 @@ export default function EffectiveOrgV2Client() {
               Three things that turn strategy into <em className="not-italic text-[#6E3FCC]">coordinated execution.</em>
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Campfire builds all three through practical, scalable leadership development that fits inside real work. Not a workshop. A system.
+              Campfire is a strategic alignment and execution system that helps organizations translate strategy into coordinated execution during rapid change. Not a workshop. A system that fits inside real work.
             </p>
           </div>
 
@@ -659,54 +673,89 @@ export default function EffectiveOrgV2Client() {
         </div>
       </section>
 
-      {/* ─── HOW CAMPFIRE HELPS ─── */}
+      {/* ─── HOW IT WORKS ─── */}
       <section id="how" className="py-20 md:py-28 bg-[#1C1334]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="max-w-3xl mb-14">
             <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-4">
-              How Campfire helps
+              How it works
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-white mb-5">
-              Leadership habits that make <em className="not-italic text-[#E055CB]">the equation work.</em>
+              A system that makes <em className="not-italic text-[#E055CB]">the equation work.</em>
             </h2>
             <p className="text-lg text-white/60 leading-relaxed">
-              Content, conversations, and reinforcement. Not a one-off workshop. A system that fits inside how your teams already work.
+              Three connected components that build clarity, create alignment, and reduce coordination cost over time. Not a one-off workshop. An ongoing system.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { h: "Define what matters", p: "Help leaders get specific about priorities so the whole organization reads them the same way.", tag: "Clarity" },
-              { h: "Translate strategy down", p: "Give managers the language and practice to carry priorities into their teams in their own voice.", tag: "Clarity" },
-              { h: "Connect work to outcomes", p: "Link daily decisions to strategic priorities so people see how their work moves the business.", tag: "Alignment" },
-              { h: "Build trust across teams", p: "Create the psychological safety that makes honest conversation and fast execution possible.", tag: "Alignment" },
-              { h: "Improve how teams coordinate", p: "Better meetings, clearer handoffs, stronger follow-through. Less friction, more forward.", tag: "Coordination" },
-              { h: "Turn conversations into action", p: "Every session ends in a commitment. Reinforcement makes the behavior stick.", tag: "Coordination" },
-            ].map((item) => (
-              <div key={item.h} className="bg-white/5 border border-white/10 rounded-xl p-6">
-                <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/30 mb-2">{item.tag}</p>
-                <h3 className="text-base font-bold text-white mb-2">{item.h}</h3>
-                <p className="text-sm text-white/50 leading-relaxed">{item.p}</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+              <div className="w-10 h-10 rounded-full bg-[#FFC28A]/15 flex items-center justify-center mb-5">
+                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#FFC28A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                </svg>
               </div>
-            ))}
-          </div>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#FFC28A]/60 mb-2">01</p>
+              <h3 className="text-xl font-bold text-white mb-3">Alignment sessions</h3>
+              <p className="text-sm text-white/50 leading-relaxed mb-5">
+                Facilitated conversations that create shared understanding across leaders, managers, and teams. This is where clarity gets built and alignment gets real.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-sm text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FFC28A]/40 mt-1.5 shrink-0" />
+                  Define what matters and why
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FFC28A]/40 mt-1.5 shrink-0" />
+                  Build trust and psychological safety
+                </li>
+              </ul>
+            </div>
 
-          <div className="mt-12 flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <div className="flex items-center gap-3 text-sm text-white/40">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#FFC28A]" />
-                <span>Content</span>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+              <div className="w-10 h-10 rounded-full bg-[#9D88ED]/15 flex items-center justify-center mb-5">
+                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#9D88ED" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
+                </svg>
               </div>
-              <span className="text-white/20">+</span>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#9D88ED]" />
-                <span>Conversations</span>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#9D88ED]/60 mb-2">02</p>
+              <h3 className="text-xl font-bold text-white mb-3">Living documentation</h3>
+              <p className="text-sm text-white/50 leading-relaxed mb-5">
+                Strategy translated into actionable priorities and behaviors that managers can carry into their teams. Not a slide deck. A working reference.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-sm text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9D88ED]/40 mt-1.5 shrink-0" />
+                  Connect daily work to outcomes
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9D88ED]/40 mt-1.5 shrink-0" />
+                  Give managers translation tools
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+              <div className="w-10 h-10 rounded-full bg-[#E055CB]/15 flex items-center justify-center mb-5">
+                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#E055CB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
+                </svg>
               </div>
-              <span className="text-white/20">+</span>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#E055CB]" />
-                <span>Reinforcement</span>
-              </div>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#E055CB]/60 mb-2">03</p>
+              <h3 className="text-xl font-bold text-white mb-3">Ongoing reinforcement</h3>
+              <p className="text-sm text-white/50 leading-relaxed mb-5">
+                Conversations that maintain alignment and execution consistency over time. Behavior change that sticks because it&apos;s practiced, not just taught.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-sm text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E055CB]/40 mt-1.5 shrink-0" />
+                  Improve coordination habits
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E055CB]/40 mt-1.5 shrink-0" />
+                  Turn conversations into commitments
+                </li>
+              </ul>
             </div>
           </div>
         </div>
