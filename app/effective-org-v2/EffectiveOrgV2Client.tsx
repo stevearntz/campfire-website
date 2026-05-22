@@ -744,7 +744,7 @@ export default function EffectiveOrgV2Client() {
               <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#E055CB]/60 mb-2">03</p>
               <h3 className="text-xl font-bold text-white mb-3">Ongoing reinforcement</h3>
               <p className="text-sm text-white/50 leading-relaxed mb-5">
-                Conversations that keep managers reinforcing strategy consistently across their teams — so alignment doesn&apos;t decay between offsites. Behavior change that sticks because it&apos;s practiced, not just taught.
+                Conversations and operating rhythms that keep managers reinforcing strategy consistently across their teams — so alignment doesn&apos;t decay between offsites. Behavior change that sticks because it&apos;s practiced, not just taught.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-white/40">
@@ -1004,6 +1004,8 @@ export default function EffectiveOrgV2Client() {
                           <option value="coordination">Coordination is costing us</option>
                           <option value="managers">Managers need better tools</option>
                           <option value="change">Leading through rapid change</option>
+                          <option value="scaling">Scaling with leaner teams</option>
+                          <option value="distributed">Distributed or hybrid coordination</option>
                           <option value="other">Something else</option>
                         </select>
                       </div>
