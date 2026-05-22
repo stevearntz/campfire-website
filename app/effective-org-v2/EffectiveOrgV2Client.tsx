@@ -676,7 +676,7 @@ export default function EffectiveOrgV2Client() {
       {/* ─── HOW IT WORKS ─── */}
       <section id="how" className="py-20 md:py-28 bg-[#1C1334]">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="max-w-3xl mb-14">
+          <div className="max-w-4xl mb-14">
             <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-4">
               How it works
             </p>
