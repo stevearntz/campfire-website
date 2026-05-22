@@ -442,7 +442,7 @@ export default function EffectiveOrgClient() {
               Why now
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-[#1C1334] mb-5">
-              People are moving faster than ever. That only helps if they&apos;re moving <em className="not-italic text-[#6E3FCC]">in the same direction.</em>
+              People are moving faster than ever. That only helps if they&apos;re moving<br /><em className="not-italic text-[#6E3FCC]">in the same direction.</em>
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
               AI and better tools are increasing individual capacity every quarter. But capacity without clarity, alignment, and coordination creates more noise, not more progress.
