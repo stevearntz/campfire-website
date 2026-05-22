@@ -599,14 +599,14 @@ export default function EffectiveOrgClient() {
                 icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
                 goal: "Improve retention",
                 challenge: "Teams coordinate inconsistently around customer needs.",
-                outcome: "Better customer experience and renewal motion",
+                outcome: "Tighter retention, stronger renewals",
               },
               {
                 team: "Product",
                 icon: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>,
                 goal: "Increase adoption",
                 challenge: "Roadmap priorities drift across functions.",
-                outcome: "Clearer launches and stronger product adoption",
+                outcome: "Sharper launches, faster adoption",
               },
               {
                 team: "People / HR",
