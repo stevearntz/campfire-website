@@ -494,7 +494,7 @@ export default function EffectiveOrgClient() {
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="mx-auto text-center">
             <p className="text-base md:text-lg text-[#1C1334] leading-relaxed font-medium">
               Campfire gives leaders the tools to build all three — so speed creates progress, not friction.
             </p>
