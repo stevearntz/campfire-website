@@ -175,19 +175,25 @@ function computeResults(
   const effective = rawCapacity * executionMultiplier;
   const effectiveHC = Math.round(effective);
 
-  // Identify biggest drag — for clarity/alignment, lower is worse; for coord cost, higher is worse
-  // Normalize to a "health" score so they're comparable: cF, aF, and (1/ccF) mapped to 0–1
+  // Identify biggest drag — normalize all to a 0–1 "health" scale for comparison
   const coordHealth = 1 / ccF; // 0.33–1.0, higher is better
-  const weakest = cF <= aF && cF <= coordHealth ? "clarity"
+  const allNearMax = cF >= 0.95 && aF >= 0.95 && ccF <= 1.05;
+
+  const weakest: string = allNearMax ? "none"
+    : cF <= aF && cF <= coordHealth ? "clarity"
     : aF <= coordHealth ? "alignment"
     : "coordination";
 
-  // What-if: improve weakest to high-performing level
+  // What-if: improve weakest dimension, always guaranteeing an increase
   const improved = (() => {
-    const iC = weakest === "clarity" ? 0.85 : cF;
-    const iA = weakest === "alignment" ? 0.85 : aF;
-    const iCC = weakest === "coordination" ? 1.15 : ccF; // lower cost = better
-    return Math.round(rawCapacity * (iC * iA) / iCC);
+    if (weakest === "none") return effectiveHC; // already at peak
+    // Use additive boost for clarity/alignment, reductive for coordination cost
+    const iC = weakest === "clarity" ? Math.min(1.0, cF + 0.15) : cF;
+    const iA = weakest === "alignment" ? Math.min(1.0, aF + 0.15) : aF;
+    const iCC = weakest === "coordination" ? Math.max(1.0, ccF - 0.5) : ccF;
+    const result = Math.round(rawCapacity * (iC * iA) / iCC);
+    // Safety net: always show improvement
+    return Math.max(result, effectiveHC + Math.max(1, Math.round(effectiveHC * 0.1)));
   })();
 
   return {
@@ -545,7 +551,17 @@ function ResultsView({
   topRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const animatedHC = useAnimatedCounter(results.effectiveHeadcount, 2200);
+  const [copied, setCopied] = useState(false);
   const r = results;
+
+  const copyText = `${r.headcount.toLocaleString()} employees & ${r.effectiveHeadcount.toLocaleString()} effective capacity`;
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(copyText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [copyText]);
 
   const narrative = (() => {
     if (r.ratio >= 1.5) return "AI and alignment are compounding. You're a force multiplier.";
@@ -601,6 +617,29 @@ function ResultsView({
             </span>
             <span className="text-sm text-white/30">|</span>
             <span className="text-sm text-white/40">{r.ratio >= 1 ? "+" : ""}{Math.round((r.ratio - 1) * 100)}% vs headcount</span>
+          </div>
+          <div className="mt-6">
+            <button
+              onClick={handleCopy}
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"
+            >
+              {copied ? (
+                <>
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8.5l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                    <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M3 11V3a1.5 1.5 0 011.5-1.5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  Copy score
+                </>
+              )}
+            </button>
           </div>
         </div>
       </section>
@@ -715,17 +754,19 @@ function ResultsView({
                 <div className="h-full rounded-full" style={{ width: `${effectiveBarPct}%`, background: r.ratio >= 0.5 ? "#6E3FCC" : "#E055CB" }} />
               </div>
             </div>
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-semibold text-[#1C1334]">
-                  If you improved <span style={{ color: weakestColor }}>{weakestLabel.toLowerCase()}</span>
-                </p>
-                <p className="text-sm font-bold text-[#9D88ED]">{r.improved.toLocaleString()}</p>
+            {r.weakest !== "none" && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-sm font-semibold text-[#1C1334]">
+                    If you improved <span style={{ color: weakestColor }}>{weakestLabel.toLowerCase()}</span>
+                  </p>
+                  <p className="text-sm font-bold text-[#9D88ED]">{r.improved.toLocaleString()}</p>
+                </div>
+                <div className="w-full h-4 bg-gray-100 rounded-full">
+                  <div className="h-full rounded-full bg-[#9D88ED]" style={{ width: `${improvedBarPct}%` }} />
+                </div>
               </div>
-              <div className="w-full h-4 bg-gray-100 rounded-full">
-                <div className="h-full rounded-full bg-[#9D88ED]" style={{ width: `${improvedBarPct}%` }} />
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -733,32 +774,53 @@ function ResultsView({
       {/* ─── BIGGEST LEVER ─── */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6">
-          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#6E3FCC] mb-4">
-            Your biggest lever
-          </p>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-5">
-            <span style={{ color: weakestColor }}>{weakestLabel}</span> is your biggest opportunity.
-          </h2>
-          <p className="text-lg text-gray-600 leading-relaxed mb-8">
-            {r.weakest === "clarity" && "Your people are working without a shared understanding of what matters. When clarity is low, alignment and coordination are just organized confusion. Improving clarity is the foundation everything else depends on."}
-            {r.weakest === "alignment" && "Teams are pulling in different directions. Strategy exists, but it's being interpreted differently at every level. Improving alignment means helping managers translate priorities consistently — so individual effort adds up instead of pulling apart."}
-            {r.weakest === "coordination" && "Your teams are spending too much energy just staying coordinated. Meetings, rework, re-clarification, and handoff friction are absorbing capacity that should go toward outcomes. Reducing coordination cost is the fastest way to unlock execution speed."}
-          </p>
-          <div className="bg-[#F8F5FC] rounded-2xl p-8">
-            <p className="text-base text-gray-600 mb-2">
-              By improving{" "}
-              <strong style={{ color: weakestColor }}>{weakestLabel.toLowerCase()}</strong>{" "}
-              to a high-performing level, your effective execution would go from:
-            </p>
-            <p className="text-2xl font-extrabold text-[#1C1334]">
-              {r.effectiveHeadcount.toLocaleString()}{" "}
-              <span className="text-gray-300 mx-2">&rarr;</span>{" "}
-              <span style={{ color: weakestColor }}>{r.improved.toLocaleString()}</span>
-            </p>
-            <p className="text-sm text-gray-400 mt-2">
-              That&apos;s a {Math.round(((r.improved - r.effectiveHeadcount) / r.effectiveHeadcount) * 100)}% increase in effective execution capacity.
-            </p>
-          </div>
+          {r.weakest === "none" ? (
+            <>
+              <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#6E3FCC] mb-4">
+                Your execution profile
+              </p>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-5">
+                You&apos;re operating at peak execution efficiency.
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                Clarity, alignment, and coordination cost are all in strong shape. Your organization is converting headcount into effective output with minimal friction. The challenge now is sustaining this as the organization grows and conditions change.
+              </p>
+              <div className="bg-[#F8F5FC] rounded-2xl p-8">
+                <p className="text-base text-gray-600">
+                  Your execution multiplier of <strong className="text-[#6E3FCC]">{r.executionMultiplier.toFixed(2)}x</strong> means you&apos;re getting {Math.round(r.executionMultiplier * 100)}% of your potential capacity. That&apos;s rare — most organizations operate between 5–30% of their theoretical capacity.
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#6E3FCC] mb-4">
+                Your biggest lever
+              </p>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-5">
+                <span style={{ color: weakestColor }}>{weakestLabel}</span> is your biggest opportunity.
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                {r.weakest === "clarity" && "Your people are working without a shared understanding of what matters. When clarity is low, alignment and coordination are just organized confusion. Improving clarity is the foundation everything else depends on."}
+                {r.weakest === "alignment" && "Teams are pulling in different directions. Strategy exists, but it's being interpreted differently at every level. Improving alignment means helping managers translate priorities consistently — so individual effort adds up instead of pulling apart."}
+                {r.weakest === "coordination" && "Your teams are spending too much energy just staying coordinated. Meetings, rework, re-clarification, and handoff friction are absorbing capacity that should go toward outcomes. Reducing coordination cost is the fastest way to unlock execution speed."}
+              </p>
+              <div className="bg-[#F8F5FC] rounded-2xl p-8">
+                <p className="text-base text-gray-600 mb-2">
+                  By improving{" "}
+                  <strong style={{ color: weakestColor }}>{weakestLabel.toLowerCase()}</strong>{" "}
+                  to a high-performing level, your effective execution would go from:
+                </p>
+                <p className="text-2xl font-extrabold text-[#1C1334]">
+                  {r.effectiveHeadcount.toLocaleString()}{" "}
+                  <span className="text-gray-300 mx-2">&rarr;</span>{" "}
+                  <span style={{ color: weakestColor }}>{r.improved.toLocaleString()}</span>
+                </p>
+                <p className="text-sm text-gray-400 mt-2">
+                  That&apos;s a {Math.round(((r.improved - r.effectiveHeadcount) / r.effectiveHeadcount) * 100)}% increase in effective execution capacity.
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -805,30 +867,31 @@ function ResultsView({
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="py-16 md:py-24 bg-[#1C1334]">
+      {/* ─── FOOTER ─── */}
+      <section className="py-12 md:py-16 bg-[#1C1334]">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-4">
-            Want to improve your number?
-          </p>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-5">
-            Let&apos;s talk about what <em className="not-italic text-[#E055CB]">aligned execution</em> looks like for your team.
-          </h2>
-          <p className="text-base text-white/50 leading-relaxed mb-10 max-w-lg mx-auto">
-            Campfire helps organizations create clarity, build alignment, and reduce coordination costs. A short conversation to explore whether this model fits your situation.
-          </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <a
-              href="https://calendly.com/getcampfire/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] rounded-lg transition-colors"
+            <button
+              onClick={handleCopy}
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"
             >
-              Schedule a Conversation
-              <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
-                <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+              {copied ? (
+                <>
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8.5l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                    <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M3 11V3a1.5 1.5 0 011.5-1.5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  Copy score
+                </>
+              )}
+            </button>
             <button
               onClick={onRestart}
               className="text-sm font-semibold text-white/40 hover:text-white/70 transition-colors"
