@@ -867,37 +867,60 @@ function ResultsView({
         </div>
       </section>
 
-      {/* ─── FOOTER ─── */}
-      <section className="py-12 md:py-16 bg-[#1C1334]">
+      {/* ─── CTA ─── */}
+      <section className="py-16 md:py-24 bg-[#1C1334]">
         <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-4">
+            Go deeper
+          </p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-5">
+            Get a free 20-minute{" "}
+            <em className="not-italic text-[#E055CB]">alignment teardown.</em>
+          </h2>
+          <p className="text-base text-white/50 leading-relaxed mb-10 max-w-lg mx-auto">
+            We&apos;ll walk through your equation — where clarity, alignment, or coordination cost is creating the biggest drag — and what high-performing organizations do differently.
+          </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <button
-              onClick={handleCopy}
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"
+            <a
+              href="https://calendly.com/getcampfire/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] rounded-lg transition-colors"
             >
-              {copied ? (
-                <>
-                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8.5l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                    <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M3 11V3a1.5 1.5 0 011.5-1.5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                  Copy score
-                </>
-              )}
-            </button>
-            <button
-              onClick={onRestart}
-              className="text-sm font-semibold text-white/40 hover:text-white/70 transition-colors"
-            >
-              Retake assessment
-            </button>
+              Book a teardown
+              <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleCopy}
+                className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white/50 hover:text-white/80 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"
+              >
+                {copied ? (
+                  <>
+                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8.5l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                      <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M3 11V3a1.5 1.5 0 011.5-1.5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    Copy score
+                  </>
+                )}
+              </button>
+              <button
+                onClick={onRestart}
+                className="text-sm font-semibold text-white/40 hover:text-white/70 transition-colors"
+              >
+                Retake
+              </button>
+            </div>
           </div>
         </div>
       </section>
