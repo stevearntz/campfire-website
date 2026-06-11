@@ -576,6 +576,33 @@ function ResultsView({
 
   const pctOfMax = Math.round(r.executionMultiplier * 100);
 
+  // Identify strengths — anything above a "good" threshold
+  const strengths: { label: string; color: string; message: string }[] = [];
+  if (r.clarityScore >= 0.7)
+    strengths.push({
+      label: "Clarity",
+      color: "#F59E2C",
+      message: r.clarityScore >= 0.9
+        ? "Your leadership team has built strong strategic clarity. People understand what matters and why — that's the foundation everything else builds on."
+        : "Strategic direction is reasonably clear across the organization. People have a solid sense of priorities, which gives alignment something real to anchor to.",
+    });
+  if (r.alignmentScore >= 0.7)
+    strengths.push({
+      label: "Alignment",
+      color: "#6E3FCC",
+      message: r.alignmentScore >= 0.9
+        ? "Teams are well-aligned around shared priorities. Strategy is being translated consistently across levels — individual effort is adding up, not pulling apart."
+        : "Your organization has meaningful alignment across teams. Managers are translating strategy into action with reasonable consistency.",
+    });
+  if (r.coordinationCost <= 1.5)
+    strengths.push({
+      label: "Coordination",
+      color: "#E055CB",
+      message: r.coordinationCost <= 1.1
+        ? "Coordination friction is remarkably low. Teams are moving together without excessive meetings, rework, or re-clarification — that's rare and valuable."
+        : "Coordination costs are being managed well. Teams aren't losing too much energy to friction, handoffs, or redundant communication.",
+    });
+
   // Bar widths (relative to max possible: headcount × aiMultiplier)
   const maxPossible = r.headcount * r.aiMultiplier;
   const effectiveBarPct = Math.min(Math.round((r.effectiveHeadcount / maxPossible) * 100), 100);
@@ -691,11 +718,14 @@ function ResultsView({
                 </div>
                 <p className="text-3xl font-extrabold text-[#1C1334]">{r.rawCapacity.toLocaleString()}</p>
               </div>
-              <div className="flex items-center gap-3 text-sm text-gray-500">
+              <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
                 <span className="font-semibold text-[#1C1334]">{r.headcount.toLocaleString()}</span> people
                 <span className="text-gray-300">&times;</span>
                 <span className="font-semibold text-[#1C1334]">{r.aiMultiplier}x</span> AI multiplier
               </div>
+              <p className="text-xs text-gray-400 leading-relaxed">
+                This is your theoretical maximum &mdash; the total workforce output if every person were fully aligned, fully clear on priorities, and operating with zero coordination friction. It&apos;s the ceiling. How close you get depends on the execution variables below.
+              </p>
             </div>
 
             {/* Clarity */}
@@ -771,8 +801,36 @@ function ResultsView({
         </div>
       </section>
 
+      {/* ─── WHAT'S WORKING ─── */}
+      {strengths.length > 0 && (
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-3xl mx-auto px-6">
+            <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#6E3FCC] mb-4">
+              What&apos;s working
+            </p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-8">
+              {strengths.length === 3
+                ? "All three variables are in strong shape."
+                : strengths.length === 2
+                ? "Two of three variables are working for you."
+                : `${strengths[0].label} is a real strength.`}
+            </h2>
+            <div className={`grid gap-5 ${strengths.length > 1 ? "sm:grid-cols-2" : ""}`}>
+              {strengths.map((s) => (
+                <div key={s.label} className="bg-[#F8F5FC] rounded-2xl p-6" style={{ borderTopWidth: "3px", borderTopColor: s.color }}>
+                  <p className="text-xs font-bold tracking-[0.12em] uppercase mb-2" style={{ color: s.color }}>
+                    {s.label}
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{s.message}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ─── BIGGEST LEVER ─── */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className={`py-16 md:py-24 ${strengths.length > 0 ? "bg-[#F8F5FC]" : "bg-white"}`}>
         <div className="max-w-3xl mx-auto px-6">
           {r.weakest === "none" ? (
             <>
@@ -825,7 +883,7 @@ function ResultsView({
       </section>
 
       {/* ─── RESEARCH ─── */}
-      <section className="py-16 md:py-24 bg-[#F8F5FC]">
+      <section className={`py-16 md:py-24 ${strengths.length > 0 ? "bg-white" : "bg-[#F8F5FC]"}`}>
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#6E3FCC] mb-4">
             The research behind the model
@@ -835,21 +893,21 @@ function ResultsView({
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-6">
+            <div className={`${strengths.length > 0 ? "bg-[#F8F5FC]" : "bg-white"} rounded-2xl p-6`}>
               <p className="text-3xl font-extrabold text-[#F59E2C] mb-3">28%</p>
               <p className="text-sm text-gray-600 leading-relaxed mb-3">
                 of executives say their company&apos;s strategy is being well executed.
               </p>
               <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-gray-400">McKinsey / Strategy& Surveys</p>
             </div>
-            <div className="bg-white rounded-2xl p-6">
+            <div className={`${strengths.length > 0 ? "bg-[#F8F5FC]" : "bg-white"} rounded-2xl p-6`}>
               <p className="text-3xl font-extrabold text-[#6E3FCC] mb-3">95%</p>
               <p className="text-sm text-gray-600 leading-relaxed mb-3">
                 of employees don&apos;t fully understand their organization&apos;s strategy.
               </p>
               <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-gray-400">Kaplan & Norton, HBR</p>
             </div>
-            <div className="bg-white rounded-2xl p-6">
+            <div className={`${strengths.length > 0 ? "bg-[#F8F5FC]" : "bg-white"} rounded-2xl p-6`}>
               <p className="text-3xl font-extrabold text-[#E055CB] mb-3">n(n-1)/2</p>
               <p className="text-sm text-gray-600 leading-relaxed mb-3">
                 Communication channels grow exponentially with headcount. At 300 people, that&apos;s 44,850 potential channels of miscommunication.
@@ -858,7 +916,7 @@ function ResultsView({
             </div>
           </div>
 
-          <div className="mt-8 bg-white rounded-2xl p-6">
+          <div className={`mt-8 ${strengths.length > 0 ? "bg-[#F8F5FC]" : "bg-white"} rounded-2xl p-6`}>
             <p className="text-sm text-gray-600 leading-relaxed">
               <strong className="text-[#1C1334]">The AI-era insight:</strong>{" "}
               AI increases the throughput of each individual node in the network. But unless alignment improves proportionally, the organization fragments faster. As Russell Ackoff observed: &ldquo;The performance of a system is not the sum of the performance of its parts.&rdquo; Increasing individual capacity without increasing strategic coherence can decrease organizational effectiveness.
