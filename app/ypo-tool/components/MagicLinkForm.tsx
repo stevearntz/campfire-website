@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 const CIRCLE_COLORS = [
   { label: "Joy", color: "#F59E2C" },
@@ -12,8 +11,10 @@ const CIRCLE_COLORS = [
 
 export default function MagicLinkForm({
   error: initialError,
+  onBypassAuth,
 }: {
   error?: string | null;
+  onBypassAuth?: (email: string) => void;
 }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<
@@ -34,6 +35,12 @@ export default function MagicLinkForm({
     if (!trimmed.endsWith("@ypo.org")) {
       setErrorMsg("Use your @ypo.org email.");
       setState("error");
+      return;
+    }
+
+    // Bypass auth — skip email, go straight to authenticated state
+    if (onBypassAuth) {
+      onBypassAuth(trimmed);
       return;
     }
 
@@ -67,8 +74,7 @@ export default function MagicLinkForm({
     }
   };
 
-  const isDisabled =
-    state === "sending" || !email.trim();
+  const isDisabled = state === "sending" || !email.trim();
 
   return (
     <div className="relative min-h-screen bg-[#1C1334] flex flex-col">
@@ -86,16 +92,9 @@ export default function MagicLinkForm({
       {/* Top bar */}
       <div className="relative z-10 w-full">
         <div
-          className="mx-auto flex items-center justify-between"
-          style={{ maxWidth: 720, padding: "24px clamp(24px, 6vw, 96px) 0" }}
+          className="mx-auto flex items-center justify-end"
+          style={{ maxWidth: 1400, padding: "24px clamp(24px, 6vw, 96px) 0" }}
         >
-          <Image
-            src="/campfire-logo-white.png"
-            alt="Campfire"
-            width={120}
-            height={28}
-            className="h-7 w-auto"
-          />
           <span
             className="font-bold uppercase"
             style={{
@@ -113,7 +112,7 @@ export default function MagicLinkForm({
       <div
         className="relative z-10 flex-1 flex flex-col justify-center mx-auto w-full"
         style={{
-          maxWidth: 720,
+          maxWidth: 1400,
           padding: "0 clamp(24px, 6vw, 96px)",
         }}
       >
@@ -162,12 +161,11 @@ export default function MagicLinkForm({
 
         {/* Magic link form */}
         {state === "sent" ? (
-          <div className="mb-8">
+          <div className="mb-8" style={{ maxWidth: 600 }}>
             <div
               className="flex items-start gap-3 rounded-xl p-5"
               style={{ background: "rgba(255,255,255,0.08)" }}
             >
-              {/* Check icon */}
               <svg
                 className="w-5 h-5 mt-0.5 flex-shrink-0"
                 fill="none"
@@ -208,7 +206,7 @@ export default function MagicLinkForm({
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mb-3">
+          <form onSubmit={handleSubmit} className="mb-3" style={{ maxWidth: 600 }}>
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 id="ypo-email"

@@ -22,7 +22,6 @@ export default function YpoToolClient() {
     } else if (error === "verification_failed") {
       setAuthError("Sign-in failed. Please try again.");
     }
-    // Clean up URL
     if (error) {
       window.history.replaceState({}, "", "/ypo-tool");
     }
@@ -41,12 +40,23 @@ export default function YpoToolClient() {
         }
       })
       .catch(() => {
+        // DB not connected yet — show auth form
         setView("auth");
       });
   }, []);
 
+  // Bypass auth — skip magic link, go straight to authenticated state
+  const handleBypassAuth = useCallback((email: string) => {
+    setUser({ id: 0, email, name: email.split("@")[0] });
+    setView("home");
+  }, []);
+
   const handleLogout = useCallback(async () => {
-    await fetch("/api/ypo-tool/auth/logout", { method: "POST" });
+    try {
+      await fetch("/api/ypo-tool/auth/logout", { method: "POST" });
+    } catch {
+      // DB not connected — just clear local state
+    }
     setUser(null);
     setView("auth");
   }, []);
@@ -60,7 +70,7 @@ export default function YpoToolClient() {
   }
 
   if (view === "auth") {
-    return <MagicLinkForm error={authError} />;
+    return <MagicLinkForm error={authError} onBypassAuth={handleBypassAuth} />;
   }
 
   // Authenticated home — placeholder for Design to fill
