@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Placeholder from "./_components/Placeholder";
+import HubClient from "./_components/HubClient";
 
 export const metadata: Metadata = {
   title: "Team Effectiveness Sprint",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function TeamEffectivenessHub() {
-  return <Placeholder eyebrow="Team Effectiveness Sprint" title="The Sprint" />;
+  return <HubClient />;
 }
