@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CIRCLES } from "@/app/ypo-tool/lib/behaviors";
+import { CIRCLES } from "@/app/(main)/ypo-tool/lib/behaviors";
 
 export async function GET(
   _request: Request,

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { consumeAuthToken, upsertUser, createSessionRecord } from "@/app/ypo-tool/lib/db";
-import { setSessionCookie } from "@/app/ypo-tool/lib/auth";
+import { consumeAuthToken, upsertUser, createSessionRecord } from "@/app/(main)/ypo-tool/lib/db";
+import { setSessionCookie } from "@/app/(main)/ypo-tool/lib/auth";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);

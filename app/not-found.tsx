@@ -21,7 +21,7 @@ export default function NotFound() {
       className="flex flex-col items-center justify-center text-center px-6"
       style={{
         backgroundColor: "#06021B",
-        minHeight: "calc(100vh - 160px)",
+        minHeight: "100vh",
       }}
     >
       <Image

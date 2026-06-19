@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/app/ypo-tool/lib/auth";
-import { CIRCLES, MIN_PEERS } from "@/app/ypo-tool/lib/behaviors";
+import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
+import { CIRCLES, MIN_PEERS } from "@/app/(main)/ypo-tool/lib/behaviors";
 
 export async function GET() {
   try {

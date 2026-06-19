@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/app/ypo-tool/lib/auth";
-import { getAssessmentByShareToken } from "@/app/ypo-tool/lib/db";
+import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
+import { getAssessmentByShareToken } from "@/app/(main)/ypo-tool/lib/db";
 
 export async function GET(
   _request: Request,

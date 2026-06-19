@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/app/ypo-tool/lib/auth";
-import { createAssessment, getUserAssessments } from "@/app/ypo-tool/lib/db";
-import { validateScores } from "@/app/ypo-tool/lib/scoring";
-import type { AssessmentInput } from "@/app/ypo-tool/lib/constants";
-import { CATEGORY_ORDER } from "@/app/ypo-tool/lib/constants";
+import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
+import { createAssessment, getUserAssessments } from "@/app/(main)/ypo-tool/lib/db";
+import { validateScores } from "@/app/(main)/ypo-tool/lib/scoring";
+import type { AssessmentInput } from "@/app/(main)/ypo-tool/lib/constants";
+import { CATEGORY_ORDER } from "@/app/(main)/ypo-tool/lib/constants";
 
 export async function POST(request: Request) {
   try {

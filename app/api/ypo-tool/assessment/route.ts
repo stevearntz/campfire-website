@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/app/ypo-tool/lib/auth";
-import { ALL_ITEM_KEYS } from "@/app/ypo-tool/lib/behaviors";
+import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
+import { ALL_ITEM_KEYS } from "@/app/(main)/ypo-tool/lib/behaviors";
 
 export async function POST() {
   try {
