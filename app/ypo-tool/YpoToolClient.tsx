@@ -117,7 +117,8 @@ export default function YpoToolClient() {
   }
 
   if (view === "auth") {
-    return <MagicLinkForm error={authError} onBypassAuth={handleBypassAuth} />;
+    const isDev = process.env.NODE_ENV === "development";
+    return <MagicLinkForm error={authError} onBypassAuth={isDev ? handleBypassAuth : undefined} />;
   }
 
   if (view === "invite") {
