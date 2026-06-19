@@ -90,3 +90,27 @@ CREATE TABLE ypo_rate_limits (
 );
 
 CREATE INDEX idx_ypo_rate_limits_lookup ON ypo_rate_limits(identifier, action);
+
+-- 6. Assessment (normalized, per Design increment 3)
+CREATE TABLE ypo_assessment (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES ypo_users(id) ON DELETE CASCADE,
+  status VARCHAR(20) NOT NULL DEFAULT 'in_progress' CHECK (status IN ('in_progress', 'complete')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  completed_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE INDEX idx_ypo_assessment_user_id ON ypo_assessment(user_id);
+CREATE INDEX idx_ypo_assessment_status ON ypo_assessment(user_id, status);
+
+-- 7. Individual responses (one row per answered item)
+CREATE TABLE ypo_response (
+  id SERIAL PRIMARY KEY,
+  assessment_id INTEGER NOT NULL REFERENCES ypo_assessment(id) ON DELETE CASCADE,
+  item_key VARCHAR(20) NOT NULL,
+  value INTEGER NOT NULL CHECK (value BETWEEN 1 AND 6),
+  answered_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  CONSTRAINT ypo_response_unique UNIQUE (assessment_id, item_key)
+);
+
+CREATE INDEX idx_ypo_response_assessment ON ypo_response(assessment_id);

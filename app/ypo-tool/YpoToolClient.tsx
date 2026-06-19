@@ -2,14 +2,20 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { YpoUser } from "./lib/constants";
+import type { Responses } from "./lib/behaviors";
 import MagicLinkForm from "./components/MagicLinkForm";
+import AssessmentFlow from "./components/AssessmentFlow";
+import Results from "./components/Results";
 
-type View = "loading" | "auth" | "home";
+type View = "loading" | "auth" | "assessment" | "results";
+
+const STORAGE_KEY = "ypo_assessment_responses";
 
 export default function YpoToolClient() {
   const [view, setView] = useState<View>("loading");
   const [user, setUser] = useState<YpoUser | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [responses, setResponses] = useState<Responses>({});
 
   // Check for error params from magic link redirect
   useEffect(() => {
@@ -34,31 +40,58 @@ export default function YpoToolClient() {
       .then((data) => {
         if (data.user) {
           setUser(data.user);
-          setView("home");
+          // Check if there are saved responses (completed assessment)
+          const saved = loadSavedResponses();
+          if (saved && Object.keys(saved).length === 12) {
+            setResponses(saved);
+            setView("results");
+          } else {
+            setView("assessment");
+          }
         } else {
           setView("auth");
         }
       })
       .catch(() => {
-        // DB not connected yet — show auth form
         setView("auth");
       });
   }, []);
 
-  // Bypass auth — skip magic link, go straight to authenticated state
   const handleBypassAuth = useCallback((email: string) => {
     setUser({ id: 0, email, name: email.split("@")[0] });
-    setView("home");
+    // Check for saved progress
+    const saved = loadSavedResponses();
+    if (saved && Object.keys(saved).length === 12) {
+      setResponses(saved);
+      setView("results");
+    } else {
+      setView("assessment");
+    }
   }, []);
 
   const handleLogout = useCallback(async () => {
     try {
       await fetch("/api/ypo-tool/auth/logout", { method: "POST" });
     } catch {
-      // DB not connected — just clear local state
+      // DB not connected
     }
     setUser(null);
     setView("auth");
+  }, []);
+
+  const handleComplete = useCallback((r: Responses) => {
+    setResponses(r);
+    setView("results");
+  }, []);
+
+  const handleRestart = useCallback(() => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // ignore
+    }
+    setResponses({});
+    setView("assessment");
   }, []);
 
   if (view === "loading") {
@@ -73,74 +106,57 @@ export default function YpoToolClient() {
     return <MagicLinkForm error={authError} onBypassAuth={handleBypassAuth} />;
   }
 
-  // Authenticated home — placeholder for Design to fill
+  if (view === "results") {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <div className="sticky top-[64px] z-40 bg-white border-b border-[#EEE9F6]">
+          <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span
+                className="font-bold uppercase"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.14em",
+                  color: "#6E3FCC",
+                }}
+              >
+                Activating Behaviors
+              </span>
+              <span style={{ fontSize: 13, color: "#A8A2B3" }}>
+                {user?.email}
+              </span>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="text-xs transition-colors"
+              style={{ color: "#A8A2B3" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#636B7C")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#A8A2B3")}
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
+        <Results responses={responses} onRestart={handleRestart} />
+      </div>
+    );
+  }
+
+  // Assessment flow
   return (
-    <div className="min-h-screen bg-[#F8F5FC]">
-      {/* Sticky header */}
-      <div className="sticky top-[64px] z-40 bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-          <div>
-            <p className="text-sm font-bold tracking-[0.1em] uppercase text-[#6E3FCC]">
-              Activating Behaviors
-            </p>
-            <p className="text-xs text-gray-400">
-              Signed in as {user?.email}
-            </p>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            Sign out
-          </button>
-        </div>
-      </div>
-
-      {/* Main content area — placeholder for assessment flow */}
-      <div className="max-w-3xl mx-auto px-6 py-16">
-        <h1 className="text-3xl font-bold text-[#1C1334] mb-4">
-          Welcome, {user?.name || user?.email?.split("@")[0]}
-        </h1>
-        <p className="text-lg text-gray-500 mb-12">
-          Choose an assessment to get started.
-        </p>
-
-        <div className="grid sm:grid-cols-2 gap-6">
-          {/* Self-assessment card */}
-          <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-shadow cursor-pointer">
-            <div
-              className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-lg"
-              style={{ background: "#6E3FCC" }}
-            >
-              S
-            </div>
-            <h2 className="text-xl font-bold text-[#1C1334] mb-2">
-              Self-Assessment
-            </h2>
-            <p className="text-sm text-gray-500">
-              Rate yourself across Joy, Trust, Power, and Partnership.
-              Identify your strength and growth area.
-            </p>
-          </div>
-
-          {/* Peer assessment card */}
-          <div className="bg-white rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-shadow cursor-pointer">
-            <div
-              className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-lg"
-              style={{ background: "#E055CB" }}
-            >
-              P
-            </div>
-            <h2 className="text-xl font-bold text-[#1C1334] mb-2">
-              Peer Assessment
-            </h2>
-            <p className="text-sm text-gray-500">
-              Rate a colleague and share specific feedback with
-              observations and encouragement.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white">
+      <AssessmentFlow onComplete={handleComplete} />
     </div>
   );
+}
+
+function loadSavedResponses(): Responses | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
 }

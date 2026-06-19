@@ -1,38 +1,138 @@
 "use client";
 
-// Placeholder — Design will define the full assessment UI.
-// This component will handle the multi-step flow:
-// Step 0: Mode selection (self vs peer)
-// Steps 1-4: Rate behaviors in each category (Joy, Trust, Power, Partnership)
-// Step 5: Pick strength + growth area (self) or add observation/encouragement (peer)
-// Step 6: Results
+import { useState, useCallback, useEffect, useRef } from "react";
+import { CIRCLES, ALL_ITEM_KEYS, type Responses } from "../lib/behaviors";
+import SectionIntro from "./SectionIntro";
+import QuestionScreen from "./QuestionScreen";
+
+const STORAGE_KEY = "ypo_assessment_responses";
+
+type FlowStep =
+  | { phase: "intro"; circleIdx: number }
+  | { phase: "questions"; circleIdx: number }
+  | { phase: "complete" };
+
+function loadResponses(): Responses {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveResponses(r: Responses) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(r));
+  } catch {
+    // localStorage full or unavailable
+  }
+}
+
+/** Figure out where in the flow to resume */
+function resumeStep(responses: Responses): FlowStep {
+  for (let i = 0; i < CIRCLES.length; i++) {
+    const circle = CIRCLES[i];
+    const answered = circle.items.every((item) => responses[item.key] != null);
+    if (!answered) {
+      // Check if any in this section are answered → go to questions
+      const anyAnswered = circle.items.some((item) => responses[item.key] != null);
+      return anyAnswered
+        ? { phase: "questions", circleIdx: i }
+        : { phase: "intro", circleIdx: i };
+    }
+  }
+  return { phase: "complete" };
+}
 
 export default function AssessmentFlow({
-  mode,
   onComplete,
-  onBack,
 }: {
-  mode: "self" | "peer";
-  onComplete: () => void;
-  onBack: () => void;
+  onComplete: (responses: Responses) => void;
 }) {
+  const [responses, setResponses] = useState<Responses>(loadResponses);
+  const [step, setStep] = useState<FlowStep>(() => resumeStep(loadResponses()));
+  const topRef = useRef<HTMLDivElement>(null);
+
+  // Persist to localStorage on change
+  useEffect(() => {
+    saveResponses(responses);
+  }, [responses]);
+
+  const scrollToTop = useCallback(() => {
+    setTimeout(() => {
+      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }, []);
+
+  const handleAnswer = useCallback(
+    (itemKey: string, value: number) => {
+      setResponses((prev) => ({ ...prev, [itemKey]: value }));
+    },
+    [],
+  );
+
+  const handleBeginSection = useCallback(
+    (circleIdx: number) => {
+      setStep({ phase: "questions", circleIdx });
+      scrollToTop();
+    },
+    [scrollToTop],
+  );
+
+  const handleContinue = useCallback(
+    (circleIdx: number) => {
+      const nextIdx = circleIdx + 1;
+      if (nextIdx >= CIRCLES.length) {
+        // All done — check all answered
+        const allAnswered = ALL_ITEM_KEYS.every((k) => responses[k] != null);
+        if (allAnswered) {
+          setStep({ phase: "complete" });
+          onComplete(responses);
+        }
+      } else {
+        setStep({ phase: "intro", circleIdx: nextIdx });
+        scrollToTop();
+      }
+    },
+    [responses, onComplete, scrollToTop],
+  );
+
+  const handleBack = useCallback(
+    (circleIdx: number) => {
+      if (circleIdx === 0) return;
+      setStep({ phase: "questions", circleIdx: circleIdx - 1 });
+      scrollToTop();
+    },
+    [scrollToTop],
+  );
+
+  const answeredCount = ALL_ITEM_KEYS.filter((k) => responses[k] != null).length;
+
+  if (step.phase === "complete") return null;
+
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16 text-center">
-      <p className="text-sm font-bold tracking-[0.15em] uppercase text-[#6E3FCC] mb-4">
-        {mode === "self" ? "Self-Assessment" : "Peer Assessment"}
-      </p>
-      <h2 className="text-2xl font-bold text-[#1C1334] mb-4">
-        Assessment flow coming from Design
-      </h2>
-      <p className="text-gray-500 mb-8">
-        This component will be built from Claude Design prompts.
-      </p>
-      <button
-        onClick={onBack}
-        className="text-sm text-[#6E3FCC] hover:underline"
-      >
-        Back to mode selection
-      </button>
+    <div ref={topRef}>
+      {step.phase === "intro" && (
+        <SectionIntro
+          circle={CIRCLES[step.circleIdx]}
+          sectionNumber={step.circleIdx + 1}
+          onBegin={() => handleBeginSection(step.circleIdx)}
+        />
+      )}
+      {step.phase === "questions" && (
+        <QuestionScreen
+          circle={CIRCLES[step.circleIdx]}
+          circleIdx={step.circleIdx}
+          responses={responses}
+          answeredCount={answeredCount}
+          onAnswer={handleAnswer}
+          onContinue={() => handleContinue(step.circleIdx)}
+          onBack={() => handleBack(step.circleIdx)}
+          isLastSection={step.circleIdx === CIRCLES.length - 1}
+        />
+      )}
     </div>
   );
 }
