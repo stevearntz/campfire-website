@@ -7,8 +7,9 @@ import MagicLinkForm from "./components/MagicLinkForm";
 import AssessmentFlow from "./components/AssessmentFlow";
 import Results from "./components/Results";
 import InvitePeers from "./components/InvitePeers";
+import ComparisonView from "./components/ComparisonView";
 
-type View = "loading" | "auth" | "assessment" | "results" | "invite";
+type View = "loading" | "auth" | "assessment" | "results" | "invite" | "comparison";
 
 const STORAGE_KEY = "ypo_assessment_responses";
 
@@ -104,8 +105,7 @@ export default function YpoToolClient() {
   }, []);
 
   const handleViewComparison = useCallback(() => {
-    // Stub for Increment 5
-    alert("Self vs. peer comparison is coming in the next update.");
+    setView("comparison");
   }, []);
 
   if (view === "loading") {
@@ -155,6 +155,46 @@ export default function YpoToolClient() {
         <InvitePeers
           onBack={handleBackToResults}
           onViewComparison={handleViewComparison}
+        />
+      </div>
+    );
+  }
+
+  if (view === "comparison") {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <div className="sticky top-[64px] z-40 bg-white border-b border-[#EEE9F6]">
+          <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span
+                className="font-bold uppercase"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.14em",
+                  color: "#6E3FCC",
+                }}
+              >
+                Activating Behaviors
+              </span>
+              <span style={{ fontSize: 13, color: "#A8A2B3" }}>
+                {user?.email}
+              </span>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="text-xs transition-colors"
+              style={{ color: "#A8A2B3" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#636B7C")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#A8A2B3")}
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
+        <ComparisonView
+          responses={responses}
+          onBack={handleBackToResults}
         />
       </div>
     );

@@ -29,7 +29,8 @@ function polarToXY(angle: number, radius: number): [number, number] {
 function polygonPoints(values: number[]): string {
   return values
     .map((v, i) => {
-      const [x, y] = polarToXY(AXIS_ANGLES[i], v * R);
+      const clamped = Math.max(v, 0.015); // guard against 0 collapsing
+      const [x, y] = polarToXY(AXIS_ANGLES[i], clamped * R);
       return `${x},${y}`;
     })
     .join(" ");
@@ -45,9 +46,20 @@ function gridPolygon(scale: number): string {
 // Label positions: R + 28 out from center along each axis
 const LABEL_R = R + 28;
 
-export default function RadarChart({ responses }: { responses: Responses }) {
+export default function RadarChart({
+  responses,
+  peerScores,
+}: {
+  responses: Responses;
+  peerScores?: Record<string, number>;
+}) {
   const sums = CIRCLES.map((c) => circleSum(c, responses));
-  const normalized = sums.map((s) => s / 18); // 0..1
+  const selfNormalized = sums.map((s) => s / 18); // 0..1
+
+  const hasPeer = peerScores != null;
+  const peerNormalized = hasPeer
+    ? CIRCLES.map((c) => (peerScores[c.key] || 0) / 18)
+    : null;
 
   return (
     <svg
@@ -84,29 +96,53 @@ export default function RadarChart({ responses }: { responses: Responses }) {
         );
       })}
 
-      {/* Data polygon */}
+      {/* Peer polygon (drawn first, underneath) */}
+      {peerNormalized && (
+        <polygon
+          points={polygonPoints(peerNormalized)}
+          fill="rgba(224,85,203,0.10)"
+          stroke="#E055CB"
+          strokeWidth={2.5}
+          strokeLinejoin="round"
+          strokeDasharray="5 4"
+        />
+      )}
+
+      {/* Self polygon */}
       <polygon
-        points={polygonPoints(normalized)}
-        fill="rgba(110,63,204,0.15)"
+        points={polygonPoints(selfNormalized)}
+        fill="rgba(110,63,204,0.16)"
         stroke="#6E3FCC"
         strokeWidth={2.5}
         strokeLinejoin="round"
       />
 
-      {/* Vertex dots */}
-      {normalized.map((v, i) => {
-        const [x, y] = polarToXY(AXIS_ANGLES[i], v * R);
+      {/* Vertex dots — self */}
+      {selfNormalized.map((v, i) => {
+        const clamped = Math.max(v, 0.015);
+        const [x, y] = polarToXY(AXIS_ANGLES[i], clamped * R);
         return (
-          <g key={i}>
-            {/* White ring */}
+          <g key={`self-${i}`}>
             <circle cx={x} cy={y} r={7} fill="#fff" />
-            {/* Color dot */}
             <circle cx={x} cy={y} r={5} fill={CIRCLES[i].color} />
           </g>
         );
       })}
 
-      {/* Axis labels — positioned R+28 out, all text-anchor:middle */}
+      {/* Vertex dots — peer */}
+      {peerNormalized &&
+        peerNormalized.map((v, i) => {
+          const clamped = Math.max(v, 0.015);
+          const [x, y] = polarToXY(AXIS_ANGLES[i], clamped * R);
+          return (
+            <g key={`peer-${i}`}>
+              <circle cx={x} cy={y} r={6} fill="#fff" />
+              <circle cx={x} cy={y} r={4} fill="#E055CB" />
+            </g>
+          );
+        })}
+
+      {/* Axis labels */}
       {CIRCLES.map((circle, i) => {
         const [x, y] = polarToXY(AXIS_ANGLES[i], LABEL_R);
         return (
