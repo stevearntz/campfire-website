@@ -89,31 +89,12 @@ export default function MagicLinkForm({
         }}
       />
 
-      {/* Top bar */}
-      <div className="relative z-10 w-full">
-        <div
-          className="mx-auto flex items-center justify-end"
-          style={{ maxWidth: 1400, padding: "24px clamp(24px, 6vw, 96px) 0" }}
-        >
-          <span
-            className="font-bold uppercase"
-            style={{
-              fontSize: 11,
-              letterSpacing: "0.16em",
-              color: "rgba(255,255,255,0.6)",
-            }}
-          >
-            YPO Marcoms
-          </span>
-        </div>
-      </div>
-
       {/* Hero content */}
       <div
-        className="relative z-10 flex-1 flex flex-col justify-center mx-auto w-full"
+        className="relative z-10 flex-1 flex flex-col justify-start mx-auto w-full"
         style={{
           maxWidth: 1400,
-          padding: "0 clamp(24px, 6vw, 96px)",
+          padding: "clamp(48px, 10vh, 120px) clamp(24px, 6vw, 96px) 0",
         }}
       >
         {/* Eyebrow */}
