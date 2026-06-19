@@ -723,7 +723,7 @@ export default function ModelContent() {
                 <TrackedLink
                   href={f.href}
                   external
-                  eventName="te_model_click"
+                  eventName="te_link"
                   eventParams={{ label: "further_reading", source: f.author }}
                   className="flex items-baseline gap-2 py-3.5 group"
                 >
@@ -788,7 +788,7 @@ export default function ModelContent() {
           <div className="mt-9 flex flex-col items-center gap-5">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "model_closing" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -797,7 +797,7 @@ export default function ModelContent() {
             </TrackedLink>
             <TrackedLink
               href={HUB}
-              eventName="te_model_click"
+              eventName="te_link"
               eventParams={{ label: "back_to_hub", location: "model_closing" }}
               className="text-[14px] font-semibold transition-colors hover:text-white"
               style={{ color: "rgba(255,255,255,0.7)" }}

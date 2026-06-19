@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Case Studies", href: "/team-effectiveness/case-studies" },
 ];
 
-const CALCULATOR_HREF = "/execution";
+const CALCULATOR_HREF = "/team-effectiveness/calculator";
 const MAIN_SITE_HREF = "/";
 
 export default function SiteNav() {
@@ -50,7 +50,7 @@ export default function SiteNav() {
         <div className="flex items-center gap-5">
           <TrackedLink
             href={MAIN_SITE_HREF}
-            eventName="te_nav_click"
+            eventName="te_link"
             eventParams={{ label: "back_to_main", location: "site_nav" }}
             className="hidden sm:inline text-[13px] font-medium transition-colors"
             style={{ color: "#9B96A6" }}
@@ -59,7 +59,7 @@ export default function SiteNav() {
           </TrackedLink>
           <TrackedLink
             href="/team-effectiveness"
-            eventName="te_nav_click"
+            eventName="te_link"
             eventParams={{ label: "logo", location: "site_nav" }}
             className="flex items-center"
           >
@@ -75,7 +75,7 @@ export default function SiteNav() {
               <TrackedLink
                 key={link.href}
                 href={link.href}
-                eventName="te_nav_click"
+                eventName="te_link"
                 eventParams={{ label: link.label, location: "site_nav" }}
                 className="relative text-[15px] font-semibold transition-colors"
                 style={{ color: active ? "#6E3FCC" : "#1E2A4A" }}
@@ -92,7 +92,7 @@ export default function SiteNav() {
           })}
           <TrackedLink
             href={CALCULATOR_HREF}
-            eventName="calc_cta"
+            eventName="te_cta"
             eventParams={{ cta: "start_diagnostic", location: "site_nav" }}
             className="text-white text-[13px] font-bold tracking-[0.1em] uppercase px-5 py-3 rounded-[10px] transition-colors"
             style={{ background: "#E055CB" }}
@@ -131,7 +131,7 @@ export default function SiteNav() {
               <TrackedLink
                 key={link.href}
                 href={link.href}
-                eventName="te_nav_click"
+                eventName="te_link"
                 eventParams={{ label: link.label, location: "site_nav_mobile" }}
                 className="py-3 text-[17px] font-semibold"
                 style={{ color: isActive(link.href) ? "#6E3FCC" : "#1E2A4A" }}
@@ -141,7 +141,7 @@ export default function SiteNav() {
             ))}
             <TrackedLink
               href={CALCULATOR_HREF}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "site_nav_mobile" }}
               className="mt-3 text-center text-white text-[13px] font-bold tracking-[0.1em] uppercase px-5 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -151,7 +151,7 @@ export default function SiteNav() {
             <div className="my-4 h-px" style={{ background: "#F1EEF8" }} />
             <TrackedLink
               href={MAIN_SITE_HREF}
-              eventName="te_nav_click"
+              eventName="te_link"
               eventParams={{ label: "back_to_main", location: "site_nav_mobile" }}
               className="py-2 text-[15px] font-medium"
               style={{ color: "#9B96A6" }}

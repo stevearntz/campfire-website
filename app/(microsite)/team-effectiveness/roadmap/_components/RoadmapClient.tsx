@@ -87,8 +87,8 @@ export default function RoadmapClient() {
               <TrackedLink
                 href={CALENDLY}
                 external
-                eventName="roadmap_cta"
-                eventParams={{ cta: "book_sprint", location: "roadmap_hero" }}
+                eventName="te_cta"
+                eventParams={{ cta: "book_call", location: "roadmap_hero" }}
                 className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] transition-colors"
                 style={{ background: "#E055CB" }}
               >
@@ -96,7 +96,7 @@ export default function RoadmapClient() {
               </TrackedLink>
               <TrackedLink
                 href={CALC}
-                eventName="calc_cta"
+                eventName="te_cta"
                 eventParams={{ cta: "start_diagnostic", location: "roadmap_hero" }}
                 className="text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white"
                 style={{ borderColor: "#E3DCF5", color: "#1E2A4A" }}
@@ -220,8 +220,8 @@ export default function RoadmapClient() {
                 <div className="mt-auto">
                   <TrackedLink
                     href={WORKSHOP}
-                    eventName="roadmap_cta"
-                    eventParams={{ cta: "learn_more_workshop", location: "roadmap_workshops", workshop: w.name }}
+                    eventName="te_link"
+                    eventParams={{ label: "learn_more_workshop", location: "roadmap_workshops", workshop: w.name }}
                     className="text-[14px] font-bold transition-colors"
                     style={{ color: "#6E3FCC" }}
                   >
@@ -260,7 +260,7 @@ export default function RoadmapClient() {
           <div className="mt-9">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "see_diagnostic", location: "roadmap_closing" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -271,7 +271,7 @@ export default function RoadmapClient() {
           <div className="mt-8">
             <TrackedLink
               href={HUB}
-              eventName="te_hub_click"
+              eventName="te_link"
               eventParams={{ label: "back_to_hub", location: "roadmap_closing" }}
               className="text-[14px] font-semibold transition-colors hover:text-white"
               style={{ color: "rgba(255,255,255,0.6)" }}

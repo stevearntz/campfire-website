@@ -119,7 +119,7 @@ export default function SampleResultCard() {
         <div className="mt-7 text-center">
           <TrackedLink
             href={CALC}
-            eventName="calc_cta"
+            eventName="te_cta"
             eventParams={{ cta: "start_diagnostic", location: "diagnostic_sample" }}
             className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
             style={{ background: "#E055CB" }}
