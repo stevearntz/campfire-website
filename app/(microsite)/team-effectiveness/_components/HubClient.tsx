@@ -64,7 +64,7 @@ export default function HubClient() {
       {/* ───────── 1. HERO — dark ───────── */}
       <section
         className="relative overflow-hidden flex items-center"
-        style={{ background: "#1C1334", minHeight: "calc(100vh - 64px)", paddingTop: 48, paddingBottom: 48, paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}
+        style={{ background: "#1C1334", minHeight: "clamp(560px, calc(100vh - 64px), 820px)", paddingTop: 48, paddingBottom: 48, paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}
       >
         <div
           className="absolute inset-0 pointer-events-none"

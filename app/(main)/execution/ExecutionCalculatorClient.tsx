@@ -335,7 +335,7 @@ export default function ExecutionCalculatorClient() {
   /* ─── STEP 0: INTRO ─── */
   if (step === 0) {
     return (
-      <section className="relative bg-[#1C1334] overflow-hidden min-h-[calc(100vh-64px)]">
+      <section className="relative bg-[#1C1334] overflow-hidden min-h-[clamp(560px,calc(100vh-64px),820px)]">
         <div
           className="absolute inset-0 opacity-15"
           style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
