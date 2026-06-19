@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Placeholder from "../_components/Placeholder";
+import WorkshopClient from "./_components/WorkshopClient";
 
 export const metadata: Metadata = {
   title: "The Facilitated Workshop",
   description:
-    "Turn the findings into alignment. A facilitated working session where your team aligns on what matters most and tackles what's holding execution back.",
+    "Turn the findings into alignment. A facilitated working session where your team reviews the diagnostic, aligns on what matters most, and tackles what's holding execution back.",
 };
 
 export default function WorkshopPage() {
-  return <Placeholder eyebrow="Part 2 · The Workshop" title="The Facilitated Workshop" />;
+  return <WorkshopClient />;
 }

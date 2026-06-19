@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Placeholder from "../_components/Placeholder";
+import RoadmapClient from "./_components/RoadmapClient";
 
 export const metadata: Metadata = {
   title: "The Team Roadmap",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function RoadmapPage() {
-  return <Placeholder eyebrow="Part 3 · The Roadmap" title="The Team Roadmap" />;
+  return <RoadmapClient />;
 }
