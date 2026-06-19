@@ -6,9 +6,11 @@ import RadarChart from "./RadarChart";
 export default function Results({
   responses,
   onRestart,
+  onInvitePeers,
 }: {
   responses: Responses;
   onRestart: () => void;
+  onInvitePeers?: () => void;
 }) {
   const sums = CIRCLES.map((c) => circleSum(c, responses));
 
@@ -240,10 +242,7 @@ export default function Results({
         {/* Footer actions */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-[#EEE9F6]">
           <button
-            onClick={() => {
-              // Stub for next increment
-              alert("Peer invite is coming in the next update.");
-            }}
+            onClick={onInvitePeers}
             className="font-bold uppercase transition-opacity hover:opacity-90"
             style={{
               height: 54,

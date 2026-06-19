@@ -114,3 +114,38 @@ CREATE TABLE ypo_response (
 );
 
 CREATE INDEX idx_ypo_response_assessment ON ypo_response(assessment_id);
+
+-- 8. Peer invite (one active link per member)
+CREATE TABLE ypo_peer_invite (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES ypo_users(id) ON DELETE CASCADE,
+  token VARCHAR(20) UNIQUE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE UNIQUE INDEX idx_ypo_peer_invite_user ON ypo_peer_invite(user_id);
+CREATE INDEX idx_ypo_peer_invite_token ON ypo_peer_invite(token);
+
+-- 9. Peer response (one row per rater)
+CREATE TABLE ypo_peer_response (
+  id SERIAL PRIMARY KEY,
+  invite_id INTEGER NOT NULL REFERENCES ypo_peer_invite(id) ON DELETE CASCADE,
+  rater_name VARCHAR(200),
+  rater_email VARCHAR(254),
+  status VARCHAR(20) NOT NULL DEFAULT 'in_progress' CHECK (status IN ('in_progress', 'complete')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  completed_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE INDEX idx_ypo_peer_response_invite ON ypo_peer_response(invite_id);
+
+-- 10. Peer answers (one row per item per rater)
+CREATE TABLE ypo_peer_answer (
+  id SERIAL PRIMARY KEY,
+  peer_response_id INTEGER NOT NULL REFERENCES ypo_peer_response(id) ON DELETE CASCADE,
+  item_key VARCHAR(20) NOT NULL,
+  value INTEGER NOT NULL CHECK (value BETWEEN 1 AND 6),
+  CONSTRAINT ypo_peer_answer_unique UNIQUE (peer_response_id, item_key)
+);
+
+CREATE INDEX idx_ypo_peer_answer_response ON ypo_peer_answer(peer_response_id);

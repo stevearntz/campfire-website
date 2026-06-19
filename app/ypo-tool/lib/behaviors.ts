@@ -7,6 +7,7 @@
 export interface BehaviorItem {
   readonly key: string;
   readonly text: string;
+  readonly peerText: string;
 }
 
 export interface Circle {
@@ -28,9 +29,9 @@ export const CIRCLES: readonly Circle[] = [
     colorDark: "#9A6F00",
     wash: "rgba(245,158,44,0.14)",
     items: [
-      { key: "joy1", text: "I bring a constructive, hopeful attitude when we hit challenges." },
-      { key: "joy2", text: "I stay open and respectful when views differ from mine." },
-      { key: "joy3", text: "I work at a sustainable pace that doesn\u2019t lead to burnout." },
+      { key: "joy1", text: "I bring a constructive, hopeful attitude when we hit challenges.", peerText: "This person brings a constructive, hopeful attitude when the team hits challenges." },
+      { key: "joy2", text: "I stay open and respectful when views differ from mine.", peerText: "This person stays open and respectful when views differ from theirs." },
+      { key: "joy3", text: "I work at a sustainable pace that doesn\u2019t lead to burnout.", peerText: "This person works at a sustainable pace that doesn\u2019t lead to burnout." },
     ],
   },
   {
@@ -41,9 +42,9 @@ export const CIRCLES: readonly Circle[] = [
     colorDark: "#5B34AB",
     wash: "rgba(110,63,204,0.12)",
     items: [
-      { key: "trust1", text: "I follow through on the commitments I make." },
-      { key: "trust2", text: "I actively contribute ideas and energy to the work." },
-      { key: "trust3", text: "I listen with curiosity instead of assuming I already know." },
+      { key: "trust1", text: "I follow through on the commitments I make.", peerText: "This person follows through on the commitments they make." },
+      { key: "trust2", text: "I actively contribute ideas and energy to the work.", peerText: "This person actively contributes ideas and energy to the work." },
+      { key: "trust3", text: "I listen with curiosity instead of assuming I already know.", peerText: "This person listens with curiosity instead of assuming they already know." },
     ],
   },
   {
@@ -54,9 +55,9 @@ export const CIRCLES: readonly Circle[] = [
     colorDark: "#B23B9F",
     wash: "rgba(224,85,203,0.12)",
     items: [
-      { key: "power1", text: "I move work forward proactively rather than waiting." },
-      { key: "power2", text: "I stay solutions-focused when challenges come up." },
-      { key: "power3", text: "I stay steady and adaptable through change." },
+      { key: "power1", text: "I move work forward proactively rather than waiting.", peerText: "This person moves work forward proactively rather than waiting." },
+      { key: "power2", text: "I stay solutions-focused when challenges come up.", peerText: "This person stays solutions-focused when challenges come up." },
+      { key: "power3", text: "I stay steady and adaptable through change.", peerText: "This person stays steady and adaptable through change." },
     ],
   },
   {
@@ -67,15 +68,18 @@ export const CIRCLES: readonly Circle[] = [
     colorDark: "#1F8A8A",
     wash: "rgba(48,183,183,0.14)",
     items: [
-      { key: "part1", text: "I create room for others to succeed." },
-      { key: "part2", text: "I solve issues rather than assigning blame." },
-      { key: "part3", text: "I balance execution with strategy." },
+      { key: "part1", text: "I create room for others to succeed.", peerText: "This person creates room for others to succeed." },
+      { key: "part2", text: "I solve issues rather than assigning blame.", peerText: "This person solves issues rather than assigning blame." },
+      { key: "part3", text: "I balance execution with strategy.", peerText: "This person balances execution with strategy." },
     ],
   },
 ] as const;
 
 /** All 12 item keys in order */
 export const ALL_ITEM_KEYS = CIRCLES.flatMap((c) => c.items.map((i) => i.key));
+
+/** Minimum peers before aggregate is visible */
+export const MIN_PEERS = 3;
 
 /** Lookup circle by item key */
 export function circleForItem(itemKey: string): Circle | undefined {
@@ -97,4 +101,10 @@ export function circleSum(circle: Circle, responses: Responses): number {
   const vals = circle.items.map((i) => responses[i.key]).filter((v) => v != null);
   if (vals.length === 0) return 0;
   return vals.reduce((a, b) => a + b, 0);
+}
+
+/** Get peer-facing text, substituting first name for "This person" if provided */
+export function peerItemText(item: BehaviorItem, firstName?: string): string {
+  if (!firstName) return item.peerText;
+  return item.peerText.replace(/^This person/, firstName);
 }
