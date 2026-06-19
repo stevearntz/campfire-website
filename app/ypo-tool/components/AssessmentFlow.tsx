@@ -48,11 +48,26 @@ function resumeStep(responses: Responses): FlowStep {
 
 export default function AssessmentFlow({
   onComplete,
+  initialResponses,
+  assessmentId,
 }: {
   onComplete: (responses: Responses) => void;
+  initialResponses?: Responses;
+  assessmentId?: number;
 }) {
-  const [responses, setResponses] = useState<Responses>(loadResponses);
-  const [step, setStep] = useState<FlowStep>(() => resumeStep(loadResponses()));
+  const [responses, setResponses] = useState<Responses>(() => {
+    // Prefer DB-loaded responses, fall back to localStorage
+    if (initialResponses && Object.keys(initialResponses).length > 0) {
+      return initialResponses;
+    }
+    return loadResponses();
+  });
+  const [step, setStep] = useState<FlowStep>(() => resumeStep(
+    initialResponses && Object.keys(initialResponses).length > 0
+      ? initialResponses
+      : loadResponses()
+  ));
+  const [dbAssessmentId, setDbAssessmentId] = useState<number | null>(assessmentId ?? null);
   const topRef = useRef<HTMLDivElement>(null);
 
   // Persist to localStorage on change
@@ -69,8 +84,19 @@ export default function AssessmentFlow({
   const handleAnswer = useCallback(
     (itemKey: string, value: number) => {
       setResponses((prev) => ({ ...prev, [itemKey]: value }));
+
+      // Save to DB
+      if (dbAssessmentId && dbAssessmentId > 0) {
+        fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/response`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ itemKey, value }),
+        }).catch(() => {
+          // DB save failed — localStorage has it
+        });
+      }
     },
-    [],
+    [dbAssessmentId],
   );
 
   const handleBeginSection = useCallback(
@@ -88,6 +114,14 @@ export default function AssessmentFlow({
         // All done — check all answered
         const allAnswered = ALL_ITEM_KEYS.every((k) => responses[k] != null);
         if (allAnswered) {
+          // Mark complete in DB
+          if (dbAssessmentId && dbAssessmentId > 0) {
+            fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/complete`, {
+              method: "POST",
+            }).catch(() => {
+              // ignore
+            });
+          }
           setStep({ phase: "complete" });
           onComplete(responses);
         }
@@ -96,7 +130,7 @@ export default function AssessmentFlow({
         scrollToTop();
       }
     },
-    [responses, onComplete, scrollToTop],
+    [responses, onComplete, scrollToTop, dbAssessmentId],
   );
 
   const handleBack = useCallback(
