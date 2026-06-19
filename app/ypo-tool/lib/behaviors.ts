@@ -91,3 +91,10 @@ export function circleMean(circle: Circle, responses: Responses): number {
   if (vals.length === 0) return 0;
   return vals.reduce((a, b) => a + b, 0) / vals.length;
 }
+
+/** Compute sum for a circle (3–18, or 0 if unanswered) */
+export function circleSum(circle: Circle, responses: Responses): number {
+  const vals = circle.items.map((i) => responses[i.key]).filter((v) => v != null);
+  if (vals.length === 0) return 0;
+  return vals.reduce((a, b) => a + b, 0);
+}

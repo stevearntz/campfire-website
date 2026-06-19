@@ -1,14 +1,19 @@
 "use client";
 
-import { CIRCLES, circleMean, type Responses } from "../lib/behaviors";
+import { CIRCLES, circleSum, type Responses } from "../lib/behaviors";
 
 const SIZE = 360;
 const CX = SIZE / 2;
 const CY = SIZE / 2;
-const R = SIZE / 2 - 40; // max radius with room for labels
+const R = SIZE / 2 - 48; // max radius with room for labels
 
 // Axis order: Joy (top), Trust (right), Power (bottom), Partnership (left)
 const AXIS_ANGLES = [-90, 0, 90, 180]; // degrees, 0 = right
+
+// Widened viewBox: 52px padding each side for axis labels
+const SVG_WIDTH = SIZE + 104;
+const SVG_HEIGHT = SIZE;
+const VIEW_BOX = `-52 0 ${SVG_WIDTH} ${SVG_HEIGHT}`;
 
 function toRad(deg: number) {
   return (deg * Math.PI) / 180;
@@ -37,31 +42,20 @@ function gridPolygon(scale: number): string {
   }).join(" ");
 }
 
-// Label offsets to avoid overlapping the polygon
-const LABEL_OFFSETS: [number, number][] = [
-  [0, -20],  // Joy (top)
-  [20, 0],   // Trust (right)
-  [0, 22],   // Power (bottom)
-  [-20, 0],  // Partnership (left)
-];
-
-const LABEL_ANCHORS: ("middle" | "start" | "end")[] = [
-  "middle", // top
-  "start",  // right
-  "middle", // bottom
-  "end",    // left
-];
+// Label positions: R + 28 out from center along each axis
+const LABEL_R = R + 28;
 
 export default function RadarChart({ responses }: { responses: Responses }) {
-  const means = CIRCLES.map((c) => circleMean(c, responses));
-  const normalized = means.map((m) => m / 6); // 0..1
+  const sums = CIRCLES.map((c) => circleSum(c, responses));
+  const normalized = sums.map((s) => s / 18); // 0..1
 
   return (
     <svg
-      viewBox={`0 0 ${SIZE} ${SIZE}`}
-      width={SIZE}
-      height={SIZE}
-      className="w-full max-w-[360px]"
+      viewBox={VIEW_BOX}
+      width={SVG_WIDTH}
+      height={SVG_HEIGHT}
+      className="w-full"
+      style={{ maxWidth: SVG_WIDTH }}
     >
       {/* Grid polygons */}
       {[0.25, 0.5, 0.75, 1.0].map((scale) => (
@@ -112,15 +106,15 @@ export default function RadarChart({ responses }: { responses: Responses }) {
         );
       })}
 
-      {/* Axis labels */}
+      {/* Axis labels — positioned R+28 out, all text-anchor:middle */}
       {CIRCLES.map((circle, i) => {
-        const [x, y] = polarToXY(AXIS_ANGLES[i], R);
+        const [x, y] = polarToXY(AXIS_ANGLES[i], LABEL_R);
         return (
           <text
             key={circle.key}
-            x={x + LABEL_OFFSETS[i][0]}
-            y={y + LABEL_OFFSETS[i][1]}
-            textAnchor={LABEL_ANCHORS[i]}
+            x={x}
+            y={y}
+            textAnchor="middle"
             dominantBaseline="middle"
             fill={circle.colorDark}
             fontSize={13}

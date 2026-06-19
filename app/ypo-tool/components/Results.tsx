@@ -1,6 +1,6 @@
 "use client";
 
-import { CIRCLES, circleMean, type Responses } from "../lib/behaviors";
+import { CIRCLES, circleSum, type Responses } from "../lib/behaviors";
 import RadarChart from "./RadarChart";
 
 export default function Results({
@@ -10,14 +10,14 @@ export default function Results({
   responses: Responses;
   onRestart: () => void;
 }) {
-  const means = CIRCLES.map((c) => circleMean(c, responses));
+  const sums = CIRCLES.map((c) => circleSum(c, responses));
 
-  // Strength = highest, Growth = lowest
+  // Strength = highest sum, Growth = lowest sum
   let strengthIdx = 0;
   let growthIdx = 0;
-  means.forEach((m, i) => {
-    if (m > means[strengthIdx]) strengthIdx = i;
-    if (m < means[growthIdx]) growthIdx = i;
+  sums.forEach((s, i) => {
+    if (s > sums[strengthIdx]) strengthIdx = i;
+    if (s < sums[growthIdx]) growthIdx = i;
   });
 
   const strengthCircle = CIRCLES[strengthIdx];
@@ -117,7 +117,7 @@ export default function Results({
                     className="font-bold"
                     style={{ fontSize: 20, color: strengthCircle.colorDark }}
                   >
-                    {means[strengthIdx].toFixed(1)}{" "}
+                    {sums[strengthIdx]}{" "}
                     <span
                       style={{
                         fontSize: 14,
@@ -125,7 +125,7 @@ export default function Results({
                         color: "#A8A2B3",
                       }}
                     >
-                      / 6
+                      / 18
                     </span>
                   </span>
                 </div>
@@ -163,7 +163,7 @@ export default function Results({
                     className="font-bold"
                     style={{ fontSize: 20, color: growthCircle.colorDark }}
                   >
-                    {means[growthIdx].toFixed(1)}{" "}
+                    {sums[growthIdx]}{" "}
                     <span
                       style={{
                         fontSize: 14,
@@ -171,7 +171,7 @@ export default function Results({
                         color: "#A8A2B3",
                       }}
                     >
-                      / 6
+                      / 18
                     </span>
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export default function Results({
             {/* All 4 bars */}
             <div className="space-y-3 pt-2">
               {CIRCLES.map((circle, i) => {
-                const pct = (means[i] / 6) * 100;
+                const pct = Math.round((sums[i] / 18) * 100);
                 return (
                   <div key={circle.key} className="flex items-center gap-3">
                     <span
@@ -215,11 +215,11 @@ export default function Results({
                       style={{
                         fontSize: 13,
                         color: circle.colorDark,
-                        width: 50,
+                        width: 56,
                         textAlign: "right",
                       }}
                     >
-                      {means[i].toFixed(1)}{" "}
+                      {sums[i]}{" "}
                       <span
                         style={{
                           fontSize: 11,
@@ -227,7 +227,7 @@ export default function Results({
                           color: "#A8A2B3",
                         }}
                       >
-                        / 6
+                        / 18
                       </span>
                     </span>
                   </div>
