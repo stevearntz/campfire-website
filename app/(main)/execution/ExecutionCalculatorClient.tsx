@@ -1,17 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { trackEvent } from "@/app/lib/analytics";
+import TrackedLink from "@/app/components/TrackedLink";
 
 /* ═══════════════════════════════════════════════════════════════════
    CONSTANTS
    ═══════════════════════════════════════════════════════════════════ */
 
 const AI_OPTIONS = [
-  { label: "Minimal", desc: "We're not really using AI tools yet", multiplier: 1.0 },
-  { label: "Exploring", desc: "Some teams are experimenting", multiplier: 1.3 },
-  { label: "Actively using", desc: "Most teams use AI tools regularly", multiplier: 1.8 },
-  { label: "Deeply embedded", desc: "AI is core to how we work", multiplier: 2.5 },
-];
+  { key: "minimal", label: "Minimal", desc: "We're not really using AI tools yet", multiplier: 1.0 },
+  { key: "exploring", label: "Exploring", desc: "Some teams are experimenting", multiplier: 1.3 },
+  { key: "active", label: "Actively using", desc: "Most teams use AI tools regularly", multiplier: 1.8 },
+  { key: "embedded", label: "Deeply embedded", desc: "AI is core to how we work", multiplier: 2.5 },
+] as const;
 
 // The 4th item in every dimension is the focus question (the Focus throughline).
 // Focus is NOT a 4th equation term — it folds into each dimension's average.
@@ -161,6 +163,7 @@ function computeResults(
   coordination: number[],
 ) {
   const aiMult = aiIdx >= 0 ? AI_OPTIONS[aiIdx].multiplier : 1.0;
+  const aiKey = aiIdx >= 0 ? AI_OPTIONS[aiIdx].key : "minimal";
   const rawCapacity = headcount * aiMult;
 
   const avg = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
@@ -171,9 +174,13 @@ function computeResults(
   // Coordination Cost: higher answers = more friction (bad). Map [1,5] → [1.0, 3.0]
   const toCost = (a: number) => 1.0 + 2.0 * (a - 1) / 4;
 
-  const cF = toFactor(avg(clarity));        // Clarity: 0.2–1.0
-  const aF = toFactor(avg(alignment));      // Alignment: 0.2–1.0
-  const ccF = toCost(avg(coordination));    // Coordination Cost: 1.0–3.0
+  const avgClarity = avg(clarity);
+  const avgAlignment = avg(alignment);
+  const avgCoordination = avg(coordination);
+
+  const cF = toFactor(avgClarity);          // Clarity: 0.2–1.0
+  const aF = toFactor(avgAlignment);        // Alignment: 0.2–1.0
+  const ccF = toCost(avgCoordination);      // Coordination Cost: 1.0–3.0
 
   // The Campfire equation
   const executionMultiplier = (cF * aF) / ccF;
@@ -201,18 +208,67 @@ function computeResults(
     return Math.max(result, effectiveHC + Math.max(1, Math.round(effectiveHC * 0.1)));
   })();
 
+  // Single-lever lift % (vs current) — for the focus-bonus contrast line
+  const leverPct = Math.round((improved / effectiveHC - 1) * 100);
+
+  /* ── §5: Focus throughline read ── */
+  // Uses the 4th answer (focus question) of each dimension. Coordination's is
+  // inverted (6 − answer) so higher = healthier focus, like the others.
+  const fcC = clarity[3] || 0;
+  const fcA = alignment[3] || 0;
+  const fcoR = coordination[3] || 0;
+  const fcoInv = fcoR ? 6 - fcoR : 0;
+  const focusRaw = (fcC + fcA + fcoInv) / 3; // 1–5
+
+  /* ── §5: Focus-bonus projection ── */
+  const D = 0.7;
+  const fCl = toFactor(Math.min(5, avgClarity + D));
+  const fAl = toFactor(Math.min(5, avgAlignment + D));
+  const fCo = toCost(Math.max(1, avgCoordination - D));
+  const focusToRaw = Math.round((rawCapacity * (fCl * fAl)) / fCo);
+  const focusTo = Math.max(focusToRaw, effectiveHC); // floor at current
+  const focusGain = Math.round((focusTo / effectiveHC - 1) * 100);
+
+  /* ── §6: AI callout ── */
+  const ratioVal = effectiveHC / headcount;
+  const highAI = aiMult >= 1.8;
+  const lowAI = aiMult <= 1.3;
+  const healthy = ratioVal >= 1.0;
+  const survivesPct = rawCapacity ? Math.round((effectiveHC / rawCapacity) * 100) : 0;
+
   return {
     headcount,
     aiMultiplier: aiMult,
+    aiKey,
     rawCapacity: Math.round(rawCapacity),
     clarityScore: cF,
     alignmentScore: aF,
     coordinationCost: ccF,
     executionMultiplier,
     effectiveHeadcount: effectiveHC,
-    ratio: effectiveHC / headcount,
+    ratio: ratioVal,
     weakest,
     improved,
+    leverPct,
+    // Focus throughline
+    focusRaw,
+    focusClarity: fcC,
+    focusAlignment: fcA,
+    focusCoordInv: fcoInv,
+    // Focus bonus
+    focusTo,
+    focusGain,
+    focusFromClarity: cF,
+    focusToClarity: fCl,
+    focusFromAlignment: aF,
+    focusToAlignment: fAl,
+    focusFromCoordCost: ccF,
+    focusToCoordCost: fCo,
+    // AI callout
+    highAI,
+    lowAI,
+    healthy,
+    survivesPct,
   };
 }
 
@@ -232,12 +288,34 @@ export default function ExecutionCalculatorClient() {
 
   const topRef = useRef<HTMLDivElement>(null);
 
+  const STEP_LABELS: Record<number, string> = {
+    1: "Your organization",
+    2: "Clarity",
+    3: "Alignment",
+    4: "Coordination",
+    5: "Results",
+  };
+
   const goTo = useCallback((s: Step) => {
-    setStep(s);
+    setStep((prev) => {
+      // §7 analytics — fire on the forward transition only
+      if (prev === 0 && s === 1) {
+        trackEvent("calc_start", {
+          route: typeof window !== "undefined" ? window.location.pathname : "",
+        });
+      } else if (s > prev && s >= 2 && s <= 5) {
+        trackEvent("calc_step", {
+          step: String(s),
+          stepLabel: STEP_LABELS[s] ?? "",
+        });
+      }
+      return s;
+    });
     // Scroll to top of assessment area
     setTimeout(() => {
       topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const hc = parseInt(headcount) || 0;
@@ -257,7 +335,7 @@ export default function ExecutionCalculatorClient() {
   /* ─── STEP 0: INTRO ─── */
   if (step === 0) {
     return (
-      <section className="relative bg-[#1C1334] overflow-hidden min-h-[calc(100vh-64px)]">
+      <section className="relative bg-[#1C1334] overflow-hidden min-h-[clamp(560px,calc(100vh-64px),820px)]">
         <div
           className="absolute inset-0 opacity-15"
           style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
@@ -535,6 +613,7 @@ export default function ExecutionCalculatorClient() {
 interface Results {
   headcount: number;
   aiMultiplier: number;
+  aiKey: string;
   rawCapacity: number;
   clarityScore: number;
   alignmentScore: number;
@@ -544,6 +623,26 @@ interface Results {
   ratio: number;
   weakest: string;
   improved: number;
+  leverPct: number;
+  // Focus throughline (§5 read)
+  focusRaw: number;
+  focusClarity: number;
+  focusAlignment: number;
+  focusCoordInv: number;
+  // Focus bonus (§5 projection)
+  focusTo: number;
+  focusGain: number;
+  focusFromClarity: number;
+  focusToClarity: number;
+  focusFromAlignment: number;
+  focusToAlignment: number;
+  focusFromCoordCost: number;
+  focusToCoordCost: number;
+  // AI callout (§6)
+  highAI: boolean;
+  lowAI: boolean;
+  healthy: boolean;
+  survivesPct: number;
 }
 
 function ResultsView({
@@ -559,14 +658,36 @@ function ResultsView({
   const [copied, setCopied] = useState(false);
   const r = results;
 
+  // §7: calc_complete fires exactly once on results render — the headline KPI.
+  const completeFired = useRef(false);
+  useEffect(() => {
+    if (completeFired.current) return;
+    completeFired.current = true;
+    trackEvent("calc_complete", {
+      headcount: String(r.headcount),
+      aiKey: r.aiKey,
+      ratio: r.ratio.toFixed(2),
+      effectiveHeadcount: String(r.effectiveHeadcount),
+      weakest: r.weakest,
+    });
+  }, [r.headcount, r.aiKey, r.ratio, r.effectiveHeadcount, r.weakest]);
+
   const copyText = `${r.headcount.toLocaleString()} employees & ${r.effectiveHeadcount.toLocaleString()} effective capacity`;
 
   const handleCopy = useCallback(() => {
+    trackEvent("calc_cta", { cta: "copy_score" });
     navigator.clipboard.writeText(copyText).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   }, [copyText]);
+
+  const handleRetake = useCallback(() => {
+    trackEvent("calc_cta", { cta: "retake" });
+    onRestart();
+  }, [onRestart]);
+
+  const clamp01pct = (v: number) => Math.max(0, Math.min(100, Math.round(((v - 1) / 4) * 100)));
 
   const narrative = (() => {
     if (r.ratio >= 1.5) return "AI and alignment are compounding. You're a force multiplier.";
@@ -578,8 +699,6 @@ function ResultsView({
 
   const weakestLabel = r.weakest === "clarity" ? "Clarity" : r.weakest === "alignment" ? "Alignment" : "Coordination cost";
   const weakestColor = r.weakest === "clarity" ? "#F59E2C" : r.weakest === "alignment" ? "#6E3FCC" : "#E055CB";
-
-  const pctOfMax = Math.round(r.executionMultiplier * 100);
 
   // Identify strengths — anything above a "good" threshold
   const strengths: { label: string; color: string; message: string }[] = [];
@@ -612,6 +731,85 @@ function ResultsView({
   const maxPossible = r.headcount * r.aiMultiplier;
   const effectiveBarPct = Math.min(Math.round((r.effectiveHeadcount / maxPossible) * 100), 100);
   const improvedBarPct = Math.min(Math.round((r.improved / maxPossible) * 100), 100);
+
+  /* ── §6: AI callout variant ── */
+  const aiCallout = (() => {
+    if (r.highAI && !r.healthy)
+      return {
+        accent: "#F2618E",
+        eyebrow: "AI is amplifying the friction",
+        title: "You turned the multiplier up — into a system that's leaking it.",
+        body: `Only about ${r.survivesPct}% of the capacity you're paying for survives the trip to real output. AI raised the ceiling, but clarity, alignment, and coordination decide how much becomes real — and right now they're amplifying rework, not output. More AI on top of this would scale the leak, not the work.`,
+      };
+    if (r.highAI && r.healthy)
+      return {
+        accent: "#2BB673",
+        eyebrow: "AI is compounding",
+        title: "Your system can absorb the multiplier.",
+        body: "You've raised throughput with AI and your execution variables are healthy enough to convert it — so the multiplier compounds instead of fragmenting. Each unit of added capacity is landing as real output. Keep clarity, alignment, and coordination tight as you scale and AI keeps paying off.",
+      };
+    if (r.lowAI && r.healthy)
+      return {
+        accent: "#F59E2C",
+        eyebrow: "The multiplier is still on the table",
+        title: "You execute well — without much AI yet.",
+        body: "Your system already converts headcount into output efficiently, and you've barely turned on the AI multiplier. That's the rare setup where adding capacity compounds instead of fragments — the window to lead is open. Raise the ceiling deliberately and your execution will carry it.",
+      };
+    return {
+      accent: "#F59E2C",
+      eyebrow: "Don't pour AI on this yet",
+      title: "Adding AI now would amplify the friction first.",
+      body: `You haven't leaned hard on AI yet — and that's the right instinct for now. With ${weakestLabel.toLowerCase()} as your weakest link, more capacity would mostly scale the rework. Fix the weakest link first, then the multiplier lands on a system that can hold it.`,
+    };
+  })();
+
+  /* ── §5: Focus throughline read variant ── */
+  const focusHead = (() => {
+    if (r.focusRaw >= 4.2) return "Focus is sharp — and it's compounding the other three.";
+    if (r.focusRaw >= 3.2) return "Focus is mostly holding the three together.";
+    if (r.focusRaw >= 2.2) return "Focus is starting to diffuse across all three.";
+    return "Focus is the hidden drain beneath all three.";
+  })();
+  const focusLead =
+    "Focus isn't a separate score — it's the thread running through the equation: a few clear priorities inside Clarity, the same priorities across teams inside Alignment, and effort that stays pointed inside Coordination.";
+  const focusTail = (() => {
+    if (r.focusRaw >= 4.2)
+      return "Right now that thread is taut — and because the equation multiplies, sharp focus lifts every term at once.";
+    if (r.focusRaw >= 3.2)
+      return "Right now it's mostly intact, but a few priorities are competing for the same attention. Tightening it is the cheapest way to move all three terms together.";
+    if (r.focusRaw >= 2.2)
+      return "Right now it's fraying — attention is split across too many priorities, and that drift shows up in every term below.";
+    return "Right now that thread is the quiet drain: scattered priorities are pulling Clarity, Alignment, and Coordination down together. Restore it and all three recover at once.";
+  })();
+
+  /* ── §5: Focus-bonus lift bars ── */
+  const focusBars = [
+    {
+      label: "Clarity",
+      color: "#F59E2C",
+      sub: "Fewer, sharper priorities to point at.",
+      fromPct: Math.round(r.focusFromClarity * 100),
+      toPct: Math.round(r.focusToClarity * 100),
+    },
+    {
+      label: "Alignment",
+      color: "#6E3FCC",
+      sub: "The same priorities across every team.",
+      fromPct: Math.round(r.focusFromAlignment * 100),
+      toPct: Math.round(r.focusToAlignment * 100),
+    },
+    {
+      // Coordination is a cost — show as health (lower cost = more bar). Track is 1.0–3.0×.
+      label: "Coordination",
+      color: "#E055CB",
+      sub: "Less effort lost just staying in sync.",
+      fromPct: Math.round(((3 - r.focusFromCoordCost) / 2) * 100),
+      toPct: Math.round(((3 - r.focusToCoordCost) / 2) * 100),
+    },
+  ].map((b) => {
+    const delta = b.toPct - b.fromPct;
+    return { ...b, deltaStr: delta > 0 ? `+${delta} pts` : "At ceiling" };
+  });
 
   return (
     <div ref={topRef}>
@@ -672,6 +870,29 @@ function ResultsView({
                 </>
               )}
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── AI CALLOUT (§6) ─── */}
+      <section className="bg-white pt-12 md:pt-16 -mb-4">
+        <div className="max-w-3xl mx-auto px-6">
+          <div
+            className="rounded-2xl bg-[#F8F5FC] px-6 py-6 md:px-8 md:py-7"
+            style={{ borderLeft: `4px solid ${aiCallout.accent}` }}
+          >
+            <p
+              className="text-xs font-bold tracking-[0.16em] uppercase mb-2"
+              style={{ color: aiCallout.accent }}
+            >
+              {aiCallout.eyebrow}
+            </p>
+            <h3 className="text-lg md:text-xl font-extrabold text-[#1C1334] mb-3 leading-snug">
+              {aiCallout.title}
+            </h3>
+            <p className="text-sm md:text-[15px] text-gray-600 leading-relaxed">
+              {aiCallout.body}
+            </p>
           </div>
         </div>
       </section>
@@ -806,6 +1027,46 @@ function ResultsView({
         </div>
       </section>
 
+      {/* ─── FOCUS THROUGHLINE (§5 read) ─── */}
+      <section className="relative bg-[#1C1334] overflow-hidden py-16 md:py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{ backgroundImage: "url(/purple-topo-tall.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
+        />
+        <div className="relative max-w-3xl mx-auto px-6">
+          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#EE80DD] mb-4">
+            The Throughline
+          </p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-5 leading-snug">
+            {focusHead}
+          </h2>
+          <p className="text-base md:text-lg text-white/60 leading-relaxed mb-10">
+            {focusLead} {focusTail}
+          </p>
+
+          <div className="space-y-5">
+            {[
+              { label: "In Clarity", v: r.focusClarity },
+              { label: "In Alignment", v: r.focusAlignment },
+              { label: "In Coordination", v: r.focusCoordInv },
+            ].map((row) => (
+              <div key={row.label}>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-sm font-semibold text-white/80">{row.label}</p>
+                  <p className="text-sm font-bold text-white/50">{row.v}/5</p>
+                </div>
+                <div className="w-full h-3 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{ width: `${clamp01pct(row.v)}%`, background: "#EE80DD" }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── WHAT'S WORKING ─── */}
       {strengths.length > 0 && (
         <section className="py-16 md:py-24 bg-white">
@@ -887,6 +1148,68 @@ function ResultsView({
         </div>
       </section>
 
+      {/* ─── BONUS · THE FOUNDATIONAL MOVE (§5 projection) ─── */}
+      <section className="relative bg-[#1C1334] overflow-hidden py-16 md:py-24">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{ backgroundImage: "url(/pink-topo-bg.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
+        />
+        <div className="relative max-w-3xl mx-auto px-6">
+          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#EE80DD] mb-4">
+            Bonus · The Foundational Move
+          </p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-5 leading-snug">
+            Most levers move one variable. Focus moves all three.
+          </h2>
+          <p className="text-base md:text-lg text-white/60 leading-relaxed mb-8">
+            Because execution <em className="not-italic text-white/90 font-semibold">multiplies</em> clarity, alignment, and coordination together, one foundational investment in focus compounds across every term at once — not just the weakest link.
+          </p>
+
+          {/* Stat block */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="text-sm text-white/40">Today</span>
+              <span className="text-2xl md:text-3xl font-extrabold text-white">{r.effectiveHeadcount.toLocaleString()}</span>
+              <span className="text-white/30 text-2xl">&rarr;</span>
+              <span className="text-sm text-white/40">With focus invested</span>
+              <span className="text-2xl md:text-3xl font-extrabold text-[#EE80DD]">{r.focusTo.toLocaleString()}</span>
+              <span className="text-sm font-bold text-[#EE80DD]">(+{r.focusGain}%)</span>
+            </div>
+          </div>
+
+          {/* Three lift bars */}
+          <div className="space-y-5 mb-8">
+            {focusBars.map((b) => (
+              <div key={b.label}>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-sm font-semibold text-white/80">{b.label}</p>
+                  <p className="text-xs font-bold" style={{ color: b.color }}>{b.deltaStr}</p>
+                </div>
+                <div className="relative w-full h-3 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
+                  {/* current */}
+                  <div
+                    className="absolute inset-y-0 left-0 rounded-full"
+                    style={{ width: `${Math.max(0, Math.min(100, b.fromPct))}%`, background: "rgba(255,255,255,0.25)" }}
+                  />
+                  {/* projected */}
+                  <div
+                    className="absolute inset-y-0 left-0 rounded-full transition-all duration-700"
+                    style={{ width: `${Math.max(0, Math.min(100, b.toPct))}%`, background: b.color, opacity: 0.85 }}
+                  />
+                </div>
+                <p className="text-xs text-white/40 mt-1.5">{b.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          {r.weakest !== "none" && (
+            <p className="text-base md:text-lg text-white/70 leading-relaxed border-t border-white/10 pt-6">
+              Improving just <span style={{ color: weakestColor }}>{weakestLabel.toLowerCase()}</span> lifts you <strong className="text-white">+{r.leverPct}%</strong>. Investing in focus — which moves all three at once — lifts you <strong className="text-[#EE80DD]">+{r.focusGain}%</strong>. That gap is the equation compounding.
+            </p>
+          )}
+        </div>
+      </section>
+
       {/* ─── RESEARCH ─── */}
       <section className={`py-16 md:py-24 ${strengths.length > 0 ? "bg-white" : "bg-[#F8F5FC]"}`}>
         <div className="max-w-4xl mx-auto px-6">
@@ -944,17 +1267,18 @@ function ResultsView({
             We&apos;ll walk through your equation — where clarity, alignment, or coordination cost is creating the biggest drag — and what high-performing organizations do differently.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <a
+            <TrackedLink
               href="https://calendly.com/getcampfire/"
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              eventName="calc_cta"
+              eventParams={{ cta: "book_teardown" }}
               className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] rounded-lg transition-colors"
             >
               Book a teardown
               <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
                 <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </TrackedLink>
             <div className="flex items-center gap-4">
               <button
                 onClick={handleCopy}
@@ -978,7 +1302,7 @@ function ResultsView({
                 )}
               </button>
               <button
-                onClick={onRestart}
+                onClick={handleRetake}
                 className="text-sm font-semibold text-white/40 hover:text-white/70 transition-colors"
               >
                 Retake
