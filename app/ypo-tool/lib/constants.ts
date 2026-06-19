@@ -186,11 +186,12 @@ export interface YpoSession {
 
 /* ═══ Validation ═══ */
 
-export const ALLOWED_DOMAIN = "@ypo.org";
+export const ALLOWED_DOMAINS = ["@ypo.org", "@getcampfire.com"];
 
 export function isValidYpoEmail(email: string): boolean {
+  const lower = email.toLowerCase();
   return (
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-    email.toLowerCase().endsWith(ALLOWED_DOMAIN)
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lower) &&
+    ALLOWED_DOMAINS.some((d) => lower.endsWith(d))
   );
 }

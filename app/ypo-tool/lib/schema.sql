@@ -9,7 +9,7 @@ CREATE TABLE ypo_users (
   name VARCHAR(200),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   last_login_at TIMESTAMP WITH TIME ZONE,
-  CONSTRAINT ypo_users_email_domain CHECK (email LIKE '%@ypo.org')
+  CONSTRAINT ypo_users_email_domain CHECK (email LIKE '%@ypo.org' OR email LIKE '%@getcampfire.com')
 );
 
 CREATE INDEX idx_ypo_users_email ON ypo_users(email);

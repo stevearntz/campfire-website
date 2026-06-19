@@ -27,13 +27,13 @@ export default function MagicLinkForm({
     const trimmed = email.trim().toLowerCase();
 
     if (!trimmed) {
-      setErrorMsg("Use your @ypo.org email.");
+      setErrorMsg("Use your @ypo.org or @getcampfire.com email.");
       setState("error");
       return;
     }
 
-    if (!trimmed.endsWith("@ypo.org")) {
-      setErrorMsg("Use your @ypo.org email.");
+    if (!trimmed.endsWith("@ypo.org") && !trimmed.endsWith("@getcampfire.com")) {
+      setErrorMsg("Use your @ypo.org or @getcampfire.com email.");
       setState("error");
       return;
     }
@@ -269,7 +269,7 @@ export default function MagicLinkForm({
               }}
             >
               {errorMsg ||
-                "We\u2019ll email a secure sign-in link. YPO members only."}
+                "We\u2019ll email a secure sign-in link. YPO and Campfire team only."}
             </p>
           </form>
         )}

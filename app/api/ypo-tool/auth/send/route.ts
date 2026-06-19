@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 
     if (!email || !isValidYpoEmail(email)) {
       return NextResponse.json(
-        { error: "Please use a valid @ypo.org email address." },
+        { error: "Please use a valid @ypo.org or @getcampfire.com email address." },
         { status: 400 },
       );
     }
