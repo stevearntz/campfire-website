@@ -43,7 +43,7 @@ async function getPosts(): Promise<BeehiivPost[]> {
       `https://api.beehiiv.com/v2/publications/${pubId}/posts?status=confirmed&order_by=publish_date&direction=desc&limit=20`,
       {
         headers: { Authorization: `Bearer ${apiKey}` },
-        next: { revalidate: 3600 },
+        next: { revalidate: 300 },
       }
     );
     if (!res.ok) return [];

@@ -37,7 +37,7 @@ async function getPost(slug: string): Promise<BeehiivPost | null> {
       `https://api.beehiiv.com/v2/publications/${pubId}/posts?status=confirmed&order_by=publish_date&direction=desc&limit=100&expand[]=free_web_content&slugs[]=${slug}`,
       {
         headers: { Authorization: `Bearer ${apiKey}` },
-        next: { revalidate: 3600 },
+        next: { revalidate: 300 },
       }
     );
     if (!res.ok) return null;
@@ -60,7 +60,7 @@ async function getRecentPosts(excludeSlug: string): Promise<BeehiivPost[]> {
       `https://api.beehiiv.com/v2/publications/${pubId}/posts?status=confirmed&order_by=publish_date&direction=desc&limit=4`,
       {
         headers: { Authorization: `Bearer ${apiKey}` },
-        next: { revalidate: 3600 },
+        next: { revalidate: 300 },
       }
     );
     if (!res.ok) return [];
