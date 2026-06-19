@@ -13,16 +13,20 @@ const AI_OPTIONS = [
   { label: "Deeply embedded", desc: "AI is core to how we work", multiplier: 2.5 },
 ];
 
+// The 4th item in every dimension is the focus question (the Focus throughline).
+// Focus is NOT a 4th equation term — it folds into each dimension's average.
 const CLARITY_QS = [
   "Leaders clearly articulate priorities and expected outcomes.",
   "Employees understand the strategy and how their work connects to it.",
   "When priorities shift, the reason and expected impact are communicated clearly.",
+  "We focus on a few clear priorities and actively say no to the rest.",
 ];
 
 const ALIGNMENT_QS = [
   "Team priorities clearly connect to company strategy.",
   "Managers consistently translate strategy into day-to-day actions.",
   "Cross-functional teams are aligned on shared goals and trade-offs.",
+  "Teams pull toward the same handful of priorities, not each pursuing their own list.",
 ];
 
 // These are framed negatively — high score = more friction = bad
@@ -30,6 +34,7 @@ const COORDINATION_QS = [
   "Teams spend significant time in meetings just to stay aligned.",
   "Work frequently gets duplicated or reworked due to miscommunication.",
   "Cross-team handoffs and decisions regularly create bottlenecks.",
+  "Meetings and effort get pulled in too many directions instead of the priorities that matter most.",
 ];
 
 const HEADCOUNT_PRESETS = [50, 200, 500, 1000, 3000];
@@ -221,9 +226,9 @@ export default function ExecutionCalculatorClient() {
   const [step, setStep] = useState<Step>(0);
   const [headcount, setHeadcount] = useState("");
   const [aiIdx, setAiIdx] = useState(-1);
-  const [clarity, setClarity] = useState([0, 0, 0]);
-  const [alignment, setAlignment] = useState([0, 0, 0]);
-  const [coordination, setCoordination] = useState([0, 0, 0]);
+  const [clarity, setClarity] = useState([0, 0, 0, 0]);
+  const [alignment, setAlignment] = useState([0, 0, 0, 0]);
+  const [coordination, setCoordination] = useState([0, 0, 0, 0]);
 
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -858,9 +863,9 @@ function ResultsView({
                 <span style={{ color: weakestColor }}>{weakestLabel}</span> is your biggest opportunity.
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                {r.weakest === "clarity" && "Your people are working without a shared understanding of what matters. When clarity is low, alignment and coordination are just organized confusion. Improving clarity is the foundation everything else depends on."}
-                {r.weakest === "alignment" && "Teams are pulling in different directions. Strategy exists, but it's being interpreted differently at every level. Improving alignment means helping managers translate priorities consistently — so individual effort adds up instead of pulling apart."}
-                {r.weakest === "coordination" && "Your teams are spending too much energy just staying coordinated. Meetings, rework, re-clarification, and handoff friction are absorbing capacity that should go toward outcomes. Reducing coordination cost is the fastest way to unlock execution speed."}
+                {r.weakest === "clarity" && "Clarity is the constraint. When priorities and expected outcomes aren't articulated sharply, every downstream decision inherits the ambiguity — and effort scatters. Tightening this is the highest-leverage move you can make."}
+                {r.weakest === "alignment" && "Alignment is the constraint. Strategy may be clear at the top, but it's not translating into coordinated action across teams. Closing the gap between intent and execution is where your capacity comes back."}
+                {r.weakest === "coordination" && "Coordination cost is the constraint. Too much energy is spent staying in sync — meetings, rework, bottlenecked handoffs. Reducing that friction frees capacity you already have without adding a single hire."}
               </p>
               <div className="bg-[#F8F5FC] rounded-2xl p-8">
                 <p className="text-base text-gray-600 mb-2">
