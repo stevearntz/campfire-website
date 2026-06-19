@@ -8,6 +8,58 @@ function peerCookieName(token: string) {
   return `ypo_peer_${token}`;
 }
 
+/** Check for existing response via cookie — does NOT create */
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ token: string }> },
+) {
+  try {
+    const { token } = await params;
+
+    const cookieStore = await cookies();
+    const existingId = cookieStore.get(peerCookieName(token))?.value;
+
+    if (!existingId) {
+      return NextResponse.json({ exists: false });
+    }
+
+    const { neon } = await import("@neondatabase/serverless");
+    const sql = neon(process.env.POSTGRES_URL!);
+
+    const invite = await sql`
+      SELECT id FROM ypo_peer_invite WHERE token = ${token} LIMIT 1
+    `;
+    if (invite.length === 0) {
+      return NextResponse.json({ exists: false });
+    }
+
+    const existing = await sql`
+      SELECT id, status FROM ypo_peer_response
+      WHERE id = ${parseInt(existingId, 10)} AND invite_id = ${invite[0].id}
+      LIMIT 1
+    `;
+    if (existing.length === 0) {
+      return NextResponse.json({ exists: false });
+    }
+
+    const answers = await sql`
+      SELECT item_key, value FROM ypo_peer_answer
+      WHERE peer_response_id = ${existing[0].id}
+    `;
+
+    return NextResponse.json({
+      exists: true,
+      responseId: existing[0].id,
+      status: existing[0].status,
+      answers: Object.fromEntries(answers.map((a) => [a.item_key, a.value])),
+    });
+  } catch (error) {
+    console.error("Peer response check error:", error);
+    return NextResponse.json({ exists: false });
+  }
+}
+
+/** Create a new response (or return existing if cookie present) */
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ token: string }> },
