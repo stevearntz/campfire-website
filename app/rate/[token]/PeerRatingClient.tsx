@@ -51,24 +51,22 @@ export default function PeerRatingClient({ token }: { token: string }) {
         const data = await res.json();
         setFirstName(data.rateeFirstName || "");
 
-        // Check for existing response (cookie-based resume)
-        const respRes = await fetch(`/api/ypo-tool/rate/${token}/response`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
-        });
-        if (respRes.ok) {
-          const respData = await respRes.json();
-          if (respData.status === "complete") {
-            setView("done");
-            return;
-          }
-          if (respData.answers && Object.keys(respData.answers).length > 0) {
-            setResponses(respData.answers);
-            setResponseStarted(true);
-            setStep(resumeStep(respData.answers));
-            setView("flow");
-            return;
+        // Check for existing in-progress response (cookie-based resume)
+        const checkRes = await fetch(`/api/ypo-tool/rate/${token}/response`);
+        if (checkRes.ok) {
+          const checkData = await checkRes.json();
+          if (checkData.exists) {
+            if (checkData.status === "complete") {
+              setView("done");
+              return;
+            }
+            if (checkData.answers && Object.keys(checkData.answers).length > 0) {
+              setResponses(checkData.answers);
+              setResponseStarted(true);
+              setStep(resumeStep(checkData.answers));
+              setView("flow");
+              return;
+            }
           }
         }
 
