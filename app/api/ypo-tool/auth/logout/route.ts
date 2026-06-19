@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { deleteSession } from "@/app/ypo-tool/lib/db";
-import { getSessionToken, clearSessionCookie } from "@/app/ypo-tool/lib/auth";
+import { deleteSession } from "@/app/(main)/ypo-tool/lib/db";
+import { getSessionToken, clearSessionCookie } from "@/app/(main)/ypo-tool/lib/auth";
 
 export async function POST() {
   try {

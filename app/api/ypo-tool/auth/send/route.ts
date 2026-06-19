@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { isValidYpoEmail } from "@/app/ypo-tool/lib/constants";
-import { checkRateLimit, createAuthToken, upsertUser } from "@/app/ypo-tool/lib/db";
-import { sendMagicLink } from "@/app/ypo-tool/lib/email";
+import { isValidYpoEmail } from "@/app/(main)/ypo-tool/lib/constants";
+import { checkRateLimit, createAuthToken, upsertUser } from "@/app/(main)/ypo-tool/lib/db";
+import { sendMagicLink } from "@/app/(main)/ypo-tool/lib/email";
 
 export async function POST(request: Request) {
   try {

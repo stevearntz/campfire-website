@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
       { hostname: "images.lumacdn.com" },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/sprint", destination: "/team-effectiveness", permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { ALL_ITEM_KEYS } from "@/app/ypo-tool/lib/behaviors";
+import { ALL_ITEM_KEYS } from "@/app/(main)/ypo-tool/lib/behaviors";
 
 function peerCookieName(token: string) {
   return `ypo_peer_${token}`;

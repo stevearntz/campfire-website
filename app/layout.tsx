@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { League_Spartan, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import CrispChat from "./components/CrispChat";
 import Clarity from "./components/Clarity";
 import RB2B from "./components/RB2B";
-import ConsoleGreeting from "./components/ConsoleGreeting";
-import CheatCodes from "./components/CheatCodes";
-import AsteroidsEgg from "./components/AsteroidsEgg";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const spartan = League_Spartan({
@@ -67,31 +61,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.clarity.ms" />
       </head>
       <body className={`${spartan.variable} ${dmSerif.variable} antialiased font-sans`}>
-        <div id="easter-egg" hidden dangerouslySetInnerHTML={{ __html: `<!--
-
-        (  )
-       (    )
-        (  )
-       _|__|_
-      |      |
-      |______|
-
-   Warming up the logs...
-   Want to build something with us?
-   getcampfire.com/contact
-
--->` }} />
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-[#6E3FCC] focus:rounded-lg focus:shadow-lg focus:font-semibold focus:text-sm">Skip to main content</a>
-        <Navbar />
-        <div id="main-content">{children}</div>
-        <Footer />
-        <CrispChat />
+        {children}
         <Clarity />
         <RB2B />
         <GoogleAnalytics />
-        <ConsoleGreeting />
-        <CheatCodes />
-        <AsteroidsEgg />
       </body>
     </html>
   );

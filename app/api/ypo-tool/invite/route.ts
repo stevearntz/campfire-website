@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/app/ypo-tool/lib/auth";
+import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
 import crypto from "crypto";
 
 function generateToken(): string {
