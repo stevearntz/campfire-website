@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Placeholder from "../_components/Placeholder";
+import ModelContent from "./_components/ModelContent";
 
 export const metadata: Metadata = {
   title: "The Model",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function TheModelPage() {
-  return <Placeholder eyebrow="The Model · a Campfire point of view" title="The Model" />;
+  return <ModelContent />;
 }
