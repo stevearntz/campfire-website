@@ -32,7 +32,7 @@ export default function PartCard({
       </p>
       <TrackedLink
         href={href}
-        eventName="te_hub_click"
+        eventName="te_link"
         eventParams={{ label: "learn_more", part: `part_${step}` }}
         className="text-[14px] font-semibold inline-flex items-center gap-1 transition-colors group-hover:gap-2"
         style={{ color: "#6E3FCC" }}

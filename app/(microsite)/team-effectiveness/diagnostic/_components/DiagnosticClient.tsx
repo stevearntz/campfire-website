@@ -87,7 +87,7 @@ export default function DiagnosticClient() {
           <div className="flex gap-3 justify-center flex-wrap mt-9">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "diagnostic_hero" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -96,7 +96,7 @@ export default function DiagnosticClient() {
             </TrackedLink>
             <TrackedLink
               href="#sample"
-              eventName="te_diagnostic_click"
+              eventName="te_link"
               eventParams={{ label: "see_sample", location: "diagnostic_hero" }}
               className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.25)" }}
@@ -152,7 +152,7 @@ export default function DiagnosticClient() {
             <div className="mt-5">
               <TrackedLink
                 href={MODEL}
-                eventName="te_diagnostic_click"
+                eventName="te_link"
                 eventParams={{ label: "read_the_model", location: "diagnostic_measures" }}
                 className="text-[14px] font-semibold inline-flex items-center gap-1"
                 style={{ color: "#6E3FCC" }}
@@ -217,7 +217,7 @@ export default function DiagnosticClient() {
           <div className="mt-9">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "diagnostic_closing" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -228,7 +228,7 @@ export default function DiagnosticClient() {
           <div className="mt-8">
             <TrackedLink
               href={HUB}
-              eventName="te_diagnostic_click"
+              eventName="te_link"
               eventParams={{ label: "back_to_hub", location: "diagnostic_closing" }}
               className="text-[14px] font-semibold inline-flex items-center gap-1"
               style={{ color: "rgba(255,255,255,0.7)" }}

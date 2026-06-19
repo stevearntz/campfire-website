@@ -122,7 +122,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
 
         <TrackedLink
           href={`/team-effectiveness/case-studies/${c.slug}`}
-          eventName="case_study_click"
+          eventName="te_link"
           eventParams={{ slug: c.slug, location: "index_card" }}
           className="mt-auto text-[14px] font-bold inline-flex items-center gap-1 transition-all group-hover:gap-2"
           style={{ color: c.accent }}
@@ -178,8 +178,8 @@ export default function CaseStudiesIndexPage() {
             <TrackedLink
               href={CALENDLY}
               external
-              eventName="case_study_cta"
-              eventParams={{ cta: "book_a_call", location: "index_hero" }}
+              eventName="te_cta"
+              eventParams={{ cta: "book_call", location: "index_hero" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
             >
@@ -285,8 +285,8 @@ export default function CaseStudiesIndexPage() {
             <TrackedLink
               href={CALENDLY}
               external
-              eventName="case_study_cta"
-              eventParams={{ cta: "book_a_call", location: "index_closing" }}
+              eventName="te_cta"
+              eventParams={{ cta: "book_call", location: "index_closing" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
             >
@@ -294,7 +294,7 @@ export default function CaseStudiesIndexPage() {
             </TrackedLink>
             <TrackedLink
               href={CALC}
-              eventName="case_study_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "index_closing" }}
               className="text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] border transition-colors"
               style={{ color: "#6E3FCC", borderColor: "#6E3FCC" }}

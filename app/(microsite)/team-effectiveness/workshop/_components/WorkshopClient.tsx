@@ -165,8 +165,8 @@ export default function WorkshopClient() {
               <TrackedLink
                 href={CALENDLY}
                 external
-                eventName="workshop_cta"
-                eventParams={{ cta: "book_sprint", location: "workshop_hero" }}
+                eventName="te_cta"
+                eventParams={{ cta: "book_call", location: "workshop_hero" }}
                 className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] transition-colors"
                 style={{ background: "#E055CB" }}
               >
@@ -174,7 +174,7 @@ export default function WorkshopClient() {
               </TrackedLink>
               <TrackedLink
                 href={CALC}
-                eventName="calc_cta"
+                eventName="te_cta"
                 eventParams={{ cta: "start_diagnostic", location: "workshop_hero" }}
                 className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
                 style={{ borderColor: "rgba(255,255,255,0.25)" }}
@@ -344,8 +344,8 @@ export default function WorkshopClient() {
             <TrackedLink
               href={CALENDLY}
               external
-              eventName="workshop_cta"
-              eventParams={{ cta: "book_workshop", location: "workshop_showcase" }}
+              eventName="te_cta"
+              eventParams={{ cta: "book_call", location: "workshop_showcase" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#6E3FCC" }}
             >
@@ -392,7 +392,7 @@ export default function WorkshopClient() {
           <div className="mt-9">
             <TrackedLink
               href={DIAGNOSTIC}
-              eventName="workshop_cta"
+              eventName="te_cta"
               eventParams={{ cta: "see_diagnostic", location: "workshop_closing" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -403,7 +403,7 @@ export default function WorkshopClient() {
           <div className="mt-8">
             <TrackedLink
               href={HUB}
-              eventName="te_hub_click"
+              eventName="te_link"
               eventParams={{ label: "back_to_hub", location: "workshop_closing" }}
               className="text-[14px] font-semibold transition-colors hover:text-white"
               style={{ color: "rgba(255,255,255,0.6)" }}

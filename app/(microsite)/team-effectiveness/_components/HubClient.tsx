@@ -93,7 +93,7 @@ export default function HubClient() {
           <div className="flex gap-3 justify-center flex-wrap mt-9">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "hub_hero" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] transition-colors"
               style={{ background: "#E055CB" }}
@@ -102,7 +102,7 @@ export default function HubClient() {
             </TrackedLink>
             <TrackedLink
               href="#included"
-              eventName="te_hub_click"
+              eventName="te_link"
               eventParams={{ label: "how_it_works", location: "hub_hero" }}
               className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.25)" }}
@@ -173,7 +173,7 @@ export default function HubClient() {
           <div className="flex gap-3 justify-center flex-wrap mt-12">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "hub_equation" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -182,7 +182,7 @@ export default function HubClient() {
             </TrackedLink>
             <TrackedLink
               href="/team-effectiveness/the-model"
-              eventName="te_hub_click"
+              eventName="te_link"
               eventParams={{ label: "read_the_model", location: "hub_equation" }}
               className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.25)" }}
@@ -255,7 +255,7 @@ export default function HubClient() {
           <div className="mt-8">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "hub_investment" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
@@ -279,7 +279,7 @@ export default function HubClient() {
           <div className="mt-9">
             <TrackedLink
               href={CALC}
-              eventName="calc_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "hub_closing" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}

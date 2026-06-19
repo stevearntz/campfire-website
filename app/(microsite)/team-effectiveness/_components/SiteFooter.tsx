@@ -67,8 +67,8 @@ export default function SiteFooter() {
                     <TrackedLink
                       href={link.href}
                       external={link.external}
-                      eventName="te_footer_click"
-                      eventParams={{ label: link.label }}
+                      eventName="te_link"
+                      eventParams={{ label: link.label, location: "site_footer" }}
                       className="text-[15px] transition-colors hover:text-white"
                       style={{ color: "rgba(255,255,255,0.7)" }}
                     >
@@ -91,8 +91,8 @@ export default function SiteFooter() {
           </p>
           <TrackedLink
             href="/"
-            eventName="te_footer_click"
-            eventParams={{ label: "back_to_main" }}
+            eventName="te_link"
+            eventParams={{ label: "back_to_main", location: "site_footer" }}
             className="text-[13px] transition-colors hover:text-white"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >

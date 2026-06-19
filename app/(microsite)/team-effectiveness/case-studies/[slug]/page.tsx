@@ -34,7 +34,7 @@ function BackLink({ location }: { location: string }) {
   return (
     <TrackedLink
       href={INDEX}
-      eventName="case_study_click"
+      eventName="te_link"
       eventParams={{ slug: "index", location }}
       className="text-[14px] font-semibold inline-flex items-center gap-1 transition-all hover:gap-2"
       style={{ color: "#6E3FCC" }}
@@ -374,8 +374,8 @@ export default async function CaseStudyPage({
             <TrackedLink
               href={CALENDLY}
               external
-              eventName="case_study_cta"
-              eventParams={{ cta: "book_a_call", slug: c.slug, location: "study_closing" }}
+              eventName="te_cta"
+              eventParams={{ cta: "book_call", slug: c.slug, location: "study_closing" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
             >
@@ -383,7 +383,7 @@ export default async function CaseStudyPage({
             </TrackedLink>
             <TrackedLink
               href={CALC}
-              eventName="case_study_cta"
+              eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", slug: c.slug, location: "study_closing" }}
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.3)" }}
@@ -394,7 +394,7 @@ export default async function CaseStudyPage({
           <div className="mt-8">
             <TrackedLink
               href={INDEX}
-              eventName="case_study_click"
+              eventName="te_link"
               eventParams={{ slug: "index", location: "study_closing" }}
               className="text-[14px] font-semibold inline-flex items-center gap-1 transition-all hover:gap-2"
               style={{ color: "#9D88ED" }}
