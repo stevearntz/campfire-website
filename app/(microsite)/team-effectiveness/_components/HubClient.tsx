@@ -63,40 +63,40 @@ export default function HubClient() {
     <>
       {/* ───────── 1. HERO — dark ───────── */}
       <section
-        className="relative overflow-hidden flex items-center"
-        style={{ background: "#1C1334", minHeight: "clamp(560px, calc(100vh - 64px), 820px)", paddingTop: 48, paddingBottom: 48, paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}
+        className="relative overflow-hidden text-center"
+        style={{ background: "#1C1334", paddingTop: "clamp(72px, 11vw, 132px)", paddingBottom: "clamp(72px, 11vw, 132px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "url(/purple-topo-tall.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.13 }}
+          style={{ backgroundImage: "url(/purple-topo-tall.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.14 }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(110% 80% at 50% 0%, rgba(110,63,204,0.32), rgba(28,19,52,0) 62%)" }}
+          style={{ background: "radial-gradient(115% 85% at 50% 0%, rgba(110,63,204,0.34) 0%, rgba(28,19,52,0) 60%)" }}
         />
-        <div className="relative mx-auto text-center" style={{ maxWidth: 780 }}>
+        <div className="relative mx-auto text-center" style={{ maxWidth: 820 }}>
           <Eyebrow>Team Effectiveness Sprint</Eyebrow>
           <h1
             className="font-extrabold text-white"
-            style={{ fontSize: "clamp(38px, 5.6vw, 60px)", lineHeight: 1.06, letterSpacing: "-0.02em" }}
+            style={{ fontSize: "clamp(38px, 6vw, 62px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
           >
             Your team is working hard.
             <br />
-            <span style={{ color: "#9D88ED" }}>Why does progress feel slow?</span>
+            <span style={{ color: "#E055CB" }}>Why does progress feel slow?</span>
           </h1>
           <p
-            className="mx-auto mt-6"
-            style={{ maxWidth: 600, fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.6, color: "rgba(255,255,255,0.8)" }}
+            className="mx-auto"
+            style={{ maxWidth: 660, marginTop: 26, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.6, color: "rgba(255,255,255,0.82)" }}
           >
             When priorities shift, teams grow, or AI accelerates the pace, communication and coordination quietly break down — and the cracks show faster than ever. A focused sprint to find what&apos;s slowing you down, with a practical plan to move forward.
           </p>
-          <div className="flex gap-3 justify-center flex-wrap mt-9">
+          <div className="flex flex-wrap justify-center" style={{ gap: 14, marginTop: 38 }}>
             <TrackedLink
               href={CALC}
               eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "hub_hero" }}
-              className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] transition-colors"
-              style={{ background: "#E055CB" }}
+              className="text-white text-[14px] font-bold tracking-[0.1em] uppercase rounded-[8px] whitespace-nowrap transition-opacity hover:opacity-90"
+              style={{ background: "#E055CB", padding: "17px 32px" }}
             >
               Start the diagnostic →
             </TrackedLink>
@@ -104,13 +104,13 @@ export default function HubClient() {
               href="#included"
               eventName="te_link"
               eventParams={{ label: "how_it_works", location: "hub_hero" }}
-              className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
-              style={{ borderColor: "rgba(255,255,255,0.25)" }}
+              className="text-[14px] font-bold tracking-[0.1em] uppercase rounded-[8px] transition-opacity hover:opacity-90"
+              style={{ background: "#ffffff", color: "#1E2A4A", padding: "17px 32px" }}
             >
               How it works
             </TrackedLink>
           </div>
-          <p className="mt-6 text-[13px]" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p style={{ marginTop: 26, fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.58)" }}>
             2-minute diagnostic · private to you · no sign-up to start
           </p>
         </div>
