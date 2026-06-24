@@ -113,9 +113,9 @@ export default function HubClient() {
       <section className="bg-white" style={{ paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
         <div className="mx-auto" style={{ maxWidth: 1000 }}>
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow color="#B23B9F">Sound Familiar?</Eyebrow>
+            <Eyebrow color="#6E3FCC">Sound Familiar?</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              The challenges slowing teams down
+              The challenges <span style={{ color: "#6E3FCC" }}>slowing teams down</span>
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
               If your team is experiencing one or more of these challenges, you&apos;re not alone. The good news? They&apos;re solvable.
