@@ -81,7 +81,7 @@ export default function HubClient() {
           </h1>
           <p
             className="mx-auto"
-            style={{ maxWidth: 660, marginTop: 26, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.6, color: "rgba(255,255,255,0.82)" }}
+            style={{ maxWidth: 580, marginTop: 26, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.6, color: "rgba(255,255,255,0.82)" }}
           >
             As work speeds up and priorities shift, teams often lose clarity, alignment, and momentum. Campfire helps teams identify what&apos;s getting in the way and create a practical path forward.
           </p>
