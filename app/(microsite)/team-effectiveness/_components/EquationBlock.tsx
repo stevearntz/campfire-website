@@ -7,10 +7,14 @@ export default function EquationBlock({
   variant = "light",
   result = "Execution",
   showCapacity = true,
+  resultColor,
+  stackResult = false,
 }: {
   variant?: "light" | "dark";
   result?: string;
   showCapacity?: boolean;
+  resultColor?: string;
+  stackResult?: boolean;
 }) {
   const dark = variant === "dark";
   const ink = dark ? "rgba(255,255,255,0.92)" : "#1E2A4A";
@@ -28,7 +32,15 @@ export default function EquationBlock({
       className="flex items-center justify-center gap-3 md:gap-4 flex-wrap"
       style={{ fontWeight: 800, lineHeight: 1.1 }}
     >
-      <span style={{ color: ink, fontSize: big }}>{result}</span>
+      <span
+        style={{
+          color: resultColor ?? ink,
+          fontSize: big,
+          ...(stackResult ? { flexBasis: "100%" } : {}),
+        }}
+      >
+        {result}
+      </span>
       <span style={{ color: muted, fontSize: big }}>=</span>
 
       {/* fraction */}

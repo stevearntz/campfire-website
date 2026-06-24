@@ -161,7 +161,7 @@ export default function HubClient() {
           </div>
 
           <div className="rounded-[20px] border px-6 py-10 md:py-12" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.1)" }}>
-            <EquationBlock variant="dark" result="Team Effectiveness" showCapacity={false} />
+            <EquationBlock variant="dark" result="Team Effectiveness" resultColor="#E055CB" stackResult showCapacity={false} />
             <p className="text-center mx-auto mt-7" style={{ maxWidth: 600, fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.55)" }}>
               Capacity matters too. AI can increase a team&apos;s capacity, but capacity alone doesn&apos;t create results. Teams still need clarity, alignment, and coordination to translate potential into performance.
             </p>
@@ -212,7 +212,9 @@ export default function HubClient() {
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
             <Eyebrow color="#6E3FCC">The Team Effectiveness Sprint</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              From insight to action in three steps
+              From insight to action
+              <br />
+              <span style={{ color: "#6E3FCC" }}>in three steps</span>
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
               A simple, guided process to help teams identify the challenges slowing progress and start building momentum together.
