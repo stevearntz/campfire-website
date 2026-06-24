@@ -250,7 +250,9 @@ export default function HubClient() {
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
             <Eyebrow color="#B23B9F">The Results</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              Designed to improve how teams work together
+              Designed to improve
+              <br />
+              how teams work together
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
               While every team is different, these are some of the most common outcomes teams experience after the sprint.
