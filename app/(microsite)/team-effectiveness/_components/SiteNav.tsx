@@ -33,18 +33,17 @@ export default function SiteNav() {
 
   return (
     <header
-      className="fixed top-0 inset-x-0 z-50 border-b"
+      className="sticky top-0 z-50 border-b"
       style={{
-        height: 64,
         background: "rgba(255,255,255,0.95)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
         borderColor: "#F1EEF8",
       }}
     >
       <div
-        className="h-16 flex items-center justify-between"
-        style={{ paddingLeft: "clamp(20px, 5vw, 48px)", paddingRight: "clamp(20px, 5vw, 48px)" }}
+        className="flex items-center justify-between"
+        style={{ padding: "14px clamp(20px, 5vw, 56px)" }}
       >
         {/* Left: return link + logo */}
         <div className="flex items-center gap-5">
@@ -52,8 +51,7 @@ export default function SiteNav() {
             href={MAIN_SITE_HREF}
             eventName="te_link"
             eventParams={{ label: "back_to_main", location: "site_nav" }}
-            className="hidden sm:inline text-[13px] font-medium transition-colors"
-            style={{ color: "#9B96A6" }}
+            className="hidden sm:inline text-[13px] font-medium transition-colors text-[#9B96A6] hover:text-[#6E3FCC]"
           >
             ← getcampfire.com
           </TrackedLink>
@@ -77,8 +75,7 @@ export default function SiteNav() {
                 href={link.href}
                 eventName="te_link"
                 eventParams={{ label: link.label, location: "site_nav" }}
-                className="relative text-[15px] font-semibold transition-colors"
-                style={{ color: active ? "#6E3FCC" : "#1E2A4A" }}
+                className={`relative text-[14px] transition-colors ${active ? "text-[#6E3FCC] font-bold" : "text-[#636B7C] font-semibold hover:text-[#6E3FCC]"}`}
               >
                 {link.label}
                 {active && (
@@ -94,8 +91,8 @@ export default function SiteNav() {
             href={CALCULATOR_HREF}
             eventName="te_cta"
             eventParams={{ cta: "start_diagnostic", location: "site_nav" }}
-            className="text-white text-[13px] font-bold tracking-[0.1em] uppercase px-5 py-3 rounded-[10px] transition-colors"
-            style={{ background: "#E055CB" }}
+            className="text-white text-[12px] font-bold tracking-[0.1em] uppercase rounded-[8px] whitespace-nowrap transition-colors bg-[#6E3FCC] hover:bg-[#5B34AB]"
+            style={{ padding: "11px 20px" }}
           >
             Start the diagnostic
           </TrackedLink>
@@ -120,7 +117,7 @@ export default function SiteNav() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="lg:hidden fixed inset-0 top-16 z-40" onClick={() => setOpen(false)}>
+        <div className="lg:hidden fixed inset-0 top-[57px] z-40" onClick={() => setOpen(false)}>
           <div className="absolute inset-0 bg-black/20" />
           <nav
             className="relative bg-white px-6 py-6 flex flex-col gap-1 border-b shadow-lg"
@@ -134,7 +131,7 @@ export default function SiteNav() {
                 eventName="te_link"
                 eventParams={{ label: link.label, location: "site_nav_mobile" }}
                 className="py-3 text-[17px] font-semibold"
-                style={{ color: isActive(link.href) ? "#6E3FCC" : "#1E2A4A" }}
+                style={{ color: isActive(link.href) ? "#6E3FCC" : "#636B7C" }}
               >
                 <span onClick={() => setOpen(false)}>{link.label}</span>
               </TrackedLink>
@@ -143,8 +140,7 @@ export default function SiteNav() {
               href={CALCULATOR_HREF}
               eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "site_nav_mobile" }}
-              className="mt-3 text-center text-white text-[13px] font-bold tracking-[0.1em] uppercase px-5 py-4 rounded-[10px]"
-              style={{ background: "#E055CB" }}
+              className="mt-3 text-center text-white text-[12px] font-bold tracking-[0.1em] uppercase px-5 py-4 rounded-[8px] bg-[#6E3FCC] hover:bg-[#5B34AB]"
             >
               <span onClick={() => setOpen(false)}>Start the diagnostic</span>
             </TrackedLink>

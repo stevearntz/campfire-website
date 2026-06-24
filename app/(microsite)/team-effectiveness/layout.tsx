@@ -30,7 +30,7 @@ export default function TeamEffectivenessLayout({
   return (
     <>
       <SiteNav />
-      <main id="main-content" className="pt-16">
+      <main id="main-content">
         {children}
       </main>
       <SiteFooter />
