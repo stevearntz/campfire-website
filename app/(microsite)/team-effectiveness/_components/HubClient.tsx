@@ -201,7 +201,7 @@ export default function HubClient() {
               href="/team-effectiveness/the-model"
               eventName="te_link"
               eventParams={{ label: "explore_model", location: "hub_equation" }}
-              className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
+              className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.25)" }}
             >
               Explore the model
