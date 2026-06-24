@@ -255,7 +255,9 @@ export default function HubClient() {
               how teams work together
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
-              While every team is different, these are some of the most common outcomes teams experience after the sprint.
+              While every team is different, these are some of the
+              <br />
+              most common outcomes teams experience after the sprint.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4 mx-auto" style={{ maxWidth: 880 }}>
