@@ -3,7 +3,7 @@ import SiteNav from "./_components/SiteNav";
 import SiteFooter from "./_components/SiteFooter";
 
 const OG_DESC =
-  "Your team is working hard. Why does progress feel slow? Take the 2-minute execution diagnostic — see your real execution score and the fastest lever.";
+  "As work speeds up and priorities shift, teams lose clarity, alignment, and momentum. Campfire helps teams identify what's getting in the way and create a practical path forward.";
 
 // Applies to all /team-effectiveness/* pages (pages still override their own title/description).
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Campfire",
     title: "Team Effectiveness Sprint",
     description: OG_DESC,
-    images: [{ url: "/og-sprint.png", width: 1200, height: 630, alt: "Campfire Team Effectiveness Sprint — your 300 people execute like 90" }],
+    images: [{ url: "/og-sprint.png", width: 1200, height: 630, alt: "Campfire Team Effectiveness Sprint" }],
   },
   twitter: {
     card: "summary_large_image",

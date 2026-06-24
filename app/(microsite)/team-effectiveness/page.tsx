@@ -4,7 +4,7 @@ import HubClient from "./_components/HubClient";
 export const metadata: Metadata = {
   title: "Team Effectiveness Sprint",
   description:
-    "Your team is working hard. Why does progress feel slow? A focused sprint to find what's slowing you down — with a practical plan to move forward.",
+    "Turn team friction into forward momentum. Campfire helps teams identify what's getting in the way — clarity, alignment, coordination — and create a practical path forward.",
 };
 
 export default function TeamEffectivenessHub() {
