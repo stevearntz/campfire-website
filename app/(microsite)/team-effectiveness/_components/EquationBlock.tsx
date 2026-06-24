@@ -27,41 +27,48 @@ export default function EquationBlock({
   const big = "clamp(20px, 3.4vw, 30px)";
   const frac = "clamp(15px, 2.6vw, 26px)";
 
-  return (
-    <div
-      className="flex items-center justify-center gap-3 md:gap-4 flex-wrap"
-      style={{ fontWeight: 800, lineHeight: 1.1 }}
-    >
-      <span
-        style={{
-          color: resultColor ?? ink,
-          fontSize: big,
-          ...(stackResult ? { flexBasis: "100%" } : {}),
-        }}
-      >
-        {result}
-      </span>
-      <span style={{ color: muted, fontSize: big }}>=</span>
+  const fractionEl = (
+    <div className="flex flex-col items-center">
+      <div className="flex items-center gap-2 md:gap-3 px-2" style={{ fontSize: frac }}>
+        <span style={{ color: clarity }}>Clarity</span>
+        <span style={{ color: muted }}>×</span>
+        <span style={{ color: alignment }}>Alignment</span>
+      </div>
+      <div className="w-full my-1.5" style={{ height: 2, background: rule, borderRadius: 2 }} />
+      <div className="px-2" style={{ fontSize: frac, color: coordination }}>
+        Coordination Cost
+      </div>
+    </div>
+  );
 
-      {/* fraction */}
-      <div className="flex flex-col items-center">
-        <div className="flex items-center gap-2 md:gap-3 px-2" style={{ fontSize: frac }}>
-          <span style={{ color: clarity }}>Clarity</span>
-          <span style={{ color: muted }}>×</span>
-          <span style={{ color: alignment }}>Alignment</span>
-        </div>
-        <div className="w-full my-1.5" style={{ height: 2, background: rule, borderRadius: 2 }} />
-        <div className="px-2" style={{ fontSize: frac, color: coordination }}>
-          Coordination Cost
+  const capacityEl = showCapacity ? (
+    <>
+      <span style={{ color: muted, fontSize: big }}>×</span>
+      <span style={{ color: ink, fontSize: big }}>Capacity</span>
+    </>
+  ) : null;
+
+  // Stacked: result centered on its own line, the "= fraction" centered below.
+  if (stackResult) {
+    return (
+      <div className="flex flex-col items-center gap-3 md:gap-4" style={{ fontWeight: 800, lineHeight: 1.1 }}>
+        <span style={{ color: resultColor ?? ink, fontSize: big }}>{result}</span>
+        <div className="flex items-center justify-center gap-3 md:gap-4">
+          <span style={{ color: muted, fontSize: big }}>=</span>
+          {fractionEl}
+          {capacityEl}
         </div>
       </div>
+    );
+  }
 
-      {showCapacity && (
-        <>
-          <span style={{ color: muted, fontSize: big }}>×</span>
-          <span style={{ color: ink, fontSize: big }}>Capacity</span>
-        </>
-      )}
+  // Inline: result = fraction × Capacity on one centered (wrapping) row.
+  return (
+    <div className="flex items-center justify-center gap-3 md:gap-4 flex-wrap" style={{ fontWeight: 800, lineHeight: 1.1 }}>
+      <span style={{ color: resultColor ?? ink, fontSize: big }}>{result}</span>
+      <span style={{ color: muted, fontSize: big }}>=</span>
+      {fractionEl}
+      {capacityEl}
     </div>
   );
 }
