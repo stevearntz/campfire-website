@@ -1,44 +1,40 @@
 import TrackedLink from "@/app/components/TrackedLink";
 import EquationBlock from "./EquationBlock";
-import ChallengeCard from "./ChallengeCard";
 import PartCard from "./PartCard";
 
 const CALC = "/team-effectiveness/calculator";
+const CALENDLY = "https://calendly.com/getcampfire/";
 const SECTION_PX = "clamp(24px, 6vw, 80px)";
 
 const CHALLENGES = [
   {
-    accent: "#F59E2C",
-    title: "The team is working hard, but progress feels slower than it should.",
-    points: ["Too many competing priorities", "Lack of focus", "Difficulty turning plans into action"],
+    challenge: "Progress feels slower than it should",
+    looksLike: "Too many priorities, lack of focus, difficulty turning plans into action",
   },
   {
-    accent: "#6E3FCC",
-    title: "Communication and coordination are breaking down.",
-    points: ["Information isn't flowing effectively", "Teams are working in silos", "Cross-functional work feels difficult"],
+    challenge: "Communication and coordination break down",
+    looksLike: "Information gets stuck, teams work in silos, cross-functional work becomes harder",
   },
   {
-    accent: "#E055CB",
-    title: "The same issues keep resurfacing — and never fully resolve.",
-    points: ["Decisions aren't sticking", "Accountability is unclear", "Leaders keep revisiting the same conversations"],
+    challenge: "The same issues keep resurfacing",
+    looksLike: "Decisions don't stick, accountability is unclear, the same conversations keep happening",
   },
   {
-    accent: "#9D88ED",
-    title: "The team is navigating change on several fronts at once.",
-    points: ["New strategy or priorities", "Growth, restructuring, or AI adoption", "New leaders or evolving responsibilities"],
+    challenge: "The team is being asked to adapt quickly",
+    looksLike: "New priorities, growth, restructuring, new leaders, changing expectations",
   },
 ];
 
 const TERMS = [
-  { label: "Clarity", micro: "Foundation", color: "#F59E2C", body: "Shared understanding of what we're solving — at every level of the org." },
-  { label: "Alignment", micro: "Multiplier", color: "#6E3FCC", body: "Every team's plan adds up to the same plan, with trade-offs agreed." },
-  { label: "Coordination Cost", micro: "Drag", color: "#E055CB", body: "The drag of meetings, rework and politics needed to move work forward." },
+  { label: "Clarity", micro: "Foundation", color: "#F59E2C", body: "A shared understanding of priorities, expectations, and outcomes." },
+  { label: "Alignment", micro: "Multiplier", color: "#6E3FCC", body: "People and teams moving in the same direction." },
+  { label: "Coordination Cost", micro: "Drag", color: "#E055CB", body: "The time and effort spent on meetings, handoffs, and rework." },
 ];
 
 const PARTS = [
-  { step: 1, name: "Team Effectiveness Diagnostic", illo: "/binoculars.webp", href: "/team-effectiveness/diagnostic", desc: "A short assessment to understand how the team is currently functioning and identify the biggest opportunities for improvement." },
-  { step: 2, name: "Facilitated Workshop", illo: "/carry-load.webp", href: "/team-effectiveness/workshop", desc: "A virtual or in-person workshop to review findings, align on priorities, and address the team's most important challenges." },
-  { step: 3, name: "Team Roadmap", illo: "/kite.webp", href: "/team-effectiveness/roadmap", desc: "A practical summary of key findings, recommended focus areas, and next steps for the next 90 days." },
+  { step: 1, name: "Identify the factors impacting performance", illo: "/binoculars.webp", href: "/team-effectiveness/diagnostic", desc: "Use a short diagnostic to understand where clarity, alignment, and coordination may be breaking down." },
+  { step: 2, name: "Align on priorities and opportunities", illo: "/carry-load.webp", href: "/team-effectiveness/workshop", desc: "A virtual or in-person workshop to review findings, align on priorities, and address the team's most important challenges." },
+  { step: 3, name: "Get a clear plan to move forward", illo: "/kite.webp", href: "/team-effectiveness/roadmap", desc: "Receive a practical roadmap with key findings, recommended focus areas, and clear next steps tailored to your team's needs." },
 ];
 
 const OUTCOMES = [
@@ -80,15 +76,14 @@ export default function HubClient() {
             className="font-extrabold text-white"
             style={{ fontSize: "clamp(38px, 6vw, 62px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
           >
-            Your team is working hard.
-            <br />
-            <span style={{ color: "#E055CB" }}>Why does progress feel slow?</span>
+            Turn team friction into{" "}
+            <span style={{ color: "#E055CB" }}>forward momentum</span>
           </h1>
           <p
             className="mx-auto"
             style={{ maxWidth: 660, marginTop: 26, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.6, color: "rgba(255,255,255,0.82)" }}
           >
-            When priorities shift, teams grow, or AI accelerates the pace, communication and coordination quietly break down — and the cracks show faster than ever. A focused sprint to find what&apos;s slowing you down, with a practical plan to move forward.
+            As work speeds up and priorities shift, teams often lose clarity, alignment, and momentum. Campfire helps teams identify what&apos;s getting in the way and create a practical path forward.
           </p>
           <div className="flex flex-wrap justify-center" style={{ gap: 14, marginTop: 38 }}>
             <TrackedLink
@@ -98,59 +93,77 @@ export default function HubClient() {
               className="text-white text-[14px] font-bold tracking-[0.1em] uppercase rounded-[8px] whitespace-nowrap transition-opacity hover:opacity-90"
               style={{ background: "#E055CB", padding: "17px 32px" }}
             >
-              Start the diagnostic →
+              Get your team effectiveness score →
             </TrackedLink>
             <TrackedLink
-              href="#included"
-              eventName="te_link"
-              eventParams={{ label: "how_it_works", location: "hub_hero" }}
+              href={CALENDLY}
+              external
+              eventName="te_cta"
+              eventParams={{ cta: "book_call", location: "hub_hero" }}
               className="text-[14px] font-bold tracking-[0.1em] uppercase rounded-[8px] transition-opacity hover:opacity-90"
               style={{ background: "#ffffff", color: "#1E2A4A", padding: "17px 32px" }}
             >
-              How it works
+              Talk with our team
             </TrackedLink>
           </div>
-          <p style={{ marginTop: 26, fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.58)" }}>
-            2-minute diagnostic · private to you · no sign-up to start
-          </p>
         </div>
       </section>
 
       {/* ───────── 2. CHALLENGES — white ───────── */}
       <section className="bg-white" style={{ paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="mx-auto" style={{ maxWidth: 1100 }}>
+        <div className="mx-auto" style={{ maxWidth: 1000 }}>
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
             <Eyebrow color="#B23B9F">Sound Familiar?</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              Common challenges we help teams address.
+              The challenges slowing teams down
             </h2>
+            <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
+              If your team is experiencing one or more of these challenges, you&apos;re not alone. The good news? They&apos;re solvable.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px]">
-            {CHALLENGES.map((c) => (
-              <ChallengeCard key={c.title} accent={c.accent} title={c.title} points={c.points} />
+
+          {/* Two-column table: Challenge / What it often looks like */}
+          <div className="rounded-[16px] border overflow-hidden" style={{ borderColor: "#EEE9F6" }}>
+            <div className="hidden md:grid" style={{ gridTemplateColumns: "40% 1fr", background: "#F8F5FC" }}>
+              <div className="px-6 py-4 text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: "#9B96A6" }}>Challenge</div>
+              <div className="px-6 py-4 text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: "#9B96A6" }}>What it often looks like</div>
+            </div>
+            {CHALLENGES.map((row, i) => (
+              <div
+                key={row.challenge}
+                className="md:grid"
+                style={{ gridTemplateColumns: "40% 1fr", borderTop: i === 0 ? undefined : "1px solid #F1EEF8" }}
+              >
+                <div className="px-6 pt-5 pb-1.5 md:py-5 text-[16px] font-bold" style={{ color: "#1E2A4A" }}>
+                  {row.challenge}
+                </div>
+                <div className="px-6 pb-5 pt-0 md:py-5 text-[15px] leading-relaxed" style={{ color: "#636B7C" }}>
+                  {row.looksLike}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ───────── 3. THE PATTERN / EQUATION — dark ───────── */}
+      {/* ───────── 3. THE EXECUTION EQUATION — dark ───────── */}
       <section className="relative overflow-hidden" style={{ background: "#1C1334", paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.08 }} />
         <div className="relative mx-auto" style={{ maxWidth: 1000 }}>
-          <div className="text-center mb-12" style={{ maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow>The Pattern</Eyebrow>
+          <div className="text-center mb-12" style={{ maxWidth: 660, marginLeft: "auto", marginRight: "auto" }}>
+            <Eyebrow>The Execution Equation</Eyebrow>
             <h2 className="font-extrabold text-white" style={{ fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.12 }}>
-              The execution equation.
+              The factors that drive team effectiveness
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>
-              Every organization is silently solving for this. Most aren&apos;t naming it.
+              Team effectiveness doesn&apos;t happen by accident. It&apos;s driven by a handful of factors that determine how work gets done.
             </p>
           </div>
 
           <div className="rounded-[20px] border px-6 py-10 md:py-12" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.1)" }}>
-            <EquationBlock variant="dark" />
-            <p className="text-center mx-auto mt-7" style={{ maxWidth: 560, fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.55)" }}>
-              Then scale it by capacity — your people × the AI they wield. AI raises the ceiling; only execution turns it into output.
+            <EquationBlock variant="dark" result="Team Effectiveness" showCapacity={false} />
+            <p className="text-center mx-auto mt-7" style={{ maxWidth: 600, fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.55)" }}>
+              Capacity matters too. AI can increase a team&apos;s capacity, but capacity alone doesn&apos;t create results. Teams still need clarity, alignment, and coordination to translate potential into performance.
             </p>
           </div>
 
@@ -178,52 +191,63 @@ export default function HubClient() {
               className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
             >
-              Take the diagnostic →
+              Get your team effectiveness score →
             </TrackedLink>
             <TrackedLink
               href="/team-effectiveness/the-model"
               eventName="te_link"
-              eventParams={{ label: "read_the_model", location: "hub_equation" }}
+              eventParams={{ label: "explore_model", location: "hub_equation" }}
               className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.25)" }}
             >
-              Read the full model
+              Explore the model
             </TrackedLink>
           </div>
-
-          <p className="text-center mx-auto mt-10" style={{ maxWidth: 560, fontSize: "clamp(16px, 2.2vw, 20px)", lineHeight: 1.5, color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>
-            <span style={{ color: "#9D88ED" }}>&ldquo;Your 300 employees execute like 90.&rdquo;</span> See your number in two minutes.
-          </p>
         </div>
       </section>
 
-      {/* ───────── 4. WHAT'S INCLUDED — light ───────── */}
+      {/* ───────── 4. THE SPRINT — light ───────── */}
       <section id="included" className="scroll-mt-20" style={{ background: "#F8F5FC", paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
         <div className="mx-auto" style={{ maxWidth: 1100 }}>
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow color="#6E3FCC">The Execution Sprint</Eyebrow>
+            <Eyebrow color="#6E3FCC">The Team Effectiveness Sprint</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              Three parts. One clear path forward.
+              From insight to action in three steps
             </h2>
+            <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
+              A simple, guided process to help teams identify the challenges slowing progress and start building momentum together.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {PARTS.map((p) => (
               <PartCard key={p.step} step={p.step} name={p.name} illo={p.illo} desc={p.desc} href={p.href} />
             ))}
           </div>
+          <div className="text-center mt-10">
+            <TrackedLink
+              href={CALENDLY}
+              external
+              eventName="te_cta"
+              eventParams={{ cta: "book_call", location: "hub_sprint" }}
+              className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
+              style={{ background: "#6E3FCC" }}
+            >
+              Schedule a conversation →
+            </TrackedLink>
+          </div>
         </div>
       </section>
 
-      {/* ───────── 5. OUTCOMES — white ───────── */}
+      {/* ───────── 5. RESULTS — white ───────── */}
       <section className="bg-white" style={{ paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
         <div className="mx-auto" style={{ maxWidth: 1000 }}>
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow color="#B23B9F">What Changes</Eyebrow>
+            <Eyebrow color="#B23B9F">The Results</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              What your team walks away with.
+              Designed to improve how teams work together
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
-              Not a report that gathers dust — concrete shifts in how the team works, decides, and executes together.
+              While every team is different, these are some of the most common outcomes teams experience after the sprint.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4 mx-auto" style={{ maxWidth: 880 }}>
@@ -245,22 +269,23 @@ export default function HubClient() {
       <section style={{ background: "#F8F5FC", paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
         <div className="mx-auto text-center" style={{ maxWidth: 640 }}>
           <Eyebrow color="#6E3FCC">Investment</Eyebrow>
-          <p className="text-[15px] font-semibold" style={{ color: "#9B96A6" }}>Starts at</p>
-          <p className="font-extrabold" style={{ fontSize: "clamp(48px, 9vw, 76px)", color: "#1E2A4A", lineHeight: 1 }}>
-            $5k
+          <p className="text-[15px] font-semibold" style={{ color: "#9B96A6" }}>Starting at</p>
+          <p className="font-extrabold" style={{ fontSize: "clamp(44px, 8vw, 68px)", color: "#1E2A4A", lineHeight: 1 }}>
+            $5,000
           </p>
           <p className="mx-auto mt-5" style={{ maxWidth: 520, fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
-            Depending on team size and scope. Includes the diagnostic, the facilitated workshop, and your 90-day roadmap.
+            Pricing varies based on team size and scope. Every sprint includes the diagnostic, facilitated workshop, and a customized roadmap.
           </p>
           <div className="mt-8">
             <TrackedLink
-              href={CALC}
+              href={CALENDLY}
+              external
               eventName="te_cta"
-              eventParams={{ cta: "start_diagnostic", location: "hub_investment" }}
+              eventParams={{ cta: "book_call", location: "hub_investment" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
             >
-              Start with the diagnostic →
+              Talk to our team →
             </TrackedLink>
           </div>
         </div>
@@ -271,20 +296,21 @@ export default function HubClient() {
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "url(/pink-topo-bg.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.18 }} />
         <div className="relative mx-auto text-center" style={{ maxWidth: 640 }}>
           <h2 className="font-extrabold text-white" style={{ fontSize: "clamp(28px, 4.4vw, 44px)", lineHeight: 1.1 }}>
-            See what&apos;s slowing your team down.
+            Explore what&apos;s possible for your team
           </h2>
           <p className="mx-auto mt-5" style={{ maxWidth: 540, fontSize: "clamp(16px, 2vw, 19px)", color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
-            Start with the two-minute diagnostic. You&apos;ll see your team&apos;s effective capacity — and the fastest lever to grow it.
+            Let&apos;s talk about your team, the challenges you&apos;re facing, and whether the Team Effectiveness Sprint is the right fit.
           </p>
           <div className="mt-9">
             <TrackedLink
-              href={CALC}
+              href={CALENDLY}
+              external
               eventName="te_cta"
-              eventParams={{ cta: "start_diagnostic", location: "hub_closing" }}
+              eventParams={{ cta: "book_call", location: "hub_closing" }}
               className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
               style={{ background: "#E055CB" }}
             >
-              Start the diagnostic →
+              Schedule a conversation →
             </TrackedLink>
           </div>
         </div>
