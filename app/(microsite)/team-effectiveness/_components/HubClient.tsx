@@ -118,7 +118,9 @@ export default function HubClient() {
               The challenges <span style={{ color: "#6E3FCC" }}>slowing teams down</span>
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
-              If your team is experiencing one or more of these challenges, you&apos;re not alone. The good news? They&apos;re solvable.
+              If your team is experiencing one or more of these challenges, you&apos;re not alone.
+              <br />
+              The good news? They&apos;re solvable.
             </p>
           </div>
 
@@ -153,7 +155,9 @@ export default function HubClient() {
           <div className="text-center mb-12" style={{ maxWidth: 660, marginLeft: "auto", marginRight: "auto" }}>
             <Eyebrow>The Execution Equation</Eyebrow>
             <h2 className="font-extrabold text-white" style={{ fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.12 }}>
-              The factors that drive team effectiveness
+              The factors that drive
+              <br />
+              <span style={{ color: "#E055CB" }}>team effectiveness</span>
             </h2>
             <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>
               Team effectiveness doesn&apos;t happen by accident. It&apos;s driven by a handful of factors that determine how work gets done.
