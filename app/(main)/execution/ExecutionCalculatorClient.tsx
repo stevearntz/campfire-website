@@ -1198,63 +1198,136 @@ function ResultsView({
       </section>
 
       {/* ─── BONUS · THE FOUNDATIONAL MOVE (§5 projection) ─── */}
-      <section className="relative bg-[#1C1334] overflow-hidden py-16 md:py-24">
+      <section className="relative bg-[#1C1334] overflow-hidden py-20 md:py-28">
         <div
-          className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: "url(/pink-topo-bg.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
+          className="absolute inset-0 opacity-[0.14] pointer-events-none"
+          style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(80% 55% at 50% 0%, rgba(224,85,203,0.18), rgba(28,19,52,0) 70%)" }}
         />
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#EE80DD] mb-4">
-            Bonus · The Foundational Move
-          </p>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-5 leading-snug">
-            Most levers move one variable. Focus moves all three.
+          {/* eyebrow pill */}
+          <div
+            className="inline-flex items-center gap-2 rounded-full mb-6"
+            style={{ border: "1px solid rgba(238,128,221,0.4)", background: "rgba(238,128,221,0.08)", padding: "7px 16px" }}
+          >
+            <span style={{ width: 7, height: 7, borderRadius: 999, background: "#EE80DD" }} />
+            <span className="text-[11px] md:text-xs font-bold tracking-[0.18em] uppercase text-[#EE80DD]">
+              Bonus · The Foundational Move
+            </span>
+          </div>
+
+          <h2 className="text-3xl md:text-[2.5rem] font-extrabold text-white leading-[1.1] mb-5">
+            Most levers move one variable.
+            <br />
+            Focus moves{" "}
+            <span
+              style={{
+                background: "linear-gradient(100deg, #C77DEC, #EE80DD, #F7A83D)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              all three.
+            </span>
           </h2>
-          <p className="text-base md:text-lg text-white/60 leading-relaxed mb-8">
+          <p className="text-base md:text-lg text-white/55 leading-relaxed mb-10 max-w-xl">
             Because execution <em className="not-italic text-white/90 font-semibold">multiplies</em> clarity, alignment, and coordination together, one foundational investment in focus compounds across every term at once — not just the weakest link.
           </p>
 
-          {/* Stat block */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="text-sm text-white/40">Today</span>
-              <span className="text-2xl md:text-3xl font-extrabold text-white">{r.effectiveHeadcount.toLocaleString()}</span>
-              <span className="text-white/30 text-2xl">&rarr;</span>
-              <span className="text-sm text-white/40">With focus invested</span>
-              <span className="text-2xl md:text-3xl font-extrabold text-[#EE80DD]">{r.focusTo.toLocaleString()}</span>
-              <span className="text-sm font-bold text-[#EE80DD]">(+{r.focusGain}%)</span>
+          {/* HERO before → after (gradient-bordered) */}
+          <div
+            className="relative rounded-[22px] mb-10"
+            style={{ padding: 1.5, background: "linear-gradient(120deg, rgba(199,125,236,0.6), rgba(238,128,221,0.5), rgba(247,168,61,0.5))" }}
+          >
+            <div className="rounded-[21px] px-6 py-7 md:px-10 md:py-8" style={{ background: "#241A40" }}>
+              <div className="flex items-center justify-center flex-wrap gap-x-6 gap-y-4 md:gap-x-9 text-center">
+                <div>
+                  <p className="text-[11px] font-bold tracking-[0.14em] uppercase text-white/40 mb-1.5">Today</p>
+                  <p className="text-4xl md:text-5xl font-extrabold text-white tabular-nums leading-none">
+                    {r.effectiveHeadcount.toLocaleString()}
+                  </p>
+                </div>
+                <svg className="w-7 h-7 text-white/25 shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <div>
+                  <p className="text-[11px] font-bold tracking-[0.14em] uppercase mb-1.5" style={{ color: "rgba(238,128,221,0.75)" }}>
+                    With focus invested
+                  </p>
+                  <p className="text-4xl md:text-5xl font-extrabold tabular-nums leading-none" style={{ color: "#EE80DD" }}>
+                    {r.focusTo.toLocaleString()}
+                  </p>
+                </div>
+                <span
+                  className="text-sm font-extrabold text-white rounded-full"
+                  style={{ background: "linear-gradient(100deg, #8B3FD4, #C04CC6, #E055CB)", padding: "8px 16px", boxShadow: "0 8px 22px -8px rgba(224,85,203,0.8)" }}
+                >
+                  +{r.focusGain}%
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Three lift bars */}
-          <div className="space-y-5 mb-8">
+          <div className="space-y-6 mb-10">
             {focusBars.map((b) => (
               <div key={b.label}>
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-sm font-semibold text-white/80">{b.label}</p>
-                  <p className="text-xs font-bold" style={{ color: b.color }}>{b.deltaStr}</p>
+                <div className="flex items-center justify-between mb-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <span style={{ width: 10, height: 10, borderRadius: 999, background: b.color }} />
+                    <p className="text-sm md:text-[15px] font-bold text-white">{b.label}</p>
+                  </div>
+                  <p
+                    className="text-xs font-bold rounded-full"
+                    style={{ color: b.color, background: `${b.color}1f`, padding: "3px 10px" }}
+                  >
+                    {b.deltaStr}
+                  </p>
                 </div>
-                <div className="relative w-full h-3 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
+                <div className="relative w-full rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.08)" }}>
                   {/* current */}
                   <div
                     className="absolute inset-y-0 left-0 rounded-full"
-                    style={{ width: `${Math.max(0, Math.min(100, b.fromPct))}%`, background: "rgba(255,255,255,0.25)" }}
+                    style={{ width: `${Math.max(0, Math.min(100, b.fromPct))}%`, background: "rgba(255,255,255,0.18)" }}
                   />
                   {/* projected */}
                   <div
                     className="absolute inset-y-0 left-0 rounded-full transition-all duration-700"
-                    style={{ width: `${Math.max(0, Math.min(100, b.toPct))}%`, background: b.color, opacity: 0.85 }}
+                    style={{
+                      width: `${Math.max(0, Math.min(100, b.toPct))}%`,
+                      background: `linear-gradient(90deg, ${b.color}cc, ${b.color})`,
+                      boxShadow: `0 0 16px ${b.color}66`,
+                    }}
                   />
                 </div>
-                <p className="text-xs text-white/40 mt-1.5">{b.sub}</p>
+                <p className="text-xs text-white/40 mt-2">{b.sub}</p>
               </div>
             ))}
           </div>
 
           {r.weakest !== "none" && (
-            <p className="text-base md:text-lg text-white/70 leading-relaxed border-t border-white/10 pt-6">
-              Improving just <span style={{ color: weakestColor }}>{weakestLabel.toLowerCase()}</span> lifts you <strong className="text-white">+{r.leverPct}%</strong>. Investing in focus — which moves all three at once — lifts you <strong className="text-[#EE80DD]">+{r.focusGain}%</strong>. That gap is the equation compounding.
-            </p>
+            <div className="border-t border-white/10 pt-8">
+              <div className="grid grid-cols-2 gap-3 md:gap-4 mb-5">
+                <div className="rounded-2xl px-5 py-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  <p className="text-xs text-white/45 mb-1.5 leading-snug">Improving {weakestLabel.toLowerCase()} alone</p>
+                  <p className="text-2xl md:text-3xl font-extrabold tabular-nums" style={{ color: weakestColor }}>+{r.leverPct}%</p>
+                </div>
+                <div
+                  className="rounded-2xl px-5 py-4"
+                  style={{ background: "linear-gradient(120deg, rgba(238,128,221,0.16), rgba(199,125,236,0.1))", border: "1px solid rgba(238,128,221,0.35)" }}
+                >
+                  <p className="text-xs mb-1.5 leading-snug" style={{ color: "rgba(238,128,221,0.85)" }}>Investing in focus</p>
+                  <p className="text-2xl md:text-3xl font-extrabold tabular-nums text-[#EE80DD]">+{r.focusGain}%</p>
+                </div>
+              </div>
+              <p className="text-sm md:text-base text-white/60 leading-relaxed">
+                Focus moves all three terms at once — that gap is <strong className="text-white">the equation compounding.</strong>
+              </p>
+            </div>
           )}
         </div>
       </section>
