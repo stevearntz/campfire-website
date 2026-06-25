@@ -98,7 +98,7 @@ const RESEARCH = [
 ];
 
 const FURTHER_READING = [
-  { author: "Russell Ackoff", work: "systems thinking & idealized design", href: "https://en.wikipedia.org/wiki/Russell_L._Ackoff" },
+  { author: "Russell Ackoff", work: "systems thinking & design", href: "https://en.wikipedia.org/wiki/Russell_L._Ackoff" },
   { author: "Peter Senge", work: "The Fifth Discipline", href: "https://en.wikipedia.org/wiki/The_Fifth_Discipline" },
   { author: "Donella Meadows", work: "Thinking in Systems", href: "https://en.wikipedia.org/wiki/Donella_Meadows" },
   { author: "Thomas Malone", work: "coordination theory (MIT)", href: "https://cci.mit.edu/" },
