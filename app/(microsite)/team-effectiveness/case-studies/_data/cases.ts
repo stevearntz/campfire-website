@@ -199,7 +199,7 @@ export const CASES: CaseStudy[] = [
     accentSoft: "#F3EFFE",
     engagement: "Leadership Retreat",
     hook: "Mission-driven principles drive leadership competency",
-    cardStat: '4.8/5 session rating — "very or extremely valuable"',
+    cardStat: '4.8/5 session rating — "extremely valuable"',
     cardQuote: {
       text: "It came in at a 4.8 out of 5, with everyone rating it as very or extremely valuable.",
       attribution: "Director of Marketing Ops",
@@ -279,7 +279,7 @@ export const CASES: CaseStudy[] = [
     accentSoft: "#EAEDFB",
     engagement: "Executive Offsite",
     hook: "Aligning executives around key drivers for performance",
-    cardStat: "9 execs aligned on behaviors they'll coach & reward",
+    cardStat: "9 execs aligned on behaviors they'll coach",
     cardQuote: {
       text: "What made it effective was the combination of clarity and accountability.",
       attribution: "Head of Brand",
