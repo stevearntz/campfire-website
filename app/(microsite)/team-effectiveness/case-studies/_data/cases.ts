@@ -69,9 +69,9 @@ export interface CaseStudy {
   approachHeading: string;
   approachBody: string[];
   approachPullQuote?: Quote;
-  /** some studies list the "what campfire did" steps inline (Cricut) */
+  /** some studies list the "what campfire did" steps inline (the technology company) */
   approachSteps?: AgendaStep[];
-  approachAfterSteps?: string; // paragraph after inline steps (Cricut pivot)
+  approachAfterSteps?: string; // paragraph after inline steps (the technology company pivot)
 
   // inside the session (optional)
   agendaHeading?: string;
@@ -98,10 +98,10 @@ export interface CaseStudy {
 export const FOOTER_LINE = "Clarity & Alignment · Facilitated by Campfire · getcampfire.com";
 
 export const CASES: CaseStudy[] = [
-  /* ───────── Utah Business (flagship) ───────── */
+  /* ───────── Award-winning media outlet (flagship) ───────── */
   {
     slug: "utah-business",
-    client: "Utah Business",
+    client: "Award-winning media outlet · small team (~50 employees)",
     accent: "#E055CB",
     accentSoft: "#FCEBF8",
     engagement: "Team Offsite",
@@ -109,10 +109,10 @@ export const CASES: CaseStudy[] = [
     cardStat: "½-day working session → a full-team 2026 rally",
     cardQuote: {
       text: "He brings out the best in people while helping them aspire to more.",
-      attribution: "Catherine Bennett · Executive Editor",
+      attribution: "Executive Editor",
     },
 
-    eyebrow: "Clarity & Alignment · Team Offsite · Utah Business",
+    eyebrow: "Clarity & Alignment · Team Offsite · Award-winning media outlet",
     headline: "From 20-minute check-ins to a shared purpose — in a single morning.",
     intro:
       "A 12-person media team — sales and editorial — came together for a half-day working session on purpose, mission, and the cultural pillars they'd hold each other to heading into 2026.",
@@ -149,7 +149,7 @@ export const CASES: CaseStudy[] = [
       src: "/utah-business-testimonial.mp4",
       poster: "/utah-business-testimonial-poster.jpg",
       quotes: [
-        { text: "How could someone from outside come in and instantly understand what we were about — and lead us to the points?", attribution: "Utah Business team member, on camera" },
+        { text: "How could someone from outside come in and instantly understand what we were about — and lead us to the points?", attribution: "Media outlet team member, on camera" },
         { text: "He was the perfect person to come in and ask questions — that is very rarely done. He didn't push his own opinions. It was ours." },
       ],
       cultureExercise: {
@@ -169,7 +169,7 @@ export const CASES: CaseStudy[] = [
     outcomeQuotes: [
       {
         text: "I am a huge fan of Steve as a leader and as a human being. He brings out the best in other people while helping them aspire to more — his emotional IQ is almost palpable.",
-        attribution: "Catherine Bennett · Executive Editor, Utah Business",
+        attribution: "Catherine Bennett · Executive Editor",
       },
     ],
     outcomeList: {
@@ -188,10 +188,10 @@ export const CASES: CaseStudy[] = [
       "A half-day that turns weekly logistics into shared purpose, named behaviors, and a cadence that sticks.",
   },
 
-  /* ───────── YPO ───────── */
+  /* ───────── Global network for chief executives ───────── */
   {
     slug: "ypo",
-    client: "YPO",
+    client: "Global network for chief executives · ~450 employees",
     accent: "#6E3FCC",
     accentSoft: "#F3EFFE",
     engagement: "Leadership Retreat",
@@ -199,13 +199,13 @@ export const CASES: CaseStudy[] = [
     cardStat: '4.8/5 session rating — "very or extremely valuable"',
     cardQuote: {
       text: "It came in at a 4.8 out of 5, with everyone rating it as very or extremely valuable.",
-      attribution: "Sarah McBrearty · Dir. of Marketing Ops",
+      attribution: "Director of Marketing Ops",
     },
 
-    eyebrow: "Clarity & Alignment · Leadership Retreat · YPO",
+    eyebrow: "Clarity & Alignment · Leadership Retreat · Global network for chief executives",
     headline: "Guiding principles, translated into 12 behaviors the team coaches by.",
     intro:
-      "YPO's Marcoms leadership team — 13 leaders — turned shared principles into observable behavior in a retreat that scored 4.8 / 5, with everyone rating it very or extremely valuable.",
+      "The executive network's Marcoms leadership team — 13 leaders — turned shared principles into observable behavior in a retreat that scored 4.8 / 5, with everyone rating it very or extremely valuable.",
 
     meta: [
       { label: "Format", value: "In-person retreat + 3 virtual follow-ups" },
@@ -217,13 +217,13 @@ export const CASES: CaseStudy[] = [
 
     challengeHeading: "Strong principles on paper. Unclear behavior in the room.",
     challengeBody: [
-      "YPO's Marketing & Communications leadership team needed to strengthen trust at the leadership level and translate their Guiding Principles into observable behaviors — with clear accountability for living them.",
+      "The executive network's Marketing & Communications leadership team needed to strengthen trust at the leadership level and translate their Guiding Principles into observable behaviors — with clear accountability for living them.",
       "Survey and 1:1 data, gathered with consultant Oscar Marroquin, surfaced gaps in behavioral clarity and operating norms, unclear roles, decisions and ownership, and a need to manage conflict and tension more openly.",
     ],
 
     approachHeading: "A 3-hour working session that turned principles into behavior.",
     approachBody: [
-      'Steve facilitated a session designed, in YPO\'s own framing, "to strengthen trust at the leadership level by surfacing lived patterns, translating shared principles into observable leadership behaviors, and establishing clear commitments for how we work together." The team identified four core values — joy, trust, power, and partnership — and defined 12 specific behaviors for accountability. An accountability-partner system and the Campfire platform carried the work across three follow-up sessions.',
+      'Steve facilitated a session designed, in the executive network\'s own framing, "to strengthen trust at the leadership level by surfacing lived patterns, translating shared principles into observable leadership behaviors, and establishing clear commitments for how we work together." The team identified four core values — joy, trust, power, and partnership — and defined 12 specific behaviors for accountability. An accountability-partner system and the Campfire platform carried the work across three follow-up sessions.',
     ],
 
     agendaHeading: "Four values. Twelve behaviors.",
@@ -245,20 +245,20 @@ export const CASES: CaseStudy[] = [
     outcomeStats: [
       { big: "Commitments", label: "Agreed leadership commitments with an accountability-partner cadence" },
       { big: "6-mo pilot", label: "A customized Campfire platform pilot under discussion" },
-      { big: "Invited back", label: "Steve invited to YPO's January 2027 team meeting in Puerto Rico" },
+      { big: "Invited back", label: "Steve invited to the executive network's January 2027 team meeting in Puerto Rico" },
     ],
     outcomeQuotes: [
       {
         text: "Steve's session at our Marcoms leadership retreat really landed. The post-session feedback came in at a 4.8 out of 5 — with everyone rating it as very or extremely valuable.",
-        attribution: "Sarah McBrearty · Director of Marketing Operations, YPO",
+        attribution: "Sarah McBrearty · Director of Marketing Operations",
       },
       {
         text: "Wonderful job! I heard initial feedback from other leaders, and they were all positive and refreshing. I can't thank you enough for your energy, perspectives, flexibility, creativity, and unique approach.",
-        attribution: "La Trease Shaw · Interim Head of Marketing & Communications, YPO",
+        attribution: "La Trease Shaw · Interim Head of Marketing & Communications",
       },
       {
         text: "It's wonderful to see the momentum from the May offsite continuing and translating into concrete actions and ongoing conversations.",
-        attribution: "Tatiana Garcia · Leadership Development Program Manager, YPO",
+        attribution: "Tatiana Garcia · Leadership Development Program Manager",
       },
     ],
 
@@ -267,11 +267,10 @@ export const CASES: CaseStudy[] = [
       "A facilitated session that translates values on the wall into the behaviors your leaders coach, reward, and correct.",
   },
 
-  /* ───────── Cotopaxi ───────── */
+  /* ───────── Outdoor consumer brand ───────── */
   {
     slug: "cotopaxi",
-    client: "Cotopaxi",
-    logo: "/cotopaxi-logo.webp",
+    client: "Outdoor consumer brand · mid-size (~300 employees)",
     accent: "#3B4CCA",
     accentSoft: "#EAEDFB",
     engagement: "Executive Offsite",
@@ -279,13 +278,13 @@ export const CASES: CaseStudy[] = [
     cardStat: "9 execs aligned on behaviors they'll coach & reward",
     cardQuote: {
       text: "What made it effective was the combination of clarity and accountability.",
-      attribution: "Veronica Gontier · Interim Head of Brand",
+      attribution: "Head of Brand",
     },
 
     eyebrow: "Clarity & Alignment · Executive Offsite",
     headline: "When values drifted from behavior, the exec team named the drivers for 2026.",
     intro:
-      "A 9-person executive team wrote the stories of when Cotopaxi performed at its best — then converged on the 3–5 Drivers of Performance they'll coach, reward, and correct.",
+      "A 9-person executive team wrote the stories of when the outdoor brand performed at its best — then converged on the 3–5 Drivers of Performance they'll coach, reward, and correct.",
 
     meta: [
       { label: "Format", value: "2-hour exec session + pre-work" },
@@ -297,7 +296,7 @@ export const CASES: CaseStudy[] = [
 
     challengeHeading: "The biggest survey drop was employees' connection to values.",
     challengeBody: [
-      "Cotopaxi's most recent engagement survey showed its biggest decline in how connected employees felt to the company's values. Leadership saw a real gap between the founding values — People, Innovation, Adventure — and the behaviors showing up day to day.",
+      "The outdoor brand's most recent engagement survey showed its biggest decline in how connected employees felt to the company's values. Leadership saw a real gap between the founding values — People, Innovation, Adventure — and the behaviors showing up day to day.",
       "Decisions were being read as \"anti-team\" even when well-intended. And the company was navigating a critical season: balancing its mission and impact with performance and financial sustainability.",
     ],
 
@@ -306,7 +305,7 @@ export const CASES: CaseStudy[] = [
       "Rather than redraft values in a single sitting, Steve ran a behavior-first session. Execs did pre-work — writing stories of when the company performed at its best versus when it broke down — then mined those stories for the behaviors that actually made the difference.",
     ],
     approachPullQuote: {
-      text: "Today we are not solving Cotopaxi's values for the next decade. We are defining the behaviors we will coach, reward, and correct in 2026 and beyond.",
+      text: "Today we are not solving the outdoor brand's values for the next decade. We are defining the behaviors we will coach, reward, and correct in 2026 and beyond.",
       attribution: "The session's opening frame",
     },
 
@@ -339,12 +338,12 @@ export const CASES: CaseStudy[] = [
     ],
     outcomeQuotes: [
       {
-        text: "One moment when Cotopaxi was operating at its best was when performance priorities were clarified and leadership alignment tightened. What made it effective was the combination of clarity and accountability.",
-        attribution: "Veronica Gontier · Interim Head of Brand Strategy, Cotopaxi",
+        text: "One moment when the outdoor brand was operating at its best was when performance priorities were clarified and leadership alignment tightened. What made it effective was the combination of clarity and accountability.",
+        attribution: "Veronica Gontier · Interim Head of Brand Strategy",
       },
       {
         text: "The team aligned early on strategy, key assumptions, and constraints, which allowed decisions to be made quickly and tradeoffs to be discussed in real time.",
-        attribution: "Charles Puff · VP of Finance, Cotopaxi",
+        attribution: "Charles Puff · VP of Finance",
       },
     ],
 
@@ -353,11 +352,10 @@ export const CASES: CaseStudy[] = [
       "A behavior-first session that turns drifting values into the 3–5 drivers your leaders coach, reward, and correct.",
   },
 
-  /* ───────── Dermalogica ───────── */
+  /* ───────── Professional skincare brand ───────── */
   {
     slug: "dermalogica",
-    client: "Dermalogica",
-    logo: "/dermalogica-logo.webp",
+    client: "Professional skincare brand · global (1,000+ employees)",
     accent: "#D9803B",
     accentSoft: "#FBF0E6",
     engagement: "Facilitator Enablement",
@@ -365,7 +363,7 @@ export const CASES: CaseStudy[] = [
     cardStat: "14→200 platform users as the relationship expanded",
     cardQuote: {
       text: "Vulnerable and honest moments this team really needed.",
-      attribution: "Lola Russek · Talent Acquisition Partner",
+      attribution: "Talent Partner",
     },
 
     eyebrow: "Clarity & Alignment · Offsite + Enablement",
@@ -389,7 +387,7 @@ export const CASES: CaseStudy[] = [
 
     approachHeading: "Built the content. Trained their people to run it.",
     approachBody: [
-      "Campfire delivered the full offsite design — session flow, speaker notes, slides, and an HR worksheet — then trained Dermalogica's own facilitators on running high-trust sessions internally. So the team can run it both ways:",
+      "Campfire delivered the full offsite design — session flow, speaker notes, slides, and an HR worksheet — then trained the skincare brand's own facilitators on running high-trust sessions internally. So the team can run it both ways:",
     ],
 
     signature: {
@@ -420,7 +418,7 @@ export const CASES: CaseStudy[] = [
     outcomeQuotes: [
       {
         text: "The session was a huge success, and we had some vulnerable and honest moments that this team really needed. Thank you for all your hard work, ideas, collaboration and support — you are a great partner!",
-        attribution: "Lola Russek · Talent Acquisition Business Partner, Dermalogica",
+        attribution: "Lola Russek · Talent Acquisition Business Partner",
       },
     ],
 
@@ -429,19 +427,18 @@ export const CASES: CaseStudy[] = [
       "Campfire builds the content and trains your facilitators, so candid conversations become a capability your team owns.",
   },
 
-  /* ───────── Cricut ───────── */
+  /* ───────── Consumer crafting technology company ───────── */
   {
     slug: "cricut",
-    client: "Cricut",
-    logo: "/cricut-logo.webp",
+    client: "Consumer crafting technology company · public (1,000+ employees)",
     accent: "#0E9F6E",
     accentSoft: "#E7F6EF",
     engagement: "Leadership Pilot",
     hook: "A field guide that helped leaders slow down to speed up.",
     cardStat: "12 decision-making principles for calls under pressure",
     cardQuote: {
-      text: "I like conversations by leader level — the next topics will be more impactful that way.",
-      attribution: "Josh Mecham · Department Leader",
+      text: "These sessions have created significant value for our leaders.",
+      attribution: "Chief Revenue Officer",
     },
 
     eyebrow: "Clarity & Alignment · Leadership Pilot",
@@ -470,7 +467,7 @@ export const CASES: CaseStudy[] = [
     approachHeading: "A sequenced pilot — five sessions, building on each other.",
     approachBody: [],
     approachAfterSteps:
-      "The pivot — mid-pilot: Campfire split the room by leader level. Senior and junior leaders were separated so conversations could be tailored — and everyone felt safe to speak. Campfire also trained internal Cricut facilitators to keep it running.",
+      "The pivot — mid-pilot: Campfire split the room by leader level. Senior and junior leaders were separated so conversations could be tailored — and everyone felt safe to speak. Campfire also trained the technology company's internal facilitators to keep it running.",
 
     signature: {
       kind: "cricutSequence",
@@ -494,7 +491,7 @@ export const CASES: CaseStudy[] = [
     outcomeQuotes: [
       {
         text: "Today's session went really well. I like conversations by leader level — the next couple of topics will also be more impactful by leader level.",
-        attribution: "Josh Mecham · Department Leader, Cricut",
+        attribution: "Josh Mecham · Department Leader",
       },
     ],
 
@@ -503,21 +500,21 @@ export const CASES: CaseStudy[] = [
       "A sequenced pilot that moves leaders from directing to involving — with a field guide they keep using.",
   },
 
-  /* ───────── Huntsman Family Foundation (DRAFT) ───────── */
+  /* ───────── Family philanthropic foundation (DRAFT) ───────── */
   {
     slug: "huntsman",
-    client: "Huntsman Family Foundation",
+    client: "Family philanthropic foundation · small (~50 staff)",
     draft: true,
     accent: "#B23B9F",
     accentSoft: "#FAEAF5",
     engagement: "Foundation Offsite",
     hook: "Healing the friction between entities into one shared mission.",
-    cardStat: "2→1 cancer & mental-health missions, one direction",
+    cardStat: "2 bold missions into one shared purpose",
     cardQuote: { text: "", attribution: "" },
     cardNote:
-      "A purpose-driven offsite designed with Celeste Merrill to align diverse teams.",
+      "A purpose-driven offsite designed to align diverse teams.",
 
-    eyebrow: "Clarity & Alignment · Purpose-Driven Offsite · Huntsman Family Foundation",
+    eyebrow: "Clarity & Alignment · Purpose-Driven Offsite · Family philanthropic foundation",
     headline: "One mission, two missions, one direction.",
     intro:
       "A half-day offsite to heal friction between entities and align a foundation's teams — integrating its cancer and mental-health missions into one shared purpose.",
@@ -537,7 +534,7 @@ export const CASES: CaseStudy[] = [
     ],
     challengePullQuote: {
       text: "Heal the wounds between the entities — and align everyone around a unified mission.",
-      attribution: "The brief · Huntsman Family Foundation",
+      attribution: "The brief · Family philanthropic foundation",
     },
 
     approachHeading: "An offsite designed around connection and shared purpose.",
@@ -573,29 +570,28 @@ export const CASES: CaseStudy[] = [
       "A purpose-driven offsite that heals friction and turns separate missions into one direction.",
   },
 
-  /* ───────── Enveda Biosciences (DRAFT) ───────── */
+  /* ───────── Drug discovery biotech (DRAFT) ───────── */
   {
     slug: "enveda",
-    client: "Enveda Biosciences",
-    logo: "/enveda-logo.webp",
+    client: "Drug discovery biotech",
     draft: true,
     accent: "#0E9488",
     accentSoft: "#E4F4F2",
     engagement: "Executive Offsite",
     hook: "An exec team that learned to disagree openly — and commit.",
-    cardStat: "Trust → productive conflict, via Five Dysfunctions",
+    cardStat: "Trust → productive conflict",
     cardQuote: { text: "", attribution: "" },
     cardNote:
-      "A half-day on trust and StrengthsFinder for a fast-scaling biotech leadership team.",
+      "A half-day on trust and Strengths for a fast-scaling biotech leadership team.",
 
-    eyebrow: "Clarity & Alignment · Executive Trust Offsite · Enveda Biosciences",
+    eyebrow: "Clarity & Alignment · Executive Trust Offsite · Drug discovery biotech",
     headline: "Trust first. Then disagree well.",
     intro:
       "An executive-team offsite for a fast-scaling biotech — using strengths profiling and the Five Dysfunctions framework to build trust and productive conflict.",
 
     meta: [
-      { label: "Engagement", value: "Executive offsite, Trust + StrengthsFinder" },
-      { label: "Audience", value: 'The Enveda executive "S-team"' },
+      { label: "Engagement", value: "Executive offsite, Trust + Strengths" },
+      { label: "Audience", value: 'The biotech executive "S-team"' },
       { label: "When", value: "June 24–25, 2023, Boulder, CO" },
       { label: "Facilitator", value: "Megan Galloway, Campfire co-founder" },
       { label: "Sponsor", value: "Robert Buckley, Head of HR" },
@@ -608,7 +604,7 @@ export const CASES: CaseStudy[] = [
     ],
     challengePullQuote: {
       text: "How do we build the trust to disagree — and still commit as a team?",
-      attribution: "Robert Buckley · Head of HR, Enveda",
+      attribution: "Robert Buckley · Head of HR",
     },
 
     approachHeading: "Anchored the offsite on the Five Dysfunctions — starting with trust.",
@@ -632,7 +628,7 @@ export const CASES: CaseStudy[] = [
     outcomeHeading: "Honest conversation opened up — and stayed open for years.",
     outcomeBody: [
       "The executive team was thankful for the facilitation — the session opened up honest conversation about how the team makes decisions and handles disagreement.",
-      "Enveda went on to become a multi-year Campfire customer, continuing the relationship through 2026.",
+      "The biotech went on to become a multi-year Campfire customer, continuing the relationship through 2026.",
     ],
     outcomeQuotes: [],
     pendingNote: "Formal quote pending sign-off from Robert Buckley",

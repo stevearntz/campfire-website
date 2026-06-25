@@ -14,13 +14,13 @@ const CALC = "/team-effectiveness/calculator";
 const SECTION_PX = "clamp(24px, 6vw, 80px)";
 
 const STATS = [
-  { big: "7", label: "leadership teams aligned through Campfire offsites" },
-  { big: "4.8/5", label: "average session rating (YPO Marcoms)" },
-  { big: "6", label: "industries — consumer, beauty, biotech, media, philanthropy" },
-  { big: "2", label: "founders facilitating personally — Steve Arntz & Megan Galloway" },
+  { big: "7", label: "world-class teams" },
+  { big: "4.8/5", label: "average session rating" },
+  { big: "6", label: "different industries" },
+  { big: "200", label: "executives" },
 ];
 
-const METHOD_STEPS = ["Stories", "Behaviors", "3–5 named drivers", "Commitments"];
+const METHOD_STEPS = ["Stories", "Behaviors", "Drivers", "Commitments"];
 
 function Eyebrow({ children, color = "#9D88ED" }: { children: React.ReactNode; color?: string }) {
   return (
@@ -170,9 +170,9 @@ export default function CaseStudiesIndexPage() {
             className="mx-auto mt-6"
             style={{ maxWidth: 640, fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.6, color: "rgba(255,255,255,0.8)" }}
           >
-            Steve Arntz and the Campfire team personally facilitate executive offsites that turn
-            strategy into shared, observable behavior. Seven teams. One repeatable method:
-            stories → behaviors → named drivers → commitments.
+            We work with your team to facilitate executive offsites that turn strategy
+            into shared, observable behavior. These are the stories of seven teams and
+            one repeatable method: stories → behaviors → drivers → commitments.
           </p>
           <div className="flex gap-3 justify-center flex-wrap mt-9">
             <TrackedLink
@@ -187,7 +187,7 @@ export default function CaseStudiesIndexPage() {
             </TrackedLink>
             <a
               href="#the-work"
-              className="text-white text-[14px] font-semibold px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
+              className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
               style={{ borderColor: "rgba(255,255,255,0.25)" }}
             >
               See the work ↓
@@ -225,7 +225,9 @@ export default function CaseStudiesIndexPage() {
           <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
             <Eyebrow color="#6E3FCC">The work</Eyebrow>
             <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              Seven teams that turned alignment into behavior.
+              Seven teams that turned
+              <br />
+              alignment into behavior.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -275,7 +277,9 @@ export default function CaseStudiesIndexPage() {
       >
         <div className="mx-auto text-center" style={{ maxWidth: 640 }}>
           <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4.4vw, 44px)", color: "#1E2A4A", lineHeight: 1.1 }}>
-            Bring this to your leadership team.
+            Bring this to your
+            <br />
+            leadership team.
           </h2>
           <p className="mx-auto mt-5" style={{ maxWidth: 560, fontSize: "clamp(16px, 2vw, 19px)", color: "#636B7C", lineHeight: 1.6 }}>
             A focused offsite that turns your strategy into the behaviors your leaders live by — or
