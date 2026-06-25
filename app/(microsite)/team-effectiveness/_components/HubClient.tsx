@@ -48,7 +48,7 @@ const STEPS = [
   {
     step: 1,
     pillLabel: "Diagnostic",
-    icon: "/map-icon.png",
+    icon: "/lighthouse-icon.png",
     title: "Identify the factors impacting performance",
     desc: "Use a short diagnostic to understand where clarity, alignment, and coordination may be breaking down.",
     href: "/team-effectiveness/diagnostic",
@@ -59,7 +59,7 @@ const STEPS = [
   {
     step: 2,
     pillLabel: "Workshops",
-    icon: "/lighthouse-icon.png",
+    icon: "/campfires-icon.png",
     title: "Align on priorities and opportunities",
     desc: "A virtual or in-person workshop to review findings, align on priorities, and address the team's most important challenges.",
     href: "/team-effectiveness/workshop",
@@ -70,7 +70,7 @@ const STEPS = [
   {
     step: 3,
     pillLabel: "Roadmap",
-    icon: "/campfires-icon.png",
+    icon: "/map-icon.png",
     title: "Get a clear plan to move forward",
     desc: "Receive a practical roadmap with key findings, recommended focus areas, and clear next steps tailored to your team's needs.",
     href: "/team-effectiveness/roadmap",
@@ -480,7 +480,7 @@ export default function HubClient() {
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "screen", opacity: 0.18 }}
+          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "screen", opacity: 0.5 }}
         />
         <div className="relative mx-auto" style={{ maxWidth: 680 }}>
           <h2 className="whitespace-normal md:whitespace-nowrap text-white" style={{ fontSize: "clamp(30px, 4.2vw, 46px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.02em", margin: 0 }}>
