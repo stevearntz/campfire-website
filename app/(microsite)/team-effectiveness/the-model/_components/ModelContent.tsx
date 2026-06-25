@@ -128,20 +128,36 @@ function SectionHeading({
   children: React.ReactNode;
   dark?: boolean;
 }) {
+  const accent = dark ? "#B8A4F2" : "#9D88ED";
   return (
-    <h2
-      className="font-normal"
-      style={{
-        ...SERIF,
-        fontSize: "clamp(28px, 4vw, 40px)",
-        lineHeight: 1.15,
-        color: dark ? "#FFFFFF" : "#1E2A4A",
-        letterSpacing: "-0.01em",
-      }}
-    >
-      <span style={{ color: dark ? "#9D88ED" : "#9D88ED", ...SERIF }}>§{num}</span>{" "}
-      {children}
-    </h2>
+    <div>
+      <span
+        style={{
+          ...SERIF,
+          display: "block",
+          fontSize: "clamp(34px, 4.6vw, 54px)",
+          lineHeight: 1,
+          letterSpacing: "0.02em",
+          color: accent,
+          marginBottom: 12,
+        }}
+      >
+        <span style={{ opacity: 0.4 }}>{num.slice(0, 1)}</span>
+        {num.slice(1)}
+      </span>
+      <h2
+        className="font-normal"
+        style={{
+          ...SERIF,
+          fontSize: "clamp(28px, 4vw, 40px)",
+          lineHeight: 1.15,
+          color: dark ? "#FFFFFF" : "#1E2A4A",
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {children}
+      </h2>
+    </div>
   );
 }
 
@@ -188,7 +204,8 @@ export default function ModelContent() {
               letterSpacing: "-0.02em",
             }}
           >
-            Why more capacity is making organizations less effective.
+            Why more capacity is making organizations{" "}
+            <span style={{ color: "#E055CB" }}>less effective</span>.
           </h1>
           <p
             className="mt-7"
@@ -199,20 +216,19 @@ export default function ModelContent() {
               color: "rgba(255,255,255,0.78)",
             }}
           >
-            AI is multiplying what every individual can produce. But organizational
-            output was never the sum of individual capacities — and in the AI era,
-            adding capacity to a misaligned system makes it drift faster, not deliver
-            more.
+            AI is multiplying what people can produce. But organizational output was
+            never the sum of the individual parts. In the AI era, adding capacity to a
+            misaligned system makes it drift faster and deliver even less.
           </p>
 
           <div className="mt-9 flex items-center gap-3 flex-wrap">
             <span
-              className="text-[15px] md:text-[17px] font-semibold"
+              className="text-[22px] md:text-[28px] font-semibold"
               style={{
-                color: "rgba(255,255,255,0.45)",
+                color: "rgba(255,255,255,0.92)",
                 textDecoration: "line-through",
                 textDecorationColor: "#E055CB",
-                textDecorationThickness: 2,
+                textDecorationThickness: 1,
               }}
             >
               more capacity = more output
@@ -259,7 +275,7 @@ export default function ModelContent() {
             }}
           >
             AI has shifted the limiting factor of performance from production
-            capacity to strategic coherence. In high-capacity organizations,
+            capacity to strategic clarity. In high-capacity organizations,
             alignment becomes the primary determinant of outcomes.
           </p>
         </div>
@@ -278,44 +294,21 @@ export default function ModelContent() {
         <div className={PROSE} style={PROSE_W}>
           <SectionHeading num="01">Output was never the sum of its parts.</SectionHeading>
           <P>
-            Most organizations operate on an unstated assumption: that output scales
-            with headcount. Hire more people, add more capacity, ship more work. It is
-            intuitive, and it is wrong — or at least, dangerously incomplete.
+            Most organizations operate with a simple assumption: output scales with
+            headcount. If we hire more people and add more capacity we will ship more
+            work. It feels intuitive, but it is wrong. At least it&rsquo;s dangerously
+            incomplete.
           </P>
           <P>
-            The systems theorist spent a career dismantling it. His central claim:
-            Optimize each part independently and you can readily sub-optimize the
-            whole. Six brilliant engineers solving six different problems do not add up
-            to a great product. They add up to six products, none finished.
+            One systems theorist spent his career dismantling this assumption. His
+            central claim was that if you optimize each part independently you can
+            accidentally sub-optimize the whole. Basically, six brilliant engineers
+            solving six different problems do not add up to a great product. They add up
+            to six different products, none of which are finished.
           </P>
 
-          {/* Ackoff callout */}
-          <div
-            className="mt-8 rounded-[16px] border-l-4 px-6 py-5"
-            style={{ background: "#F8F5FC", borderColor: "#6E3FCC" }}
-          >
-            <p
-              style={{
-                fontSize: "clamp(16px, 1.6vw, 18px)",
-                lineHeight: 1.65,
-                color: "#1E2A4A",
-                fontWeight: 500,
-              }}
-            >
-              Russell Ackoff: the performance of a system is not the sum of the
-              performance of its parts — it is the product of their interactions.
-            </p>
-          </div>
-
-          <P>
-            That single shift — from additive to multiplicative — changes everything.
-            If output is a product of terms, then any term approaching zero collapses
-            the whole, no matter how large the others. Individual brilliance cannot
-            rescue a system whose alignment is near zero.
-          </P>
-
-          {/* Blockquote */}
-          <blockquote className="mt-9 border-l-4 pl-6" style={{ borderColor: "#9D88ED" }}>
+          {/* Ackoff blockquote */}
+          <blockquote className="mt-8 border-l-4 pl-6" style={{ borderColor: "#9D88ED" }}>
             <p
               style={{
                 ...SERIF,
@@ -325,7 +318,7 @@ export default function ModelContent() {
               }}
             >
               &ldquo;The performance of a system is not the sum of the performance of
-              its parts.&rdquo;
+              its parts, it is the product of their interactions.&rdquo;
             </p>
             <footer
               className="mt-3 text-[14px] font-semibold tracking-[0.06em] uppercase"
@@ -334,6 +327,13 @@ export default function ModelContent() {
               Russell Ackoff · Systems Thinking
             </footer>
           </blockquote>
+
+          <P>
+            The shift from additive to multiplicative changes everything. If output is
+            a product of terms, then any term approaching zero collapses the whole, no
+            matter how large the others get. Individual brilliance cannot rescue a
+            system whose alignment is near zero.
+          </P>
         </div>
       </section>
 
@@ -561,19 +561,7 @@ export default function ModelContent() {
           }}
         />
         <div className="relative mx-auto" style={PROSE_W}>
-          <h2
-            className="font-normal"
-            style={{
-              ...SERIF,
-              fontSize: "clamp(28px, 4vw, 40px)",
-              lineHeight: 1.15,
-              color: "#FFFFFF",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            <span style={{ color: "#9D88ED", ...SERIF }}>§04</span> The constraint has
-            moved.
-          </h2>
+          <SectionHeading num="04" dark>The constraint has moved.</SectionHeading>
           <p
             className="mt-5"
             style={{ fontSize: "clamp(17px, 1.6vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.78)" }}
