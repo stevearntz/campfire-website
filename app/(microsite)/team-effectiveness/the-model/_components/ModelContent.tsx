@@ -67,32 +67,32 @@ const ERAS = [
 const RESEARCH = [
   {
     title: "Systems Thinking",
-    claim: "Systems outperform when the parts work together — not just faster.",
-    body: "Optimizing individual parts does not optimize the whole. The interactions between teams matter more than the output of any one.",
+    claim: "Systems outperform when the parts work together.",
+    body: "The interactions between teams matter more than the output of any one individual or team.",
     attribution: "Ackoff · Senge · Meadows — Systems Thinking",
   },
   {
     title: "Coordination Theory",
-    claim: "Coordination cost grows as work becomes more interdependent.",
-    body: "Adding capacity or contributors raises communication overhead nonlinearly — the cost of moving together rises faster than the benefit of moving faster alone.",
+    claim: "Coordination costs grow as work becomes more interdependent.",
+    body: "Adding capacity raises communication overhead nonlinearly. The cost of moving together rises faster than the benefit of moving faster alone.",
     attribution: "Malone · Brooks — Coordination Theory",
   },
   {
     title: "Organizational Health",
     claim: "Strategic alignment connects daily decisions to outcomes.",
-    body: "Organizations perform better when goals, priorities, measures and behaviors connect. Alignment is not a feeling — it is an observable, buildable system.",
+    body: "Organizations perform better when goals, priorities, measures and behaviors connect. Alignment is not a feeling it is a system.",
     attribution: "Kaplan & Norton · McKinsey OHI",
   },
   {
     title: "Attention Economics",
-    claim: "Abundant information makes attention the scarce resource.",
-    body: "As AI floods organizations with output, prioritization and shared meaning become the binding constraint on performance.",
+    claim: "Abundant information makes attention a scarce resource.",
+    body: "As AI floods organizations with output, prioritization and shared meaning become our greatest constraint.",
     attribution: "Herbert Simon — Attention Economics",
   },
   {
     title: "Team Topologies",
     claim: "Organizations ship their communication structure.",
-    body: "Products mirror the org that builds them. A misaligned organization produces a fragmented product — and AI amplifies the effect.",
+    body: "Products mirror the org that builds them. Fragmented organizations produce fragmented products. AI amplifies the effect.",
     attribution: "Conway's Law · Team Topologies",
   },
 ];
