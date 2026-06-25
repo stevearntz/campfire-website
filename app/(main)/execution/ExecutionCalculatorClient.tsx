@@ -361,7 +361,7 @@ export default function ExecutionCalculatorClient() {
           >
             <EquationBlock variant="dark" showCapacity={false} size="lg" />
           </div>
-          <p className="text-base text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl font-semibold text-white/90 max-w-4xl mx-auto mb-10 leading-relaxed">
             Increase clarity. Increase alignment. Reduce coordination cost. Execute better.
           </p>
           <button
