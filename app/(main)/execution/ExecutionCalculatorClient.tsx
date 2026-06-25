@@ -87,7 +87,7 @@ function ScaleInput({
 }) {
   const isFocus = index === 3; // the 4th statement is the Focus throughline
   return (
-    <div style={{ padding: "30px 0", borderBottom: "1px solid #EAE9EB" }}>
+    <div style={{ padding: "clamp(12px, 2.1vh, 26px) 0", borderBottom: "1px solid #EAE9EB" }}>
       {/* statement */}
       <div
         className="flex items-start"
@@ -118,7 +118,7 @@ function ScaleInput({
         </span>
       </div>
       {/* scale */}
-      <div className="flex items-center flex-wrap" style={{ paddingLeft: 36, marginTop: 18, gap: 12 }}>
+      <div className="flex items-center flex-wrap" style={{ paddingLeft: 36, marginTop: "clamp(10px, 1.5vh, 18px)", gap: 12 }}>
         <span style={{ fontSize: 16, fontWeight: 600, color: "#AAA7AE", whiteSpace: "nowrap" }}>Strongly Disagree</span>
         <div className="flex items-center" style={{ gap: 9 }}>
           {[1, 2, 3, 4, 5].map((n) => {
@@ -195,7 +195,7 @@ function StepNav({
     whiteSpace: "nowrap" as const,
   };
   return (
-    <div className="flex items-center justify-between" style={{ marginTop: "clamp(36px, 5vw, 56px)" }}>
+    <div className="flex items-center justify-between" style={{ marginTop: "clamp(22px, 3.2vh, 44px)" }}>
       <button
         onClick={onBack}
         className="transition-opacity hover:opacity-80"
@@ -495,14 +495,17 @@ export default function ExecutionCalculatorClient() {
 
   return (
     <div ref={topRef} style={{ background: "#F9F5FD" }}>
-      <div style={{ padding: "clamp(28px, 4vw, 56px) clamp(16px, 4vw, 48px) clamp(56px, 8vw, 96px)" }}>
+      <div
+        className="flex justify-center items-center"
+        style={{ minHeight: "calc(100vh - 92px)", padding: "clamp(20px, 3vh, 44px) clamp(16px, 4vw, 48px)" }}
+      >
         <div
-          className="mx-auto"
+          className="mx-auto w-full"
           style={{
             maxWidth: 1137,
             background: "#fff",
             borderRadius: 10,
-            padding: "clamp(40px, 5vw, 80px) clamp(28px, 7vw, 110px)",
+            padding: "clamp(28px, 4.5vh, 64px) clamp(24px, 6vw, 96px)",
           }}
         >
           {/* eyebrow row */}
@@ -515,12 +518,12 @@ export default function ExecutionCalculatorClient() {
           </div>
 
           {/* progress */}
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 12 }}>
             <ProgressBar step={step} total={4} />
           </div>
 
           {/* title + subtitle */}
-          <h2 style={{ fontSize: "clamp(30px, 4vw, 44px)", fontWeight: 800, letterSpacing: "-0.015em", color: "#262F56", margin: "clamp(28px, 4vw, 40px) 0 8px" }}>
+          <h2 style={{ fontSize: "clamp(28px, 3.4vw, 44px)", fontWeight: 800, letterSpacing: "-0.015em", color: "#262F56", margin: "clamp(20px, 3.2vh, 38px) 0 6px" }}>
             {stepTitle}
           </h2>
           <p style={{ fontSize: 18, fontWeight: 500, color: "#97949D" }}>
@@ -536,13 +539,13 @@ export default function ExecutionCalculatorClient() {
             )}
           </p>
 
-          <div style={{ height: 1, background: "#EAE9EB", marginTop: "clamp(20px, 3vw, 28px)" }} />
+          <div style={{ height: 1, background: "#EAE9EB", marginTop: "clamp(14px, 2.2vh, 24px)" }} />
 
           {/* ─── STEP 1: ORG INFO ─── */}
           {step === 1 && (
             <div>
               {/* Q1 — headcount */}
-              <div style={{ marginTop: "clamp(28px, 4vw, 40px)" }}>
+              <div style={{ marginTop: "clamp(18px, 2.8vh, 36px)" }}>
                 <div className="flex items-start" style={{ gap: 8, ...qNumStyle }}>
                   <span style={{ flex: "none" }}>1.</span>
                   <span>How many employees does your organization have?</span>
@@ -583,7 +586,7 @@ export default function ExecutionCalculatorClient() {
               </div>
 
               {/* Q2 — AI adoption */}
-              <div style={{ marginTop: "clamp(32px, 4vw, 44px)" }}>
+              <div style={{ marginTop: "clamp(20px, 3vh, 40px)" }}>
                 <div className="flex items-start" style={{ gap: 8, ...qNumStyle }}>
                   <span style={{ flex: "none" }}>2.</span>
                   <span>How would you describe AI adoption across your org?</span>
