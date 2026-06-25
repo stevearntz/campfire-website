@@ -350,7 +350,7 @@ export default function ExecutionCalculatorClient() {
             <br />
             <span className="text-[#E055CB]">team executing?</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/70 max-w-[640px] mx-auto mb-3 leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-[640px] mx-auto mb-3 leading-relaxed">
             Do your 300 employees execute like 30&hellip; or like 3,000?
           </p>
           <p className="text-base text-white/50 max-w-[560px] mx-auto mb-8 leading-relaxed">
