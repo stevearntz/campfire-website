@@ -31,6 +31,10 @@ export default function SiteNav() {
       ? pathname === href
       : pathname.startsWith(href);
 
+  // Hide the header CTA on the diagnostic itself — it's the prominent CTA on
+  // the intro (page 0) and redundant once you're inside the flow.
+  const hideCta = pathname.startsWith(CALCULATOR_HREF);
+
   return (
     <>
       {/* Utility strip */}
@@ -93,16 +97,20 @@ export default function SiteNav() {
             })}
           </div>
 
-          {/* Right: pink pill CTA (desktop) */}
-          <TrackedLink
-            href={CALCULATOR_HREF}
-            eventName="te_cta"
-            eventParams={{ cta: "start_diagnostic", location: "site_nav" }}
-            className="te-btn hidden lg:inline-block uppercase whitespace-nowrap transition-opacity hover:opacity-90"
-            style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", color: "#fff", background: "#E055CB", padding: "12px 22px", borderRadius: 8 }}
-          >
-            Start the diagnostic
-          </TrackedLink>
+          {/* Right: pink pill CTA (desktop) — hidden on the diagnostic route */}
+          {hideCta ? (
+            <span className="hidden lg:block" aria-hidden />
+          ) : (
+            <TrackedLink
+              href={CALCULATOR_HREF}
+              eventName="te_cta"
+              eventParams={{ cta: "start_diagnostic", location: "site_nav" }}
+              className="te-btn hidden lg:inline-block uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+              style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", color: "#fff", background: "#E055CB", padding: "12px 22px", borderRadius: 8 }}
+            >
+              Start the diagnostic
+            </TrackedLink>
+          )}
 
           {/* Mobile hamburger */}
           <button
@@ -142,15 +150,17 @@ export default function SiteNav() {
                   <span onClick={() => setOpen(false)}>{link.label}</span>
                 </TrackedLink>
               ))}
-              <TrackedLink
-                href={CALCULATOR_HREF}
-                eventName="te_cta"
-                eventParams={{ cta: "start_diagnostic", location: "site_nav_mobile" }}
-                className="mt-3 text-center text-white text-[12px] font-bold tracking-[0.1em] uppercase px-5 py-4 rounded-[8px]"
-                style={{ background: "#E055CB" }}
-              >
-                <span onClick={() => setOpen(false)}>Start the diagnostic</span>
-              </TrackedLink>
+              {!hideCta && (
+                <TrackedLink
+                  href={CALCULATOR_HREF}
+                  eventName="te_cta"
+                  eventParams={{ cta: "start_diagnostic", location: "site_nav_mobile" }}
+                  className="mt-3 text-center text-white text-[12px] font-bold tracking-[0.1em] uppercase px-5 py-4 rounded-[8px]"
+                  style={{ background: "#E055CB" }}
+                >
+                  <span onClick={() => setOpen(false)}>Start the diagnostic</span>
+                </TrackedLink>
+              )}
               <div className="my-4 h-px" style={{ background: "#F1EEF8" }} />
               <TrackedLink
                 href={MAIN_SITE_HREF}
