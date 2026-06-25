@@ -875,7 +875,7 @@ function ResultsView({
       </section>
 
       {/* ─── AI CALLOUT (§6) ─── */}
-      <section className="bg-white pt-8 md:pt-10 pb-14 md:pb-20">
+      <section className="bg-white py-11 md:py-[60px]">
         <div className="max-w-3xl mx-auto px-6">
           <div
             className="rounded-3xl bg-[#F8F5FC] px-6 py-6 md:px-8 md:py-7"
