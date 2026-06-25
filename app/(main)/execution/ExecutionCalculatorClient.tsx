@@ -350,8 +350,11 @@ export default function ExecutionCalculatorClient() {
             <br />
             <span className="text-[#E055CB]">team executing?</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/60 max-w-[640px] mx-auto mb-4 leading-relaxed">
-            Do your 300 employees execute like 30 or 3,000?
+          <p className="text-lg md:text-xl text-white/70 max-w-[640px] mx-auto mb-3 leading-relaxed">
+            Do your 300 employees execute like 30&hellip; or like 3,000?
+          </p>
+          <p className="text-base text-white/50 max-w-[560px] mx-auto mb-8 leading-relaxed">
+            Work is moving faster than teams can stay aligned. Measure the three factors that drive execution.
           </p>
           <div
             className="rounded-[20px] border px-6 py-9 md:py-11 max-w-4xl mx-auto mb-8"
