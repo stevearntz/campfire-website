@@ -8,28 +8,28 @@ const CALENDLY = "https://calendly.com/getcampfire/";
 
 const CHALLENGES = [
   {
-    title: "Progress feels slower than it should",
+    title: "Busy, but barely moving",
     looksLike: "Too many priorities, lack of focus, difficulty turning plans into action.",
     leftTint: "#E7DFF7",
     rightTint: "#F0EBFA",
     border: "#6E3FCC",
   },
   {
-    title: "Communication & coordination break down",
+    title: "Communication break downs & silos",
     looksLike: "Information gets stuck, teams work in silos, cross-functional work becomes harder.",
     leftTint: "#E9E2F8",
     rightTint: "#F2EDFB",
     border: "#9D88ED",
   },
   {
-    title: "The same issues keep resurfacing",
+    title: "Keep solving the same problems",
     looksLike: "Decisions don't stick, accountability is unclear, the same conversations recur.",
     leftTint: "#FAE0EA",
     rightTint: "#FCEDF2",
     border: "#E055CB",
   },
   {
-    title: "The team is being asked to adapt quickly",
+    title: "The ground keeps shifting",
     looksLike: "New priorities, growth, restructuring, new leaders, changing expectations.",
     leftTint: "#FCE9CA",
     rightTint: "#FDF4DF",
