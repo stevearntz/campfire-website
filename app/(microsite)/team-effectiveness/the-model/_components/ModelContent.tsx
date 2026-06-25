@@ -797,7 +797,7 @@ export default function ModelContent() {
             className="font-normal text-white"
             style={{ ...SERIF, fontSize: "clamp(28px, 4.4vw, 44px)", lineHeight: 1.12 }}
           >
-            See where your equation stands.
+            See where your organization stands.
           </h2>
           <p
             className="mx-auto mt-5"
@@ -808,8 +808,9 @@ export default function ModelContent() {
               lineHeight: 1.6,
             }}
           >
-            The diagnostic turns this model into your number — clarity, alignment,
-            coordination cost, and the AI multiplier, in about two minutes.
+            The diagnostic gives you a way to apply this model to your organization. In
+            just two minutes, you can turn your clarity, alignment, and coordination
+            into a quick pulse on your organization&rsquo;s effectiveness.
           </p>
           <div className="mt-9 flex flex-col items-center gap-5">
             <TrackedLink
