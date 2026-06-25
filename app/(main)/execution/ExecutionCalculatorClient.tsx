@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { trackEvent } from "@/app/lib/analytics";
-import EquationBlock from "@/app/(microsite)/team-effectiveness/_components/EquationBlock";
 import TrackedLink from "@/app/components/TrackedLink";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -336,42 +335,42 @@ export default function ExecutionCalculatorClient() {
   /* ─── STEP 0: INTRO ─── */
   if (step === 0) {
     return (
-      <section className="relative bg-[#1C1334] overflow-hidden min-h-[clamp(560px,calc(100vh-64px),820px)]">
+      <section
+        className="relative bg-[#1C1334] overflow-hidden flex justify-center min-h-[clamp(640px,calc(100vh-64px),940px)]"
+        style={{
+          backgroundImage: "url(/diagnostic-hero.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center bottom",
+        }}
+      >
+        {/* subtle top vignette so the eyebrow/headline stay legible over the sky */}
         <div
-          className="absolute inset-0 opacity-15"
-          style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(20,13,40,0.45) 0%, rgba(20,13,40,0.12) 30%, rgba(20,13,40,0) 55%)",
+          }}
         />
-        <div className="relative max-w-4xl mx-auto px-6 pt-16 md:pt-24 lg:pt-32 pb-20 md:pb-28 text-center">
-          <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-6">
+        <div className="relative max-w-4xl mx-auto px-6 pt-16 md:pt-24 lg:pt-28 text-center">
+          <p className="text-xs md:text-sm font-bold tracking-[0.22em] uppercase text-[#9D88ED] mb-7">
             Team Effectiveness Diagnostic
           </p>
-          <h1 className="text-[2.25rem] md:text-[3.25rem] lg:text-[4rem] font-extrabold leading-[1.08] tracking-tight text-white mb-6">
+          <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.25rem] font-extrabold leading-[1.05] tracking-tight text-white mb-7">
             How effectively is your
             <br />
-            <span className="text-[#E055CB]">team executing?</span>
+            team executing?
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-[640px] mx-auto mb-3 leading-relaxed">
-            Do your 300 employees execute like 30&hellip; or like 3,000?
+          <p className="text-xl md:text-2xl text-white/90 max-w-[640px] mx-auto mb-12 leading-relaxed">
+            Do your 300 employees execute like 30&hellip; or 3,000?
           </p>
-          <p className="text-base text-white/50 max-w-[560px] mx-auto mb-8 leading-relaxed">
-            Work is moving faster than teams can stay aligned.
-            <br />
-            Measure the three factors that drive execution.
-          </p>
-          <div
-            className="rounded-[20px] border px-6 py-9 md:py-11 max-w-4xl mx-auto mb-8"
-            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)" }}
-          >
-            <EquationBlock variant="dark" showCapacity={false} size="md" />
-          </div>
-          <p className="text-lg md:text-xl font-semibold text-white/90 max-w-4xl mx-auto mb-10 leading-relaxed">
-            Increase clarity. Increase alignment. Reduce coordination cost. Execute better.
+          <p className="text-base md:text-lg text-white/60 mb-6">
+            Take this 2-minute diagnostic to find out.
           </p>
           <button
             onClick={() => goTo(1)}
-            className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold tracking-[0.08em] uppercase text-white bg-[#8B6FD6] hover:bg-[#7B5FC6] rounded-lg transition-colors shadow-[0_16px_40px_-18px_rgba(139,111,214,0.9)]"
           >
-            Get my effectiveness score
+            Start the diagnostic
             <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
               <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
