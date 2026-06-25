@@ -29,22 +29,24 @@ function Eyebrow({
 
 const TERMS = [
   {
-    micro: "Foundation",
     label: "Clarity",
-    color: "#F59E2C",
-    body: "Knowing what matters, why, and what good looks like. At zero, alignment and coordination are just organized confusion.",
+    color: "#C77DEC",
+    body: "Shared understanding of what we're solving — at every level of the org.",
   },
   {
-    micro: "Multiplier",
     label: "Alignment",
-    color: "#6E3FCC",
-    body: "Shared understanding of priorities and how decisions get made. It turns individual effort into collective progress.",
+    color: "#EE80DD",
+    body: "Every team's plan adds up to the same plan — with trade-offs agreed.",
   },
   {
-    micro: "Drag",
     label: "Coordination Cost",
-    color: "#E055CB",
-    body: "The meetings, rework, handoffs and clarification required to move together. Better leadership reduces it.",
+    color: "#F7A83D",
+    body: "The drag of meetings, rework, and politics needed to move work forward.",
+  },
+  {
+    label: "Capacity",
+    color: "#6E3FCC",
+    body: "The people, skills, and tools — now amplified by AI — available to do the work.",
   },
 ];
 
@@ -64,26 +66,31 @@ const ERAS = [
 
 const RESEARCH = [
   {
+    title: "Systems Thinking",
     claim: "Systems outperform when the parts work together — not just faster.",
     body: "Optimizing individual parts does not optimize the whole. The interactions between teams matter more than the output of any one.",
     attribution: "Ackoff · Senge · Meadows — Systems Thinking",
   },
   {
+    title: "Coordination Theory",
     claim: "Coordination cost grows as work becomes more interdependent.",
     body: "Adding capacity or contributors raises communication overhead nonlinearly — the cost of moving together rises faster than the benefit of moving faster alone.",
     attribution: "Malone · Brooks — Coordination Theory",
   },
   {
+    title: "Organizational Health",
     claim: "Strategic alignment connects daily decisions to outcomes.",
     body: "Organizations perform better when goals, priorities, measures and behaviors connect. Alignment is not a feeling — it is an observable, buildable system.",
     attribution: "Kaplan & Norton · McKinsey OHI",
   },
   {
+    title: "Attention Economics",
     claim: "Abundant information makes attention the scarce resource.",
     body: "As AI floods organizations with output, prioritization and shared meaning become the binding constraint on performance.",
     attribution: "Herbert Simon — Attention Economics",
   },
   {
+    title: "Team Topologies",
     claim: "Organizations ship their communication structure.",
     body: "Products mirror the org that builds them. A misaligned organization produces a fragmented product — and AI amplifies the effect.",
     attribution: "Conway's Law · Team Topologies",
@@ -228,7 +235,7 @@ export default function ModelContent() {
                 color: "rgba(255,255,255,0.92)",
                 textDecoration: "line-through",
                 textDecorationColor: "#E055CB",
-                textDecorationThickness: 1,
+                textDecorationThickness: 3,
               }}
             >
               more capacity = more output
@@ -347,14 +354,14 @@ export default function ModelContent() {
           paddingRight: SECTION_PX,
         }}
       >
-        <div className="mx-auto" style={{ maxWidth: 1000 }}>
-          <div className="text-center mb-10" style={{ maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+        <div className="mx-auto" style={{ maxWidth: 1100 }}>
+          <div className="text-center mb-10" style={{ maxWidth: 660, marginLeft: "auto", marginRight: "auto" }}>
             <Eyebrow color="#6E3FCC">The Equation</Eyebrow>
             <h2
               className="font-normal"
               style={{ ...SERIF, fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.15, color: "#1E2A4A" }}
             >
-              What actually drives execution.
+              What actually drives execution?
             </h2>
           </div>
 
@@ -362,29 +369,19 @@ export default function ModelContent() {
             className="rounded-[20px] border px-6 py-10 md:py-12"
             style={{ background: "#FFFFFF", borderColor: "#F1EEF8" }}
           >
-            <EquationBlock variant="light" showCapacity={false} />
-            <p
-              className="text-center mx-auto mt-7"
-              style={{ maxWidth: 600, fontSize: 15, lineHeight: 1.6, color: "#636B7C" }}
-            >
-              All of it scaled by <strong style={{ color: "#1E2A4A" }}>capacity</strong> —
-              your people multiplied by the AI leverage they wield. Capacity sets the
-              ceiling; execution decides how much of it becomes output.
-            </p>
+            <EquationBlock variant="light" showCapacity={false} size="lg" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-10 text-left">
             {TERMS.map((t) => (
               <div key={t.label}>
-                <p
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase mb-1"
-                  style={{ color: "#9B96A6" }}
+                <div style={{ height: 3, borderRadius: 2, background: t.color, marginBottom: 16 }} />
+                <div
+                  className="uppercase text-[12px] font-bold tracking-[0.12em] mb-2.5"
+                  style={{ color: t.color }}
                 >
-                  {t.micro}
-                </p>
-                <h3 className="text-[18px] font-bold mb-2" style={{ color: t.color }}>
                   {t.label}
-                </h3>
+                </div>
                 <p className="text-[15px] leading-relaxed" style={{ color: "#3A3550" }}>
                   {t.body}
                 </p>
@@ -405,7 +402,7 @@ export default function ModelContent() {
         }}
       >
         <div className={PROSE} style={PROSE_W}>
-          <SectionHeading num="02">Coordination cost grows faster than capacity.</SectionHeading>
+          <SectionHeading num="02">Coordination cost grows with capacity.</SectionHeading>
           <P>
             Why does the denominator dominate? Because the cost of moving together
             rises <strong>nonlinearly</strong> as work becomes more interdependent — a
@@ -413,10 +410,10 @@ export default function ModelContent() {
             who has watched a growing team slow down.
           </P>
           <P>
-            <strong>Thomas Malone&apos;s</strong> coordination theory made it concrete;{" "}
-            <strong>Fred Brooks</strong> in <em>The Mythical Man-Month</em>:
+            <strong>Thomas Malone&apos;s</strong> coordination theory made it concrete.{" "}
+            <strong>Fred Brooks</strong> in <em>The Mythical Man-Month</em> found that
             communication channels grow with the square of headcount, at n(n−1)/2. Add
-            people and the connective tissue explodes.
+            people and the connective tissue gets overloaded.
           </P>
 
           {/* channels table */}
@@ -461,9 +458,10 @@ export default function ModelContent() {
           </div>
 
           <P>
-            At 300 people, that is 44,850 potential channels of miscommunication — and
-            AI raises the throughput of every node, so the network destabilizes faster
-            if coordination systems stay the same.
+            At 300 people, that is 44,850 potential channels of miscommunication. AI not
+            only raises the throughput of every node but it dramatically increases the
+            number of nodes. Your network will destabilize much faster if your
+            coordination systems stay the same.
           </P>
         </div>
       </section>
@@ -479,12 +477,13 @@ export default function ModelContent() {
         }}
       >
         <div className={PROSE} style={PROSE_W}>
-          <SectionHeading num="03">The AI-era inversion.</SectionHeading>
+          <SectionHeading num="03">The real impact of AI on effectiveness.</SectionHeading>
           <P>
-            Here is the part most organizations have not priced in. AI increases
-            execution speed — and <strong>execution speed is also divergence speed.</strong>{" "}
-            When everyone can move faster, small misunderstandings compound faster,
-            local optimization accelerates, and the organization fragments earlier.
+            Here is the part most organizations have not figured out. AI increases the
+            speed of execution for each individual and that{" "}
+            <strong>execution speed also becomes the speed of divergence</strong>. When
+            everyone can move faster, small misunderstandings compound faster,
+            individual optimization accelerates, and the organization fragments sooner.
             Consider six engineers building one platform:
           </P>
         </div>
@@ -505,9 +504,9 @@ export default function ModelContent() {
               Low capacity, low alignment
             </h3>
             <p className="text-[15px] leading-relaxed" style={{ color: "#3A3550" }}>
-              Six people, six different ideas of the customer. Effort is wasted and the
-              product is incoherent — but the damage is bounded, because velocity is
-              low.
+              Six people, six different ideas on strategy and direction. Effort is
+              wasted and the product becomes incoherent but the damage is limited,
+              because overall velocity is low.
             </p>
           </div>
           <div
@@ -524,19 +523,35 @@ export default function ModelContent() {
               High capacity, same alignment
             </h3>
             <p className="text-[15px] leading-relaxed" style={{ color: "#3A3550" }}>
-              Give everyone 10× tooling. Each ships more, in more directions. Divergence
-              accelerates, integration pain explodes, debt compounds. More output, less
-              coherence — possibly worse outcomes.
+              Give everyone 10× tooling. Each person ships more, in more directions.
+              Divergence accelerates, integration pain explodes, and debt compounds. You
+              get more individual output with even less coherence which leads to worse
+              outcomes.
             </p>
           </div>
         </div>
 
-        <div className={PROSE} style={PROSE_W}>
-          <P>
-            <strong>Conway&apos;s Law</strong> sharpens the warning: organizations ship
-            systems that mirror their communication structures. A fragmented org
-            produces a fragmented product — and AI amplifies the effect.
-          </P>
+        <div className={PROSE} style={{ ...PROSE_W, marginTop: "clamp(40px, 5vw, 64px)" }}>
+          <blockquote className="border-l-4 pl-6" style={{ borderColor: "#9D88ED" }}>
+            <p
+              style={{
+                ...SERIF,
+                fontSize: "clamp(22px, 2.8vw, 28px)",
+                lineHeight: 1.35,
+                color: "#1E2A4A",
+              }}
+            >
+              &ldquo;Organizations ship systems that mirror their communication
+              structures. A fragmented organization produces a fragmented product.{" "}
+              <span style={{ color: "#E055CB" }}>AI amplifies the effect.</span>&rdquo;
+            </p>
+            <footer
+              className="mt-3 text-[14px] font-semibold tracking-[0.06em] uppercase"
+              style={{ color: "#9B96A6" }}
+            >
+              Conway&apos;s Law
+            </footer>
+          </blockquote>
         </div>
       </section>
 
@@ -566,40 +581,51 @@ export default function ModelContent() {
             className="mt-5"
             style={{ fontSize: "clamp(17px, 1.6vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.78)" }}
           >
-            Every era has a binding constraint — the thing in shortest supply that
-            limits everything else. It has moved, and most operating habits have not
-            caught up.
+            Every era has a universal limiting constraint. There is one thing in
+            shortest supply that limits everything else. It has moved in the AI era, and
+            most operating modes have not caught up.
           </p>
 
           {/* three-era progression */}
-          <div className="mt-9 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {ERAS.map((e, i) => (
-              <div
-                key={e.era}
-                className="rounded-[16px] border px-5 py-6 text-center"
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  borderColor:
-                    i === ERAS.length - 1 ? "rgba(157,136,237,0.5)" : "rgba(255,255,255,0.1)",
-                }}
-              >
-                <p
-                  className="text-[13px] font-semibold tracking-[0.06em] uppercase mb-3"
-                  style={{ color: "rgba(255,255,255,0.55)" }}
+          <div className="mt-9 grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+            {ERAS.map((e, i) => {
+              const isAI = i === ERAS.length - 1;
+              return (
+                <div
+                  key={e.era}
+                  className="relative rounded-[16px] border px-5 py-6 text-center"
+                  style={{
+                    background: isAI ? "rgba(157,136,237,0.14)" : "rgba(255,255,255,0.03)",
+                    borderColor: isAI ? "rgba(184,164,242,0.7)" : "rgba(255,255,255,0.1)",
+                    boxShadow: isAI ? "0 18px 44px -18px rgba(157,136,237,0.6)" : "none",
+                  }}
                 >
-                  {e.era}
-                </p>
-                <p className="text-[15px]" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  →
-                </p>
-                <p
-                  className="text-[20px] font-bold mt-2"
-                  style={{ color: i === ERAS.length - 1 ? "#9D88ED" : "#FFFFFF" }}
-                >
-                  {e.constraint}
-                </p>
-              </div>
-            ))}
+                  {isAI && (
+                    <span
+                      className="absolute left-1/2 -translate-x-1/2 -top-3 text-[10px] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full"
+                      style={{ background: "#9D88ED", color: "#1C1334" }}
+                    >
+                      Now
+                    </span>
+                  )}
+                  <p
+                    className="text-[13px] font-semibold tracking-[0.06em] uppercase mb-3"
+                    style={{ color: isAI ? "#B8A4F2" : "rgba(255,255,255,0.55)" }}
+                  >
+                    {e.era}
+                  </p>
+                  <p className="text-[15px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    →
+                  </p>
+                  <p
+                    className={isAI ? "text-[24px] font-extrabold mt-2" : "text-[20px] font-bold mt-2"}
+                    style={{ color: isAI ? "#B8A4F2" : "#FFFFFF" }}
+                  >
+                    {e.constraint}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
           <p
@@ -609,21 +635,21 @@ export default function ModelContent() {
             As AI drives production friction toward zero, <strong>Herbert Simon&apos;s</strong>{" "}
             warning becomes the operating reality: &ldquo;a wealth of information creates
             a poverty of attention.&rdquo; When information is abundant, clarity,
-            prioritization and shared meaning become the scarce, economically valuable
+            prioritization and shared meaning become scarce and economically valuable
             resources.
           </p>
           <p
             className="mt-5"
             style={{ fontSize: "clamp(17px, 1.6vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.78)" }}
           >
-            There is a hidden cost in all of this — call it organizational{" "}
-            <strong>entropy</strong>: duplicated work, unclear priorities, meeting load,
-            context-switching, conflicting incentives. AI can raise capacity{" "}
-            <strong>and</strong> dramatically raise entropy at the same time. That is the
-            paradox leaders are feeling right now:
+            There is a hidden cost in all of this we will call organizational{" "}
+            <strong>entropy</strong>. Entropy consists of duplicate work, unclear
+            priorities, meeting load, context-switching, and conflicting incentives. AI
+            can raise capacity <strong>and</strong> dramatically raise entropy at the
+            same time. That is the paradox leaders are feeling right now:
           </p>
 
-          <blockquote className="mt-9 border-l-4 pl-6" style={{ borderColor: "#9D88ED" }}>
+          <blockquote className="border-l-4 pl-6" style={{ marginTop: 56, borderColor: "#9D88ED" }}>
             <p
               style={{
                 ...SERIF,
@@ -655,7 +681,7 @@ export default function ModelContent() {
               className="font-normal"
               style={{ ...SERIF, fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.15, color: "#1E2A4A" }}
             >
-              Not a theory. A convergence.
+              Five different fields. Same conclusions.
             </h2>
           </div>
 
@@ -666,12 +692,24 @@ export default function ModelContent() {
                 className="rounded-[18px] border p-7"
                 style={{ background: "#FCFBFE", borderColor: "#F1EEF8" }}
               >
-                <p
-                  className="text-[13px] font-extrabold mb-3"
-                  style={{ color: "#9D88ED" }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </p>
+                <div className="flex items-baseline gap-3 mb-4">
+                  <span
+                    style={{
+                      ...SERIF,
+                      fontSize: "clamp(30px, 3.4vw, 44px)",
+                      lineHeight: 1,
+                      color: "#9D88ED",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className="text-[17px] md:text-[18px] font-bold"
+                    style={{ color: "#6E3FCC" }}
+                  >
+                    {r.title}
+                  </span>
+                </div>
                 <h3
                   className="text-[18px] font-bold mb-3"
                   style={{ color: "#1E2A4A", lineHeight: 1.3 }}
