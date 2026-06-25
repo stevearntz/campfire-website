@@ -464,7 +464,7 @@ export default function HubClient() {
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "screen", opacity: 0.28 }}
+          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "overlay", opacity: 0.22 }}
         />
         <div className="relative mx-auto" style={{ maxWidth: 680 }}>
           <h2 className="whitespace-normal md:whitespace-nowrap text-white" style={{ fontSize: "clamp(30px, 4.2vw, 46px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.02em", margin: 0 }}>

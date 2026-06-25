@@ -10,17 +10,17 @@ const SECTION_PX = "clamp(24px, 6vw, 80px)";
 const FORCES = [
   {
     label: "Clarity",
-    color: "#F59E2C",
+    color: "#C77DEC",
     body: "Whether people know the priorities and why they matter.",
   },
   {
     label: "Alignment",
-    color: "#6E3FCC",
+    color: "#EE80DD",
     body: "Whether every team's plan adds up to the same plan.",
   },
   {
     label: "Coordination Cost",
-    color: "#E055CB",
+    color: "#F7A83D",
     body: "The drag of meetings, rework and politics to move work.",
   },
   {
