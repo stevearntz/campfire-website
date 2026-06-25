@@ -505,8 +505,9 @@ export default function ModelContent() {
             </h3>
             <p className="text-[15px] leading-relaxed" style={{ color: "#3A3550" }}>
               Six people, six different ideas on strategy and direction. Effort is
-              wasted and the product becomes incoherent but the damage is limited,
-              because overall velocity is low.
+              wasted and the product becomes incoherent, but the damage is limited,
+              because overall velocity is low and misalignment can only spread so far,
+              so fast.
             </p>
           </div>
           <div
@@ -524,9 +525,8 @@ export default function ModelContent() {
             </h3>
             <p className="text-[15px] leading-relaxed" style={{ color: "#3A3550" }}>
               Give everyone 10× tooling. Each person ships more, in more directions.
-              Divergence accelerates, integration pain explodes, and debt compounds. You
-              get more individual output with even less coherence which leads to worse
-              outcomes.
+              Divergence accelerates, integration pain explodes, and debt compounds.
+              More individual output, even less coherence, worse outcomes.
             </p>
           </div>
         </div>
