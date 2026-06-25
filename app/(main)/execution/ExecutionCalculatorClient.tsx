@@ -78,58 +78,145 @@ function ScaleInput({
   question,
   value,
   onChange,
-  color,
   index,
 }: {
   question: string;
   value: number;
   onChange: (v: number) => void;
-  color: string;
   index: number;
 }) {
+  const isFocus = index === 3; // the 4th statement is the Focus throughline
   return (
-    <div className="mb-8 last:mb-0">
-      <p className="text-sm font-semibold text-[#1C1334] mb-4 leading-relaxed">
-        <span className="text-gray-400 mr-2">{index + 1}.</span>
-        {question}
-      </p>
-      <div className="flex items-center gap-2">
-        <span className="text-[11px] text-gray-400 w-16 text-right shrink-0 hidden sm:block">Strongly<br />disagree</span>
-        <div className="flex gap-2 flex-1 justify-center">
-          {[1, 2, 3, 4, 5].map((n) => (
-            <button
-              key={n}
-              onClick={() => onChange(n)}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full text-sm font-bold transition-all duration-200"
+    <div style={{ padding: "30px 0", borderBottom: "1px solid #EAE9EB" }}>
+      {/* statement */}
+      <div
+        className="flex items-start"
+        style={{ gap: 8, fontSize: "clamp(18px, 2.2vw, 24px)", fontWeight: 600, color: "#262F56", lineHeight: 1.3 }}
+      >
+        <span style={{ flex: "none" }}>{index + 1}.</span>
+        <span>
+          {question}
+          {isFocus && (
+            <span
+              className="inline-block align-middle uppercase"
               style={{
-                background: value === n ? color : "#F3F4F6",
-                color: value === n ? "#fff" : "#9CA3AF",
-                transform: value === n ? "scale(1.15)" : "scale(1)",
-                boxShadow: value === n ? `0 4px 12px ${color}40` : "none",
+                marginLeft: 10,
+                fontSize: 10.5,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                color: "#C35AFF",
+                background: "#FAF1FC",
+                borderRadius: 999,
+                padding: "4px 10px",
+                position: "relative",
+                top: -2,
               }}
             >
-              {n}
-            </button>
-          ))}
+              Focus
+            </span>
+          )}
+        </span>
+      </div>
+      {/* scale */}
+      <div className="flex items-center flex-wrap" style={{ paddingLeft: 36, marginTop: 18, gap: 12 }}>
+        <span style={{ fontSize: 16, fontWeight: 600, color: "#AAA7AE", whiteSpace: "nowrap" }}>Strongly Disagree</span>
+        <div className="flex items-center" style={{ gap: 9 }}>
+          {[1, 2, 3, 4, 5].map((n) => {
+            const on = value === n;
+            return (
+              <button
+                key={n}
+                onClick={() => onChange(n)}
+                className="inline-flex items-center justify-center transition-all duration-200"
+                style={{
+                  width: "clamp(36px, 4.4vw, 41px)",
+                  height: "clamp(36px, 4.4vw, 41px)",
+                  borderRadius: 999,
+                  fontSize: 16,
+                  fontWeight: 700,
+                  background: on ? "linear-gradient(135deg, #6E3FCC, #C35AFF)" : "#F7F6F7",
+                  color: on ? "#fff" : "#AAA7AE",
+                  boxShadow: on ? "0 4px 12px rgba(150,70,220,0.35)" : "none",
+                }}
+              >
+                {n}
+              </button>
+            );
+          })}
         </div>
-        <span className="text-[11px] text-gray-400 w-16 shrink-0 hidden sm:block">Strongly<br />agree</span>
+        <span style={{ fontSize: 16, fontWeight: 600, color: "#AAA7AE", whiteSpace: "nowrap" }}>Strongly Agree</span>
       </div>
     </div>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   PROGRESS BAR
+   PROGRESS BAR — full 4-color gradient revealed up to the step %
    ═══════════════════════════════════════════════════════════════════ */
 
 function ProgressBar({ step, total }: { step: number; total: number }) {
   const pct = (step / total) * 100;
   return (
-    <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+    <div className="relative w-full overflow-hidden" style={{ height: 6, borderRadius: 5, background: "#EAE9EB" }}>
       <div
-        className="h-full rounded-full transition-all duration-500 ease-out"
-        style={{ width: `${pct}%`, background: "linear-gradient(90deg, #F59E2C, #6E3FCC, #E055CB)" }}
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(90deg, #6E3FCC 0%, #C35AFF 33%, #E463A4 66%, #FF9900 100%)" }}
       />
+      <div
+        className="absolute top-0 bottom-0 right-0 transition-all duration-500 ease-out"
+        style={{ left: `${pct}%`, background: "#EAE9EB" }}
+      />
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   STEP NAV — shared Back / Next footer
+   ═══════════════════════════════════════════════════════════════════ */
+
+function StepNav({
+  onBack,
+  onNext,
+  nextDisabled,
+  nextLabel,
+}: {
+  onBack: () => void;
+  onNext: () => void;
+  nextDisabled: boolean;
+  nextLabel: string;
+}) {
+  const typo = {
+    fontSize: 16,
+    fontWeight: 700,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase" as const,
+    padding: "16px 28px",
+    borderRadius: 4,
+    whiteSpace: "nowrap" as const,
+  };
+  return (
+    <div className="flex items-center justify-between" style={{ marginTop: "clamp(36px, 5vw, 56px)" }}>
+      <button
+        onClick={onBack}
+        className="transition-opacity hover:opacity-80"
+        style={{ ...typo, background: "#fff", color: "#525057", boxShadow: "inset 0 0 0 1px #AAA7AE, 0 2px 2px rgba(16,24,40,.15)" }}
+      >
+        Back
+      </button>
+      <button
+        onClick={onNext}
+        disabled={nextDisabled}
+        className="transition-opacity hover:opacity-90"
+        style={{
+          ...typo,
+          background: nextDisabled ? "#D9D2E8" : "#6E3FCC",
+          color: "#fff",
+          boxShadow: nextDisabled ? "none" : "0 2px 2px rgba(16,24,40,.15)",
+          cursor: nextDisabled ? "not-allowed" : "pointer",
+        }}
+      >
+        {nextLabel} →
+      </button>
     </div>
   );
 }
@@ -386,220 +473,180 @@ export default function ExecutionCalculatorClient() {
   }
 
   /* ─── STEPS 1–4: DIAGNOSTIC ─── */
+  const stepLabel =
+    step === 1 ? "Your organization" : step === 2 ? "Clarity" : step === 3 ? "Alignment" : "Coordination";
+  const stepTitle =
+    step === 1
+      ? "Tell us about your organization."
+      : step === 2
+      ? "How clear is your strategic direction?"
+      : step === 3
+      ? "How aligned is your organization?"
+      : "How much coordination friction exists?";
+  const canNext =
+    step === 1 ? canAdvanceOrg : step === 2 ? canAdvanceClarity : step === 3 ? canAdvanceAlignment : canAdvanceCoord;
+  const isPresetHc = HEADCOUNT_PRESETS.map(String).includes(headcount);
+  const qNumStyle = {
+    fontSize: "clamp(20px, 2.3vw, 24px)",
+    fontWeight: 700,
+    color: "#262F56",
+    lineHeight: 1.3,
+  } as const;
+
   return (
-    <div ref={topRef}>
-      {/* Header bar */}
-      <div className="sticky top-[64px] z-40 bg-white border-b border-gray-100">
-        <div className="max-w-3xl mx-auto px-6 py-3">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-xs font-bold tracking-[0.15em] uppercase text-gray-400">
-              {step === 1 && "Your organization"}
-              {step === 2 && "Clarity"}
-              {step === 3 && "Alignment"}
-              {step === 4 && "Coordination"}
-            </p>
-            <p className="text-xs text-gray-400">Step {step} of 4</p>
+    <div ref={topRef} style={{ background: "#F9F5FD" }}>
+      <div style={{ padding: "clamp(28px, 4vw, 56px) clamp(16px, 4vw, 48px) clamp(56px, 8vw, 96px)" }}>
+        <div
+          className="mx-auto"
+          style={{
+            maxWidth: 1137,
+            background: "#fff",
+            borderRadius: 10,
+            padding: "clamp(40px, 5vw, 80px) clamp(28px, 7vw, 110px)",
+          }}
+        >
+          {/* eyebrow row */}
+          <div
+            className="flex items-center justify-between"
+            style={{ fontSize: "clamp(14px, 1.6vw, 18px)", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "#97949D" }}
+          >
+            <span>{stepLabel}</span>
+            <span>Step {step} of 4</span>
           </div>
-          <ProgressBar step={step} total={4} />
+
+          {/* progress */}
+          <div style={{ marginTop: 14 }}>
+            <ProgressBar step={step} total={4} />
+          </div>
+
+          {/* title + subtitle */}
+          <h2 style={{ fontSize: "clamp(30px, 4vw, 44px)", fontWeight: 800, letterSpacing: "-0.015em", color: "#262F56", margin: "clamp(28px, 4vw, 40px) 0 8px" }}>
+            {stepTitle}
+          </h2>
+          <p style={{ fontSize: 18, fontWeight: 500, color: "#97949D" }}>
+            {step === 1 ? (
+              "Two quick questions to set the baseline."
+            ) : step === 4 ? (
+              <>
+                Rate each statement from 1 (strongly disagree) to 5 (strongly agree).{" "}
+                <span style={{ color: "#B23B9F" }}>Here, higher scores mean more friction.</span>
+              </>
+            ) : (
+              "Rate each statement from 1 (strongly disagree) to 5 (strongly agree)."
+            )}
+          </p>
+
+          <div style={{ height: 1, background: "#EAE9EB", marginTop: "clamp(20px, 3vw, 28px)" }} />
+
+          {/* ─── STEP 1: ORG INFO ─── */}
+          {step === 1 && (
+            <div>
+              {/* Q1 — headcount */}
+              <div style={{ marginTop: "clamp(28px, 4vw, 40px)" }}>
+                <div className="flex items-start" style={{ gap: 8, ...qNumStyle }}>
+                  <span style={{ flex: "none" }}>1.</span>
+                  <span>How many employees does your organization have?</span>
+                </div>
+                <div className="flex flex-wrap items-center" style={{ gap: 10, marginTop: 18, paddingLeft: 28 }}>
+                  {HEADCOUNT_PRESETS.map((n) => {
+                    const sel = headcount === String(n);
+                    return (
+                      <button
+                        key={n}
+                        onClick={() => setHeadcount(String(n))}
+                        className="transition-colors"
+                        style={{
+                          fontSize: 18,
+                          fontWeight: sel ? 700 : 500,
+                          padding: "9px 18px",
+                          borderRadius: 4,
+                          minWidth: 49,
+                          border: "0.7px solid #EAE9EB",
+                          background: sel ? "#6E3FCC" : "#fff",
+                          color: sel ? "#fff" : "#97949D",
+                        }}
+                      >
+                        {n.toLocaleString()}
+                      </button>
+                    );
+                  })}
+                  <span style={{ fontSize: 18, fontWeight: 500, color: "#615E66", marginLeft: 6 }}>Other:</span>
+                  <input
+                    type="number"
+                    min="1"
+                    value={isPresetHc ? "" : headcount}
+                    onChange={(e) => setHeadcount(e.target.value)}
+                    className="outline-none focus:border-[#6E3FCC]"
+                    style={{ width: 96, padding: "9px 12px", borderRadius: 4, border: "0.7px solid #EAE9EB", fontSize: 18, color: "#262F56" }}
+                  />
+                </div>
+              </div>
+
+              {/* Q2 — AI adoption */}
+              <div style={{ marginTop: "clamp(32px, 4vw, 44px)" }}>
+                <div className="flex items-start" style={{ gap: 8, ...qNumStyle }}>
+                  <span style={{ flex: "none" }}>2.</span>
+                  <span>How would you describe AI adoption across your org?</span>
+                </div>
+                <div className="flex flex-col" style={{ gap: 12, marginTop: 18, paddingLeft: 28, maxWidth: 520 }}>
+                  {AI_OPTIONS.map((opt, i) => {
+                    const sel = aiIdx === i;
+                    return (
+                      <button
+                        key={opt.key}
+                        onClick={() => setAiIdx(i)}
+                        className="text-left transition-colors"
+                        style={{
+                          padding: "13px 16px",
+                          borderRadius: 4,
+                          border: "0.7px solid #EAE9EB",
+                          background: sel ? "#6E3FCC" : "#fff",
+                          fontSize: 18,
+                          color: sel ? "#fff" : "#262F56",
+                        }}
+                      >
+                        <span style={{ fontWeight: 700 }}>{opt.label} —</span>{" "}
+                        <span style={{ color: sel ? "rgba(255,255,255,0.85)" : "#615E66" }}>{opt.desc}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <StepNav onBack={() => goTo(0)} onNext={() => canNext && goTo(2)} nextDisabled={!canNext} nextLabel="Next" />
+            </div>
+          )}
+
+          {/* ─── STEP 2: CLARITY ─── */}
+          {step === 2 && (
+            <div>
+              {CLARITY_QS.map((q, i) => (
+                <ScaleInput key={q} question={q} value={clarity[i]} onChange={(v) => setQ(clarity, setClarity, i, v)} index={i} />
+              ))}
+              <StepNav onBack={() => goTo(1)} onNext={() => canNext && goTo(3)} nextDisabled={!canNext} nextLabel="Next" />
+            </div>
+          )}
+
+          {/* ─── STEP 3: ALIGNMENT ─── */}
+          {step === 3 && (
+            <div>
+              {ALIGNMENT_QS.map((q, i) => (
+                <ScaleInput key={q} question={q} value={alignment[i]} onChange={(v) => setQ(alignment, setAlignment, i, v)} index={i} />
+              ))}
+              <StepNav onBack={() => goTo(2)} onNext={() => canNext && goTo(4)} nextDisabled={!canNext} nextLabel="Next" />
+            </div>
+          )}
+
+          {/* ─── STEP 4: COORDINATION ─── */}
+          {step === 4 && (
+            <div>
+              {COORDINATION_QS.map((q, i) => (
+                <ScaleInput key={q} question={q} value={coordination[i]} onChange={(v) => setQ(coordination, setCoordination, i, v)} index={i} />
+              ))}
+              <StepNav onBack={() => goTo(3)} onNext={() => canNext && goTo(5)} nextDisabled={!canNext} nextLabel="See your results" />
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className="max-w-3xl mx-auto px-6 py-12 md:py-16">
-        {/* ─── STEP 1: ORG INFO ─── */}
-        {step === 1 && (
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-2">
-              Tell us about your organization.
-            </h2>
-            <p className="text-base text-gray-500 mb-10">Two quick questions to set the baseline.</p>
-
-            {/* Headcount */}
-            <div className="mb-10">
-              <label htmlFor="hc" className="block text-sm font-bold text-[#1C1334] mb-3">
-                How many employees does your organization have?
-              </label>
-              <input
-                id="hc"
-                type="number"
-                min="1"
-                value={headcount}
-                onChange={(e) => setHeadcount(e.target.value)}
-                placeholder="e.g. 300"
-                className="w-full max-w-xs px-4 py-3 text-lg border border-gray-200 rounded-lg outline-none transition-colors focus:border-[#6E3FCC] focus:ring-2 focus:ring-[#6E3FCC]/20"
-              />
-              <div className="flex flex-wrap gap-2 mt-3">
-                {HEADCOUNT_PRESETS.map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => setHeadcount(String(n))}
-                    className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
-                      headcount === String(n)
-                        ? "bg-[#6E3FCC] text-white border-[#6E3FCC]"
-                        : "bg-white text-gray-500 border-gray-200 hover:border-[#6E3FCC]/40"
-                    }`}
-                  >
-                    {n.toLocaleString()}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* AI adoption */}
-            <div className="mb-10">
-              <p className="text-sm font-bold text-[#1C1334] mb-3">
-                How would you describe AI adoption across your org?
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {AI_OPTIONS.map((opt, i) => (
-                  <button
-                    key={opt.label}
-                    onClick={() => setAiIdx(i)}
-                    className={`text-left px-5 py-4 rounded-xl border-2 transition-all ${
-                      aiIdx === i
-                        ? "border-[#6E3FCC] bg-[#F8F5FC]"
-                        : "border-gray-100 bg-white hover:border-gray-200"
-                    }`}
-                  >
-                    <p className={`text-sm font-bold ${aiIdx === i ? "text-[#6E3FCC]" : "text-[#1C1334]"}`}>
-                      {opt.label}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-0.5">{opt.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => goTo(0)}
-                className="px-5 py-3 text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                Back
-              </button>
-              <button
-                onClick={() => canAdvanceOrg && goTo(2)}
-                disabled={!canAdvanceOrg}
-                className="inline-flex items-center gap-2 px-6 py-3 text-base font-semibold text-white bg-[#6E3FCC] hover:bg-[#5a2fb3] rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Next
-                <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ─── STEP 2: CLARITY ─── */}
-        {step === 2 && (
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-2">
-              How clear is your strategic direction?
-            </h2>
-            <p className="text-base text-gray-500 mb-10">Rate each statement from 1 (strongly disagree) to 5 (strongly agree).</p>
-
-            {CLARITY_QS.map((q, i) => (
-              <ScaleInput
-                key={q}
-                question={q}
-                value={clarity[i]}
-                onChange={(v) => setQ(clarity, setClarity, i, v)}
-                color="#F59E2C"
-                index={i}
-              />
-            ))}
-
-            <div className="flex items-center gap-3 mt-10">
-              <button onClick={() => goTo(1)} className="px-5 py-3 text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                Back
-              </button>
-              <button
-                onClick={() => canAdvanceClarity && goTo(3)}
-                disabled={!canAdvanceClarity}
-                className="inline-flex items-center gap-2 px-6 py-3 text-base font-semibold text-white bg-[#6E3FCC] hover:bg-[#5a2fb3] rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Next
-                <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ─── STEP 3: ALIGNMENT ─── */}
-        {step === 3 && (
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-2">
-              How aligned is your organization?
-            </h2>
-            <p className="text-base text-gray-500 mb-10">Rate each statement from 1 (strongly disagree) to 5 (strongly agree).</p>
-
-            {ALIGNMENT_QS.map((q, i) => (
-              <ScaleInput
-                key={q}
-                question={q}
-                value={alignment[i]}
-                onChange={(v) => setQ(alignment, setAlignment, i, v)}
-                color="#6E3FCC"
-                index={i}
-              />
-            ))}
-
-            <div className="flex items-center gap-3 mt-10">
-              <button onClick={() => goTo(2)} className="px-5 py-3 text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                Back
-              </button>
-              <button
-                onClick={() => canAdvanceAlignment && goTo(4)}
-                disabled={!canAdvanceAlignment}
-                className="inline-flex items-center gap-2 px-6 py-3 text-base font-semibold text-white bg-[#6E3FCC] hover:bg-[#5a2fb3] rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                Next
-                <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ─── STEP 4: COORDINATION ─── */}
-        {step === 4 && (
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#1C1334] mb-2">
-              How much coordination friction exists?
-            </h2>
-            <p className="text-base text-gray-500 mb-10">Rate each statement. Here, higher scores mean <strong>more friction</strong> in your organization.</p>
-
-            {COORDINATION_QS.map((q, i) => (
-              <ScaleInput
-                key={q}
-                question={q}
-                value={coordination[i]}
-                onChange={(v) => setQ(coordination, setCoordination, i, v)}
-                color="#E055CB"
-                index={i}
-              />
-            ))}
-
-            <div className="flex items-center gap-3 mt-10">
-              <button onClick={() => goTo(3)} className="px-5 py-3 text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors">
-                Back
-              </button>
-              <button
-                onClick={() => canAdvanceCoord && goTo(5)}
-                disabled={!canAdvanceCoord}
-                className="inline-flex items-center gap-2 px-6 py-3 text-base font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                See your results
-                <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
