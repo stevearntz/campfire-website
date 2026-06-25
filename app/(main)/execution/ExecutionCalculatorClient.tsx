@@ -356,10 +356,10 @@ export default function ExecutionCalculatorClient() {
             Work is moving faster than teams can stay aligned. Measure your team&apos;s effectiveness across the three factors that have the biggest impact on execution.
           </p>
           <div
-            className="rounded-[20px] border px-6 py-9 md:py-11 max-w-3xl mx-auto mb-8"
+            className="rounded-[20px] border px-6 py-9 md:py-11 max-w-4xl mx-auto mb-8"
             style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)" }}
           >
-            <EquationBlock variant="dark" showCapacity={false} size="lg" />
+            <EquationBlock variant="dark" showCapacity={false} />
           </div>
           <p className="text-lg md:text-xl font-semibold text-white/90 max-w-4xl mx-auto mb-10 leading-relaxed">
             Increase clarity. Increase alignment. Reduce coordination cost. Execute better.
