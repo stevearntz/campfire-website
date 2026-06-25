@@ -441,7 +441,7 @@ export const CASES: CaseStudy[] = [
     accentSoft: "#E7F6EF",
     engagement: "Leadership Pilot",
     hook: "A decision-making field guide for high-pressure calls",
-    cardStat: "12 decision-making principles for calls under pressure",
+    cardStat: "12 principles for making critical decisions",
     cardQuote: {
       text: "These sessions have created significant value for our leaders.",
       attribution: "Chief Revenue Officer",
