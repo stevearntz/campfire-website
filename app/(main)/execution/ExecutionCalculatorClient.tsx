@@ -352,6 +352,8 @@ export default function ExecutionCalculatorClient() {
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-[640px] mx-auto mb-4 leading-relaxed">
             Do your 300 employees execute like 30 or 3,000?
+            <br />
+            Work is moving faster than teams can stay aligned. Measure your team&apos;s effectiveness across the three factors that have the biggest impact on execution.
           </p>
           <div
             className="rounded-[20px] border px-6 py-9 md:py-11 max-w-3xl mx-auto mb-8"
