@@ -681,7 +681,9 @@ export default function ModelContent() {
               className="font-normal"
               style={{ ...SERIF, fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.15, color: "#1E2A4A" }}
             >
-              Five different fields. Same conclusions.
+              Five different fields.
+              <br />
+              Same conclusions.
             </h2>
           </div>
 
