@@ -16,7 +16,7 @@ export default function EquationBlock({
   showCapacity?: boolean;
   resultColor?: string;
   stackResult?: boolean;
-  size?: "default" | "lg";
+  size?: "default" | "md" | "lg";
 }) {
   const dark = variant === "dark";
   const ink = dark ? "rgba(255,255,255,0.92)" : "#1E2A4A";
@@ -27,8 +27,14 @@ export default function EquationBlock({
   const alignment = "#EE80DD";
   const coordination = "#F7A83D";
 
-  const big = size === "lg" ? "clamp(25px, 4.2vw, 43px)" : "clamp(20px, 3.4vw, 30px)";
-  const frac = size === "lg" ? "clamp(28px, 5.5vw, 53px)" : "clamp(15px, 2.6vw, 26px)";
+  const big =
+    size === "lg" ? "clamp(25px, 4.2vw, 43px)"
+    : size === "md" ? "clamp(22px, 3.6vw, 36px)"
+    : "clamp(20px, 3.4vw, 30px)";
+  const frac =
+    size === "lg" ? "clamp(28px, 5.5vw, 53px)"
+    : size === "md" ? "clamp(20px, 3.2vw, 38px)"
+    : "clamp(15px, 2.6vw, 26px)";
 
   const fractionEl = (
     <div className="flex flex-col items-center">
