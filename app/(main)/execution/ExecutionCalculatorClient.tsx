@@ -312,9 +312,9 @@ export default function ExecutionCalculatorClient() {
       }
       return s;
     });
-    // Scroll to top of diagnostic area
+    // On step change, only scroll UP to the top — never nudge the page down.
     setTimeout(() => {
-      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: "smooth" });
     }, 50);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
