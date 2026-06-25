@@ -365,7 +365,7 @@ export const CASES: CaseStudy[] = [
     accentSoft: "#FBF0E6",
     engagement: "Facilitator Enablement",
     hook: "Honest conversations the leadership team was avoiding",
-    cardStat: "14→200 platform users as the relationship expanded",
+    cardStat: "Platform usage expanded by ~1,300%",
     cardQuote: {
       text: "Vulnerable and honest moments this team really needed.",
       attribution: "Talent Partner",
