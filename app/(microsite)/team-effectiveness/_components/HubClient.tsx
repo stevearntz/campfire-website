@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import TrackedLink from "@/app/components/TrackedLink";
 
@@ -104,6 +105,18 @@ const PAGE_CSS = `
 }
 .te-scroll-arrow { animation: te-bob 1.6s ease-in-out infinite; transition: opacity 160ms ease; }
 .te-scroll-arrow:hover { opacity: 0.65; }
+
+/* ── Mobile (≤640px) ── */
+.te-btn-short { display: none; }
+@media (max-width: 640px) {
+  .te-hero-br { display: none; }
+  .te-btn-full { display: none; }
+  .te-btn-short { display: inline; }
+  .te-chal-row { background: var(--c-strong) !important; }
+  .te-chal-desc { padding-left: 0 !important; padding-top: 14px; }
+  .te-eq-cols { grid-template-columns: 1fr !important; }
+  .te-ribbon-btns { justify-content: center; width: 100%; }
+}
 `;
 
 export default function HubClient() {
@@ -141,7 +154,7 @@ export default function HubClient() {
             style={{ fontSize: "clamp(40px, 6.4vw, 68px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.02em", margin: 0 }}
           >
             Turn team friction into
-            <br />
+            <br className="te-hero-br" />{" "}
             <span style={{ color: "#B8A4F2" }}>forward momentum</span>
           </h1>
           <p
@@ -158,7 +171,8 @@ export default function HubClient() {
               className="te-btn inline-flex items-center justify-center uppercase whitespace-nowrap transition-opacity hover:opacity-90"
               style={{ lineHeight: 1, fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", color: "#fff", background: "#E055CB", padding: "18px 32px", borderRadius: 8 }}
             >
-              Get your team effectiveness score →
+              <span className="te-btn-full">Get your team effectiveness score →</span>
+              <span className="te-btn-short">Get your score →</span>
             </TrackedLink>
             <a
               href="#included"
@@ -218,10 +232,11 @@ export default function HubClient() {
                   borderLeft: `5px solid ${row.border}`,
                   borderRadius: 8,
                   padding: "26px 46px 26px 30px",
-                }}
+                  ["--c-strong" as string]: row.leftTint,
+                } as CSSProperties}
               >
                 <div style={{ fontSize: 25, fontWeight: 600, lineHeight: 1.25, color: "#262F56" }}>{row.title}</div>
-                <div style={{ fontSize: "20.12px", lineHeight: 1.4, color: "#636B7C", paddingLeft: 25 }}>
+                <div className="te-chal-desc" style={{ fontSize: "20.12px", lineHeight: 1.4, color: "#636B7C", paddingLeft: 25 }}>
                   <span style={{ fontWeight: 700, color: "#262F56" }}>This often looks like:</span> {row.looksLike}
                 </div>
               </div>
@@ -280,7 +295,7 @@ export default function HubClient() {
 
           {/* FOUR COLUMNS */}
           <div
-            className="grid mx-auto text-left"
+            className="grid mx-auto text-left te-eq-cols"
             style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "clamp(20px, 2.4vw, 36px)", maxWidth: 1160 }}
           >
             {TERMS.map((t) => (
@@ -313,7 +328,7 @@ export default function HubClient() {
                 Discover the execution level at your organization in 2 minutes!
               </span>
             </div>
-            <div className="flex flex-wrap" style={{ gap: 12 }}>
+            <div className="flex flex-wrap te-ribbon-btns" style={{ gap: 12 }}>
               <TrackedLink
                 href={CALC}
                 eventName="te_cta"
