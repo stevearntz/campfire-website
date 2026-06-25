@@ -515,7 +515,7 @@ export const CASES: CaseStudy[] = [
     accent: "#B23B9F",
     accentSoft: "#FAEAF5",
     engagement: "Foundation Offsite",
-    hook: "Turning two foundations and their friction into one shared mission.",
+    hook: "Two foundations and their friction into one shared mission.",
     cardStat: "2 bold missions into one shared purpose",
     cardQuote: { text: "", attribution: "" },
     cardNote:
