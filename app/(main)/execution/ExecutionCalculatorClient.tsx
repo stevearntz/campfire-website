@@ -819,7 +819,7 @@ function ResultsView({
           className="absolute inset-0 opacity-10"
           style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
         />
-        <div className="relative max-w-4xl mx-auto px-6 pt-28 md:pt-36 pb-20 md:pb-28 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 pt-12 md:pt-16 pb-10 md:pb-14 text-center">
           <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-6">
             Your execution score
           </p>
@@ -875,7 +875,7 @@ function ResultsView({
       </section>
 
       {/* ─── AI CALLOUT (§6) ─── */}
-      <section className="bg-white pt-12 md:pt-16 -mb-4">
+      <section className="bg-white pt-8 md:pt-10 -mb-4">
         <div className="max-w-3xl mx-auto px-6">
           <div
             className="rounded-2xl bg-[#F8F5FC] px-6 py-6 md:px-8 md:py-7"
