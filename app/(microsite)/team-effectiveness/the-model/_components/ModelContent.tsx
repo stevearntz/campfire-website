@@ -74,7 +74,7 @@ const RESEARCH = [
   {
     title: "Coordination Theory",
     claim: "Coordination costs grow as work becomes more interdependent.",
-    body: "Adding capacity raises communication overhead nonlinearly. The cost of moving together rises faster than the benefit of moving faster alone.",
+    body: "Adding capacity raises communication costs nonlinearly. The cost of moving together rises faster than the benefit of moving faster alone.",
     attribution: "Malone · Brooks — Coordination Theory",
   },
   {
