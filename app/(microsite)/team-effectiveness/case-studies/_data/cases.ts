@@ -39,6 +39,7 @@ export type Signature =
 export interface CaseStudy {
   slug: string;
   client: string;
+  orgSize?: string; // employee-count / size band — shown as a lighter sub-line
   /** typographic wordmark when no logo file exists */
   logo?: string; // /public path on a white chip
   draft?: boolean;
@@ -101,11 +102,12 @@ export const CASES: CaseStudy[] = [
   /* ───────── Award-winning media outlet (flagship) ───────── */
   {
     slug: "utah-business",
-    client: "Award-winning media outlet · small team (~50 employees)",
+    client: "Award-winning media outlet",
+    orgSize: "small team (~50 employees)",
     accent: "#E055CB",
     accentSoft: "#FCEBF8",
     engagement: "Team Offsite",
-    hook: "From 20-minute check-ins to shared purpose — in a single morning.",
+    hook: "Strategic alignment around profitability",
     cardStat: "½-day working session → a full-team 2026 rally",
     cardQuote: {
       text: "He brings out the best in people while helping them aspire to more.",
@@ -191,11 +193,12 @@ export const CASES: CaseStudy[] = [
   /* ───────── Global network for chief executives ───────── */
   {
     slug: "ypo",
-    client: "Global network for chief executives · ~450 employees",
+    client: "Global network for chief executives",
+    orgSize: "~450 employees",
     accent: "#6E3FCC",
     accentSoft: "#F3EFFE",
     engagement: "Leadership Retreat",
-    hook: "Guiding principles became 12 observable behaviors the team coaches by.",
+    hook: "Mission-driven principles drive leadership competency",
     cardStat: '4.8/5 session rating — "very or extremely valuable"',
     cardQuote: {
       text: "It came in at a 4.8 out of 5, with everyone rating it as very or extremely valuable.",
@@ -270,11 +273,12 @@ export const CASES: CaseStudy[] = [
   /* ───────── Outdoor consumer brand ───────── */
   {
     slug: "cotopaxi",
-    client: "Outdoor consumer brand · mid-size (~300 employees)",
+    client: "Outdoor consumer brand",
+    orgSize: "mid-size (~300 employees)",
     accent: "#3B4CCA",
     accentSoft: "#EAEDFB",
     engagement: "Executive Offsite",
-    hook: "An exec team aligned on the 3–5 drivers that define how they lead in 2026.",
+    hook: "Aligning executives around key drivers for performance",
     cardStat: "9 execs aligned on behaviors they'll coach & reward",
     cardQuote: {
       text: "What made it effective was the combination of clarity and accountability.",
@@ -355,11 +359,12 @@ export const CASES: CaseStudy[] = [
   /* ───────── Professional skincare brand ───────── */
   {
     slug: "dermalogica",
-    client: "Professional skincare brand · global (1,000+ employees)",
+    client: "Professional skincare brand",
+    orgSize: "global (1,000+ employees)",
     accent: "#D9803B",
     accentSoft: "#FBF0E6",
     engagement: "Facilitator Enablement",
-    hook: "The vulnerable, honest conversation this leadership team really needed.",
+    hook: "The vulnerable, honest conversation this leadership team had been avoiding.",
     cardStat: "14→200 platform users as the relationship expanded",
     cardQuote: {
       text: "Vulnerable and honest moments this team really needed.",
@@ -430,11 +435,12 @@ export const CASES: CaseStudy[] = [
   /* ───────── Consumer crafting technology company ───────── */
   {
     slug: "cricut",
-    client: "Consumer crafting technology company · public (1,000+ employees)",
+    client: "Consumer crafting technology company",
+    orgSize: "public (1,000+ employees)",
     accent: "#0E9F6E",
     accentSoft: "#E7F6EF",
     engagement: "Leadership Pilot",
-    hook: "A field guide that helped leaders slow down to speed up.",
+    hook: "A decision-making field guide for leaders' highest-pressure calls.",
     cardStat: "12 decision-making principles for calls under pressure",
     cardQuote: {
       text: "These sessions have created significant value for our leaders.",
@@ -503,12 +509,13 @@ export const CASES: CaseStudy[] = [
   /* ───────── Family philanthropic foundation (DRAFT) ───────── */
   {
     slug: "huntsman",
-    client: "Family philanthropic foundation · small (~50 staff)",
+    client: "Family philanthropic foundation",
+    orgSize: "small (~50 staff)",
     draft: true,
     accent: "#B23B9F",
     accentSoft: "#FAEAF5",
     engagement: "Foundation Offsite",
-    hook: "Healing the friction between entities into one shared mission.",
+    hook: "Turning two foundations and their friction into one shared mission.",
     cardStat: "2 bold missions into one shared purpose",
     cardQuote: { text: "", attribution: "" },
     cardNote:
@@ -578,7 +585,7 @@ export const CASES: CaseStudy[] = [
     accent: "#0E9488",
     accentSoft: "#E4F4F2",
     engagement: "Executive Offsite",
-    hook: "An exec team that learned to disagree openly — and commit.",
+    hook: "Execs learn to disagree openly and fully commit",
     cardStat: "Trust → productive conflict",
     cardQuote: { text: "", attribution: "" },
     cardNote:

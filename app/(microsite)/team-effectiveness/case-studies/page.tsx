@@ -17,7 +17,7 @@ const STATS = [
   { big: "7", label: "world-class teams" },
   { big: "4.8/5", label: "average session rating" },
   { big: "6", label: "different industries" },
-  { big: "200", label: "executives" },
+  { big: "250", label: "executives" },
 ];
 
 const METHOD_STEPS = ["Stories", "Behaviors", "Drivers", "Commitments"];
@@ -54,7 +54,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
         aria-hidden
       />
       <div className="flex flex-col flex-1 p-7 pl-8">
-        {/* engagement + draft chip */}
+        {/* engagement */}
         <div className="flex items-center gap-2 flex-wrap mb-4">
           <span
             className="text-[11px] font-bold tracking-[0.14em] uppercase"
@@ -62,18 +62,10 @@ function CaseCard({ c }: { c: CaseStudy }) {
           >
             {c.engagement}
           </span>
-          {c.draft && (
-            <span
-              className="text-[10px] font-bold tracking-[0.12em] uppercase px-2 py-0.5 rounded-full"
-              style={{ background: "#F1EEF8", color: "#9B96A6" }}
-            >
-              Draft
-            </span>
-          )}
         </div>
 
-        {/* client logo / wordmark */}
-        <div className="mb-3 flex items-center" style={{ minHeight: 28 }}>
+        {/* client descriptor + org size */}
+        <div className="mb-4">
           {c.logo ? (
             <span
               className="inline-flex items-center justify-center rounded-md bg-white border px-3 py-1.5"
@@ -89,6 +81,11 @@ function CaseCard({ c }: { c: CaseStudy }) {
             </span>
           ) : (
             <Wordmark name={c.client} accent={c.accent} />
+          )}
+          {c.orgSize && (
+            <p className="text-[12px] font-medium mt-1" style={{ color: "#9B96A6" }}>
+              {c.orgSize}
+            </p>
           )}
         </div>
 
@@ -120,15 +117,6 @@ function CaseCard({ c }: { c: CaseStudy }) {
           </blockquote>
         )}
 
-        <TrackedLink
-          href={`/team-effectiveness/case-studies/${c.slug}`}
-          eventName="te_link"
-          eventParams={{ slug: c.slug, location: "index_card" }}
-          className="mt-auto text-[14px] font-bold inline-flex items-center gap-1 transition-all group-hover:gap-2"
-          style={{ color: c.accent }}
-        >
-          Read the story →
-        </TrackedLink>
       </div>
     </div>
   );
@@ -281,8 +269,8 @@ export default function CaseStudiesIndexPage() {
             <br />
             leadership team.
           </h2>
-          <p className="mx-auto mt-5" style={{ maxWidth: 560, fontSize: "clamp(16px, 2vw, 19px)", color: "#636B7C", lineHeight: 1.6 }}>
-            A focused offsite that turns your strategy into the behaviors your leaders live by — or
+          <p className="mx-auto mt-5" style={{ maxWidth: 680, fontSize: "clamp(16px, 2vw, 19px)", color: "#636B7C", lineHeight: 1.6 }}>
+            A focused offsite that turns your strategy into the behaviors your leaders live by. Or
             start with a free read on where your team stands today.
           </p>
           <div className="flex gap-3 justify-center flex-wrap mt-9">
