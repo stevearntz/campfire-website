@@ -67,31 +67,31 @@ const ERAS = [
 const RESEARCH = [
   {
     title: "Systems Thinking",
-    claim: "Systems outperform when the parts work together.",
+    claim: "Systems outperform when the parts work together, not when each part simply works faster.",
     body: "The interactions between teams matter more than the output of any one individual or team.",
     attribution: "Ackoff · Senge · Meadows — Systems Thinking",
   },
   {
     title: "Coordination Theory",
-    claim: "Coordination costs grow as work becomes more interdependent.",
+    claim: "Coordination costs grow as work becomes more interdependent, quietly overtaking the gains.",
     body: "Adding capacity raises communication costs nonlinearly. The cost of moving together rises faster than the benefit of moving faster alone.",
     attribution: "Malone · Brooks — Coordination Theory",
   },
   {
     title: "Organizational Health",
-    claim: "Strategic alignment connects daily decisions to outcomes.",
+    claim: "Strategic alignment connects daily decisions to outcomes, or quietly disconnects them.",
     body: "Organizations perform better when goals, priorities, measures and behaviors connect. Alignment is not a feeling it is a system.",
     attribution: "Kaplan & Norton · McKinsey OHI",
   },
   {
     title: "Attention Economics",
-    claim: "Abundant information makes attention a scarce resource.",
+    claim: "Abundant information makes attention the scarce resource that now decides performance.",
     body: "As AI floods organizations with output, prioritization and shared meaning become our greatest constraint.",
     attribution: "Herbert Simon — Attention Economics",
   },
   {
     title: "Team Topologies",
-    claim: "Organizations ship their communication structure.",
+    claim: "Organizations ship their communication structure, for better or for worse, into the product.",
     body: "Products mirror the org that builds them. Fragmented organizations produce fragmented products. AI amplifies the effect.",
     attribution: "Conway's Law · Team Topologies",
   },
