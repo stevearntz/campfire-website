@@ -20,9 +20,10 @@ export default function EquationBlock({
   const ink = dark ? "rgba(255,255,255,0.92)" : "#1E2A4A";
   const muted = dark ? "rgba(255,255,255,0.5)" : "#9CA3AF";
   const rule = dark ? "rgba(255,255,255,0.55)" : "#1E2A4A";
-  const clarity = "#F59E2C";
-  const alignment = dark ? "#9D88ED" : "#6E3FCC";
-  const coordination = "#E055CB";
+  // Framework palette — matches the hub prototype equation.
+  const clarity = "#C77DEC";
+  const alignment = "#EE80DD";
+  const coordination = "#F7A83D";
 
   const big = "clamp(20px, 3.4vw, 30px)";
   const frac = "clamp(15px, 2.6vw, 26px)";
