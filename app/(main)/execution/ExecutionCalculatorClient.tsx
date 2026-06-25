@@ -875,11 +875,11 @@ function ResultsView({
       </section>
 
       {/* ─── AI CALLOUT (§6) ─── */}
-      <section className="bg-white pt-8 md:pt-10 -mb-4">
+      <section className="bg-white pt-8 md:pt-10 pb-14 md:pb-20">
         <div className="max-w-3xl mx-auto px-6">
           <div
-            className="rounded-2xl bg-[#F8F5FC] px-6 py-6 md:px-8 md:py-7"
-            style={{ borderLeft: `4px solid ${aiCallout.accent}` }}
+            className="rounded-3xl bg-[#F8F5FC] px-6 py-6 md:px-8 md:py-7"
+            style={{ border: `1px solid ${aiCallout.accent}33` }}
           >
             <p
               className="text-xs font-bold tracking-[0.16em] uppercase mb-2"
