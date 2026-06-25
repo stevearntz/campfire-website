@@ -226,7 +226,7 @@ export default function ModelContent() {
               borderColor: "rgba(255,255,255,0.1)",
             }}
           >
-            <EquationBlock variant="dark" />
+            <EquationBlock variant="dark" showCapacity={false} size="lg" />
           </div>
 
           <p
@@ -362,7 +362,7 @@ export default function ModelContent() {
             className="rounded-[20px] border px-6 py-10 md:py-12"
             style={{ background: "#FFFFFF", borderColor: "#F1EEF8" }}
           >
-            <EquationBlock variant="light" />
+            <EquationBlock variant="light" showCapacity={false} />
             <p
               className="text-center mx-auto mt-7"
               style={{ maxWidth: 600, fontSize: 15, lineHeight: 1.6, color: "#636B7C" }}
