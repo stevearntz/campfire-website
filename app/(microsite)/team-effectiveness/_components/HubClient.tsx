@@ -262,21 +262,19 @@ export default function HubClient() {
           >
             <div
               className="flex flex-wrap items-center justify-center"
-              style={{ gap: "clamp(10px, 1.6vw, 18px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}
+              style={{ gap: "clamp(12px, 1.8vw, 22px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}
             >
-              <span style={{ fontSize: "clamp(20px, 3.4vw, 34px)", color: "#fff", whiteSpace: "nowrap" }}>Execution</span>
-              <span style={{ fontSize: "clamp(20px, 3.4vw, 34px)", color: "rgba(255,255,255,0.45)", fontWeight: 600 }}>=</span>
-              <span className="inline-flex flex-col items-center" style={{ gap: "clamp(6px, 1vw, 12px)" }}>
-                <span className="inline-flex items-baseline" style={{ gap: "clamp(8px, 1.2vw, 16px)", fontSize: "clamp(22px, 4.4vw, 42px)", whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: "clamp(25px, 4.2vw, 43px)", color: "#fff", whiteSpace: "nowrap" }}>Execution</span>
+              <span style={{ fontSize: "clamp(25px, 4.2vw, 43px)", color: "rgba(255,255,255,0.45)", fontWeight: 600 }}>=</span>
+              <span className="inline-flex flex-col items-center" style={{ gap: "clamp(8px, 1.2vw, 15px)" }}>
+                <span className="inline-flex items-baseline" style={{ gap: "clamp(10px, 1.5vw, 20px)", fontSize: "clamp(28px, 5.5vw, 53px)", whiteSpace: "nowrap" }}>
                   <span style={{ color: "#C77DEC" }}>Clarity</span>
                   <span style={{ color: "rgba(255,255,255,0.4)", fontWeight: 600, fontSize: "0.7em" }}>×</span>
                   <span style={{ color: "#EE80DD" }}>Alignment</span>
                 </span>
-                <span style={{ width: "100%", height: 4, borderRadius: 2, background: "rgba(255,255,255,0.85)" }} />
-                <span style={{ fontSize: "clamp(22px, 4.4vw, 42px)", color: "#F7A83D", whiteSpace: "nowrap" }}>Coordination Cost</span>
+                <span style={{ width: "100%", height: 5, borderRadius: 2, background: "rgba(255,255,255,0.85)" }} />
+                <span style={{ fontSize: "clamp(28px, 5.5vw, 53px)", color: "#F7A83D", whiteSpace: "nowrap" }}>Coordination Cost</span>
               </span>
-              <span style={{ fontSize: "0.78em", color: "rgba(255,255,255,0.4)", fontWeight: 600 }}>×</span>
-              <span style={{ fontSize: "clamp(20px, 3.4vw, 34px)", color: "#fff", whiteSpace: "nowrap" }}>Capacity</span>
             </div>
           </div>
 
