@@ -517,7 +517,7 @@ export const CASES: CaseStudy[] = [
     engagement: "Foundation Offsite",
     hook: "Two foundations and their friction into one shared mission.",
     cardStat: "2 bold missions into one shared purpose",
-    cardQuote: { text: "", attribution: "" },
+    cardQuote: { text: "", attribution: "Chief Operating Officer" },
     cardNote:
       "A purpose-driven offsite designed to align diverse teams.",
 

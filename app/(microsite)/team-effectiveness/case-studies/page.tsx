@@ -101,9 +101,16 @@ function CaseCard({ c }: { c: CaseStudy }) {
 
         {/* quote or draft note */}
         {c.draft && c.cardNote ? (
-          <p className="text-[15px] leading-relaxed mb-6 flex-1" style={{ color: "#636B7C" }}>
-            {c.cardNote}
-          </p>
+          <div className="mb-6 flex-1">
+            <p className="text-[15px] leading-relaxed" style={{ color: "#636B7C" }}>
+              {c.cardNote}
+            </p>
+            {c.cardQuote.attribution && (
+              <footer className="mt-2 text-[13px] font-medium" style={{ color: "#9B96A6" }}>
+                — {c.cardQuote.attribution}
+              </footer>
+            )}
+          </div>
         ) : (
           <blockquote className="mb-6 flex-1">
             <p className="text-[15px] leading-relaxed italic" style={{ color: "#1E2A4A" }}>
