@@ -47,6 +47,7 @@ const TERMS = [
 const STEPS = [
   {
     step: 1,
+    pillLabel: "Diagnostic",
     icon: "/map-icon.png",
     title: "Identify the factors impacting performance",
     desc: "Use a short diagnostic to understand where clarity, alignment, and coordination may be breaking down.",
@@ -57,6 +58,7 @@ const STEPS = [
   },
   {
     step: 2,
+    pillLabel: "Workshops",
     icon: "/lighthouse-icon.png",
     title: "Align on priorities and opportunities",
     desc: "A virtual or in-person workshop to review findings, align on priorities, and address the team's most important challenges.",
@@ -67,6 +69,7 @@ const STEPS = [
   },
   {
     step: 3,
+    pillLabel: "Roadmap",
     icon: "/campfires-icon.png",
     title: "Get a clear plan to move forward",
     desc: "Receive a practical roadmap with key findings, recommended focus areas, and clear next steps tailored to your team's needs.",
@@ -388,7 +391,7 @@ export default function HubClient() {
                   className="absolute uppercase"
                   style={{ top: 22, right: 22, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: s.pillText, background: s.pillBg, padding: "6px 12px", borderRadius: 999 }}
                 >
-                  • Step {s.step}
+                  • {s.pillLabel}
                 </div>
                 <Image src={s.icon} alt="" width={64} height={64} style={{ objectFit: "contain", marginBottom: 22 }} />
                 <h3 style={{ fontSize: 22, fontWeight: 800, lineHeight: 1.15, color: "#262F56", margin: "0 0 12px" }}>{s.title}</h3>
@@ -477,7 +480,7 @@ export default function HubClient() {
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "overlay", opacity: 0.22 }}
+          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "screen", opacity: 0.18 }}
         />
         <div className="relative mx-auto" style={{ maxWidth: 680 }}>
           <h2 className="whitespace-normal md:whitespace-nowrap text-white" style={{ fontSize: "clamp(30px, 4.2vw, 46px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.02em", margin: 0 }}>
