@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { trackEvent } from "@/app/lib/analytics";
+import EquationBlock from "@/app/(microsite)/team-effectiveness/_components/EquationBlock";
 import TrackedLink from "@/app/components/TrackedLink";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -342,25 +343,21 @@ export default function ExecutionCalculatorClient() {
         />
         <div className="relative max-w-4xl mx-auto px-6 pt-28 md:pt-36 lg:pt-44 pb-20 md:pb-28 text-center">
           <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-6">
-            Execution calculator
+            Team Effectiveness Diagnostic
           </p>
           <h1 className="text-[2.25rem] md:text-[3.25rem] lg:text-[4rem] font-extrabold leading-[1.08] tracking-tight text-white mb-6">
             How effectively is your
             <br />
-            <span className="text-[#E055CB]">organization executing?</span>
+            <span className="text-[#E055CB]">team executing?</span>
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-[640px] mx-auto mb-4 leading-relaxed">
-            Most organizations assume output equals headcount. But research in systems theory, coordination theory, and organizational behavior shows something different:
+            Work is moving faster than teams can stay aligned. Measure the three factors that have the biggest impact on execution.
           </p>
-          <div className="bg-white/5 border border-white/10 rounded-2xl px-6 py-5 max-w-lg mx-auto mb-8">
-            <p className="text-base md:text-lg text-white/80 font-medium leading-relaxed">
-              Execution ={" "}
-              <span className="text-[#F59E2C]">Clarity</span>
-              {" "}&times;{" "}
-              <span className="text-[#9D88ED]">Alignment</span>
-              {" "}/{" "}
-              <span className="text-[#E055CB]">Coordination Cost</span>
-            </p>
+          <div
+            className="rounded-[20px] border px-6 py-9 md:py-11 max-w-3xl mx-auto mb-8"
+            style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)" }}
+          >
+            <EquationBlock variant="dark" showCapacity={false} size="lg" />
           </div>
           <p className="text-base text-white/40 max-w-[560px] mx-auto mb-10 leading-relaxed">
             Do your 300 employees execute like 30? Or like 3,000?
