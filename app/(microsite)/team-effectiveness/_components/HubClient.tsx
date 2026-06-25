@@ -1,40 +1,79 @@
+import Image from "next/image";
 import TrackedLink from "@/app/components/TrackedLink";
-import EquationBlock from "./EquationBlock";
-import PartCard from "./PartCard";
 
 const CALC = "/team-effectiveness/calculator";
+const MODEL = "/team-effectiveness/the-model";
 const CALENDLY = "https://calendly.com/getcampfire/";
-const SECTION_PX = "clamp(24px, 6vw, 80px)";
 
 const CHALLENGES = [
   {
-    challenge: "Progress feels slower than it should",
-    looksLike: "Too many priorities, lack of focus, difficulty turning plans into action",
+    title: "Progress feels slower than it should",
+    looksLike: "Too many priorities, lack of focus, difficulty turning plans into action.",
+    leftTint: "#E7DFF7",
+    rightTint: "#F0EBFA",
+    border: "#6E3FCC",
   },
   {
-    challenge: "Communication and coordination break down",
-    looksLike: "Information gets stuck, teams work in silos, cross-functional work becomes harder",
+    title: "Communication & coordination break down",
+    looksLike: "Information gets stuck, teams work in silos, cross-functional work becomes harder.",
+    leftTint: "#E9E2F8",
+    rightTint: "#F2EDFB",
+    border: "#9D88ED",
   },
   {
-    challenge: "The same issues keep resurfacing",
-    looksLike: "Decisions don't stick, accountability is unclear, the same conversations keep happening",
+    title: "The same issues keep resurfacing",
+    looksLike: "Decisions don't stick, accountability is unclear, the same conversations recur.",
+    leftTint: "#FAE0EA",
+    rightTint: "#FCEDF2",
+    border: "#E055CB",
   },
   {
-    challenge: "The team is being asked to adapt quickly",
-    looksLike: "New priorities, growth, restructuring, new leaders, changing expectations",
+    title: "The team is being asked to adapt quickly",
+    looksLike: "New priorities, growth, restructuring, new leaders, changing expectations.",
+    leftTint: "#FCE9CA",
+    rightTint: "#FDF4DF",
+    border: "#F7A83D",
   },
 ];
 
 const TERMS = [
-  { label: "Clarity", micro: "Foundation", color: "#F59E2C", body: "A shared understanding of priorities, expectations, and outcomes." },
-  { label: "Alignment", micro: "Multiplier", color: "#6E3FCC", body: "People and teams moving in the same direction." },
-  { label: "Coordination Cost", micro: "Drag", color: "#E055CB", body: "The time and effort spent on meetings, handoffs, and rework." },
+  { label: "Clarity", color: "#C77DEC", body: "Shared understanding of what we're solving — at every level of the org." },
+  { label: "Alignment", color: "#EE80DD", body: "Every team's plan adds up to the same plan — with trade-offs agreed." },
+  { label: "Coordination Cost", color: "#F7A83D", body: "The drag of meetings, rework, and politics needed to move work forward." },
+  { label: "Capacity", color: "#FFFFFF", body: "The people, skills, and tools — now amplified by AI — available to do the work." },
 ];
 
-const PARTS = [
-  { step: 1, name: "Identify the factors impacting performance", illo: "/binoculars.webp", href: "/team-effectiveness/diagnostic", desc: "Use a short diagnostic to understand where clarity, alignment, and coordination may be breaking down." },
-  { step: 2, name: "Align on priorities and opportunities", illo: "/carry-load.webp", href: "/team-effectiveness/workshop", desc: "A virtual or in-person workshop to review findings, align on priorities, and address the team's most important challenges." },
-  { step: 3, name: "Get a clear plan to move forward", illo: "/kite.webp", href: "/team-effectiveness/roadmap", desc: "Receive a practical roadmap with key findings, recommended focus areas, and clear next steps tailored to your team's needs." },
+const STEPS = [
+  {
+    step: 1,
+    icon: "/map-icon.png",
+    title: "Identify the factors impacting performance",
+    desc: "Use a short diagnostic to understand where clarity, alignment, and coordination may be breaking down.",
+    href: "/team-effectiveness/diagnostic",
+    pillText: "#8B3FD9",
+    pillBg: "#F1EAFB",
+    learnColor: "#6E3FCC",
+  },
+  {
+    step: 2,
+    icon: "/lighthouse-icon.png",
+    title: "Align on priorities and opportunities",
+    desc: "A virtual or in-person workshop to review findings, align on priorities, and address the team's most important challenges.",
+    href: "/team-effectiveness/workshop",
+    pillText: "#C8459E",
+    pillBg: "#FBE9F4",
+    learnColor: "#C8459E",
+  },
+  {
+    step: 3,
+    icon: "/campfires-icon.png",
+    title: "Get a clear plan to move forward",
+    desc: "Receive a practical roadmap with key findings, recommended focus areas, and clear next steps tailored to your team's needs.",
+    href: "/team-effectiveness/roadmap",
+    pillText: "#DD8327",
+    pillBg: "#FBEFDF",
+    learnColor: "#DD8327",
+  },
 ];
 
 const OUTCOMES = [
@@ -46,42 +85,68 @@ const OUTCOMES = [
   "More consistent execution",
 ];
 
-function Eyebrow({ children, color = "#9D88ED" }: { children: React.ReactNode; color?: string }) {
-  return (
-    <p className="text-[12px] font-bold tracking-[0.18em] uppercase mb-4" style={{ color }}>
-      {children}
-    </p>
-  );
+const PAGE_CSS = `
+.te-chal-row { display: grid; grid-template-columns: 1fr; gap: 4px; }
+@media (min-width: 720px) {
+  .te-chal-row { grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
 }
+.te-results { display: grid; grid-template-columns: 1fr; gap: 40px; }
+@media (min-width: 860px) {
+  .te-results { grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center; }
+}
+.te-inc-card { transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease; }
+.te-inc-card:hover { border-color: #C9B8F2 !important; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(110,63,204,0.13); }
+.te-inc-card .te-learn { transition: opacity 160ms ease; }
+.te-inc-card:hover .te-learn { opacity: 0.6; }
+@keyframes te-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(9px); }
+}
+.te-scroll-arrow { animation: te-bob 1.6s ease-in-out infinite; transition: opacity 160ms ease; }
+.te-scroll-arrow:hover { opacity: 0.65; }
+`;
 
 export default function HubClient() {
   return (
     <>
-      {/* ───────── 1. HERO — dark ───────── */}
-      <section
-        className="relative overflow-hidden text-center"
-        style={{ background: "#1C1334", paddingTop: "clamp(72px, 11vw, 132px)", paddingBottom: "clamp(72px, 11vw, 132px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}
+      <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} />
+      {/* ───────── 1. HERO ───────── */}
+      <header
+        id="top"
+        className="relative overflow-hidden flex items-center justify-center text-center"
+        style={{
+          minHeight: 640,
+          padding: "clamp(80px, 11vw, 132px) clamp(24px, 6vw, 80px)",
+          backgroundImage: "url(/hero-lighthouse.webp)",
+          backgroundSize: "cover",
+          backgroundPosition: "center bottom",
+        }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "url(/purple-topo-tall.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.14 }}
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(20,13,40,0.55) 0%, rgba(20,13,40,0.18) 32%, rgba(20,13,40,0.42) 100%)",
+          }}
         />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(115% 85% at 50% 0%, rgba(110,63,204,0.34) 0%, rgba(28,19,52,0) 60%)" }}
-        />
-        <div className="relative mx-auto text-center" style={{ maxWidth: 820 }}>
-          <Eyebrow>Team Effectiveness Sprint</Eyebrow>
-          <h1
-            className="font-extrabold text-white"
-            style={{ fontSize: "clamp(38px, 6vw, 62px)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
+        <div className="relative mx-auto" style={{ maxWidth: 940 }}>
+          <div
+            className="uppercase"
+            style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.2em", color: "#B8A4F2", marginBottom: 22 }}
           >
-            Turn team friction into{" "}
-            <span style={{ color: "#E055CB" }}>forward momentum</span>
+            Team Effectiveness Sprint
+          </div>
+          <h1
+            className="text-white"
+            style={{ fontSize: "clamp(40px, 6.4vw, 68px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.02em", margin: 0 }}
+          >
+            Turn team friction into
+            <br />
+            <span style={{ color: "#B8A4F2" }}>forward momentum</span>
           </h1>
           <p
             className="mx-auto"
-            style={{ maxWidth: 580, marginTop: 26, fontSize: "clamp(17px, 2vw, 20px)", lineHeight: 1.6, color: "rgba(255,255,255,0.82)" }}
+            style={{ fontSize: 20, fontWeight: 500, lineHeight: 1.6, color: "rgba(255,255,255,0.9)", maxWidth: 560, margin: "26px auto 0" }}
           >
             As work speeds up and priorities shift, teams often lose clarity, alignment, and momentum. Campfire helps teams identify what&apos;s getting in the way and create a practical path forward.
           </p>
@@ -90,57 +155,74 @@ export default function HubClient() {
               href={CALC}
               eventName="te_cta"
               eventParams={{ cta: "start_diagnostic", location: "hub_hero" }}
-              className="text-white text-[14px] font-bold tracking-[0.1em] uppercase rounded-[8px] whitespace-nowrap transition-opacity hover:opacity-90"
-              style={{ background: "#E055CB", padding: "17px 32px" }}
+              className="te-btn inline-flex items-center justify-center uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+              style={{ lineHeight: 1, fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", color: "#fff", background: "#E055CB", padding: "18px 32px", borderRadius: 8 }}
             >
               Get your team effectiveness score →
             </TrackedLink>
-            <TrackedLink
-              href={CALENDLY}
-              external
-              eventName="te_cta"
-              eventParams={{ cta: "book_call", location: "hub_hero" }}
-              className="text-[14px] font-bold tracking-[0.1em] uppercase rounded-[8px] transition-opacity hover:opacity-90"
-              style={{ background: "#ffffff", color: "#1E2A4A", padding: "17px 32px" }}
+            <a
+              href="#included"
+              className="te-btn inline-flex items-center justify-center uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+              style={{ lineHeight: 1, fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", color: "#C9B8F5", background: "transparent", border: "1.5px solid rgba(157,136,237,0.55)", padding: "18px 32px", borderRadius: 8 }}
             >
-              Talk with our team
-            </TrackedLink>
+              How it works
+            </a>
+          </div>
+          <div style={{ fontSize: 21, fontWeight: 400, letterSpacing: "0.02em", color: "rgba(255,255,255,0.62)", marginTop: 22 }}>
+            2-minute diagnostic · private to you · no sign-up to start
           </div>
         </div>
-      </section>
+        <a
+          href="#challenges"
+          aria-label="Scroll to challenges"
+          className="te-scroll-arrow absolute block"
+          style={{ left: "50%", bottom: 26, transform: "translateX(-50%)" }}
+        >
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.72)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+      </header>
 
-      {/* ───────── 2. CHALLENGES — white ───────── */}
-      <section className="bg-white" style={{ paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="mx-auto" style={{ maxWidth: 1000 }}>
-          <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow color="#6E3FCC">Sound Familiar?</Eyebrow>
-            <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              The challenges <span style={{ color: "#6E3FCC" }}>slowing teams down</span>
+      {/* ───────── 2. CHALLENGES ───────── */}
+      <section
+        id="challenges"
+        className="relative overflow-hidden bg-white scroll-mt-24"
+        style={{ padding: "clamp(72px, 10vw, 116px) clamp(24px, 6vw, 80px)" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "url(/topo-bg.webp) center / cover no-repeat" }}
+        />
+        <div className="relative mx-auto" style={{ maxWidth: 1100, zIndex: 1 }}>
+          <div className="text-center mx-auto" style={{ maxWidth: 720, marginBottom: 52 }}>
+            <div className="uppercase" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.16em", color: "#6E3FCC", marginBottom: 16 }}>
+              Sound Familiar?
+            </div>
+            <h2 style={{ fontSize: "clamp(31px, 4.4vw, 46px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.015em", color: "#262F56", margin: 0 }}>
+              The challenges <br />
+              <span style={{ color: "#6E3FCC" }}>slowing teams down.</span>
             </h2>
-            <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
-              If your team is experiencing one or more of these challenges, you&apos;re not alone.
-              <br />
-              The good news? They&apos;re solvable.
+            <p className="mx-auto" style={{ fontSize: 17, lineHeight: 1.6, color: "#636B7C", margin: "18px auto 0", maxWidth: 560 }}>
+              If your team is experiencing one or more of these challenges, you&apos;re not alone. The good news? They&apos;re solvable.
             </p>
           </div>
 
-          {/* Two-column table: Challenge / What it often looks like */}
-          <div className="rounded-[16px] border overflow-hidden" style={{ borderColor: "#EEE9F6" }}>
-            <div className="hidden md:grid" style={{ gridTemplateColumns: "40% 1fr", background: "#F8F5FC" }}>
-              <div className="px-6 py-4 text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: "#9B96A6" }}>Challenge</div>
-              <div className="px-6 py-4 text-[11px] font-bold tracking-[0.14em] uppercase" style={{ color: "#9B96A6" }}>What it often looks like</div>
-            </div>
-            {CHALLENGES.map((row, i) => (
+          <div className="mx-auto flex flex-col" style={{ maxWidth: 1200, gap: 12 }}>
+            {CHALLENGES.map((row) => (
               <div
-                key={row.challenge}
-                className="md:grid"
-                style={{ gridTemplateColumns: "40% 1fr", borderTop: i === 0 ? undefined : "1px solid #F1EEF8" }}
+                key={row.title}
+                className="te-chal-row"
+                style={{
+                  background: `linear-gradient(to right, ${row.leftTint} 0%, ${row.leftTint} 50%, ${row.rightTint} 50%, ${row.rightTint} 100%)`,
+                  borderLeft: `5px solid ${row.border}`,
+                  borderRadius: 8,
+                  padding: "26px 46px 26px 30px",
+                }}
               >
-                <div className="px-6 pt-5 pb-1.5 md:py-5 text-[16px] font-bold" style={{ color: "#1E2A4A" }}>
-                  {row.challenge}
-                </div>
-                <div className="px-6 pb-5 pt-0 md:py-5 text-[15px] leading-relaxed" style={{ color: "#636B7C" }}>
-                  {row.looksLike}
+                <div style={{ fontSize: 25, fontWeight: 600, lineHeight: 1.25, color: "#262F56" }}>{row.title}</div>
+                <div style={{ fontSize: "20.12px", lineHeight: 1.4, color: "#636B7C", paddingLeft: 25 }}>
+                  <span style={{ fontWeight: 700, color: "#262F56" }}>This often looks like:</span> {row.looksLike}
                 </div>
               </div>
             ))}
@@ -148,181 +230,259 @@ export default function HubClient() {
         </div>
       </section>
 
-      {/* ───────── 3. THE EXECUTION EQUATION — dark ───────── */}
-      <section className="relative overflow-hidden" style={{ background: "#1C1334", paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.08 }} />
-        <div className="relative mx-auto" style={{ maxWidth: 1000 }}>
-          <div className="text-center mb-12" style={{ maxWidth: 660, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow>The Execution Equation</Eyebrow>
-            <h2 className="font-extrabold text-white" style={{ fontSize: "clamp(28px, 4vw, 40px)", lineHeight: 1.12 }}>
-              The factors that drive
-              <br />
-              <span style={{ color: "#E055CB" }}>team effectiveness</span>
-            </h2>
-            <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "rgba(255,255,255,0.65)", lineHeight: 1.6 }}>
-              Team effectiveness doesn&apos;t happen by accident. It&apos;s driven by a handful of factors that determine how work gets done.
-            </p>
+      {/* ───────── 3. THE PATTERN (equation) ───────── */}
+      <section
+        className="relative"
+        style={{ background: "#1C1334", padding: "clamp(64px, 9vw, 104px) clamp(24px, 6vw, 80px) 0" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.28 }}
+        />
+        <div className="relative mx-auto text-center" style={{ maxWidth: 1160 }}>
+          <div className="uppercase" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.18em", color: "#B8A4F2", marginBottom: 16 }}>
+            The Pattern
+          </div>
+          <h2 style={{ fontSize: "clamp(30px, 4.4vw, 48px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>
+            The variables that drive execution.
+          </h2>
+          <p className="mx-auto" style={{ fontSize: "clamp(16px, 2vw, 19px)", lineHeight: 1.55, color: "rgba(255,255,255,0.72)", margin: "14px auto 0", maxWidth: 620 }}>
+            The strongest organizations improve the variables that drive execution.
+          </p>
+
+          {/* BIG EQUATION */}
+          <div
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 18,
+              padding: "clamp(34px, 5vw, 56px) clamp(20px, 4vw, 48px)",
+              margin: "clamp(40px, 6vw, 64px) 0 clamp(34px, 5vw, 52px)",
+            }}
+          >
+            <div
+              className="flex flex-wrap items-center justify-center"
+              style={{ gap: "clamp(10px, 1.6vw, 18px)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}
+            >
+              <span style={{ fontSize: "clamp(20px, 3.4vw, 34px)", color: "#fff", whiteSpace: "nowrap" }}>Execution</span>
+              <span style={{ fontSize: "clamp(20px, 3.4vw, 34px)", color: "rgba(255,255,255,0.45)", fontWeight: 600 }}>=</span>
+              <span className="inline-flex flex-col items-center" style={{ gap: "clamp(6px, 1vw, 12px)" }}>
+                <span className="inline-flex items-baseline" style={{ gap: "clamp(8px, 1.2vw, 16px)", fontSize: "clamp(22px, 4.4vw, 42px)", whiteSpace: "nowrap" }}>
+                  <span style={{ color: "#C77DEC" }}>Clarity</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)", fontWeight: 600, fontSize: "0.7em" }}>×</span>
+                  <span style={{ color: "#EE80DD" }}>Alignment</span>
+                </span>
+                <span style={{ width: "100%", height: 4, borderRadius: 2, background: "rgba(255,255,255,0.85)" }} />
+                <span style={{ fontSize: "clamp(22px, 4.4vw, 42px)", color: "#F7A83D", whiteSpace: "nowrap" }}>Coordination Cost</span>
+              </span>
+              <span style={{ fontSize: "0.78em", color: "rgba(255,255,255,0.4)", fontWeight: 600 }}>×</span>
+              <span style={{ fontSize: "clamp(20px, 3.4vw, 34px)", color: "#fff", whiteSpace: "nowrap" }}>Capacity</span>
+            </div>
           </div>
 
-          <div className="rounded-[20px] border px-6 py-10 md:py-12" style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.1)" }}>
-            <EquationBlock variant="dark" result="Team Effectiveness" resultColor="#E055CB" showCapacity={false} />
-            <p className="text-center mx-auto mt-7" style={{ maxWidth: 600, fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.55)" }}>
-              Capacity matters too. AI can increase a team&apos;s capacity, but capacity alone doesn&apos;t create results. Teams still need clarity, alignment, and coordination to translate potential into performance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          {/* FOUR COLUMNS */}
+          <div
+            className="grid mx-auto text-left"
+            style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "clamp(20px, 2.4vw, 36px)", maxWidth: 1160 }}
+          >
             {TERMS.map((t) => (
               <div key={t.label}>
-                <p className="text-[11px] font-bold tracking-[0.16em] uppercase mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  {t.micro}
-                </p>
-                <h3 className="text-[18px] font-bold mb-2" style={{ color: t.color === "#6E3FCC" ? "#9D88ED" : t.color }}>
+                <div style={{ height: 3, borderRadius: 2, background: t.color, marginBottom: 16 }} />
+                <div className="uppercase" style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", color: t.color, marginBottom: 10 }}>
                   {t.label}
-                </h3>
-                <p className="text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
-                  {t.body}
-                </p>
+                </div>
+                <p style={{ fontSize: 15, lineHeight: 1.55, color: "rgba(255,255,255,0.78)", margin: 0 }}>{t.body}</p>
               </div>
             ))}
           </div>
+        </div>
 
-          <div className="flex gap-3 justify-center flex-wrap mt-12">
-            <TrackedLink
-              href={CALC}
-              eventName="te_cta"
-              eventParams={{ cta: "start_diagnostic", location: "hub_equation" }}
-              className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
-              style={{ background: "#E055CB" }}
-            >
-              Get your team effectiveness score →
-            </TrackedLink>
-            <TrackedLink
-              href="/team-effectiveness/the-model"
-              eventName="te_link"
-              eventParams={{ label: "explore_model", location: "hub_equation" }}
-              className="text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px] border transition-colors hover:bg-white/5"
-              style={{ borderColor: "rgba(255,255,255,0.25)" }}
-            >
-              Explore the model
-            </TrackedLink>
+        {/* GRADIENT DIAGNOSTIC BANNER */}
+        <div className="relative mx-auto" style={{ maxWidth: 1160, zIndex: 5, margin: "clamp(44px, 6vw, 64px) auto -34px" }}>
+          <div
+            className="flex flex-wrap items-center justify-between"
+            style={{
+              gap: 20,
+              background: "linear-gradient(100deg, #8B3FD4 0%, #C04CC6 55%, #E055CB 100%)",
+              borderRadius: 16,
+              padding: "clamp(22px, 3vw, 30px) clamp(24px, 4vw, 40px)",
+              boxShadow: "0 18px 44px -22px rgba(192,76,198,0.7)",
+            }}
+          >
+            <div className="flex items-center" style={{ gap: 16, minWidth: 0 }}>
+              <Image src="/insights.png" alt="" width={30} height={30} style={{ flex: "none" }} />
+              <span style={{ fontSize: "clamp(16px, 2vw, 20px)", fontWeight: 600, color: "#fff", lineHeight: 1.3 }}>
+                Discover the execution level at your organization in 2 minutes!
+              </span>
+            </div>
+            <div className="flex flex-wrap" style={{ gap: 12 }}>
+              <TrackedLink
+                href={CALC}
+                eventName="te_cta"
+                eventParams={{ cta: "start_diagnostic", location: "hub_banner" }}
+                className="te-btn uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+                style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.09em", color: "#fff", background: "#6E3FCC", padding: "14px 24px", borderRadius: 8 }}
+              >
+                Take the diagnostic
+              </TrackedLink>
+              <TrackedLink
+                href={MODEL}
+                eventName="te_link"
+                eventParams={{ label: "see_full_model", location: "hub_banner" }}
+                className="te-btn uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+                style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.09em", color: "#fff", background: "transparent", border: "1px solid rgba(255,255,255,0.55)", padding: "13px 24px", borderRadius: 8 }}
+              >
+                See full model
+              </TrackedLink>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ───────── 4. THE SPRINT — light ───────── */}
-      <section id="included" className="scroll-mt-20" style={{ background: "#F8F5FC", paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="mx-auto" style={{ maxWidth: 1100 }}>
-          <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow color="#6E3FCC">The Team Effectiveness Sprint</Eyebrow>
-            <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              From insight to action
-              <br />
-              <span style={{ color: "#6E3FCC" }}>in three steps</span>
+      {/* ───────── 4. WHAT'S INCLUDED ───────── */}
+      <section
+        id="included"
+        className="relative scroll-mt-24"
+        style={{
+          zIndex: 1,
+          padding: "clamp(110px, 13vw, 168px) clamp(24px, 6vw, 80px)",
+          background: "#F2F0F4 url(/multicolour-mountain.webp) center bottom / cover no-repeat",
+        }}
+      >
+        <div className="mx-auto" style={{ maxWidth: 1160 }}>
+          <div className="text-center mx-auto" style={{ maxWidth: 1000, marginBottom: 56 }}>
+            <div className="uppercase" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.16em", color: "#6E3FCC", marginBottom: 16 }}>
+              The Execution Sprint
+            </div>
+            <h2 className="whitespace-normal md:whitespace-nowrap" style={{ fontSize: "clamp(31px, 4.4vw, 46px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.015em", color: "#262F56", margin: 0 }}>
+              Three parts. One clear path forward.
             </h2>
-            <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
+            <p className="mx-auto" style={{ fontSize: 17, lineHeight: 1.6, color: "#636B7C", margin: "18px auto 0", maxWidth: 540 }}>
               A simple, guided process to help teams identify the challenges slowing progress and start building momentum together.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {PARTS.map((p) => (
-              <PartCard key={p.step} step={p.step} name={p.name} illo={p.illo} desc={p.desc} href={p.href} />
+          <div className="grid items-stretch grid-cols-1 md:grid-cols-3" style={{ gap: 20 }}>
+            {STEPS.map((s) => (
+              <TrackedLink
+                key={s.step}
+                href={s.href}
+                eventName="te_link"
+                eventParams={{ label: "learn_more", location: `hub_step_${s.step}` }}
+                className="te-inc-card relative flex flex-col"
+                style={{ textDecoration: "none", background: "#fff", border: "1px solid #ECE8F2", borderRadius: 20, padding: "34px 30px" }}
+              >
+                <div
+                  className="absolute uppercase"
+                  style={{ top: 22, right: 22, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: s.pillText, background: s.pillBg, padding: "6px 12px", borderRadius: 999 }}
+                >
+                  • Step {s.step}
+                </div>
+                <Image src={s.icon} alt="" width={64} height={64} style={{ objectFit: "contain", marginBottom: 22 }} />
+                <h3 style={{ fontSize: 22, fontWeight: 800, lineHeight: 1.15, color: "#262F56", margin: "0 0 12px" }}>{s.title}</h3>
+                <p style={{ fontSize: "15.5px", lineHeight: 1.55, color: "#636B7C", margin: 0 }}>{s.desc}</p>
+                <div style={{ marginTop: "auto", paddingTop: 26 }}>
+                  <span
+                    className="te-learn inline-flex items-center uppercase"
+                    style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", color: s.learnColor }}
+                  >
+                    Learn more →
+                  </span>
+                </div>
+              </TrackedLink>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <TrackedLink
-              href={CALENDLY}
-              external
-              eventName="te_cta"
-              eventParams={{ cta: "book_call", location: "hub_sprint" }}
-              className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
-              style={{ background: "#6E3FCC" }}
-            >
-              Schedule a conversation →
-            </TrackedLink>
           </div>
         </div>
       </section>
 
-      {/* ───────── 5. RESULTS — white ───────── */}
-      <section className="bg-white" style={{ paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="mx-auto" style={{ maxWidth: 1000 }}>
-          <div className="text-center mb-12" style={{ maxWidth: 720, marginLeft: "auto", marginRight: "auto" }}>
-            <Eyebrow color="#B23B9F">The Results</Eyebrow>
-            <h2 className="font-extrabold" style={{ fontSize: "clamp(28px, 4vw, 40px)", color: "#1E2A4A", lineHeight: 1.12 }}>
-              Designed to improve
-              <br />
-              how teams work together
+      {/* ───────── 5. RESULTS ───────── */}
+      <section
+        id="outcomes"
+        className="bg-white scroll-mt-24"
+        style={{ padding: "clamp(72px, 10vw, 116px) clamp(24px, 6vw, 80px)" }}
+      >
+        <div className="te-results mx-auto" style={{ maxWidth: 1240 }}>
+          <div>
+            <div className="uppercase" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.16em", color: "#6E3FCC", marginBottom: 18 }}>
+              The Results
+            </div>
+            <h2 style={{ fontSize: "clamp(30px, 3.6vw, 44px)", fontWeight: 700, lineHeight: 1.12, letterSpacing: "-0.015em", color: "#262F56", margin: 0 }}>
+              Designed to improve how teams work together
             </h2>
-            <p className="mt-4" style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
-              While every team is different, these are some of the
-              <br />
-              most common outcomes teams experience after the sprint.
-            </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4 mx-auto" style={{ maxWidth: 880 }}>
+          <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
             {OUTCOMES.map((o) => (
-              <div key={o} className="flex items-center gap-3 rounded-[12px] border px-4 py-3.5" style={{ borderColor: "#F1EEF8", background: "#FCFBFE" }}>
-                <span className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 22, height: 22, background: "#F3EFFE" }}>
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8.5l3.5 3.5L13 5" stroke="#6E3FCC" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span className="text-[16px] font-medium" style={{ color: "#1E2A4A" }}>{o}</span>
+              <div
+                key={o}
+                className="flex items-center"
+                style={{ gap: 13, background: "#F8F5FC", border: "1px solid #EEE9F6", borderRadius: 12, padding: "17px 20px" }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" style={{ flex: "none" }}>
+                  <circle cx="12" cy="12" r="11" fill="#F0EAFB" stroke="#DECEF7" strokeWidth="1" />
+                  <path d="M7.4 12.3l2.9 2.9L16.6 8.8" fill="none" stroke="#6E3FCC" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span style={{ fontSize: 15, fontWeight: 600, lineHeight: 1.3, color: "#262F56" }}>{o}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ───────── 6. INVESTMENT — light ───────── */}
-      <section style={{ background: "#F8F5FC", paddingTop: "clamp(64px, 9vw, 112px)", paddingBottom: "clamp(64px, 9vw, 112px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="mx-auto text-center" style={{ maxWidth: 640 }}>
-          <Eyebrow color="#6E3FCC">Investment</Eyebrow>
-          <p className="text-[15px] font-semibold" style={{ color: "#9B96A6" }}>Starting at</p>
-          <p className="font-extrabold" style={{ fontSize: "clamp(44px, 8vw, 68px)", color: "#1E2A4A", lineHeight: 1 }}>
+      {/* ───────── 6. INVESTMENT ───────── */}
+      <section
+        id="investment"
+        className="text-center scroll-mt-24"
+        style={{ padding: "clamp(72px, 9vw, 110px) clamp(24px, 6vw, 80px)", background: "#F2F0F6" }}
+      >
+        <div className="mx-auto" style={{ maxWidth: 620 }}>
+          <div className="uppercase" style={{ fontSize: 18, fontWeight: 700, letterSpacing: "0.16em", color: "#6E3FCC", marginBottom: 20 }}>
+            Investment
+          </div>
+          <div style={{ fontSize: 16, fontWeight: 600, color: "#8A8499", marginBottom: 4 }}>Starting at:</div>
+          <div style={{ fontSize: "clamp(54px, 8vw, 84px)", fontWeight: 800, letterSpacing: "-0.03em", color: "#262F56", lineHeight: 1 }}>
             $5,000
-          </p>
-          <p className="mx-auto mt-5" style={{ maxWidth: 520, fontSize: "clamp(16px, 2vw, 18px)", color: "#636B7C", lineHeight: 1.6 }}>
+          </div>
+          <p className="mx-auto" style={{ fontSize: 17, lineHeight: 1.6, color: "#636B7C", margin: "22px auto 32px", maxWidth: 460 }}>
             Pricing varies based on team size and scope. Every sprint includes the diagnostic, facilitated workshop, and a customized roadmap.
           </p>
-          <div className="mt-8">
-            <TrackedLink
-              href={CALENDLY}
-              external
-              eventName="te_cta"
-              eventParams={{ cta: "book_call", location: "hub_investment" }}
-              className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-7 py-4 rounded-[10px]"
-              style={{ background: "#E055CB" }}
-            >
-              Talk to our team →
-            </TrackedLink>
-          </div>
+          <TrackedLink
+            href={CALENDLY}
+            external
+            eventName="te_cta"
+            eventParams={{ cta: "book_call", location: "hub_investment" }}
+            className="te-btn inline-block uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+            style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", color: "#fff", background: "#B763E7", padding: "17px 32px", borderRadius: 8 }}
+          >
+            Talk to our team →
+          </TrackedLink>
         </div>
       </section>
 
-      {/* ───────── 7. CLOSING CTA — dark ───────── */}
-      <section className="relative overflow-hidden" style={{ background: "#1C1334", paddingTop: "clamp(72px, 10vw, 128px)", paddingBottom: "clamp(72px, 10vw, 128px)", paddingLeft: SECTION_PX, paddingRight: SECTION_PX }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "url(/pink-topo-bg.webp)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.18 }} />
-        <div className="relative mx-auto text-center" style={{ maxWidth: 640 }}>
-          <h2 className="font-extrabold text-white" style={{ fontSize: "clamp(28px, 4.4vw, 44px)", lineHeight: 1.1 }}>
+      {/* ───────── 7. FINAL CTA ───────── */}
+      <section
+        className="relative overflow-hidden text-center"
+        style={{ background: "linear-gradient(120deg, #4A23A0 0%, #6E3FCC 50%, #9A45CE 100%)", padding: "clamp(84px, 11vw, 130px) clamp(24px, 6vw, 80px)" }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: "url(/topo-lines.webp)", backgroundSize: "cover", backgroundPosition: "center", mixBlendMode: "screen", opacity: 0.28 }}
+        />
+        <div className="relative mx-auto" style={{ maxWidth: 680 }}>
+          <h2 className="whitespace-normal md:whitespace-nowrap text-white" style={{ fontSize: "clamp(30px, 4.2vw, 46px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.02em", margin: 0 }}>
             Explore what&apos;s possible for your team
           </h2>
-          <p className="mx-auto mt-5" style={{ maxWidth: 540, fontSize: "clamp(16px, 2vw, 19px)", color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+          <p className="mx-auto" style={{ fontSize: 18, lineHeight: 1.6, color: "rgba(255,255,255,0.85)", maxWidth: 540, margin: "22px auto 38px" }}>
             Let&apos;s talk about your team, the challenges you&apos;re facing, and whether the Team Effectiveness Sprint is the right fit.
           </p>
-          <div className="mt-9">
-            <TrackedLink
-              href={CALENDLY}
-              external
-              eventName="te_cta"
-              eventParams={{ cta: "book_call", location: "hub_closing" }}
-              className="inline-block text-white text-[14px] font-bold tracking-[0.08em] uppercase px-8 py-4 rounded-[10px]"
-              style={{ background: "#E055CB" }}
-            >
-              Schedule a conversation →
-            </TrackedLink>
-          </div>
+          <TrackedLink
+            href={CALENDLY}
+            external
+            eventName="te_cta"
+            eventParams={{ cta: "book_call", location: "hub_closing" }}
+            className="te-btn inline-block uppercase whitespace-nowrap transition-opacity hover:opacity-90"
+            style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", color: "#fff", background: "#E055CB", padding: "18px 38px", borderRadius: 8, boxShadow: "0 16px 38px -18px rgba(224,85,203,0.8)" }}
+          >
+            Schedule a conversation →
+          </TrackedLink>
         </div>
       </section>
     </>
