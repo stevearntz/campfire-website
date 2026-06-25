@@ -4,7 +4,7 @@ import ExecutionCalculatorClient from "@/app/(main)/execution/ExecutionCalculato
 export const metadata: Metadata = {
   title: "The Diagnostic — Execution Calculator",
   description:
-    "See how your team really executes. A short, research-backed assessment that shows exactly where capacity is leaking — in about two minutes.",
+    "See how your team really executes. A short, research-backed diagnostic that shows exactly where capacity is leaking — in about two minutes.",
 };
 
 // Renders the existing calculator inside the micro-site shell (SiteNav + SiteFooter).
