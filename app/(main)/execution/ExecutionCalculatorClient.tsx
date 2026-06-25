@@ -312,7 +312,7 @@ export default function ExecutionCalculatorClient() {
       }
       return s;
     });
-    // Scroll to top of assessment area
+    // Scroll to top of diagnostic area
     setTimeout(() => {
       topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 50);
@@ -341,7 +341,7 @@ export default function ExecutionCalculatorClient() {
           className="absolute inset-0 opacity-15"
           style={{ backgroundImage: "url(/purple-topo.webp)", backgroundSize: "cover", backgroundPosition: "center" }}
         />
-        <div className="relative max-w-4xl mx-auto px-6 pt-28 md:pt-36 lg:pt-44 pb-20 md:pb-28 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 pt-16 md:pt-24 lg:pt-32 pb-20 md:pb-28 text-center">
           <p className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-[#9D88ED] mb-6">
             Team Effectiveness Diagnostic
           </p>
@@ -351,7 +351,7 @@ export default function ExecutionCalculatorClient() {
             <span className="text-[#E055CB]">team executing?</span>
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-[640px] mx-auto mb-4 leading-relaxed">
-            Work is moving faster than teams can stay aligned. Measure the three factors that have the biggest impact on execution.
+            Do your 300 employees execute like 30 or 3,000?
           </p>
           <div
             className="rounded-[20px] border px-6 py-9 md:py-11 max-w-3xl mx-auto mb-8"
@@ -359,16 +359,14 @@ export default function ExecutionCalculatorClient() {
           >
             <EquationBlock variant="dark" showCapacity={false} size="lg" />
           </div>
-          <p className="text-base text-white/40 max-w-[560px] mx-auto mb-10 leading-relaxed">
-            Do your 300 employees execute like 30? Or like 3,000?
-            <br />
-            Take this 2-minute assessment to find out.
+          <p className="text-base text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Increase clarity. Increase alignment. Reduce coordination cost. Execute better.
           </p>
           <button
             onClick={() => goTo(1)}
             className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white bg-[#E055CB] hover:bg-[#d040b8] rounded-lg transition-colors"
           >
-            Start the assessment
+            Get my effectiveness score
             <svg className="w-4 h-4" viewBox="0 0 12 12" fill="none">
               <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -383,7 +381,7 @@ export default function ExecutionCalculatorClient() {
     return <ResultsView results={results} onRestart={() => goTo(0)} topRef={topRef} />;
   }
 
-  /* ─── STEPS 1–4: ASSESSMENT ─── */
+  /* ─── STEPS 1–4: DIAGNOSTIC ─── */
   return (
     <div ref={topRef}>
       {/* Header bar */}
