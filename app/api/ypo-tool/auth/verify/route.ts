@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { consumeAuthToken, upsertUser, createSessionRecord } from "@/app/(main)/ypo-tool/lib/db";
+import { validateAuthToken, upsertUser, createSessionRecord } from "@/app/(main)/ypo-tool/lib/db";
 import { setSessionCookie } from "@/app/(main)/ypo-tool/lib/auth";
 
 export async function GET(request: Request) {
@@ -11,25 +11,29 @@ export async function GET(request: Request) {
     redirect("/ypo-tool?error=missing_token");
   }
 
+  // Do all the work inside the try, but DON'T redirect here — redirect()
+  // throws NEXT_REDIRECT, which this catch would swallow and mislabel.
+  // Decide an outcome, then redirect once, outside the try/catch.
+  let outcome: "ok" | "invalid" | "failed" = "failed";
   try {
-    // Atomic consume: only succeeds if token is valid, unexpired, and unused
-    const result = await consumeAuthToken(token);
+    // Multi-use until expiry — tolerant of email link pre-scanners.
+    const result = await validateAuthToken(token);
 
     if (!result) {
-      redirect("/ypo-tool?error=invalid_token");
+      outcome = "invalid"; // expired or unknown token
+    } else {
+      const user = await upsertUser(result.email);
+      const sessionToken = await createSessionRecord(user.id);
+      const cookieStore = await cookies();
+      setSessionCookie(cookieStore, sessionToken);
+      outcome = "ok";
     }
-
-    // Upsert user and create session
-    const user = await upsertUser(result.email);
-    const sessionToken = await createSessionRecord(user.id);
-
-    // Set cookie
-    const cookieStore = await cookies();
-    setSessionCookie(cookieStore, sessionToken);
   } catch (error) {
     console.error("Token verification error:", error);
-    redirect("/ypo-tool?error=verification_failed");
+    outcome = "failed";
   }
 
+  if (outcome === "invalid") redirect("/ypo-tool?error=invalid_token");
+  if (outcome === "failed") redirect("/ypo-tool?error=verification_failed");
   redirect("/ypo-tool");
 }
