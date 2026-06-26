@@ -47,16 +47,20 @@ export async function createAuthToken(email: string): Promise<string> {
   return token;
 }
 
-export async function consumeAuthToken(
+// Multi-use until expiry: any valid, unexpired token validates — even if it
+// was already touched. This tolerates corporate email link-scanners that
+// pre-fetch the magic link (a GET) before the human clicks; a single-use
+// token would otherwise be burned by the scanner and lock the user out.
+// We still stamp first-touch time for auditing, but never block on it.
+export async function validateAuthToken(
   token: string,
 ): Promise<{ email: string } | null> {
   const sql = getDb();
   const rows = await sql`
     UPDATE ypo_auth_tokens
-    SET used_at = NOW()
+    SET used_at = COALESCE(used_at, NOW())
     WHERE token = ${token}
       AND expires_at > NOW()
-      AND used_at IS NULL
     RETURNING email
   `;
   if (rows.length === 0) return null;
