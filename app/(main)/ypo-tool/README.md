@@ -223,6 +223,45 @@ No test framework configured. Manual testing via the flows described above.
 
 ---
 
+## Auth / magic-link — how it works & gotchas
+
+Flow: `MagicLinkForm` POSTs to `/api/ypo-tool/auth/send` → validates domain
+(`isValidYpoEmail`, `@ypo.org` or `@getcampfire.com`) → rate-limits (3/email/hr) →
+`upsertUser` → `createAuthToken` (15-min TTL) → `sendMagicLink` (Resend). The email
+link points at `GET /api/ypo-tool/auth/verify?token=…` → `validateAuthToken` →
+`createSessionRecord` → sets session cookie → redirects to `/ypo-tool`.
+
+**Error surfacing:** the verify route redirects with `?error=…`; `YpoToolClient` maps it
+to the message shown on `MagicLinkForm`. `missing_token` / `invalid_token`
+("link expired or already used") / `verification_failed` ("Sign-in failed. Please try again.").
+In **development, auth is bypassed** (`onBypassAuth`) — you won't exercise the real email
+path locally; test magic links against the Vercel preview/prod.
+
+### Fixed 2026-06: corporate inboxes couldn't log in
+
+Real `@ypo.org` users hit "Sign-in failed." Two compounding bugs:
+
+1. **Single-use token burned by email link-scanners.** Corporate mail security (Outlook
+   Safe Links / Mimecast / Proofpoint) pre-fetches every URL in an email to vet it. That
+   automated **GET hit `/auth/verify` and consumed the one-time token** before the human
+   clicked, so the real click found it already used → failure. **Fix:** `validateAuthToken`
+   (renamed from `consumeAuthToken`) now accepts **any unexpired token — multi-use within
+   the 15-min window** (`SET used_at = COALESCE(used_at, NOW())`, no `used_at IS NULL`
+   guard). Stamps first-touch for audit but never blocks. Tradeoff (accepted): the link is
+   replayable for 15 min.
+2. **`redirect()` inside a `try/catch`.** `redirect()` throws `NEXT_REDIRECT`; the catch
+   swallowed it and rewrote every failure to `verification_failed`, masking the real reason.
+   **Fix:** verify computes an `outcome` inside the try and calls `redirect()` once,
+   **outside** the try/catch. (General rule: never `redirect()` inside a try that catches all.)
+
+If login still fails after this: check `RESEND_API_KEY` + `POSTGRES_URL` are set in the
+target Vercel env, and that the user requests a **fresh** link (old ones expire in 15 min).
+The gold-standard hardening (deferred) is a **confirm-click interstitial page** — the email
+link opens a page with a "Sign in" button that POSTs to consume the token; GET scanners
+can't trigger it, which would let us return to strict single-use.
+
+---
+
 ## Design Drops Applied
 
 | Drop | What it did |
