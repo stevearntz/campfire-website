@@ -34,6 +34,19 @@ export async function getUserById(id: number): Promise<YpoUser | null> {
   return { id: rows[0].id, email: rows[0].email, name: rows[0].name };
 }
 
+export async function updateUserName(
+  id: number,
+  name: string,
+): Promise<YpoUser | null> {
+  const sql = getDb();
+  const rows = await sql`
+    UPDATE ypo_users SET name = ${name} WHERE id = ${id}
+    RETURNING id, email, name
+  `;
+  if (rows.length === 0) return null;
+  return { id: rows[0].id, email: rows[0].email, name: rows[0].name };
+}
+
 /* ═══ Auth Tokens ═══ */
 
 export async function createAuthToken(email: string): Promise<string> {

@@ -2,9 +2,11 @@
 
 ## What This Is
 
-A self-assessment and peer-feedback tool for YPO members built on the "Activating Behaviors" framework. Members rate themselves on 12 behavioral statements across four categories (Joy, Trust, Power, Partnership), then invite peers to rate them anonymously. Results show a radar chart comparing self-perception vs. peer perception with gap analysis.
+A self-assessment and peer-feedback tool for YPO members built on the "Activating Behaviors" framework. Members rate themselves on 12 behavioral statements across four categories (Joy, Trust, Power, Partnership) plus an open-ended note per section, then invite peers to rate them. Results show a radar chart comparing self-perception vs. peer perception, gap analysis, and a fully-attributed per-peer drill-in.
 
 Live at `/ypo-tool`. Peer rating at `/rate/[token]`.
+
+> **Transparency, not anonymity (July 2026).** By YPO's request, all anonymity was removed. Every peer response is attributed by name, the member can drill into each peer's individual ratings and notes, and results unlock as soon as **one** peer completes (`MIN_PEERS = 1`). Peer name is now **required**. See "Changelog — July 2026 demo" at the bottom.
 
 ---
 
@@ -139,11 +141,11 @@ There are two assessment storage paths (legacy JSONB `ypo_assessments` and norma
 - On login, DB responses take priority → localStorage fills gaps → any localStorage-only answers sync up to DB
 - Peer responses: saved to DB on each answer via PUT, cookie tracks which response belongs to which browser
 
-### Privacy
+### Attribution (formerly "Privacy")
 
-- Peer responses are anonymous — the authenticated user never sees who said what
-- Aggregate peer scores only visible after `MIN_PEERS = 3` completed responses
-- Rater status page shows names (if provided) and completion status but never scores
+- Peer responses are **fully attributed** — the member sees each peer's name, their individual per-item ratings, and their open-ended notes (`GET /api/ypo-tool/peer-responses`, rendered as the drill-in in `ComparisonView`)
+- Results unlock once `MIN_PEERS = 1` peer completes (the old 3-peer anonymity threshold is gone)
+- Peer name is **required** (`POST /api/ypo-tool/rate/[token]/response` returns `400 name_required` without it)
 
 ---
 
@@ -189,9 +191,9 @@ No test framework configured. Manual testing via the flows described above.
 
 1. **6-point scale, no midpoint** — forces a lean toward agree/disagree
 2. **Sum scoring (X/18), not mean** — per Design drop 03b
-3. **MIN_PEERS = 3** — anonymity threshold before aggregate is visible
+3. **MIN_PEERS = 1** — results unlock as soon as one peer completes (was 3; anonymity removed July 2026)
 4. **Cookie-based peer tracking** — each browser = one response, no auth required for peers
-5. **Name is optional for peers** — collected on the intro screen, saved when "Start" is clicked (not on page load)
+5. **Name is required for peers** — every response is attributed (was optional pre-July-2026)
 6. **Third-person peer wording** — "This person follows through..." with name substitution if ratee's first name is available
 7. **Gap threshold = 0.10** — differences below this are not flagged as blind spots or hidden strengths
 8. **Two assessment storage paths** — legacy JSONB table and normalized table both exist; active flow uses normalized
@@ -218,7 +220,7 @@ No test framework configured. Manual testing via the flows described above.
 - **No session cleanup cron**: Expired sessions and tokens accumulate in DB. A periodic cleanup query would help.
 - **No email notification to ratee**: When peers complete their rating, the ratee isn't notified. Could send a Resend email when peer count reaches MIN_PEERS.
 - **Share flow (`/ypo-tool/share/[token]`)**: Server component exists but the full read-only results view for shared assessments may need additional work.
-- **Retake flow**: "Retake assessment" creates a new normalized assessment record. Previous results are not surfaced anywhere.
+- **Retake flow** (updated July 2026): latest attempt wins; incomplete attempts are cleared by `POST /assessment/restart`. Completed attempts remain in `ypo_assessment` as history but aren't surfaced in the UI yet.
 - **Mobile polish**: Functional but could benefit from more responsive refinement on the radar chart and comparison view.
 
 ---
@@ -271,3 +273,39 @@ can't trigger it, which would let us return to strict single-use.
 | 05 | Added self vs. peer comparison with dual-layer radar and gap analysis |
 
 Design drops come as markdown prompts with specific code changes. The authoritative item text lives in `behaviors.ts`.
+
+---
+
+## Changelog — July 2026 demo
+
+Shipped ahead of the YPO directors demo. Theme: **remove anonymity, add open-ended feedback, make retakes predictable.**
+
+**Anonymity removed (full attribution)**
+- `MIN_PEERS` → `1` in `behaviors.ts` (all gating endpoints read this constant).
+- New `GET /api/ypo-tool/peer-responses` — returns each peer's name, per-item answers, and notes.
+- `ComparisonView` gains a "What each peer said" drill-in: expandable named cards showing each peer's 12 ratings (with scale labels) and their section notes.
+- Peer name is now **required** (`rate/[token]/response` POST rejects blank names; `PeerRatingClient` intro validates).
+- Anonymity copy stripped from `InvitePeers`, `ComparisonView`, `PeerRatingClient`, `Results`.
+
+**Open-ended feedback per section (`#6`)**
+- Migration `lib/migrations/001_open_ended_feedback.sql` adds `ypo_peer_feedback` and `ypo_self_feedback` (one row per circle per response/assessment). **Additive, already run against prod Neon.**
+- Save endpoints: `PUT /api/ypo-tool/rate/[token]/feedback` (peer), `PUT /api/ypo-tool/assessment/[id]/feedback` (self). Both tolerate the table being absent.
+- Prompts live on each circle in `behaviors.ts` (`circle.feedback.self` / `.peer`). Textareas render after each section's 3 questions in both flows; optional; flushed on Continue + blur.
+- Self notes surface in `Results` ("Your notes"); peer notes surface in the drill-in and preload on resume.
+
+**Predictable retake / multi-use (`#7`)**
+- Behavior: **latest attempt wins; prior incomplete attempts are cleared.** Completed attempts are kept as history.
+- `loadAssessment` now reads `/assessment/current` (latest, any status) instead of find-or-create — fixes the old bug where a completed member who refreshed got a blank new attempt instead of their results.
+- New `POST /api/ypo-tool/assessment/restart` deletes in-progress rows (cascades responses + self-feedback) and creates one fresh assessment. Wired to the Results "Restart" button.
+
+**Intro screen + required name (`#1`, `#3`)**
+- New `intro` view in `YpoToolClient` explains the flow (rate yourself → invite peers → see it side by side) and **requires** the member's name before starting. Name persists via `POST /api/ypo-tool/profile` → `ypo_users.name`.
+
+**Scroll fix (`#2`)**
+- Question content padding `py-10` → `pt-10 pb-36` so the (now taller) content clears the `sticky bottom-0` footer.
+- Section changes use `window.scrollTo({top:0})` instead of `scrollIntoView` (which aligned the target under the sticky 64px navbar). Applied to both `AssessmentFlow` and `PeerRatingClient`.
+
+**Auth:** unchanged this round (the June 2026 magic-link fix already handles corporate link-scanners).
+
+New API routes: `peer-responses`, `assessment/restart`, `profile`, `rate/[token]/feedback`, `assessment/[id]/feedback`.
+New tables: `ypo_peer_feedback`, `ypo_self_feedback` (schema in `schema.sql` #11/#12, migration in `lib/migrations/001`).

@@ -30,9 +30,21 @@ export async function GET() {
       WHERE assessment_id = ${assessment.id}
     `;
 
+    let feedback: Record<string, string> = {};
+    try {
+      const fb = await sql`
+        SELECT circle_key, text FROM ypo_self_feedback
+        WHERE assessment_id = ${assessment.id}
+      `;
+      feedback = Object.fromEntries(fb.map((f) => [f.circle_key, f.text]));
+    } catch {
+      feedback = {};
+    }
+
     return NextResponse.json({
       assessment,
       responses: Object.fromEntries(responses.map((r) => [r.item_key, r.value])),
+      feedback,
     });
   } catch (error) {
     console.error("Assessment current error:", error);

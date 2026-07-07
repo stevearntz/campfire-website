@@ -27,9 +27,20 @@ export async function POST() {
         SELECT item_key, value FROM ypo_response
         WHERE assessment_id = ${existing[0].id}
       `;
+      let feedback: Record<string, string> = {};
+      try {
+        const fb = await sql`
+          SELECT circle_key, text FROM ypo_self_feedback
+          WHERE assessment_id = ${existing[0].id}
+        `;
+        feedback = Object.fromEntries(fb.map((f) => [f.circle_key, f.text]));
+      } catch {
+        feedback = {};
+      }
       return NextResponse.json({
         assessment: existing[0],
         responses: Object.fromEntries(responses.map((r) => [r.item_key, r.value])),
+        feedback,
       });
     }
 

@@ -18,6 +18,13 @@ export interface Circle {
   readonly colorDark: string;
   readonly wash: string;
   readonly items: readonly [BehaviorItem, BehaviorItem, BehaviorItem];
+  /** Open-ended prompt shown at the end of the section. */
+  readonly feedback: {
+    /** First-person, shown in the self-assessment. */
+    readonly self: string;
+    /** Third-person ("This person…"), shown in peer rating. Name-substituted like peerText. */
+    readonly peer: string;
+  };
 }
 
 export const CIRCLES: readonly Circle[] = [
@@ -33,6 +40,10 @@ export const CIRCLES: readonly Circle[] = [
       { key: "joy2", text: "I stay open and respectful when views differ from mine.", peerText: "This person stays open and respectful when views differ from theirs." },
       { key: "joy3", text: "I work at a sustainable pace that doesn\u2019t lead to burnout.", peerText: "This person works at a sustainable pace that doesn\u2019t lead to burnout." },
     ],
+    feedback: {
+      self: "What\u2019s one thing you could do to bring more joy or energy to the team?",
+      peer: "What\u2019s one thing this person could do to bring more joy or energy to the team?",
+    },
   },
   {
     key: "trust",
@@ -46,6 +57,10 @@ export const CIRCLES: readonly Circle[] = [
       { key: "trust2", text: "I actively contribute ideas and energy to the work.", peerText: "This person actively contributes ideas and energy to the work." },
       { key: "trust3", text: "I listen with curiosity instead of assuming I already know.", peerText: "This person listens with curiosity instead of assuming they already know." },
     ],
+    feedback: {
+      self: "What’s one thing you could do to build more trust?",
+      peer: "What’s one thing this person could do to build more trust?",
+    },
   },
   {
     key: "power",
@@ -59,6 +74,10 @@ export const CIRCLES: readonly Circle[] = [
       { key: "power2", text: "I stay solutions-focused when challenges come up.", peerText: "This person stays solutions-focused when challenges come up." },
       { key: "power3", text: "I stay steady and adaptable through change.", peerText: "This person stays steady and adaptable through change." },
     ],
+    feedback: {
+      self: "What’s one thing you could do to lead more powerfully or take more initiative?",
+      peer: "What’s one thing this person could do to lead more powerfully or take more initiative?",
+    },
   },
   {
     key: "part",
@@ -72,14 +91,22 @@ export const CIRCLES: readonly Circle[] = [
       { key: "part2", text: "I solve issues rather than assigning blame.", peerText: "This person solves issues rather than assigning blame." },
       { key: "part3", text: "I balance execution with strategy.", peerText: "This person balances execution with strategy." },
     ],
+    feedback: {
+      self: "What’s one thing you could do to be a stronger partner across the team?",
+      peer: "What’s one thing this person could do to be a stronger partner across the team?",
+    },
   },
 ] as const;
 
 /** All 12 item keys in order */
 export const ALL_ITEM_KEYS = CIRCLES.flatMap((c) => c.items.map((i) => i.key));
 
-/** Minimum peers before aggregate is visible */
-export const MIN_PEERS = 3;
+/**
+ * Minimum completed peers before results are visible.
+ * YPO wants full transparency — results unlock as soon as one peer responds.
+ * (Was 3 as an anonymity threshold; anonymity has been removed by request.)
+ */
+export const MIN_PEERS = 1;
 
 /** Lookup circle by item key */
 export function circleForItem(itemKey: string): Circle | undefined {
@@ -107,4 +134,10 @@ export function circleSum(circle: Circle, responses: Responses): number {
 export function peerItemText(item: BehaviorItem, firstName?: string): string {
   if (!firstName) return item.peerText;
   return item.peerText.replace(/^This person/, firstName);
+}
+
+/** Get the peer-facing open-ended prompt, substituting first name if provided */
+export function peerFeedbackText(circle: Circle, firstName?: string): string {
+  if (!firstName) return circle.feedback.peer;
+  return circle.feedback.peer.replace(/this person/, firstName);
 }
