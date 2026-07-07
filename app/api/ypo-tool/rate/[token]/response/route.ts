@@ -8,6 +8,21 @@ function peerCookieName(token: string) {
   return `ypo_peer_${token}`;
 }
 
+/** Load saved open-ended feedback for a peer response; tolerant of missing table. */
+async function loadFeedback(responseId: number): Promise<Record<string, string>> {
+  try {
+    const { neon } = await import("@neondatabase/serverless");
+    const sql = neon(process.env.POSTGRES_URL!);
+    const rows = await sql`
+      SELECT circle_key, text FROM ypo_peer_feedback
+      WHERE peer_response_id = ${responseId}
+    `;
+    return Object.fromEntries(rows.map((r) => [r.circle_key as string, r.text as string]));
+  } catch {
+    return {};
+  }
+}
+
 /** Check for existing response via cookie — does NOT create */
 export async function GET(
   _request: Request,
@@ -46,12 +61,14 @@ export async function GET(
       SELECT item_key, value FROM ypo_peer_answer
       WHERE peer_response_id = ${existing[0].id}
     `;
+    const feedback = await loadFeedback(existing[0].id);
 
     return NextResponse.json({
       exists: true,
       responseId: existing[0].id,
       status: existing[0].status,
       answers: Object.fromEntries(answers.map((a) => [a.item_key, a.value])),
+      feedback,
     });
   } catch (error) {
     console.error("Peer response check error:", error);
@@ -67,7 +84,15 @@ export async function POST(
   try {
     const { token } = await params;
     const body = await request.json().catch(() => ({}));
-    const raterName = (body.raterName as string)?.trim()?.slice(0, 200) || null;
+    const raterName = (body.raterName as string)?.trim()?.slice(0, 200) || "";
+
+    // Name is required — every response must be attributable (anonymity removed).
+    if (!raterName) {
+      return NextResponse.json(
+        { error: "Your name is required.", code: "name_required" },
+        { status: 400 },
+      );
+    }
 
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
@@ -91,15 +116,21 @@ export async function POST(
         LIMIT 1
       `;
       if (existing.length > 0) {
-        // Return existing response + saved answers
+        // Returning visitor — refresh their stored name and return saved answers.
+        await sql`
+          UPDATE ypo_peer_response SET rater_name = ${raterName}
+          WHERE id = ${existing[0].id}
+        `;
         const answers = await sql`
           SELECT item_key, value FROM ypo_peer_answer
           WHERE peer_response_id = ${existing[0].id}
         `;
+        const feedback = await loadFeedback(existing[0].id);
         return NextResponse.json({
           responseId: existing[0].id,
           status: existing[0].status,
           answers: Object.fromEntries(answers.map((a) => [a.item_key, a.value])),
+          feedback,
         });
       }
     }
@@ -116,6 +147,7 @@ export async function POST(
       responseId: created[0].id,
       status: created[0].status,
       answers: {},
+      feedback: {},
     });
     res.cookies.set(peerCookieName(token), String(created[0].id), {
       httpOnly: true,

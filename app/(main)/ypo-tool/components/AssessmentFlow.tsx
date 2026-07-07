@@ -49,10 +49,12 @@ function resumeStep(responses: Responses): FlowStep {
 export default function AssessmentFlow({
   onComplete,
   initialResponses,
+  initialFeedback,
   assessmentId,
 }: {
   onComplete: (responses: Responses) => void;
   initialResponses?: Responses;
+  initialFeedback?: Record<string, string>;
   assessmentId?: number;
 }) {
   const [responses, setResponses] = useState<Responses>(() => {
@@ -62,6 +64,9 @@ export default function AssessmentFlow({
     }
     return loadResponses();
   });
+  const [feedback, setFeedback] = useState<Record<string, string>>(
+    initialFeedback || {},
+  );
   const [step, setStep] = useState<FlowStep>(() => resumeStep(
     initialResponses && Object.keys(initialResponses).length > 0
       ? initialResponses
@@ -77,7 +82,7 @@ export default function AssessmentFlow({
 
   const scrollToTop = useCallback(() => {
     setTimeout(() => {
-      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 50);
   }, []);
 
@@ -99,6 +104,25 @@ export default function AssessmentFlow({
     [dbAssessmentId],
   );
 
+  const saveFeedback = useCallback(
+    (circleKey: string, text: string) => {
+      if (dbAssessmentId && dbAssessmentId > 0) {
+        fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/feedback`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ circleKey, text }),
+        }).catch(() => {
+          // Non-fatal — feedback stays in local state
+        });
+      }
+    },
+    [dbAssessmentId],
+  );
+
+  const handleFeedbackChange = useCallback((circleKey: string, text: string) => {
+    setFeedback((prev) => ({ ...prev, [circleKey]: text }));
+  }, []);
+
   const handleBeginSection = useCallback(
     (circleIdx: number) => {
       setStep({ phase: "questions", circleIdx });
@@ -109,6 +133,10 @@ export default function AssessmentFlow({
 
   const handleContinue = useCallback(
     (circleIdx: number) => {
+      // Flush this section's open-ended note before advancing.
+      const circleKey = CIRCLES[circleIdx].key;
+      saveFeedback(circleKey, feedback[circleKey] || "");
+
       const nextIdx = circleIdx + 1;
       if (nextIdx >= CIRCLES.length) {
         // All done — check all answered
@@ -130,7 +158,7 @@ export default function AssessmentFlow({
         scrollToTop();
       }
     },
-    [responses, onComplete, scrollToTop, dbAssessmentId],
+    [responses, onComplete, scrollToTop, dbAssessmentId, saveFeedback, feedback],
   );
 
   const handleBack = useCallback(
@@ -161,7 +189,10 @@ export default function AssessmentFlow({
           circleIdx={step.circleIdx}
           responses={responses}
           answeredCount={answeredCount}
+          feedbackValue={feedback[CIRCLES[step.circleIdx].key] || ""}
           onAnswer={handleAnswer}
+          onFeedbackChange={handleFeedbackChange}
+          onFeedbackBlur={saveFeedback}
           onContinue={() => handleContinue(step.circleIdx)}
           onBack={() => handleBack(step.circleIdx)}
           isLastSection={step.circleIdx === CIRCLES.length - 1}

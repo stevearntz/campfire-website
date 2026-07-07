@@ -5,6 +5,7 @@ import {
   CIRCLES,
   ALL_ITEM_KEYS,
   peerItemText,
+  peerFeedbackText,
   type Responses,
 } from "@/app/(main)/ypo-tool/lib/behaviors";
 import ScaleInput from "@/app/(main)/ypo-tool/components/ScaleInput";
@@ -35,8 +36,10 @@ export default function PeerRatingClient({ token }: { token: string }) {
   const [firstName, setFirstName] = useState("");
   const [raterName, setRaterName] = useState("");
   const [responses, setResponses] = useState<Responses>({});
+  const [feedback, setFeedback] = useState<Record<string, string>>({});
   const [step, setStep] = useState<FlowStep>({ phase: "section-intro", circleIdx: 0 });
   const [responseStarted, setResponseStarted] = useState(false);
+  const [nameError, setNameError] = useState(false);
   const topRef = useRef<HTMLDivElement>(null);
 
   // Load invite info
@@ -60,6 +63,7 @@ export default function PeerRatingClient({ token }: { token: string }) {
               setView("done");
               return;
             }
+            if (checkData.feedback) setFeedback(checkData.feedback);
             if (checkData.answers && Object.keys(checkData.answers).length > 0) {
               setResponses(checkData.answers);
               setResponseStarted(true);
@@ -80,20 +84,26 @@ export default function PeerRatingClient({ token }: { token: string }) {
 
   const scrollToTop = useCallback(() => {
     setTimeout(() => {
-      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 50);
   }, []);
 
   const handleStart = useCallback(async () => {
-    // Create/resume peer response with optional name
+    // Name is required — every response must be attributable.
+    if (!raterName.trim()) {
+      setNameError(true);
+      return;
+    }
+    // Create/resume peer response with the rater's name
     try {
       const res = await fetch(`/api/ypo-tool/rate/${token}/response`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ raterName: raterName.trim() || null }),
+        body: JSON.stringify({ raterName: raterName.trim() }),
       });
       if (res.ok) {
         const data = await res.json();
+        if (data.feedback) setFeedback(data.feedback);
         if (data.answers && Object.keys(data.answers).length > 0) {
           setResponses(data.answers);
           setStep(resumeStep(data.answers));
@@ -107,6 +117,25 @@ export default function PeerRatingClient({ token }: { token: string }) {
     setView("flow");
     setStep({ phase: "section-intro", circleIdx: 0 });
   }, [token, raterName]);
+
+  const saveFeedback = useCallback(
+    async (circleKey: string, text: string) => {
+      try {
+        await fetch(`/api/ypo-tool/rate/${token}/feedback`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ circleKey, text }),
+        });
+      } catch {
+        // Non-fatal — feedback is in local state
+      }
+    },
+    [token],
+  );
+
+  const handleFeedbackChange = useCallback((circleKey: string, text: string) => {
+    setFeedback((prev) => ({ ...prev, [circleKey]: text }));
+  }, []);
 
   const handleAnswer = useCallback(
     async (itemKey: string, value: number) => {
@@ -136,6 +165,10 @@ export default function PeerRatingClient({ token }: { token: string }) {
 
   const handleContinue = useCallback(
     async (circleIdx: number) => {
+      // Flush this section's open-ended note before moving on.
+      const circleKey = CIRCLES[circleIdx].key;
+      await saveFeedback(circleKey, feedback[circleKey] || "");
+
       const nextIdx = circleIdx + 1;
       if (nextIdx >= CIRCLES.length) {
         // Submit
@@ -152,7 +185,7 @@ export default function PeerRatingClient({ token }: { token: string }) {
         scrollToTop();
       }
     },
-    [token, scrollToTop],
+    [token, scrollToTop, saveFeedback, feedback],
   );
 
   const handleBack = useCallback(
@@ -228,9 +261,8 @@ export default function PeerRatingClient({ token }: { token: string }) {
             Thank you — your perspective is in.
           </h1>
           <p style={{ fontSize: 16, color: "#636B7C", lineHeight: 1.6 }}>
-            Your responses have been recorded. {firstName} will see a blended
-            result across all peers — never who said what. You can close this
-            page.
+            Your responses have been recorded. {firstName} will see your ratings
+            and notes alongside your name. You can close this page.
           </p>
         </div>
       </div>
@@ -272,8 +304,9 @@ export default function PeerRatingClient({ token }: { token: string }) {
               color: "#636B7C",
             }}
           >
-            12 quick statements, about 3 minutes. {firstName} sees the blended
-            result — never who said what.
+            12 quick statements plus a short note for each area — about 4
+            minutes. {firstName} will see your ratings and notes next to your
+            name, so be candid and constructive.
           </p>
 
           <div className="mb-6">
@@ -282,20 +315,26 @@ export default function PeerRatingClient({ token }: { token: string }) {
               className="block mb-2 font-medium"
               style={{ fontSize: 14, color: "#636B7C" }}
             >
-              Your name (optional)
+              Your name
             </label>
             <input
               id="rater-name"
               type="text"
-              placeholder="First name"
+              placeholder="First and last name"
               value={raterName}
-              onChange={(e) => setRaterName(e.target.value)}
+              onChange={(e) => {
+                setRaterName(e.target.value);
+                if (nameError && e.target.value.trim()) setNameError(false);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleStart();
+              }}
               className="w-full outline-none transition-all"
               style={{
                 height: 48,
                 borderRadius: 12,
                 background: "#F8F6FB",
-                border: "1px solid #EEE9F6",
+                border: `1px solid ${nameError ? "#E0555B" : "#EEE9F6"}`,
                 color: "#1E2A4A",
                 fontSize: 16,
                 padding: "0 16px",
@@ -306,10 +345,17 @@ export default function PeerRatingClient({ token }: { token: string }) {
                   "0 0 0 3px rgba(157,136,237,0.15)";
               }}
               onBlur={(e) => {
-                e.currentTarget.style.borderColor = "#EEE9F6";
+                e.currentTarget.style.borderColor = nameError
+                  ? "#E0555B"
+                  : "#EEE9F6";
                 e.currentTarget.style.boxShadow = "none";
               }}
             />
+            {nameError && (
+              <p className="mt-2" style={{ fontSize: 13, color: "#E0555B" }}>
+                Please enter your name so {firstName} knows who this is from.
+              </p>
+            )}
           </div>
 
           <button
@@ -469,7 +515,7 @@ export default function PeerRatingClient({ token }: { token: string }) {
         </div>
 
         {/* Questions */}
-        <div className="flex-1 max-w-3xl mx-auto w-full px-6 py-10">
+        <div className="flex-1 max-w-3xl mx-auto w-full px-6 pt-10 pb-36">
           <div className="space-y-10">
             {circle.items.map((item, idx) => (
               <div key={item.key}>
@@ -494,6 +540,49 @@ export default function PeerRatingClient({ token }: { token: string }) {
                 />
               </div>
             ))}
+
+            {/* Open-ended feedback for this section */}
+            <div
+              className="rounded-2xl p-5"
+              style={{ background: circle.wash, border: `1px solid ${circle.color}22` }}
+            >
+              <label
+                htmlFor={`fb-${circle.key}`}
+                className="block mb-3"
+                style={{ fontSize: 16, fontWeight: 700, color: "#1E2A4A", lineHeight: 1.4 }}
+              >
+                {peerFeedbackText(circle, firstName)}
+                <span style={{ fontWeight: 400, color: "#A8A2B3", marginLeft: 6 }}>
+                  (optional)
+                </span>
+              </label>
+              <textarea
+                id={`fb-${circle.key}`}
+                value={feedback[circle.key] || ""}
+                onChange={(e) => handleFeedbackChange(circle.key, e.target.value)}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = "#EEE9F6";
+                  e.currentTarget.style.boxShadow = "none";
+                  saveFeedback(circle.key, e.target.value);
+                }}
+                rows={3}
+                placeholder="A specific, constructive example helps most…"
+                className="w-full outline-none transition-all resize-y"
+                style={{
+                  borderRadius: 12,
+                  background: "#fff",
+                  border: "1px solid #EEE9F6",
+                  color: "#1E2A4A",
+                  fontSize: 15,
+                  lineHeight: 1.5,
+                  padding: "12px 14px",
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = circle.color;
+                  e.currentTarget.style.boxShadow = `0 0 0 3px ${circle.color}22`;
+                }}
+              />
+            </div>
           </div>
         </div>
 

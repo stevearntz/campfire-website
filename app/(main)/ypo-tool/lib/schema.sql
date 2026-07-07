@@ -149,3 +149,27 @@ CREATE TABLE ypo_peer_answer (
 );
 
 CREATE INDEX idx_ypo_peer_answer_response ON ypo_peer_answer(peer_response_id);
+
+-- 11. Peer open-ended feedback (one row per circle per rater) — migration 001
+CREATE TABLE ypo_peer_feedback (
+  id SERIAL PRIMARY KEY,
+  peer_response_id INTEGER NOT NULL REFERENCES ypo_peer_response(id) ON DELETE CASCADE,
+  circle_key VARCHAR(20) NOT NULL,
+  text TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  CONSTRAINT ypo_peer_feedback_unique UNIQUE (peer_response_id, circle_key)
+);
+
+CREATE INDEX idx_ypo_peer_feedback_response ON ypo_peer_feedback(peer_response_id);
+
+-- 12. Self open-ended feedback (one row per circle per assessment) — migration 001
+CREATE TABLE ypo_self_feedback (
+  id SERIAL PRIMARY KEY,
+  assessment_id INTEGER NOT NULL REFERENCES ypo_assessment(id) ON DELETE CASCADE,
+  circle_key VARCHAR(20) NOT NULL,
+  text TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  CONSTRAINT ypo_self_feedback_unique UNIQUE (assessment_id, circle_key)
+);
+
+CREATE INDEX idx_ypo_self_feedback_assessment ON ypo_self_feedback(assessment_id);

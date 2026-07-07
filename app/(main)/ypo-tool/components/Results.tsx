@@ -5,13 +5,16 @@ import RadarChart from "./RadarChart";
 
 export default function Results({
   responses,
+  selfFeedback,
   onRestart,
   onInvitePeers,
 }: {
   responses: Responses;
+  selfFeedback?: Record<string, string>;
   onRestart: () => void;
   onInvitePeers?: () => void;
 }) {
+  const notes = CIRCLES.filter((c) => selfFeedback?.[c.key]?.trim());
   const sums = CIRCLES.map((c) => circleSum(c, responses));
 
   // Strength = highest sum, Growth = lowest sum
@@ -238,6 +241,47 @@ export default function Results({
             </div>
           </div>
         </div>
+
+        {/* Your notes */}
+        {notes.length > 0 && (
+          <div className="mb-12">
+            <h2
+              className="font-extrabold mb-5"
+              style={{ fontSize: 22, color: "#1E2A4A" }}
+            >
+              Your notes
+            </h2>
+            <div className="space-y-4">
+              {notes.map((circle) => (
+                <div
+                  key={circle.key}
+                  className="relative rounded-2xl p-5"
+                  style={{ background: "#F8F6FB", border: "1px solid #EEE9F6" }}
+                >
+                  <div
+                    className="absolute left-0 top-4 bottom-4 rounded-full"
+                    style={{ width: 4, background: circle.color }}
+                  />
+                  <div className="pl-3">
+                    <p
+                      className="font-bold uppercase mb-1"
+                      style={{
+                        fontSize: 10,
+                        letterSpacing: "0.12em",
+                        color: circle.colorDark,
+                      }}
+                    >
+                      {circle.title}
+                    </p>
+                    <p style={{ fontSize: 15, lineHeight: 1.55, color: "#1E2A4A" }}>
+                      {selfFeedback?.[circle.key]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Footer actions */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-[#EEE9F6]">

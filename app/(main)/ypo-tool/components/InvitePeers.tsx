@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { MIN_PEERS } from "../lib/behaviors";
 
 interface Rater {
   name: string | null;
@@ -119,8 +118,9 @@ export default function InvitePeers({
               maxWidth: 640,
             }}
           >
-            Share one private link. Each peer rates the same 12 behaviors about
-            you — and only ever sees their own answers. You see the blend.
+            Share one link. Each peer rates the same 12 behaviors about you and
+            leaves a short note in each area. You&apos;ll see every response —
+            with their name attached.
           </p>
         </div>
 
@@ -186,8 +186,8 @@ export default function InvitePeers({
               className="mt-4"
               style={{ fontSize: 13.5, lineHeight: 1.6, color: "#A8A2B3" }}
             >
-              Aim for 3–6 peers for a balanced read. Results stay private to you
-              — no admin ever sees them.
+              Aim for 3–6 peers for a balanced read. You&apos;ll see each
+              peer&apos;s name, ratings, and notes.
             </p>
           </div>
 
@@ -219,7 +219,7 @@ export default function InvitePeers({
             ) : (
               <div className="space-y-2">
                 {raters.map((rater, i) => {
-                  const name = rater.name || "Anonymous peer";
+                  const name = rater.name || "Unnamed peer";
                   const initials = name
                     .split(" ")
                     .map((w) => w[0])
@@ -279,12 +279,13 @@ export default function InvitePeers({
               </div>
             )}
 
-            {!canViewAggregate && respondedCount < MIN_PEERS && totalCount > 0 && (
+            {!canViewAggregate && totalCount > 0 && (
               <p
                 className="mt-3"
                 style={{ fontSize: 13, color: "#A8A2B3" }}
               >
-                {respondedCount} of {MIN_PEERS} needed to protect anonymity.
+                Waiting for at least one peer to finish. Results unlock as soon
+                as someone completes.
               </p>
             )}
           </div>
@@ -309,10 +310,10 @@ export default function InvitePeers({
             title={
               canViewAggregate
                 ? undefined
-                : `Available once ${MIN_PEERS} peers respond`
+                : "Available once a peer completes their response"
             }
           >
-            See self vs. peer &rarr;
+            See peer feedback &rarr;
           </button>
 
           <button

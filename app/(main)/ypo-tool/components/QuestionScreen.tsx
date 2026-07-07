@@ -9,7 +9,10 @@ export default function QuestionScreen({
   circleIdx,
   responses,
   answeredCount,
+  feedbackValue,
   onAnswer,
+  onFeedbackChange,
+  onFeedbackBlur,
   onContinue,
   onBack,
   isLastSection,
@@ -18,7 +21,10 @@ export default function QuestionScreen({
   circleIdx: number;
   responses: Responses;
   answeredCount: number;
+  feedbackValue: string;
   onAnswer: (itemKey: string, value: number) => void;
+  onFeedbackChange: (circleKey: string, text: string) => void;
+  onFeedbackBlur: (circleKey: string, text: string) => void;
   onContinue: () => void;
   onBack: () => void;
   isLastSection: boolean;
@@ -61,7 +67,7 @@ export default function QuestionScreen({
       </div>
 
       {/* Questions */}
-      <div className="flex-1 max-w-3xl mx-auto w-full px-6 py-10">
+      <div className="flex-1 max-w-3xl mx-auto w-full px-6 pt-10 pb-36">
         <div className="space-y-10">
           {circle.items.map((item, idx) => (
             <div key={item.key}>
@@ -86,6 +92,49 @@ export default function QuestionScreen({
               />
             </div>
           ))}
+
+          {/* Open-ended feedback for this section */}
+          <div
+            className="rounded-2xl p-5"
+            style={{ background: circle.wash, border: `1px solid ${circle.color}22` }}
+          >
+            <label
+              htmlFor={`self-fb-${circle.key}`}
+              className="block mb-3"
+              style={{ fontSize: 18, fontWeight: 700, color: "#1E2A4A", lineHeight: 1.4 }}
+            >
+              {circle.feedback.self}
+              <span style={{ fontWeight: 400, color: "#A8A2B3", marginLeft: 6 }}>
+                (optional)
+              </span>
+            </label>
+            <textarea
+              id={`self-fb-${circle.key}`}
+              value={feedbackValue}
+              onChange={(e) => onFeedbackChange(circle.key, e.target.value)}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "#EEE9F6";
+                e.currentTarget.style.boxShadow = "none";
+                onFeedbackBlur(circle.key, e.target.value);
+              }}
+              rows={3}
+              placeholder="Jot a specific example or intention…"
+              className="w-full outline-none transition-all resize-y"
+              style={{
+                borderRadius: 12,
+                background: "#fff",
+                border: "1px solid #EEE9F6",
+                color: "#1E2A4A",
+                fontSize: 15,
+                lineHeight: 1.5,
+                padding: "12px 14px",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = circle.color;
+                e.currentTarget.style.boxShadow = `0 0 0 3px ${circle.color}22`;
+              }}
+            />
+          </div>
         </div>
       </div>
 

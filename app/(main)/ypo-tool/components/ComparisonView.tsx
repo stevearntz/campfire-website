@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CIRCLES, circleSum, type Responses } from "../lib/behaviors";
+import {
+  CIRCLES,
+  circleSum,
+  peerItemText,
+  peerFeedbackText,
+  type Responses,
+} from "../lib/behaviors";
+import { SCALE_LABELS } from "../lib/constants";
 import RadarChart from "./RadarChart";
 
 interface ComparisonData {
@@ -10,16 +17,29 @@ interface ComparisonData {
   peerCount: number;
 }
 
+interface PeerDetail {
+  id: number;
+  name: string | null;
+  status: "in_progress" | "complete";
+  completedAt: string | null;
+  answers: Record<string, number>;
+  feedback: Record<string, string>;
+}
+
 const GAP_THRESHOLD = 0.10;
 
 export default function ComparisonView({
   responses,
   onBack,
+  rateeFirstName,
 }: {
   responses: Responses;
   onBack: () => void;
+  rateeFirstName?: string;
 }) {
   const [data, setData] = useState<ComparisonData | null>(null);
+  const [peers, setPeers] = useState<PeerDetail[]>([]);
+  const [expanded, setExpanded] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,6 +73,17 @@ export default function ComparisonView({
         }
         const json = await res.json();
         setData(json);
+
+        // Fetch attributed per-peer detail (names, individual answers, notes)
+        try {
+          const detailRes = await fetch("/api/ypo-tool/peer-responses");
+          if (detailRes.ok) {
+            const detail = await detailRes.json();
+            setPeers(detail.peers || []);
+          }
+        } catch {
+          // detail is best-effort; aggregate still renders
+        }
       } catch {
         setError("Could not load comparison data.");
       }
@@ -136,7 +167,7 @@ export default function ComparisonView({
               color: "#A8A2B3",
             }}
           >
-            Self vs. Peer &middot; Private to you
+            Self vs. Peer &middot; Full transparency
           </p>
 
           <h1
@@ -348,6 +379,193 @@ export default function ComparisonView({
               })}
             </div>
           </div>
+        </div>
+
+        {/* Individual peer responses — full attribution */}
+        <div className="mb-12">
+          <h2
+            className="font-extrabold mb-1"
+            style={{ fontSize: 22, color: "#1E2A4A" }}
+          >
+            What each peer said
+          </h2>
+          <p
+            className="mb-6"
+            style={{ fontSize: 15, lineHeight: 1.6, color: "#636B7C", maxWidth: 620 }}
+          >
+            Every response is attributed. Expand a name to see their individual
+            ratings and notes.
+          </p>
+
+          {peers.length === 0 ? (
+            <div
+              className="rounded-2xl p-6 text-center"
+              style={{ background: "#F8F6FB", border: "1px solid #EEE9F6" }}
+            >
+              <p style={{ fontSize: 14, color: "#A8A2B3" }}>
+                No individual responses to show yet.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {peers.map((peer) => {
+                const name = peer.name || "Unnamed peer";
+                const initials = name
+                  .split(" ")
+                  .map((w) => w[0])
+                  .join("")
+                  .toUpperCase()
+                  .slice(0, 2);
+                const isOpen = expanded === peer.id;
+                const answeredCount = Object.keys(peer.answers).length;
+
+                return (
+                  <div
+                    key={peer.id}
+                    className="rounded-2xl overflow-hidden"
+                    style={{ background: "#fff", border: "1px solid #EEE9F6" }}
+                  >
+                    {/* Header row */}
+                    <button
+                      onClick={() => setExpanded(isOpen ? null : peer.id)}
+                      className="w-full flex items-center gap-3 px-5 py-4 text-left"
+                    >
+                      <div
+                        className="flex items-center justify-center rounded-full flex-shrink-0 font-bold"
+                        style={{
+                          width: 36,
+                          height: 36,
+                          background: "#F3EFFA",
+                          color: "#6E3FCC",
+                          fontSize: 13,
+                        }}
+                      >
+                        {initials}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span
+                          className="font-bold block truncate"
+                          style={{ fontSize: 15, color: "#1E2A4A" }}
+                        >
+                          {name}
+                        </span>
+                        <span style={{ fontSize: 12.5, color: "#A8A2B3" }}>
+                          {peer.status === "complete"
+                            ? "Completed all 12"
+                            : `In progress · ${answeredCount} of 12`}
+                        </span>
+                      </div>
+                      <svg
+                        className="w-5 h-5 flex-shrink-0 transition-transform"
+                        style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="#A8A2B3"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 9l6 6 6-6"
+                        />
+                      </svg>
+                    </button>
+
+                    {/* Expanded detail */}
+                    {isOpen && (
+                      <div
+                        className="px-5 pb-5 pt-1 space-y-6"
+                        style={{ borderTop: "1px solid #F1EEF6" }}
+                      >
+                        {CIRCLES.map((circle) => {
+                          const note = peer.feedback[circle.key];
+                          return (
+                            <div key={circle.key} className="pt-4">
+                              <div className="flex items-center gap-2 mb-3">
+                                <span
+                                  className="inline-block w-2.5 h-2.5 rounded-full"
+                                  style={{ background: circle.color }}
+                                />
+                                <span
+                                  className="font-bold uppercase"
+                                  style={{
+                                    fontSize: 11,
+                                    letterSpacing: "0.1em",
+                                    color: circle.colorDark,
+                                  }}
+                                >
+                                  {circle.title}
+                                </span>
+                              </div>
+
+                              <div className="space-y-2.5">
+                                {circle.items.map((item) => {
+                                  const v = peer.answers[item.key];
+                                  return (
+                                    <div
+                                      key={item.key}
+                                      className="flex items-start justify-between gap-4"
+                                    >
+                                      <span
+                                        style={{
+                                          fontSize: 14,
+                                          lineHeight: 1.45,
+                                          color: "#636B7C",
+                                        }}
+                                      >
+                                        {peerItemText(item, rateeFirstName)}
+                                      </span>
+                                      <span
+                                        className="flex-shrink-0 font-bold text-right"
+                                        style={{
+                                          fontSize: 13,
+                                          color: v ? circle.colorDark : "#C9C4D4",
+                                          minWidth: 118,
+                                        }}
+                                      >
+                                        {v ? `${v} · ${SCALE_LABELS[v - 1]}` : "—"}
+                                      </span>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+
+                              {note && (
+                                <div
+                                  className="mt-3 rounded-xl p-3.5"
+                                  style={{ background: circle.wash }}
+                                >
+                                  <p
+                                    className="font-bold uppercase mb-1"
+                                    style={{
+                                      fontSize: 9.5,
+                                      letterSpacing: "0.12em",
+                                      color: circle.colorDark,
+                                    }}
+                                  >
+                                    {peerFeedbackText(circle, rateeFirstName)}
+                                  </p>
+                                  <p
+                                    style={{
+                                      fontSize: 14,
+                                      lineHeight: 1.55,
+                                      color: "#1E2A4A",
+                                    }}
+                                  >
+                                    “{note}”
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Conversation bridge */}
