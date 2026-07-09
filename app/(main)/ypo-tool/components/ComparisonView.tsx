@@ -39,7 +39,9 @@ export default function ComparisonView({
 }) {
   const [data, setData] = useState<ComparisonData | null>(null);
   const [peers, setPeers] = useState<PeerDetail[]>([]);
-  const [expanded, setExpanded] = useState<number | null>(null);
+  // Peer cards are expanded by default so results are visible on arrival;
+  // clicking a name collapses/expands that peer.
+  const [openIds, setOpenIds] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -79,7 +81,10 @@ export default function ComparisonView({
           const detailRes = await fetch("/api/ypo-tool/peer-responses");
           if (detailRes.ok) {
             const detail = await detailRes.json();
-            setPeers(detail.peers || []);
+            const list: PeerDetail[] = detail.peers || [];
+            setPeers(list);
+            // Expand every peer by default so results are visible immediately.
+            setOpenIds(new Set(list.map((p) => p.id)));
           }
         } catch {
           // detail is best-effort; aggregate still renders
@@ -416,7 +421,7 @@ export default function ComparisonView({
                   .join("")
                   .toUpperCase()
                   .slice(0, 2);
-                const isOpen = expanded === peer.id;
+                const isOpen = openIds.has(peer.id);
                 const answeredCount = Object.keys(peer.answers).length;
 
                 return (
@@ -427,8 +432,15 @@ export default function ComparisonView({
                   >
                     {/* Header row */}
                     <button
-                      onClick={() => setExpanded(isOpen ? null : peer.id)}
-                      className="w-full flex items-center gap-3 px-5 py-4 text-left"
+                      onClick={() =>
+                        setOpenIds((prev) => {
+                          const next = new Set(prev);
+                          if (next.has(peer.id)) next.delete(peer.id);
+                          else next.add(peer.id);
+                          return next;
+                        })
+                      }
+                      className="w-full flex items-center gap-3 px-5 py-4 text-left cursor-pointer transition-colors hover:bg-[#FAF8FD]"
                     >
                       <div
                         className="flex items-center justify-center rounded-full flex-shrink-0 font-bold"
@@ -455,12 +467,18 @@ export default function ComparisonView({
                             : `In progress · ${answeredCount} of 12`}
                         </span>
                       </div>
+                      <span
+                        className="flex-shrink-0 font-bold uppercase"
+                        style={{ fontSize: 10, letterSpacing: "0.1em", color: "#6E3FCC" }}
+                      >
+                        {isOpen ? "Hide" : "Show"}
+                      </span>
                       <svg
                         className="w-5 h-5 flex-shrink-0 transition-transform"
                         style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="#A8A2B3"
+                        stroke="#6E3FCC"
                         strokeWidth={2}
                       >
                         <path
