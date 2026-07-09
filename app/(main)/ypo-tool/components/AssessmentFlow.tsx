@@ -105,9 +105,9 @@ export default function AssessmentFlow({
   );
 
   const saveFeedback = useCallback(
-    (circleKey: string, text: string) => {
+    (circleKey: string, text: string): Promise<unknown> => {
       if (dbAssessmentId && dbAssessmentId > 0) {
-        fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/feedback`, {
+        return fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/feedback`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ circleKey, text }),
@@ -115,6 +115,7 @@ export default function AssessmentFlow({
           // Non-fatal — feedback stays in local state
         });
       }
+      return Promise.resolve();
     },
     [dbAssessmentId],
   );
@@ -132,23 +133,25 @@ export default function AssessmentFlow({
   );
 
   const handleContinue = useCallback(
-    (circleIdx: number) => {
+    async (circleIdx: number) => {
       // Flush this section's open-ended note before advancing.
       const circleKey = CIRCLES[circleIdx].key;
-      saveFeedback(circleKey, feedback[circleKey] || "");
+      await saveFeedback(circleKey, feedback[circleKey] || "");
 
       const nextIdx = circleIdx + 1;
       if (nextIdx >= CIRCLES.length) {
         // All done — check all answered
         const allAnswered = ALL_ITEM_KEYS.every((k) => responses[k] != null);
         if (allAnswered) {
-          // Mark complete in DB
+          // Mark complete in DB — await so the next route sees it complete.
           if (dbAssessmentId && dbAssessmentId > 0) {
-            fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/complete`, {
-              method: "POST",
-            }).catch(() => {
-              // ignore
-            });
+            try {
+              await fetch(`/api/ypo-tool/assessment/${dbAssessmentId}/complete`, {
+                method: "POST",
+              });
+            } catch {
+              // ignore — completion is best-effort
+            }
           }
           setStep({ phase: "complete" });
           onComplete(responses);
