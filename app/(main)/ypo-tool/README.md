@@ -309,3 +309,25 @@ Shipped ahead of the YPO directors demo. Theme: **remove anonymity, add open-end
 
 New API routes: `peer-responses`, `assessment/restart`, `profile`, `rate/[token]/feedback`, `assessment/[id]/feedback`.
 New tables: `ypo_peer_feedback`, `ypo_self_feedback` (schema in `schema.sql` #11/#12, migration in `lib/migrations/001`).
+
+## Changelog — July 2026: per-screen routes
+
+The member tool was split from a single `view` state machine into real Next.js
+routes so browser back/forward works and every screen has its own URL:
+
+- **Routes:** `/ypo-tool` (entry: sign-in + intro), `/ypo-tool/assessment`,
+  `/ypo-tool/results`, `/ypo-tool/invite`, `/ypo-tool/compare`. Each is a server
+  `page.tsx` (noindex) + a client that loads its own data.
+- **`YpoToolClient`** is now just the entry: after auth it routes by status
+  (complete → results, in-progress → assessment, fresh → intro).
+- **`lib/useMember.ts`** — shared hook: loads `/auth/me` + `/assessment/current`,
+  redirects to `/ypo-tool` when unauthenticated. Each page adds a status guard.
+- **`components/AppHeader.tsx`** (self-contained logout) and
+  **`components/IntroScreen.tsx`** were extracted so all routes reuse them.
+- Screen-to-screen navigation uses `router.push`; guard redirects use
+  `router.replace` (kept out of history). `AssessmentFlow` awaits `/complete`
+  before navigating so `/results` never races a still-in-progress assessment.
+- **`api/ypo-tool/auth/dev-login`** — DEV ONLY (404 in production). Creates a
+  real session so the routed flow can be exercised locally (the old client-only
+  dev bypass couldn't persist a session across routes).
+- ComparisonView peer cards now **expand by default** with a Show/Hide affordance.
