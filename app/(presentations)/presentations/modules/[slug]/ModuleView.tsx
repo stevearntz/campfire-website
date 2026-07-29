@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Icon } from "../../../_components/Icon";
 import { MODES, QUIZ, type CourseModule } from "../../../_data/course";
@@ -26,17 +26,125 @@ const CHAPTERS = [
   },
 ];
 
-export default function ModuleView({ module }: { module: CourseModule }) {
+export default function ModuleView({
+  module,
+  initialWorksheet = {},
+  worksheetSubmitted = false,
+  initialPicks = {},
+  initialJournal = "",
+}: {
+  module: CourseModule;
+  initialWorksheet?: Record<string, unknown>;
+  worksheetSubmitted?: boolean;
+  initialPicks?: Record<number, number>;
+  initialJournal?: string;
+}) {
   const [tab, setTab] = useState<TabKey>("watch");
-  const [mode, setMode] = useState("Persuade");
-  const [doVal, setDoVal] = useState("");
-  const [thinkVal, setThinkVal] = useState("");
-  const [feelVal, setFeelVal] = useState("");
-  const [dataVal, setDataVal] = useState("");
-  const [worksheetSent, setWorksheetSent] = useState(false);
-  const [picks, setPicks] = useState<Record<number, number>>({});
-  const [journalVal, setJournalVal] = useState("");
+  const [mode, setMode] = useState(
+    typeof initialWorksheet.mode === "string"
+      ? (initialWorksheet.mode as string)
+      : "Persuade",
+  );
+  const [doVal, setDoVal] = useState(
+    typeof initialWorksheet.do === "string"
+      ? (initialWorksheet.do as string)
+      : "",
+  );
+  const [thinkVal, setThinkVal] = useState(
+    typeof initialWorksheet.think === "string"
+      ? (initialWorksheet.think as string)
+      : "",
+  );
+  const [feelVal, setFeelVal] = useState(
+    typeof initialWorksheet.feel === "string"
+      ? (initialWorksheet.feel as string)
+      : "",
+  );
+  const [dataVal, setDataVal] = useState(
+    typeof initialWorksheet.evidence === "string"
+      ? (initialWorksheet.evidence as string)
+      : "",
+  );
+  const [worksheetSent, setWorksheetSent] = useState(worksheetSubmitted);
+  const [picks, setPicks] = useState<Record<number, number>>(initialPicks);
+  const [journalVal, setJournalVal] = useState(initialJournal);
   const [journalSaved, setJournalSaved] = useState(false);
+
+  // Fire-and-forget persistence helper. Saves fail quietly.
+  const save = (url: string, payload: unknown) => {
+    try {
+      void fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
+    } catch {
+      // ignore
+    }
+  };
+
+  // Worksheet autosave (debounced). Skips the initial hydration render so we
+  // don't POST the just-loaded values straight back.
+  const firstWorksheetRender = useRef(true);
+  useEffect(() => {
+    if (firstWorksheetRender.current) {
+      firstWorksheetRender.current = false;
+      return;
+    }
+    const id = setTimeout(() => {
+      save("/api/presentations/worksheet", {
+        moduleSlug: module.slug,
+        data: {
+          do: doVal,
+          think: thinkVal,
+          feel: feelVal,
+          evidence: dataVal,
+          mode,
+        },
+        submit: false,
+      });
+    }, 800);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [doVal, thinkVal, feelVal, dataVal, mode]);
+
+  const sendWorksheetToCoach = () => {
+    save("/api/presentations/worksheet", {
+      moduleSlug: module.slug,
+      data: {
+        do: doVal,
+        think: thinkVal,
+        feel: feelVal,
+        evidence: dataVal,
+        mode,
+      },
+      submit: true,
+    });
+    setWorksheetSent(true);
+  };
+
+  const pickAnswer = (qi: number, oi: number) => {
+    setPicks((prev) => {
+      const next = { ...prev, [qi]: oi };
+      const score = Object.keys(next).filter(
+        (k) => next[Number(k)] === QUIZ[Number(k)].correct,
+      ).length;
+      save("/api/presentations/quiz", {
+        lessonKey: module.slug,
+        answers: next,
+        score,
+      });
+      return next;
+    });
+  };
+
+  const saveJournal = () => {
+    save("/api/presentations/journal", {
+      moduleSlug: module.slug,
+      body: journalVal,
+    });
+    setJournalSaved(true);
+  };
 
   // live worksheet checks
   const hasVerb =
@@ -368,7 +476,7 @@ export default function ModuleView({ module }: { module: CourseModule }) {
 
               <div className="mt-7 flex gap-3 border-t border-cf-gray-100 pt-6">
                 <button
-                  onClick={() => setWorksheetSent(true)}
+                  onClick={sendWorksheetToCoach}
                   className="rounded-lg bg-cf-purple-600 px-[22px] py-[13px] text-[13px] font-bold tracking-[0.12em] text-white uppercase"
                 >
                   Send to coach
@@ -528,9 +636,7 @@ export default function ModuleView({ module }: { module: CourseModule }) {
                           return (
                             <button
                               key={oi}
-                              onClick={() =>
-                                setPicks((p) => ({ ...p, [qi]: oi }))
-                              }
+                              onClick={() => pickAnswer(qi, oi)}
                               className={`flex items-start gap-[11px] rounded-[10px] border px-4 py-[14px] text-left text-[15px] leading-[1.5] ${cls}`}
                             >
                               <Icon
@@ -577,7 +683,7 @@ export default function ModuleView({ module }: { module: CourseModule }) {
               />
               <div className="mt-4 flex items-center gap-3">
                 <button
-                  onClick={() => setJournalSaved(true)}
+                  onClick={saveJournal}
                   className="rounded-lg bg-cf-purple-600 px-5 py-3 text-[13px] font-bold tracking-[0.12em] text-white uppercase"
                 >
                   Save entry

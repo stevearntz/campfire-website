@@ -352,3 +352,41 @@ export const JOURNAL_ENTRIES: JournalEntry[] = [
 ];
 
 export const LEARNER_NAME = "Celeste Merrill";
+
+/**
+ * Coaching curriculum — the four sessions every learner moves through. This
+ * is content (the same for everyone); the actual scheduled dates + completion
+ * are per-learner data that a coach sets later. Until then they're "not
+ * scheduled yet".
+ */
+export interface CoachingMilestone {
+  key: string;
+  title: string;
+  detail: string;
+}
+
+export const COACHING_CURRICULUM: CoachingMilestone[] = [
+  {
+    key: "kickoff",
+    title: "Kickoff — what are you actually presenting?",
+    detail: "Bring a real presentation, or take the case study.",
+  },
+  {
+    key: "spine",
+    title: "Spine review",
+    detail: "Bring modules 01–04.",
+  },
+  {
+    key: "dry-run",
+    title: "Dry run & feedback",
+    detail: "A first delivery, start to finish.",
+  },
+  {
+    key: "final",
+    title: "Final delivery & debrief",
+    detail: "The run that counts, then debrief the room.",
+  },
+];
+
+/** Total modules in the course — used for progress denominators. */
+export const MODULE_COUNT = MODULES.length;

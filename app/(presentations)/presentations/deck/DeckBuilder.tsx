@@ -1,44 +1,81 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { Icon } from "../../_components/Icon";
-import { SLIDES, BEAT_COLOR } from "../../_data/course";
+import { BEAT_COLOR } from "../../_data/course";
 
-const BARS = [
-  { label: "'23", h: "38%", color: "bg-cf-purple-100" },
-  { label: "'24", h: "52%", color: "bg-cf-purple-200" },
-  { label: "'25", h: "74%", color: "bg-cf-purple-400" },
-  { label: "'26", h: "100%", color: "bg-cf-pink-400" },
-];
-
-interface SlideEdit {
-  title?: string;
-  note?: string;
+export interface BuilderSlide {
+  id: number;
+  position: number;
+  beat: string | null;
+  actionTitle: string;
+  speakerNote: string;
+  supportNote: string | null;
 }
 
-export default function DeckBuilder() {
-  const [selected, setSelected] = useState(3);
-  const [edits, setEdits] = useState<Record<number, SlideEdit>>({});
+function beatClass(beat: string | null) {
+  return (beat && BEAT_COLOR[beat]) || "text-cf-gray-400";
+}
 
-  const titleOf = (i: number) => edits[i]?.title ?? SLIDES[i].title;
-  const noteOf = (i: number) => edits[i]?.note ?? SLIDES[i].note;
+export default function DeckBuilder({
+  presentationId,
+  deckTitle,
+  spine,
+  initialSlides,
+}: {
+  presentationId: number;
+  deckTitle: string | null;
+  spine: string | null;
+  initialSlides: BuilderSlide[];
+}) {
+  const [slides, setSlides] = useState<BuilderSlide[]>(initialSlides);
+  const [selected, setSelected] = useState(0);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">(
+    "idle",
+  );
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const cur = SLIDES[selected];
-  const curTitle = titleOf(selected);
-  const curNote = noteOf(selected);
+  const cur = slides[selected];
 
-  const setTitle = (value: string) =>
-    setEdits((prev) => ({
-      ...prev,
-      [selected]: { ...prev[selected], title: value },
-    }));
+  function scheduleSave(slide: BuilderSlide) {
+    setSaveState("saving");
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(async () => {
+      try {
+        const res = await fetch("/api/presentations/slide", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            presentationId,
+            slideId: slide.id,
+            actionTitle: slide.actionTitle,
+            speakerNote: slide.speakerNote,
+          }),
+        });
+        setSaveState(res.ok ? "saved" : "idle");
+      } catch {
+        setSaveState("idle");
+      }
+    }, 800);
+  }
 
-  const setNote = (value: string) =>
-    setEdits((prev) => ({
-      ...prev,
-      [selected]: { ...prev[selected], note: value },
-    }));
+  function edit(patch: Partial<BuilderSlide>) {
+    setSlides((prev) => {
+      const next = prev.map((s, i) =>
+        i === selected ? { ...s, ...patch } : s,
+      );
+      scheduleSave(next[selected]);
+      return next;
+    });
+  }
+
+  const saveLabel =
+    saveState === "saving"
+      ? "Saving…"
+      : saveState === "saved"
+        ? "Saved"
+        : "All changes saved";
 
   return (
     <div className="flex h-full min-h-0 min-w-[1080px] flex-col">
@@ -46,14 +83,14 @@ export default function DeckBuilder() {
       <div className="flex flex-none items-center justify-between border-b border-cf-gray-100 bg-white px-8 py-[18px]">
         <div>
           <div className="text-[11px] font-bold tracking-[0.16em] text-cf-gray-500 uppercase">
-            Deck builder · Module 05 exercise
+            Deck builder
           </div>
           <div className="mt-[5px] text-[20px] font-bold text-cf-indigo-700">
-            The manager gap is quietly costing us our best people
+            {deckTitle || "Untitled presentation"}
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
-          <span className="text-[13px] text-cf-gray-400">Saved just now</span>
+          <span className="text-[13px] text-cf-gray-400">{saveLabel}</span>
           <Link
             href="/presentations/rehearse"
             className="rounded-lg bg-cf-purple-600 px-5 py-3 text-[13px] font-bold tracking-[0.12em] text-white uppercase"
@@ -68,39 +105,39 @@ export default function DeckBuilder() {
         {/* Left rail — story spine */}
         <div className="overflow-y-auto border-r border-cf-gray-100 bg-white px-[14px] py-4">
           <div className="px-[6px] pb-[10px] text-[11px] font-bold tracking-[0.14em] text-cf-gray-400 uppercase">
-            Story spine · SCQA
+            Story spine{spine ? ` · ${spine}` : ""}
           </div>
           <div className="flex flex-col gap-2">
-            {SLIDES.map((s, i) => (
+            {slides.map((s, i) => (
               <button
-                key={s.n}
+                key={s.id}
                 type="button"
                 onClick={() => setSelected(i)}
                 className={`w-full overflow-hidden rounded-lg border-2 bg-white text-left ${
-                  i === selected
-                    ? "border-cf-purple-600"
-                    : "border-cf-gray-200"
+                  i === selected ? "border-cf-purple-600" : "border-cf-gray-200"
                 }`}
               >
                 <div className="flex aspect-[16/9] flex-col justify-between bg-cf-gray-50 p-2">
                   <div className="text-[8px] leading-[1.3] font-bold text-cf-indigo-700">
-                    {titleOf(i)}
+                    {s.actionTitle || "Untitled slide"}
                   </div>
                   <div className="h-[3px] w-[60%] rounded-[2px] bg-cf-gray-200" />
                 </div>
                 <div className="flex items-center justify-between border-t border-cf-gray-100 px-2 py-[6px]">
                   <span className="text-[10px] font-bold text-cf-gray-400">
-                    {s.n}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span
-                    className={`text-[9px] font-bold tracking-[0.08em] uppercase ${BEAT_COLOR[s.beat]}`}
-                  >
-                    {s.beat}
-                  </span>
+                  {s.beat && (
+                    <span
+                      className={`text-[9px] font-bold tracking-[0.08em] uppercase ${beatClass(s.beat)}`}
+                    >
+                      {s.beat}
+                    </span>
+                  )}
                 </div>
               </button>
             ))}
-            <div className="cursor-pointer rounded-lg border border-dashed border-cf-gray-300 p-[14px] text-center text-[12px] font-semibold text-cf-gray-500">
+            <div className="rounded-lg border border-dashed border-cf-gray-300 p-[14px] text-center text-[12px] font-semibold text-cf-gray-400">
               + Add slide
             </div>
           </div>
@@ -111,35 +148,21 @@ export default function DeckBuilder() {
           <div className="mx-auto max-w-[760px]">
             {/* Slide preview card */}
             <div className="flex aspect-[16/9] flex-col rounded-xl bg-white px-[48px] py-[44px] shadow-xl">
-              <div
-                className={`text-[11px] font-bold tracking-[0.16em] uppercase ${BEAT_COLOR[cur.beat]}`}
-              >
-                {cur.beat}
-              </div>
+              {cur.beat && (
+                <div
+                  className={`text-[11px] font-bold tracking-[0.16em] uppercase ${beatClass(cur.beat)}`}
+                >
+                  {cur.beat}
+                </div>
+              )}
               <div className="mt-[14px] text-[30px] leading-[1.2] font-bold tracking-[-0.01em] text-pretty text-cf-indigo-700">
-                {curTitle}
+                {cur.actionTitle || "Say the claim of this slide…"}
               </div>
-              <div className="mt-auto flex items-end gap-6">
-                <div className="flex h-[150px] flex-1 items-stretch gap-[10px]">
-                  {BARS.map((bar) => (
-                    <div
-                      key={bar.label}
-                      className="flex h-full flex-1 flex-col items-center justify-end gap-[6px]"
-                    >
-                      <div className="text-[11px] font-bold text-cf-gray-500">
-                        {bar.label}
-                      </div>
-                      <div
-                        className={`w-full rounded-t-[4px] ${bar.color}`}
-                        style={{ height: bar.h }}
-                      />
-                    </div>
-                  ))}
+              {cur.supportNote && (
+                <div className="mt-auto max-w-[300px] text-[13px] leading-[1.55] text-cf-gray-500">
+                  {cur.supportNote}
                 </div>
-                <div className="w-[200px] text-[13px] leading-[1.55] text-cf-gray-500">
-                  {cur.support}
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Editors */}
@@ -148,72 +171,33 @@ export default function DeckBuilder() {
                 Action title — say the claim, not the topic
               </div>
               <textarea
-                value={curTitle}
-                onChange={(e) => setTitle(e.target.value)}
+                value={cur.actionTitle}
+                onChange={(e) => edit({ actionTitle: e.target.value })}
                 className="mt-[10px] min-h-[60px] w-full resize-y rounded-[10px] border border-cf-gray-200 px-[14px] py-3 text-[17px] leading-[1.5] font-semibold text-cf-indigo-700"
               />
               <div className="mt-5 text-[11px] font-bold tracking-[0.14em] text-cf-gray-500 uppercase">
                 Speaker note · what you say out loud
               </div>
               <textarea
-                value={curNote}
-                onChange={(e) => setNote(e.target.value)}
+                value={cur.speakerNote}
+                onChange={(e) => edit({ speakerNote: e.target.value })}
                 className="mt-[10px] min-h-[80px] w-full resize-y rounded-[10px] border border-cf-gray-200 px-[14px] py-3 text-[15px] leading-[1.6] text-cf-gray-600"
               />
             </div>
           </div>
         </div>
 
-        {/* Right rail — slide coach */}
+        {/* Right rail — slide coach + vertical logic */}
         <div className="overflow-y-auto border-l border-cf-gray-100 bg-white p-6">
           <div className="flex items-center gap-[9px]">
-            <Icon
-              name="auto_awesome"
-              className="text-[19px] text-cf-purple-600"
-            />
+            <Icon name="auto_awesome" className="text-[19px] text-cf-purple-600" />
             <div className="text-[12px] font-bold tracking-[0.14em] text-cf-purple-700 uppercase">
               Slide coach
             </div>
           </div>
-
-          <div className="mt-[18px] flex flex-col gap-[14px]">
-            <div className="rounded-[10px] border border-cf-meadow-200 bg-cf-meadow-50 px-4 py-[14px]">
-              <div className="flex items-start gap-[9px]">
-                <Icon
-                  name="check_circle"
-                  className="mt-[1px] text-[17px] text-cf-meadow-700"
-                />
-                <div className="text-[14px] leading-[1.55] text-cf-gray-700">
-                  <strong>Title states a claim.</strong> A reader who only sees
-                  titles gets your argument.
-                </div>
-              </div>
-            </div>
-            <div className="rounded-[10px] border border-cf-canary-200 bg-cf-canary-50 px-4 py-[14px]">
-              <div className="flex items-start gap-[9px]">
-                <Icon
-                  name="warning"
-                  className="mt-[1px] text-[17px] text-cf-canary-700"
-                />
-                <div className="text-[14px] leading-[1.55] text-cf-gray-700">
-                  <strong>Chart may not match the message.</strong> You&apos;re
-                  claiming a change over time — a line beats grouped columns
-                  here. (TVMA: Time → line.)
-                </div>
-              </div>
-            </div>
-            <div className="rounded-[10px] border border-cf-gray-200 bg-cf-gray-50 px-4 py-[14px]">
-              <div className="flex items-start gap-[9px]">
-                <Icon
-                  name="info"
-                  className="mt-[1px] text-[17px] text-cf-gray-500"
-                />
-                <div className="text-[14px] leading-[1.55] text-cf-gray-700">
-                  <strong>One idea per slide.</strong> Your note covers two —
-                  consider splitting the cost figure onto its own slide.
-                </div>
-              </div>
-            </div>
+          <div className="mt-[18px] rounded-[10px] border border-dashed border-cf-gray-200 bg-cf-gray-50 px-4 py-[18px] text-[13px] leading-[1.6] text-cf-gray-500">
+            Coach checks — claim strength, chart-to-message fit, one-idea-per-slide
+            — appear here as you refine your titles. (Coming in a later module.)
           </div>
 
           {/* Vertical logic */}
@@ -222,30 +206,22 @@ export default function DeckBuilder() {
               Vertical logic
             </div>
             <div className="mt-2 text-[13px] leading-[1.6] text-cf-gray-500">
-              Titles read in sequence:
+              Read your titles top to bottom — do they carry the argument?
             </div>
             <div className="mt-3 flex flex-col gap-[9px]">
-              {SLIDES.map((s, i) => (
+              {slides.map((s, i) => (
                 <div
-                  key={s.n}
+                  key={s.id}
                   className={`flex gap-[9px] text-[12px] leading-[1.5] ${
-                    i === selected
-                      ? "text-cf-indigo-700"
-                      : "text-cf-gray-500"
+                    i === selected ? "text-cf-indigo-700" : "text-cf-gray-500"
                   }`}
                 >
-                  <span className="flex-none font-bold">{s.n}</span>
-                  <div>{titleOf(i)}</div>
+                  <span className="flex-none font-bold">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>{s.actionTitle || "Untitled slide"}</div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Intent check */}
-          <div className="mt-[26px] rounded-[10px] bg-cf-purple-050 p-4">
-            <div className="text-[13px] leading-[1.6] text-cf-purple-700">
-              <strong>Checked against your intent:</strong> does this slide move
-              “training is a nice-to-have we can defer”?
             </div>
           </div>
         </div>

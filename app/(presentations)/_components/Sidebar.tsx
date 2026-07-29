@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "./Icon";
-import { LEARNER_NAME } from "../_data/course";
 
 const NAV = [
   { href: "/presentations", label: "My course", icon: "home", exact: true },
@@ -22,7 +21,13 @@ const NAV = [
   },
 ];
 
-export function Sidebar() {
+export function Sidebar({
+  displayName,
+  initialsText,
+}: {
+  displayName: string;
+  initialsText: string;
+}) {
   const pathname = usePathname();
 
   return (
@@ -79,20 +84,20 @@ export function Sidebar() {
           <div className="text-[11px] font-bold tracking-[0.16em] text-white/45 uppercase">
             Next coaching session
           </div>
-          <div className="mt-2 text-sm font-semibold text-white">
-            Thu, Aug 6 · 10:00 AM
+          <div className="mt-2 text-sm font-semibold text-white/80">
+            Not scheduled yet
           </div>
           <div className="mt-[2px] text-[13px] text-white/60">
-            Spine review with your coach
+            Your coach sets these up as you go.
           </div>
         </div>
         <div className="mt-[22px] flex items-center gap-[10px]">
           <div className="grid h-8 w-8 place-items-center rounded-full bg-cf-purple-300 text-[13px] font-extrabold text-cf-indigo-1100">
-            CM
+            {initialsText}
           </div>
-          <div>
-            <div className="text-[13px] font-semibold text-white">
-              {LEARNER_NAME}
+          <div className="min-w-0">
+            <div className="truncate text-[13px] font-semibold text-white">
+              {displayName}
             </div>
             <div className="text-[11px] text-white/50">Cohort of one</div>
           </div>

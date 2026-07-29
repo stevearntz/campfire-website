@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { Icon } from "../../_components/Icon";
-import { MODULES, MODULE_ACCENTS, STATUS_STYLE } from "../../_data/course";
+import {
+  MODULES,
+  MODULE_ACCENTS,
+  STATUS_STYLE,
+  type ModuleStatus,
+} from "../../_data/course";
+import { getCurrentLearner } from "../../_lib/learner";
+import { getProgress } from "../../_lib/db";
 
 const CAPSTONE_GRADIENT = "linear-gradient(120deg,#6A3DC5,#E055CB)";
 
@@ -60,7 +67,27 @@ const PREREQS: { icon: string; body: React.ReactNode }[] = [
   },
 ];
 
-export default function SyllabusPage() {
+export default async function SyllabusPage() {
+  const { enrollment } = await getCurrentLearner();
+  const progress = await getProgress(enrollment.id);
+  const stateBySlug = new Map(progress.map((p) => [p.lessonKey, p.state]));
+
+  // Compute each module's status from real progress. A missing/not_started
+  // module is "Next" only when every earlier module is Complete, else "Locked".
+  const statuses: ModuleStatus[] = [];
+  MODULES.forEach((m) => {
+    const state = stateBySlug.get(m.slug);
+    let status: ModuleStatus;
+    if (state === "done") {
+      status = "Complete";
+    } else if (state === "in_progress") {
+      status = "In progress";
+    } else {
+      status = statuses.every((s) => s === "Complete") ? "Next" : "Locked";
+    }
+    statuses.push(status);
+  });
+
   return (
     <div className="max-w-[1080px] px-12 pt-11 pb-[70px]">
       <div className="text-[12px] font-bold tracking-[0.18em] text-cf-purple-600 uppercase">
@@ -129,8 +156,9 @@ export default function SyllabusPage() {
       <div className="mt-[22px] flex flex-col gap-3">
         {MODULES.map((m, i) => {
           const accent = MODULE_ACCENTS[i];
-          const status = STATUS_STYLE[m.status];
-          const locked = m.status === "Locked";
+          const moduleStatus = statuses[i];
+          const status = STATUS_STYLE[moduleStatus];
+          const locked = moduleStatus === "Locked";
 
           const inner = (
             <>
@@ -148,7 +176,7 @@ export default function SyllabusPage() {
                   <span
                     className={`rounded-full px-[9px] py-1 text-[10px] font-bold tracking-[0.12em] uppercase ${status.bg} ${status.fg}`}
                   >
-                    {m.status}
+                    {moduleStatus}
                   </span>
                 </div>
                 <div className="mt-[7px] max-w-[560px] text-[15px] leading-[1.6] text-balance text-cf-gray-500">

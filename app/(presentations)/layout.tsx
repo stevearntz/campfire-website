@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { presentationsEnabled } from "./_lib/flag";
 import { Sidebar } from "./_components/Sidebar";
+import { getCurrentLearner, initials } from "./_lib/learner";
 
 export const metadata: Metadata = {
   title: "Tell It So It Moves — Storytelling & Presentations",
@@ -10,12 +11,18 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function PresentationsLayout({
+// Per-learner data is read on every request — never statically prerender.
+export const dynamic = "force-dynamic";
+
+export default async function PresentationsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   if (!presentationsEnabled()) notFound();
+
+  const { user } = await getCurrentLearner();
+  const displayName = user.name ?? user.email.split("@")[0];
 
   return (
     <>
@@ -28,7 +35,10 @@ export default function PresentationsLayout({
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0&display=swap"
       />
       <div className="flex h-screen overflow-hidden bg-cf-purple-050 text-cf-gray-700">
-        <Sidebar />
+        <Sidebar
+          displayName={displayName}
+          initialsText={initials(user)}
+        />
         <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </>
