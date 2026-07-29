@@ -12,6 +12,118 @@
   --animate-fade-in: fade-in 0.5s ease-out;
 }
 
+/* =========================================================================
+   Campfire Matchbox tokens — presentations course ("Tell It So It Moves").
+   The one place hex values live for that section. Generates cf-* utilities
+   (bg-cf-purple-600, text-cf-indigo-700, border-cf-gray-100, …).
+   ========================================================================= */
+@theme {
+  --color-cf-purple-700: #5b34ab;
+  --color-cf-purple-600: #6e3fcc;
+  --color-cf-purple-500: #7a4cd9;
+  --color-cf-purple-400: #8252e1;
+  --color-cf-purple-300: #9d88ed;
+  --color-cf-purple-200: #b8a8f2;
+  --color-cf-purple-100: #e1d8f3;
+  --color-cf-purple-050: #f8f5fc;
+
+  --color-cf-pink-600: #c054ea;
+  --color-cf-pink-500: #dd66e5;
+  --color-cf-pink-400: #e055cb;
+  --color-cf-pink-300: #ee80dd;
+  --color-cf-pink-200: #f2a7e5;
+  --color-cf-pink-100: #fbe0e9;
+
+  --color-cf-indigo-1100: #1c1334;
+  --color-cf-indigo-900: #262f56;
+  --color-cf-indigo-700: #1e2a4a;
+  --color-cf-indigo-500: #3a02a8;
+
+  --color-cf-warm-050: #fdf0d3;
+  --color-cf-warm-300: #ffc28a;
+  --color-cf-warm-500: #f59e2c;
+  --color-cf-warm-700: #cf9a1c;
+
+  --color-cf-gray-900: #111827;
+  --color-cf-gray-800: #1f2937;
+  --color-cf-gray-700: #374151;
+  --color-cf-gray-600: #4b5563;
+  --color-cf-gray-500: #636b7c;
+  --color-cf-gray-400: #9ca3af;
+  --color-cf-gray-300: #d1d5db;
+  --color-cf-gray-200: #e5e7eb;
+  --color-cf-gray-100: #f3f4f6;
+  --color-cf-gray-50: #f9fafb;
+
+  --color-cf-meadow-800: #22813e;
+  --color-cf-meadow-700: #289649;
+  --color-cf-meadow-600: #2ba650;
+  --color-cf-meadow-500: #50c473;
+  --color-cf-meadow-400: #70d18e;
+  --color-cf-meadow-300: #92deaa;
+  --color-cf-meadow-200: #b7e6c5;
+  --color-cf-meadow-100: #d5f0dd;
+  --color-cf-meadow-50: #eaf8ee;
+
+  --color-cf-canary-700: #cc9614;
+  --color-cf-canary-600: #e0a61b;
+  --color-cf-canary-500: #f5c042;
+  --color-cf-canary-400: #facd65;
+  --color-cf-canary-300: #fad886;
+  --color-cf-canary-200: #f7e2ae;
+  --color-cf-canary-100: #faeccd;
+  --color-cf-canary-50: #fef8e9;
+
+  --color-cf-ladybug-700: #ad3426;
+  --color-cf-ladybug-600: #c73d30;
+  --color-cf-ladybug-500: #eb6a5e;
+  --color-cf-ladybug-400: #f08c81;
+  --color-cf-ladybug-300: #f7aba3;
+  --color-cf-ladybug-200: #f7c3be;
+  --color-cf-ladybug-100: #f8dad7;
+  --color-cf-ladybug-50: #fbedeb;
+
+  --color-cf-river-700: #2aa3a3;
+  --color-cf-river-600: #30b7b7;
+  --color-cf-river-500: #30c7c7;
+  --color-cf-river-400: #54d4d4;
+  --color-cf-river-300: #97e5e5;
+  --color-cf-river-100: #d4f2f2;
+  --color-cf-river-50: #ecfafa;
+
+  --color-cf-coach-rose-700: #a63d5f;
+  --color-cf-coach-rose-600: #bf4c74;
+  --color-cf-coach-rose-500: #d95d88;
+  --color-cf-coach-rose-300: #f595b6;
+
+  --color-cf-rose-600: #d95d88;
+  --color-cf-rose-500: #eb6593;
+  --color-cf-rose-100: #fbe0e9;
+  --color-cf-rose-50: #fdf0f4;
+
+  --color-cf-dusk-700: #575985;
+  --color-cf-dusk-500: #6d6fa6;
+  --color-cf-dusk-300: #a0a2c9;
+  --color-cf-dusk-100: #dddeea;
+  --color-cf-dusk-50: #f0f1f6;
+}
+
+/* Material Symbols Rounded (filled) — UI icons for the presentations course. */
+.ms {
+  font-family: "Material Symbols Rounded";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
