@@ -1,0 +1,360 @@
+{
+  "name": "Campfire",
+  "tagline": "Build Better Leaders — Your Way.",
+  "positioning": "Leadership development that fits inside real work — flexible to fit your brand, your frameworks, and your culture.",
+  "sourceUrl": "https://www.getcampfire.com/design-system",
+  "backgroundColor": "#1C1334",
+  "backgroundColorAlt": "#F8F5FC",
+  "logos": [
+    {
+      "url": "/design-system/assets/campfire-logo-black.svg",
+      "variant": "primary-dark-mark",
+      "format": "svg",
+      "background": "light",
+      "use": "Default. Place on #FFFFFF or #F8F5FC."
+    },
+    {
+      "url": "/design-system/assets/campfire-logo-white.png",
+      "variant": "reversed",
+      "format": "png",
+      "background": "dark",
+      "use": "Place on #1C1334 or #262F56. Use for all dark video scenes."
+    },
+    {
+      "url": "/design-system/assets/campfire-logo.png",
+      "variant": "full-color",
+      "format": "png",
+      "background": "light",
+      "use": "Full-colour lockup incl. flame orange #F59E2C."
+    }
+  ],
+  "logoRules": {
+    "clearspace": "Minimum clearspace on all sides = height of the flame mark.",
+    "minWidth": "120px digital / 1in print.",
+    "never": [
+      "Do not recolor the mark",
+      "Do not add shadow, glow, or outline",
+      "Do not place over busy photography or the topo pattern without a solid scrim",
+      "Do not stretch, rotate, or rebuild the lockup"
+    ]
+  },
+  "colors": [
+    {
+      "name": "Campfire Purple",
+      "token": "--c-purple-600",
+      "hex": "#6E3FCC",
+      "role": "Primary brand, interactive, headline emphasis"
+    },
+    {
+      "name": "Purple Press",
+      "token": "--c-purple-700",
+      "hex": "#5B34AB",
+      "role": "Hover and pressed states"
+    },
+    {
+      "name": "Lavender",
+      "token": "--c-purple-300",
+      "hex": "#9D88ED",
+      "role": "Headline highlight fragment on dark"
+    },
+    {
+      "name": "Hot Pink",
+      "token": "--c-pink-400",
+      "hex": "#E055CB",
+      "role": "Loud CTA only — one per scene"
+    },
+    {
+      "name": "Pink Accent",
+      "token": "--c-pink-300",
+      "hex": "#EE80DD",
+      "role": "Accent ribbon, gradient stop"
+    },
+    {
+      "name": "Midnight",
+      "token": "--c-indigo-1100",
+      "hex": "#1C1334",
+      "role": "Primary dark background — default video scene background"
+    },
+    {
+      "name": "Deep Navy",
+      "token": "--c-indigo-900",
+      "hex": "#262F56",
+      "role": "Footer, secondary dark surface"
+    },
+    {
+      "name": "Body Navy",
+      "token": "--c-indigo-700",
+      "hex": "#1E2A4A",
+      "role": "Headlines on light backgrounds"
+    },
+    {
+      "name": "Lavender Mist",
+      "token": "--c-purple-050",
+      "hex": "#F8F5FC",
+      "role": "Primary light background"
+    },
+    {
+      "name": "Card Gray",
+      "token": "--c-card",
+      "hex": "#F7F6F7",
+      "role": "Card surface"
+    },
+    {
+      "name": "Slate",
+      "token": "--c-gray-500",
+      "hex": "#636B7C",
+      "role": "Body copy on light"
+    },
+    {
+      "name": "Warm Sand",
+      "token": "--c-warm-300",
+      "hex": "#FFC28A",
+      "role": "Warm sub-headline accent on dark"
+    },
+    {
+      "name": "White",
+      "token": null,
+      "hex": "#FFFFFF",
+      "role": "Page background; all text on dark"
+    }
+  ],
+  "gradients": [
+    {
+      "name": "Purple → Periwinkle",
+      "css": "linear-gradient(to right, #6A3DC5, #896DF0)"
+    },
+    {
+      "name": "Hot Pink",
+      "css": "linear-gradient(to right, #EE80DD, #DD66E5)"
+    },
+    {
+      "name": "Cool Pink",
+      "css": "linear-gradient(to right, #BE53EA, #A04CE9)"
+    }
+  ],
+  "colorFontPairings": [
+    {
+      "background": "#1C1334",
+      "headline": "#FFFFFF",
+      "headlineEmphasis": "#9D88ED",
+      "subhead": "#FFC28A",
+      "body": "rgba(255,255,255,0.8)",
+      "font": "League Spartan"
+    },
+    {
+      "background": "#FFFFFF",
+      "headline": "#1E2A4A",
+      "headlineEmphasis": "#6E3FCC",
+      "body": "#636B7C",
+      "font": "League Spartan"
+    },
+    {
+      "background": "#F8F5FC",
+      "headline": "#1E2A4A",
+      "headlineEmphasis": "#6E3FCC",
+      "body": "#636B7C",
+      "font": "League Spartan"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "League Spartan",
+      "source": "Google Fonts",
+      "weights": [
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "role": "Headlines, body, buttons — everything",
+      "notes": "Public equivalent of the licensed Spartan MB cut. Use this name in Arcade."
+    },
+    {
+      "family": "Spartan MB",
+      "source": "self-hosted (fonts/)",
+      "weights": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "role": "Licensed production cut of the same design"
+    },
+    {
+      "family": "DM Serif Display",
+      "source": "Google Fonts",
+      "weights": [
+        400
+      ],
+      "role": "Occasional editorial accent only — never body or UI"
+    }
+  ],
+  "typeScale": {
+    "heroXl": {
+      "size": 96,
+      "lineHeight": 1.04,
+      "tracking": "-0.02em",
+      "weight": 700
+    },
+    "heroLg": {
+      "size": 72,
+      "lineHeight": 1.08,
+      "tracking": "-0.02em",
+      "weight": 700
+    },
+    "heroMd": {
+      "size": 56,
+      "lineHeight": 1.1,
+      "tracking": "-0.015em",
+      "weight": 700
+    },
+    "h1": {
+      "size": 40,
+      "lineHeight": 1.15,
+      "weight": 700
+    },
+    "h2": {
+      "size": 32,
+      "lineHeight": 1.2,
+      "weight": 700
+    },
+    "h3": {
+      "size": 24,
+      "lineHeight": 1.3,
+      "weight": 700
+    },
+    "bodyLg": {
+      "size": 18,
+      "lineHeight": 1.6,
+      "weight": 400
+    },
+    "bodyMd": {
+      "size": 16,
+      "lineHeight": 1.6,
+      "weight": 400
+    },
+    "button": {
+      "size": 14,
+      "tracking": "0.08em",
+      "weight": 600,
+      "transform": "uppercase"
+    },
+    "eyebrow": {
+      "size": 12,
+      "tracking": "0.18em",
+      "weight": 700,
+      "transform": "uppercase"
+    }
+  },
+  "radii": {
+    "button": 8,
+    "cardSmall": 12,
+    "cardLarge": 16,
+    "cardXl": 24,
+    "pill": 999,
+    "note": "Pill only for chips and circular avatars."
+  },
+  "elevation": {
+    "cards": "flat — 1px #F3F4F6 border, no shadow",
+    "overlaysOnly": "0 12px 16px -4px rgba(16,24,40,0.08)"
+  },
+  "motion": {
+    "transition": "160ms ease",
+    "fadeIn": "0.5s ease-out, 8px translateY",
+    "ambient": "topo layers drift 12–20s infinite ease-in-out",
+    "never": [
+      "bounce",
+      "spring",
+      "parallax",
+      "scale on press",
+      "shadow elevation on hover"
+    ]
+  },
+  "backgrounds": [
+    {
+      "url": "/design-system/assets/purple-topo.webp",
+      "role": "Signature topographic texture over purple — hero and CTA surfaces"
+    },
+    {
+      "url": "/design-system/assets/purple-topo-tall.webp",
+      "role": "Tall crop of the same, for full-height scenes"
+    },
+    {
+      "url": "/design-system/assets/pink-topo-bg.webp",
+      "role": "Pink variant — use sparingly"
+    },
+    {
+      "url": "/design-system/assets/clear-topo.webp",
+      "role": "Transparent topo overlay — layer over any dark or saturated fill"
+    },
+    {
+      "url": "/design-system/assets/hero-bg.webp",
+      "role": "Marketing hero background"
+    }
+  ],
+  "backgroundRules": [
+    "Any dark or saturated surface gets a topo overlay. White lines on dark, dark lines on light.",
+    "No full-bleed photographic section backgrounds.",
+    "Max one loud pink element per scene."
+  ],
+  "imagery": {
+    "illustrations": [
+      "/design-system/assets/kite.webp",
+      "/design-system/assets/phoenix.webp",
+      "/design-system/assets/plant.webp",
+      "/design-system/assets/carry-load.webp",
+      "/design-system/assets/binoculars.webp",
+      "/design-system/assets/bike.webp"
+    ],
+    "illustrationStyle": "Single hand-drawn object. Warm earthy brown outline (~#876F4D), one or two flat fills in purple, pink, or warm yellow. Loose and sketched — deliberately not geometric. 80px in cards.",
+    "illustrationRule": "FIXED SET. Do not generate new illustrations in this style. Use only these files; if none fits, use a Material Symbol or nothing.",
+    "utilityIcons": {
+      "family": "Google Material Symbols",
+      "style": "Filled / Rounded",
+      "sizes": [
+        24,
+        36
+      ]
+    },
+    "photography": "Warm-lit, natural, real people, often outdoor. Never cool/blue/clinical, never black-and-white, no saturated brand-colour overlays. Slight grain acceptable.",
+    "emoji": "Never. Not in copy, not as ornament."
+  },
+  "voice": {
+    "register": "Confident, warm, plain-spoken. Direct not loud. Confident not boastful — numbers do the bragging. Human not corporate.",
+    "person": "Second person for the reader ('your teams', 'your reality'). First-person plural for Campfire ('we handle the logistics'). Never 'I'. Avoid 'the leader' / 'the organization'.",
+    "casing": "Sentence case for headlines and card titles. UPPERCASE tracked 0.08–0.16em for buttons and eyebrows.",
+    "punctuation": "Spaced em-dashes ( — ) for cadence. Curly quotes. Contractions encouraged. No exclamation points. No emoji.",
+    "headlineDevice": "Two-tone: most of the line in #1E2A4A with one fragment in #6E3FCC. On dark, white with a #9D88ED fragment.",
+    "samples": [
+      "Built to fit the rhythm of real work.",
+      "Leadership development must fit your reality.",
+      "Every session ends with action — not just ideas.",
+      "Learning that lives inside real work.",
+      "Designed for modern teams.",
+      "6,000+ sessions delivered."
+    ],
+    "ctas": [
+      "EXPLORE SOLUTIONS",
+      "BOOK A DEMO",
+      "SEE IT FOR YOURSELF",
+      "GET STARTED FREE"
+    ],
+    "never": [
+      "Unleash your leadership potential!",
+      "Revolutionary AI-powered synergy for the modern enterprise",
+      "🚀 Ready to level up your team?"
+    ]
+  },
+  "doNotUse": {
+    "extendedPalette": "The Matchbox extended palette (Ladybug, Carrot, Canary, Meadow, River, Rose, Dusk, and the earth tones Moss/Doe/Camel/Clay/Elk) exists for decks and charts ONLY. Never pull it into video or marketing surfaces.",
+    "coachRose": "The coaching-tools rose palette (#BF4C74 family) belongs to tools.getcampfire.com, not to brand video."
+  }
+}
