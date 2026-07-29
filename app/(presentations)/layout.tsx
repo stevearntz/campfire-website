@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Per-learner data is read on every request — never statically prerender.
+export const dynamic = "force-dynamic";
+
 export default async function PresentationsLayout({
   children,
 }: {
