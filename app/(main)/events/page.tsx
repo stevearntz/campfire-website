@@ -70,8 +70,8 @@ export default async function EventsPage() {
   const upcoming = upcomingRaw.map((entry, i) => ({
     apiId: entry.event.api_id,
     name: entry.event.name,
-    description: entry.event.description,
-    descriptionMd: entry.event.description_md,
+    description: entry.event.description ?? "",
+    descriptionMd: entry.event.description_md ?? "",
     date: formatEventDate(entry.event.start_at, entry.event.end_at, entry.event.timezone),
     shortDate: formatShortDate(entry.event.start_at, entry.event.timezone),
     timezone: entry.event.timezone,
@@ -84,8 +84,8 @@ export default async function EventsPage() {
   const past = pastRaw.map((entry, i) => ({
     apiId: entry.event.api_id,
     name: entry.event.name,
-    description: entry.event.description,
-    descriptionMd: entry.event.description_md,
+    description: entry.event.description ?? "",
+    descriptionMd: entry.event.description_md ?? "",
     date: formatEventDate(entry.event.start_at, entry.event.end_at, entry.event.timezone),
     shortDate: formatShortDate(entry.event.start_at, entry.event.timezone),
     timezone: entry.event.timezone,

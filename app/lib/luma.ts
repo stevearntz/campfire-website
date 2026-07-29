@@ -21,8 +21,9 @@ export interface LumaEvent {
   event: {
     api_id: string;
     name: string;
-    description: string;
-    description_md: string;
+    // Luma omits these for some events — treat as optional/nullable.
+    description: string | null;
+    description_md: string | null;
     start_at: string;
     end_at: string;
     duration_interval: string;
