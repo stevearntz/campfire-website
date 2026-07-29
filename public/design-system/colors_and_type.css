@@ -1,0 +1,358 @@
+@import url("fonts.css"); /* Spartan MB @font-face lives there */
+/* =========================================================================
+   Campfire Matchbox — Color & Type Tokens
+   -------------------------------------------------------------------------
+   Two layers:
+     1. PRIMITIVE TOKENS  — every named hue in the brand's palette.
+     2. SEMANTIC TOKENS   — what to actually reach for when designing.
+   Type scale defined at the bottom. League Spartan + DM Serif Display.
+   ========================================================================= */
+
+/* ---------- 1. Webfonts ---------- */
+
+/* Spartan MB — the canonical Campfire face. Variable font preferred;
+   static woff2 fallbacks for every weight. */
+/* League Spartan + DM Serif Display fallbacks via Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=DM+Serif+Display&display=swap");
+
+/* =========================================================================
+   PRIMITIVE TOKENS
+   ========================================================================= */
+
+:root {
+  /* -- The two everyday brand hues (used on getcampfire.com) ---------------- */
+  --c-purple-700: #5B34AB;   /* hover / pressed */
+  --c-purple-600: #6E3FCC;   /* PRIMARY: buttons, links, accents */
+  --c-purple-500: #7A4CD9;
+  --c-purple-400: #8252E1;
+  --c-purple-300: #9D88ED;   /* lavender, headline highlight on dark */
+  --c-purple-200: #B8A8F2;
+  --c-purple-100: #E1D8F3;
+  --c-purple-050: #F8F5FC;   /* light section background */
+
+  --c-pink-600:   #C054EA;
+  --c-pink-500:   #DD66E5;
+  --c-pink-400:   #E055CB;   /* PINK CTA button */
+  --c-pink-300:   #EE80DD;   /* pink accent */
+  --c-pink-200:   #F2A7E5;
+  --c-pink-100:   #FBE0E9;
+
+  /* -- Dark surface (Campfire's "indigo midnight") -------------------------- */
+  --c-indigo-1100: #1C1334;  /* HERO + dark sections */
+  --c-indigo-900:  #262F56;  /* Footer / Matchbox navy logo */
+  --c-indigo-700:  #1E2A4A;  /* Body navy (headlines on light) */
+  --c-indigo-500:  #3A02A8;  /* Logo-bar overlay tint */
+
+  /* -- Warm accent (sub-headlines on hero, flame in logo) ------------------- */
+  --c-warm-300:   #FFC28A;
+  --c-warm-500:   #F59E2C;   /* flame orange in logo */
+  --c-warm-700:   #CF9A1C;   /* "ROUGH" tag text in Figma */
+  --c-warm-050:   #FDF0D3;   /* "ROUGH" tag background */
+
+  /* -- Neutrals (Tailwind-aligned for the website) -------------------------- */
+  --c-white:       #FFFFFF;
+  --c-card:        #F7F6F7;  /* default light card */
+  --c-gray-50:     #F9FAFB;
+  --c-gray-100:    #F3F4F6;
+  --c-gray-200:    #E5E7EB;
+  --c-gray-300:    #D1D5DB;
+  --c-gray-400:    #9CA3AF;
+  --c-gray-500:    #636B7C;  /* body copy */
+  --c-gray-600:    #4B5563;
+  --c-gray-700:    #374151;
+  --c-gray-800:    #1F2937;
+  --c-gray-900:    #111827;
+
+  /* -- Coach / Tools sub-brand (Chat by the Fire / Purpose Coach) ----------- */
+  --c-coach-rose-700: #A63D5F;
+  --c-coach-rose-600: #BF4C74;   /* primary action */
+  --c-coach-rose-500: #D95D88;
+  --c-coach-rose-300: #F595B6;
+
+  /* -- Matchbox Extended Palette (Figma "Master version") ------------------- *
+     Use these when designing decks, charts, or visualisations that need
+     more colour breadth than the marketing site offers.                       */
+
+  /* Ash (neutral warm-cool gray) */
+  --c-ash-50:   #F3F2F3; --c-ash-100: #E7E6E8; --c-ash-200: #D4D3D7;
+  --c-ash-300:  #BCBAC0; --c-ash-400: #AAA7AE; --c-ash-500: #85818C;
+  --c-ash-600:  #726E78; --c-ash-700: #615E66; --c-ash-800: #525057;
+  --c-ash-900:  #444247; --c-ash-1000:#38363B; --c-ash-1100:#252427;
+
+  /* Ladybug (red) */
+  --c-ladybug-50:  #FBEDEB; --c-ladybug-100:#F8DAD7; --c-ladybug-200:#F7C3BE;
+  --c-ladybug-300: #F7ABA3; --c-ladybug-400:#F08C81; --c-ladybug-500:#EB6A5E;
+  --c-ladybug-600: #C73D30; --c-ladybug-700:#AD3426; --c-ladybug-800:#8F251A;
+  --c-ladybug-1100:#470A06;
+
+  /* Carrot (orange) */
+  --c-carrot-50:   #FDF1EB; --c-carrot-100:#FAE1D5; --c-carrot-200:#FACEB8;
+  --c-carrot-300:  #FFBD9C; --c-carrot-400:#FCA376; --c-carrot-500:#FA8D56;
+  --c-carrot-600:  #D9662B; --c-carrot-700:#BF551E; --c-carrot-800:#A14214;
+  --c-carrot-1100: #572000;
+
+  /* Canary (yellow) */
+  --c-canary-50:  #FEF8E9; --c-canary-100:#FAECCD; --c-canary-200:#F7E2AE;
+  --c-canary-300: #FAD886; --c-canary-400:#FACD65; --c-canary-500:#F5C042;
+  --c-canary-600: #E0A61B; --c-canary-700:#CC9614; --c-canary-1100:#61470A;
+
+  /* Meadow (green) */
+  --c-meadow-50:  #EAF8EE; --c-meadow-100:#D5F0DD; --c-meadow-200:#B7E6C5;
+  --c-meadow-300: #92DEAA; --c-meadow-400:#70D18E; --c-meadow-500:#50C473;
+  --c-meadow-600: #2BA650; --c-meadow-700:#289649; --c-meadow-800:#22813E;
+  --c-meadow-1100:#0F381B;
+
+  /* River (teal) */
+  --c-river-50:  #ECFAFA; --c-river-100:#D4F2F2; --c-river-200:#BAEDED;
+  --c-river-300: #97E5E5; --c-river-400:#54D4D4; --c-river-500:#30C7C7;
+  --c-river-600: #30B7B7; --c-river-700:#2AA3A3; --c-river-1100:#103D3D;
+
+  /* Iris (purple — matches brand purple-600 scale) */
+  --c-iris-50:  #F0ECF9; --c-iris-100:#E1D8F3; --c-iris-200:#CFC0ED;
+  --c-iris-300: #BDA3F0; --c-iris-400:#A07EE3; --c-iris-500:#6E3FCC;
+  --c-iris-600: #5D36AD; --c-iris-700:#522F99; --c-iris-1100:#1C1036;
+
+  /* Rose */
+  --c-rose-50:  #FDF0F4; --c-rose-100:#FBE0E9; --c-rose-200:#FACDDC;
+  --c-rose-300: #FAB4CD; --c-rose-400:#F595B6; --c-rose-500:#EB6593;
+  --c-rose-600: #D95D88; --c-rose-700:#BF4C74; --c-rose-1100:#4D0E24;
+
+  /* Dusk (deep indigo) */
+  --c-dusk-50:  #F0F1F6; --c-dusk-100:#DDDEEA; --c-dusk-300:#A0A2C9;
+  --c-dusk-500: #6D6FA6; --c-dusk-700:#575985; --c-dusk-1100:#21263B;
+
+  /* Organic earth tones */
+  --c-elk-50: #F3F1ED; --c-elk-200:#C9BCA8; --c-elk-500:#9C825D; --c-elk-1100:#3B3022;
+  --c-moss-500: #7F875F; --c-moss-1100:#323625;
+  --c-doe-500:  #D6AF67; --c-doe-1100: #5E4C2C;
+  --c-camel-500:#CF8E4F; --c-camel-1100:#573A1D;
+  --c-clay-500: #BD6E5B; --c-clay-1100: #4F2B22;
+  --c-blush-500:#C293A3;
+
+  /* =====================================================================
+     SEMANTIC TOKENS  (use these in components)
+     ===================================================================== */
+
+  /* Foreground */
+  --fg-display:   var(--c-indigo-700);   /* Headlines on light backgrounds */
+  --fg-strong:    var(--c-gray-900);     /* Strong body text */
+  --fg-default:   var(--c-gray-700);     /* Default body text */
+  --fg-muted:     var(--c-gray-500);     /* Captions, helper text */
+  --fg-subtle:    var(--c-gray-400);     /* Disabled, decorative */
+  --fg-inverted:  var(--c-white);
+  --fg-brand:     var(--c-purple-600);
+  --fg-brand-lav: var(--c-purple-300);
+  --fg-warm:      var(--c-warm-300);
+
+  /* Background */
+  --bg-page:      var(--c-white);
+  --bg-soft:      var(--c-purple-050);   /* Alternating section bg */
+  --bg-card:      var(--c-card);
+  --bg-dark:      var(--c-indigo-1100);
+  --bg-deep:      var(--c-indigo-900);
+  --bg-brand:     var(--c-purple-600);
+
+  /* Border */
+  --border-soft:   var(--c-gray-100);
+  --border-default:var(--c-gray-200);
+  --border-strong: var(--c-gray-300);
+
+  /* Action / Button */
+  --action-primary:        var(--c-purple-600);
+  --action-primary-hover:  var(--c-purple-700);
+  --action-cta:            var(--c-pink-400);   /* loud pink CTA */
+  --action-cta-hover:      var(--c-pink-500);
+
+  /* Gradients */
+  --grad-purple-pink: linear-gradient(to right, #6A3DC5, #896DF0); /* @kind color */
+  --grad-pink-hot:    linear-gradient(to right, #EE80DD, #DD66E5); /* @kind color */
+  --grad-pink-cool:   linear-gradient(to right, #BE53EA, #A04CE9); /* @kind color */
+  --grad-iris-deep:   linear-gradient(to right, #9E4CE8, #8252E1); /* @kind color */
+  --grad-slide-blush: linear-gradient(180deg, #EF96AB 0%, rgba(175,93,238,0.8) 100%); /* @kind color */
+
+  /* Shadows — Untitled UI base scale (referenced in Figma) */
+  --shadow-xs: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(16, 24, 40, 0.10), 0 1px 2px 0 rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+  --shadow-xl: 0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03);
+  --shadow-2xl:0 24px 48px -12px rgba(16, 24, 40, 0.18);
+  --shadow-3xl:0 32px 64px -12px rgba(16, 24, 40, 0.14);
+
+  /* Radii */
+  --radius-xs: 4px;   /* small chips, "ROUGH" of Figma uses ~32 round-cap */
+  --radius-sm: 6px;
+  --radius-md: 8px;   /* default button */
+  --radius-lg: 12px;  /* card */
+  --radius-xl: 16px;  /* large card */
+  --radius-2xl:24px;
+  --radius-pill: 999px;
+
+  /* Spacing scale (Tailwind-aligned) */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10:40px;
+  --space-12:48px;
+  --space-16:64px;
+  --space-20:80px;
+  --space-24:96px;
+  --space-32:128px;
+
+  /* =====================================================================
+     TYPE
+     ===================================================================== */
+
+  --font-sans:    "League Spartan", "Spartan MB", "Spartan",
+                  -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif:   "DM Serif Display", "New Spirit", "Quincy CF", Georgia, serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type ramp — League Spartan numbers are extra tall, so line-heights
+     stay tight even at hero scale. */
+
+  /* Hero (used for slide titles + hero h1) */
+  --type-hero-xl-size:   96px;  --type-hero-xl-lh:  1.04;  --type-hero-xl-tracking: -0.02em;  --type-hero-xl-weight:700;
+  --type-hero-lg-size:   72px;  --type-hero-lg-lh:  1.08;  --type-hero-lg-tracking: -0.02em;  --type-hero-lg-weight:700;
+  --type-hero-md-size:   56px;  --type-hero-md-lh:  1.10;  --type-hero-md-tracking: -0.015em; --type-hero-md-weight:700;
+  --type-hero-sm-size:   48px;  --type-hero-sm-lh:  1.12;  --type-hero-sm-tracking: -0.01em;  --type-hero-sm-weight:700;
+
+  /* Headers (section / card headlines) */
+  --type-h1-size: 40px;  --type-h1-lh: 1.15;  --type-h1-weight: 700;
+  --type-h2-size: 32px;  --type-h2-lh: 1.2;   --type-h2-weight: 700;
+  --type-h3-size: 24px;  --type-h3-lh: 1.3;   --type-h3-weight: 700;
+  --type-h4-size: 20px;  --type-h4-lh: 1.35;  --type-h4-weight: 600;
+  --type-h5-size: 18px;  --type-h5-lh: 1.4;   --type-h5-weight: 600;
+
+  /* Body */
+  --type-body-xl-size: 20px; --type-body-xl-lh: 1.6;
+  --type-body-lg-size: 18px; --type-body-lg-lh: 1.6;
+  --type-body-md-size: 16px; --type-body-md-lh: 1.6;
+  --type-body-sm-size: 14px; --type-body-sm-lh: 1.55;
+  --type-micro-size:   12px; --type-micro-lh:   1.5;
+
+  /* Labels (UPPERCASE, wide-tracked — buttons, eyebrows, micro labels) */
+  --type-label-size: 14px; --type-label-lh: 1; --type-label-tracking: 0.12em; --type-label-weight: 700;
+  --type-eyebrow-size: 12px; --type-eyebrow-tracking: 0.18em; --type-eyebrow-weight: 700;
+
+  /* Button text */
+  --type-button-size: 14px; --type-button-tracking: 0.08em; --type-button-weight: 600;
+}
+
+/* =========================================================================
+   ELEMENT DEFAULTS — opt in by adding class "ds" to a wrapper, or use the
+   tokens directly. We don't blanket override html elements.
+   ========================================================================= */
+
+.ds, .ds * { font-family: var(--font-sans); color: var(--fg-default); }
+
+.ds h1, .h1 {
+  font-size: var(--type-h1-size); line-height: var(--type-h1-lh);
+  font-weight: var(--type-h1-weight); color: var(--fg-display);
+  letter-spacing: -0.015em;
+}
+.ds h2, .h2 {
+  font-size: var(--type-h2-size); line-height: var(--type-h2-lh);
+  font-weight: var(--type-h2-weight); color: var(--fg-display);
+}
+.ds h3, .h3 {
+  font-size: var(--type-h3-size); line-height: var(--type-h3-lh);
+  font-weight: var(--type-h3-weight); color: var(--fg-display);
+}
+.ds h4, .h4 {
+  font-size: var(--type-h4-size); line-height: var(--type-h4-lh);
+  font-weight: var(--type-h4-weight); color: var(--fg-display);
+}
+.ds p, .body { font-size: var(--type-body-md-size); line-height: var(--type-body-md-lh); }
+
+.hero-xl {
+  font: var(--type-hero-xl-weight) var(--type-hero-xl-size)/var(--type-hero-xl-lh) var(--font-sans);
+  letter-spacing: var(--type-hero-xl-tracking); color: var(--fg-display);
+}
+.hero-lg {
+  font: var(--type-hero-lg-weight) var(--type-hero-lg-size)/var(--type-hero-lg-lh) var(--font-sans);
+  letter-spacing: var(--type-hero-lg-tracking); color: var(--fg-display);
+}
+.hero-md {
+  font: var(--type-hero-md-weight) var(--type-hero-md-size)/var(--type-hero-md-lh) var(--font-sans);
+  letter-spacing: var(--type-hero-md-tracking); color: var(--fg-display);
+}
+
+.eyebrow {
+  font: var(--type-eyebrow-weight) var(--type-eyebrow-size)/1 var(--font-sans);
+  letter-spacing: var(--type-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.label {
+  font: var(--type-label-weight) var(--type-label-size)/var(--type-label-lh) var(--font-sans);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: var(--type-body-xl-size); line-height: var(--type-body-xl-lh);
+  color: var(--fg-muted);
+}
+
+/* =========================================================================
+   BUTTONS — three faces. The marketing site is purple-first; the loud pink
+   is used for the highest-priority "Explore / Book" actions on dark heroes.
+   ========================================================================= */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px;
+  font: var(--type-label-weight) var(--type-label-size)/1 var(--font-sans);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+  white-space: nowrap;
+}
+.btn--primary {
+  background: var(--action-primary); color: var(--fg-inverted);
+}
+.btn--primary:hover { background: var(--action-primary-hover); }
+
+.btn--cta {
+  background: var(--action-cta); color: var(--fg-inverted);
+}
+.btn--cta:hover { opacity: 0.92; }
+
+.btn--ghost {
+  background: var(--c-white); color: var(--fg-default);
+  border-color: var(--border-strong);
+}
+.btn--ghost:hover { color: var(--fg-brand); border-color: var(--c-purple-600); }
+
+.btn--on-dark {
+  background: var(--c-white); color: var(--fg-brand);
+}
+.btn--on-dark:hover { background: var(--c-gray-100); }
+
+.btn--sm { padding: 10px 18px; font-size: 12px; }
+.btn--lg { padding: 16px 28px; font-size: 15px; }
+
+/* =========================================================================
+   TOPO PATTERN — the brand's signature texture. Apply on top of any
+   solid/gradient background. Use white lines on dark, dark lines on light.
+   ========================================================================= */
+
+.topo {
+  position: relative;
+}
+.topo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-50 100 Q100 60 250 100 T550 100 T850 100' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='1.5'/%3E%3Cpath d='M-50 150 Q100 110 250 150 T550 150 T850 150' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1.5'/%3E%3Cpath d='M-50 200 Q100 160 250 200 T550 200 T850 200' fill='none' stroke='rgba(255,255,255,0.09)' stroke-width='1.5'/%3E%3Cpath d='M-50 250 Q100 210 250 250 T550 250 T850 250' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3Cpath d='M-50 300 Q100 260 250 300 T550 300 T850 300' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1.5'/%3E%3Cpath d='M-50 350 Q100 310 250 350 T550 350 T850 350' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1.5'/%3E%3Cpath d='M-50 400 Q100 360 250 400 T550 400 T850 400' fill='none' stroke='rgba(255,255,255,0.09)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: cover;
+}
