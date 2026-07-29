@@ -1,15 +1,11 @@
 /**
  * Feature flag for the "Tell It So It Moves" presentations course.
  *
- * The whole /presentations section stays dark in production until the
- * integration lead flips FEATURE_PRESENTATIONS=true. Preview deploys and
- * local dev can opt in via .env.local. Defaults to ON outside production so
- * the design is reviewable on Vercel previews.
+ * Live by default (including production) so it's reachable at
+ * getcampfire.com/presentations. It's an ungated design preview — the real
+ * invite-only magic-link gate lands in the auth phase. Kill switch: set
+ * FEATURE_PRESENTATIONS=false in the environment to hide the whole section.
  */
 export function presentationsEnabled(): boolean {
-  const flag = process.env.FEATURE_PRESENTATIONS;
-  if (flag === "true") return true;
-  if (flag === "false") return false;
-  // No explicit flag: on everywhere except production.
-  return process.env.VERCEL_ENV !== "production";
+  return process.env.FEATURE_PRESENTATIONS !== "false";
 }
