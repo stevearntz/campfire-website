@@ -255,3 +255,171 @@ export async function getJournalEntries(
     createdAt: String(r.created_at),
   }));
 }
+
+export async function getModuleJournal(
+  enrollmentId: number,
+  moduleSlug: string,
+): Promise<string> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT body FROM pres_journal_entries
+    WHERE enrollment_id = ${enrollmentId} AND module_slug = ${moduleSlug}
+    ORDER BY updated_at DESC
+    LIMIT 1
+  `;
+  return rows.length > 0 ? rows[0].body : "";
+}
+
+/* ═══ Writes ═══ */
+
+export async function upsertWorksheet(
+  enrollmentId: number,
+  moduleSlug: string,
+  data: Record<string, unknown>,
+  submit: boolean,
+): Promise<void> {
+  const sql = getDb();
+  const status = submit ? "submitted" : "draft";
+  await sql`
+    INSERT INTO pres_worksheets (enrollment_id, module_slug, data, status, submitted_at, updated_at)
+    VALUES (
+      ${enrollmentId}, ${moduleSlug}, ${JSON.stringify(data)}, ${status},
+      ${submit ? new Date().toISOString() : null}, NOW()
+    )
+    ON CONFLICT (enrollment_id, module_slug) DO UPDATE SET
+      data = EXCLUDED.data,
+      status = EXCLUDED.status,
+      submitted_at = COALESCE(EXCLUDED.submitted_at, pres_worksheets.submitted_at),
+      updated_at = NOW()
+  `;
+}
+
+export async function upsertQuizAttempt(
+  enrollmentId: number,
+  lessonKey: string,
+  answers: Record<string, number>,
+  score: number,
+): Promise<void> {
+  const sql = getDb();
+  await sql`
+    INSERT INTO pres_quiz_attempts (enrollment_id, lesson_key, answers, score, attempted_at)
+    VALUES (${enrollmentId}, ${lessonKey}, ${JSON.stringify(answers)}, ${score}, NOW())
+    ON CONFLICT (enrollment_id, lesson_key) DO UPDATE SET
+      answers = EXCLUDED.answers,
+      score = EXCLUDED.score,
+      attempted_at = NOW()
+  `;
+}
+
+export async function saveModuleJournal(
+  enrollmentId: number,
+  moduleSlug: string,
+  body: string,
+): Promise<void> {
+  const sql = getDb();
+  const updated = await sql`
+    UPDATE pres_journal_entries
+    SET body = ${body}, updated_at = NOW()
+    WHERE enrollment_id = ${enrollmentId} AND module_slug = ${moduleSlug}
+    RETURNING id
+  `;
+  if (updated.length === 0) {
+    await sql`
+      INSERT INTO pres_journal_entries (enrollment_id, module_slug, body)
+      VALUES (${enrollmentId}, ${moduleSlug}, ${body})
+    `;
+  }
+}
+
+export async function setProgress(
+  enrollmentId: number,
+  lessonKey: string,
+  state: ProgressState,
+): Promise<void> {
+  const sql = getDb();
+  const completedAt = state === "done" ? new Date().toISOString() : null;
+  await sql`
+    INSERT INTO pres_progress (enrollment_id, lesson_key, state, completed_at, updated_at)
+    VALUES (${enrollmentId}, ${lessonKey}, ${state}, ${completedAt}, NOW())
+    ON CONFLICT (enrollment_id, lesson_key) DO UPDATE SET
+      state = EXCLUDED.state,
+      completed_at = EXCLUDED.completed_at,
+      updated_at = NOW()
+  `;
+}
+
+export async function createPresentation(
+  enrollmentId: number,
+  fields: {
+    title: string | null;
+    mode: string | null;
+    spine: string | null;
+    audience: string | null;
+    durationMin: number | null;
+    source: "own" | "case_study";
+  },
+): Promise<Presentation> {
+  const sql = getDb();
+  const rows = await sql`
+    INSERT INTO pres_presentations (enrollment_id, title, mode, spine, audience, duration_min, source)
+    VALUES (
+      ${enrollmentId}, ${fields.title}, ${fields.mode}, ${fields.spine},
+      ${fields.audience}, ${fields.durationMin}, ${fields.source}
+    )
+    RETURNING id, title, mode, spine, audience, duration_min, source
+  `;
+  const r = rows[0];
+  return {
+    id: r.id,
+    title: r.title,
+    mode: r.mode,
+    spine: r.spine,
+    audience: r.audience,
+    durationMin: r.duration_min,
+    source: r.source as "own" | "case_study",
+  };
+}
+
+export async function insertSlides(
+  presentationId: number,
+  slides: {
+    position: number;
+    beat: string | null;
+    actionTitle: string | null;
+    speakerNote: string | null;
+    supportNote: string | null;
+  }[],
+): Promise<void> {
+  const sql = getDb();
+  for (const s of slides) {
+    await sql`
+      INSERT INTO pres_slides (presentation_id, position, beat, action_title, speaker_note, support_note)
+      VALUES (${presentationId}, ${s.position}, ${s.beat}, ${s.actionTitle}, ${s.speakerNote}, ${s.supportNote})
+    `;
+  }
+}
+
+export async function updateSlideById(
+  slideId: number,
+  fields: { actionTitle: string; speakerNote: string },
+): Promise<void> {
+  const sql = getDb();
+  await sql`
+    UPDATE pres_slides
+    SET action_title = ${fields.actionTitle}, speaker_note = ${fields.speakerNote}, updated_at = NOW()
+    WHERE id = ${slideId}
+  `;
+}
+
+/** Ownership guard: does this presentation belong to this enrollment? */
+export async function presentationOwnedBy(
+  presentationId: number,
+  enrollmentId: number,
+): Promise<boolean> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT 1 FROM pres_presentations
+    WHERE id = ${presentationId} AND enrollment_id = ${enrollmentId}
+  `;
+  return rows.length > 0;
+}
