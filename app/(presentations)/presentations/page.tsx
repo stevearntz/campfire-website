@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon } from "../_components/Icon";
-import { getCurrentLearner, firstName } from "../_lib/learner";
+import { requireLearner, firstName } from "../_lib/learner";
 import {
   getProgress,
   getPresentation,
@@ -34,7 +34,7 @@ function effortChips(time: string) {
 }
 
 export default async function DashboardPage() {
-  const { user, enrollment } = await getCurrentLearner();
+  const { user, enrollment } = await requireLearner();
 
   const [progress, presentation, worksheets] = await Promise.all([
     getProgress(enrollment.id),

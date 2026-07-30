@@ -8,7 +8,11 @@ export async function POST(request: Request) {
     const body = await request.json();
     const source = body.source === "case_study" ? "case_study" : "own";
 
-    const { enrollment } = await getCurrentLearner();
+    const learner = await getCurrentLearner();
+    if (!learner) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const { enrollment } = learner;
 
     if (source === "case_study") {
       // Seed the sample "manager gap" deck from content.

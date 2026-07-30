@@ -1,5 +1,5 @@
 import { MODULES } from "../../../_data/course";
-import { getCurrentLearner } from "../../../_lib/learner";
+import { requireLearner } from "../../../_lib/learner";
 import {
   getWorksheet,
   getQuizAttempt,
@@ -15,7 +15,7 @@ export default async function ModulePage({
   const { slug } = await params;
   const courseModule = MODULES.find((m) => m.slug === slug) ?? MODULES[0];
 
-  const { enrollment } = await getCurrentLearner();
+  const { enrollment } = await requireLearner();
   const [worksheet, quizAttempt, journal] = await Promise.all([
     getWorksheet(enrollment.id, courseModule.slug),
     getQuizAttempt(enrollment.id, courseModule.slug),

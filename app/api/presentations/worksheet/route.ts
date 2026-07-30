@@ -13,7 +13,11 @@ export async function POST(request: Request) {
       body.data && typeof body.data === "object" ? body.data : {};
     const submit = body.submit === true;
 
-    const { enrollment } = await getCurrentLearner();
+    const learner = await getCurrentLearner();
+    if (!learner) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const { enrollment } = learner;
     await upsertWorksheet(enrollment.id, moduleSlug, data, submit);
     // Submitting completes the module; a draft save marks it in progress.
     await setProgress(enrollment.id, moduleSlug, submit ? "done" : "in_progress");
