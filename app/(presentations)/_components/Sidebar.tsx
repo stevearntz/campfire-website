@@ -95,12 +95,23 @@ export function Sidebar({
           <div className="grid h-8 w-8 place-items-center rounded-full bg-cf-purple-300 text-[13px] font-extrabold text-cf-indigo-1100">
             {initialsText}
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <div className="truncate text-[13px] font-semibold text-white">
               {displayName}
             </div>
             <div className="text-[11px] text-white/50">Cohort of one</div>
           </div>
+          <button
+            type="button"
+            aria-label="Sign out"
+            onClick={async () => {
+              await fetch("/api/presentations/auth/logout", { method: "POST" });
+              window.location.href = "/presentations/login";
+            }}
+            className="flex-none rounded-md p-1 text-white/45 hover:text-white/80"
+          >
+            <Icon name="logout" className="text-[18px]" />
+          </button>
         </div>
       </div>
     </aside>

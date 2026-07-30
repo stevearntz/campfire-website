@@ -11,7 +11,11 @@ export async function POST(request: Request) {
     }
     const text = String(body.body ?? "");
 
-    const { enrollment } = await getCurrentLearner();
+    const learner = await getCurrentLearner();
+    if (!learner) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const { enrollment } = learner;
     await saveModuleJournal(enrollment.id, moduleSlug, text);
 
     return NextResponse.json({ ok: true });

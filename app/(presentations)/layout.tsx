@@ -21,8 +21,8 @@ export default async function PresentationsLayout({
 }) {
   if (!presentationsEnabled()) notFound();
 
-  const { user } = await getCurrentLearner();
-  const displayName = user.name ?? user.email.split("@")[0];
+  // Null when signed out — render the bare chrome (the login screen lives here).
+  const learner = await getCurrentLearner();
 
   return (
     <>
@@ -34,13 +34,19 @@ export default async function PresentationsLayout({
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0&display=swap"
       />
-      <div className="flex h-screen overflow-hidden bg-cf-purple-050 text-cf-gray-700">
-        <Sidebar
-          displayName={displayName}
-          initialsText={initials(user)}
-        />
-        <main className="flex-1 overflow-y-auto">{children}</main>
-      </div>
+      {learner ? (
+        <div className="flex h-screen overflow-hidden bg-cf-purple-050 text-cf-gray-700">
+          <Sidebar
+            displayName={learner.user.name ?? learner.user.email.split("@")[0]}
+            initialsText={initials(learner.user)}
+          />
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </div>
+      ) : (
+        <div className="min-h-screen bg-cf-purple-050 text-cf-gray-700">
+          {children}
+        </div>
+      )}
     </>
   );
 }

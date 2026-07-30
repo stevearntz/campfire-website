@@ -1,10 +1,10 @@
-import { getCurrentLearner } from "../../_lib/learner";
+import { requireLearner } from "../../_lib/learner";
 import { getPresentation, getSlides } from "../../_lib/db";
 import DeckBuilder, { type BuilderSlide } from "./DeckBuilder";
 import AddPresentation from "./AddPresentation";
 
 export default async function DeckPage() {
-  const { enrollment } = await getCurrentLearner();
+  const { enrollment } = await requireLearner();
   const presentation = await getPresentation(enrollment.id);
 
   if (!presentation) {

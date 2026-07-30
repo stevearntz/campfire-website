@@ -1,10 +1,10 @@
 import { Icon } from "../../_components/Icon";
 import { RESOURCES } from "../../_data/course";
-import { getCurrentLearner } from "../../_lib/learner";
+import { requireLearner } from "../../_lib/learner";
 import { getJournalEntries } from "../../_lib/db";
 
 export default async function LibraryPage() {
-  const { enrollment } = await getCurrentLearner();
+  const { enrollment } = await requireLearner();
   const entries = await getJournalEntries(enrollment.id);
 
   return (

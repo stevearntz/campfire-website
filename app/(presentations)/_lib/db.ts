@@ -88,12 +88,16 @@ export interface JournalEntry {
 export async function ensureUser(
   email: string,
   name: string | null,
+  role: Role = "learner",
 ): Promise<PresUser> {
   const sql = getDb();
   const rows = await sql`
-    INSERT INTO pres_users (email, name, last_seen_at)
-    VALUES (${email.toLowerCase()}, ${name}, NOW())
-    ON CONFLICT (email) DO UPDATE SET last_seen_at = NOW()
+    INSERT INTO pres_users (email, name, role, last_seen_at)
+    VALUES (${email.toLowerCase()}, ${name}, ${role}, NOW())
+    ON CONFLICT (email) DO UPDATE SET
+      last_seen_at = NOW(),
+      role = ${role},
+      name = COALESCE(pres_users.name, EXCLUDED.name)
     RETURNING id, email, name, role
   `;
   const r = rows[0];
@@ -119,6 +123,134 @@ export async function ensureEnrollment(
     startedAt: String(r.started_at),
     completedAt: r.completed_at ? String(r.completed_at) : null,
   };
+}
+
+export async function getUserById(id: number): Promise<PresUser | null> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT id, email, name, role FROM pres_users WHERE id = ${id}
+  `;
+  if (rows.length === 0) return null;
+  const r = rows[0];
+  return { id: r.id, email: r.email, name: r.name, role: r.role as Role };
+}
+
+/* ═══ Auth: allowlist, tokens, sessions, rate limits (YPO pattern) ═══ */
+
+export async function isAllowlisted(
+  email: string,
+): Promise<{ role: Role; name: string | null } | null> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT role, name FROM pres_allowed_emails
+    WHERE email = ${email.trim().toLowerCase()} AND revoked_at IS NULL
+  `;
+  if (rows.length === 0) return null;
+  return { role: rows[0].role as Role, name: rows[0].name };
+}
+
+export async function createAuthToken(email: string): Promise<string> {
+  const sql = getDb();
+  const token = crypto.randomUUID();
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+  await sql`
+    INSERT INTO pres_auth_tokens (token, email, expires_at)
+    VALUES (${token}, ${email.trim().toLowerCase()}, ${expiresAt})
+  `;
+  return token;
+}
+
+// Multi-use until expiry: tolerates corporate link-scanners that pre-fetch the
+// magic link (a GET) before the human clicks. Stamps first-touch for audit.
+export async function validateAuthToken(
+  token: string,
+): Promise<{ email: string } | null> {
+  const sql = getDb();
+  const rows = await sql`
+    UPDATE pres_auth_tokens
+    SET used_at = COALESCE(used_at, NOW())
+    WHERE token = ${token} AND expires_at > NOW()
+    RETURNING email
+  `;
+  return rows.length > 0 ? { email: rows[0].email } : null;
+}
+
+export async function createSessionRecord(userId: number): Promise<string> {
+  const sql = getDb();
+  const bytes = new Uint8Array(32);
+  crypto.getRandomValues(bytes);
+  const sessionToken = Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  const expiresAt = new Date(
+    Date.now() + 30 * 24 * 60 * 60 * 1000,
+  ).toISOString();
+  await sql`
+    INSERT INTO pres_sessions (session_token, user_id, expires_at)
+    VALUES (${sessionToken}, ${userId}, ${expiresAt})
+  `;
+  return sessionToken;
+}
+
+export async function getSessionByToken(
+  sessionToken: string,
+): Promise<{ userId: number } | null> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT user_id FROM pres_sessions
+    WHERE session_token = ${sessionToken} AND expires_at > NOW()
+  `;
+  if (rows.length === 0) return null;
+  await sql`
+    UPDATE pres_sessions SET last_activity_at = NOW()
+    WHERE session_token = ${sessionToken}
+  `;
+  return { userId: rows[0].user_id };
+}
+
+export async function deleteSession(sessionToken: string): Promise<void> {
+  const sql = getDb();
+  await sql`DELETE FROM pres_sessions WHERE session_token = ${sessionToken}`;
+}
+
+export async function checkRateLimit(
+  identifier: string,
+  action: string,
+  maxAttempts: number,
+  windowMinutes: number,
+): Promise<{ allowed: boolean; retryAfterSeconds?: number }> {
+  const sql = getDb();
+  const windowStart = new Date(
+    Date.now() - windowMinutes * 60 * 1000,
+  ).toISOString();
+  await sql`DELETE FROM pres_rate_limits WHERE window_start < ${windowStart}`;
+  const rows = await sql`
+    SELECT count, window_start FROM pres_rate_limits
+    WHERE identifier = ${identifier} AND action = ${action}
+  `;
+  if (rows.length === 0) {
+    await sql`
+      INSERT INTO pres_rate_limits (identifier, action, count)
+      VALUES (${identifier}, ${action}, 1)
+    `;
+    return { allowed: true };
+  }
+  const { count, window_start } = rows[0];
+  if (count >= maxAttempts) {
+    const windowEnd = new Date(
+      new Date(window_start).getTime() + windowMinutes * 60 * 1000,
+    );
+    const retryAfterSeconds = Math.max(
+      Math.ceil((windowEnd.getTime() - Date.now()) / 1000),
+      1,
+    );
+    return { allowed: false, retryAfterSeconds };
+  }
+  await sql`
+    UPDATE pres_rate_limits SET count = count + 1
+    WHERE identifier = ${identifier} AND action = ${action}
+  `;
+  return { allowed: true };
 }
 
 /* ═══ Reads (return empty/null for a fresh learner) ═══ */

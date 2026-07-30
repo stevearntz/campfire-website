@@ -6,7 +6,7 @@ import {
   STATUS_STYLE,
   type ModuleStatus,
 } from "../../_data/course";
-import { getCurrentLearner } from "../../_lib/learner";
+import { requireLearner } from "../../_lib/learner";
 import { getProgress } from "../../_lib/db";
 
 const CAPSTONE_GRADIENT = "linear-gradient(120deg,#6A3DC5,#E055CB)";
@@ -68,7 +68,7 @@ const PREREQS: { icon: string; body: React.ReactNode }[] = [
 ];
 
 export default async function SyllabusPage() {
-  const { enrollment } = await getCurrentLearner();
+  const { enrollment } = await requireLearner();
   const progress = await getProgress(enrollment.id);
   const stateBySlug = new Map(progress.map((p) => [p.lessonKey, p.state]));
 

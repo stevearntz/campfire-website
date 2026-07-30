@@ -13,7 +13,11 @@ export async function POST(request: Request) {
       body.answers && typeof body.answers === "object" ? body.answers : {};
     const score = Number.isFinite(body.score) ? Number(body.score) : 0;
 
-    const { enrollment } = await getCurrentLearner();
+    const learner = await getCurrentLearner();
+    if (!learner) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const { enrollment } = learner;
     await upsertQuizAttempt(enrollment.id, lessonKey, answers, score);
 
     return NextResponse.json({ ok: true });

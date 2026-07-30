@@ -115,3 +115,52 @@ CREATE TABLE IF NOT EXISTS pres_journal_entries (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 CREATE INDEX IF NOT EXISTS idx_pres_journal_enrollment ON pres_journal_entries(enrollment_id);
+
+-- ── Auth (magic link + allowlist) — ported from the YPO tool ──────────────
+
+-- 9. Invite allowlist. A non-listed email gets the same "check your email"
+--    screen and NO email — never an enumeration signal. revoked_at IS NULL = active.
+CREATE TABLE IF NOT EXISTS pres_allowed_emails (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(254) UNIQUE NOT NULL,
+  name VARCHAR(200),
+  role VARCHAR(20) NOT NULL DEFAULT 'learner' CHECK (role IN ('learner', 'coach', 'admin')),
+  invited_by VARCHAR(254),
+  invited_at TIMESTAMPTZ DEFAULT NOW(),
+  revoked_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS idx_pres_allowed_emails_email ON pres_allowed_emails(email);
+
+-- 10. Magic-link tokens. Multi-use until expiry (tolerates corporate link
+--     scanners that pre-fetch the link) — see YPO auth notes.
+CREATE TABLE IF NOT EXISTS pres_auth_tokens (
+  id SERIAL PRIMARY KEY,
+  token VARCHAR(36) UNIQUE NOT NULL,
+  email VARCHAR(254) NOT NULL,
+  expires_at TIMESTAMPTZ NOT NULL,
+  used_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_pres_auth_tokens_token ON pres_auth_tokens(token);
+
+-- 11. Sessions (30-day cookie).
+CREATE TABLE IF NOT EXISTS pres_sessions (
+  id SERIAL PRIMARY KEY,
+  session_token VARCHAR(64) UNIQUE NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES pres_users(id) ON DELETE CASCADE,
+  expires_at TIMESTAMPTZ NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  last_activity_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_pres_sessions_token ON pres_sessions(session_token);
+
+-- 12. Rate limits (per email/IP + action).
+CREATE TABLE IF NOT EXISTS pres_rate_limits (
+  id SERIAL PRIMARY KEY,
+  identifier VARCHAR(254) NOT NULL,
+  action VARCHAR(50) NOT NULL,
+  count INTEGER DEFAULT 1,
+  window_start TIMESTAMPTZ DEFAULT NOW(),
+  CONSTRAINT pres_rate_limits_unique UNIQUE (identifier, action)
+);
+CREATE INDEX IF NOT EXISTS idx_pres_rate_limits_lookup ON pres_rate_limits(identifier, action);

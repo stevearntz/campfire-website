@@ -17,7 +17,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const { enrollment } = await getCurrentLearner();
+    const learner = await getCurrentLearner();
+    if (!learner) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const { enrollment } = learner;
     const owns = await presentationOwnedBy(presentationId, enrollment.id);
     if (!owns) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
