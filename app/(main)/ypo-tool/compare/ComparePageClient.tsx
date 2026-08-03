@@ -30,7 +30,7 @@ export default function ComparePageClient() {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppHeader email={user?.email} />
+      <AppHeader email={user?.email} crumb="Comparison" />
       <ComparisonView
         responses={responses}
         rateeFirstName={firstName}
