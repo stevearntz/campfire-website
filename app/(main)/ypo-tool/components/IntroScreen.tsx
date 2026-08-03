@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import JourneyTracker, { type JourneyStep } from "./JourneyTracker";
 
 /**
- * Landing/onboarding for the signed-in member: explains the flow and captures
- * a required name before the self-assessment starts.
+ * First-run Welcome for the signed-in member. The pre-auth hero already made
+ * the pitch, so this screen doesn't repeat it — it lays out the three-step
+ * journey as a roadmap and captures the required name before the
+ * self-assessment starts.
  */
 export default function IntroScreen({
   initialName,
@@ -17,21 +20,24 @@ export default function IntroScreen({
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const steps: { n: string; title: string; body: string }[] = [
+  const steps: JourneyStep[] = [
     {
-      n: "1",
+      n: 1,
       title: "Rate yourself",
-      body: "12 quick statements across four areas — Joy, Trust, Power, and Partnership — plus a short note in each.",
+      body: "12 statements across four areas — Joy, Trust, Power, and Partnership — plus a short note in each.",
+      status: "active",
     },
     {
-      n: "2",
+      n: 2,
       title: "Invite your peers",
       body: "Share one link. Each peer rates the same behaviors about you and adds their own notes.",
+      status: "upcoming",
     },
     {
-      n: "3",
+      n: 3,
       title: "See it side by side",
       body: "Your self-view lands next to every peer's response — with their name — so you can spot gaps and start the conversation.",
+      status: "upcoming",
     },
   ];
 
@@ -46,7 +52,7 @@ export default function IntroScreen({
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-white">
-      <div className="max-w-3xl mx-auto px-6 py-12 md:py-16">
+      <div className="max-w-2xl mx-auto px-6 py-12 md:py-16">
         <p
           className="font-bold uppercase mb-4"
           style={{ fontSize: 11, letterSpacing: "0.14em", color: "#6E3FCC" }}
@@ -61,45 +67,18 @@ export default function IntroScreen({
             color: "#1E2A4A",
           }}
         >
-          A clear read on how you show up — and how your peers see it.
+          You&apos;re in. Here&apos;s how it works.
         </h1>
         <p
           className="mb-10"
-          style={{ fontSize: 17, lineHeight: 1.65, color: "#636B7C", maxWidth: 640 }}
+          style={{ fontSize: 17, lineHeight: 1.65, color: "#636B7C", maxWidth: 560 }}
         >
-          This self-assessment takes about five minutes. It&apos;s the starting
-          point for a candid, side-by-side conversation with the peers you work
-          most closely with. Here&apos;s how it works:
+          Three steps, about four minutes to start. You can leave and come back
+          anytime — your progress is saved.
         </p>
 
-        <div className="space-y-5 mb-10">
-          {steps.map((s) => (
-            <div key={s.n} className="flex items-start gap-4">
-              <div
-                className="flex items-center justify-center rounded-full flex-shrink-0 font-extrabold"
-                style={{
-                  width: 36,
-                  height: 36,
-                  background: "#F3EFFA",
-                  color: "#6E3FCC",
-                  fontSize: 15,
-                }}
-              >
-                {s.n}
-              </div>
-              <div>
-                <h3
-                  className="font-bold mb-0.5"
-                  style={{ fontSize: 17, color: "#1E2A4A" }}
-                >
-                  {s.title}
-                </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.55, color: "#636B7C" }}>
-                  {s.body}
-                </p>
-              </div>
-            </div>
-          ))}
+        <div className="mb-10">
+          <JourneyTracker steps={steps} />
         </div>
 
         <div

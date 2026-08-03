@@ -72,7 +72,7 @@ export default function AssessmentFlow({
       ? initialResponses
       : loadResponses()
   ));
-  const [dbAssessmentId, setDbAssessmentId] = useState<number | null>(assessmentId ?? null);
+  const [dbAssessmentId] = useState<number | null>(assessmentId ?? null);
   const topRef = useRef<HTMLDivElement>(null);
 
   // Persist to localStorage on change

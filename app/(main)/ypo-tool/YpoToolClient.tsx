@@ -2,23 +2,34 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { ALL_ITEM_KEYS } from "./lib/behaviors";
 import type { YpoUser } from "./lib/constants";
 import MagicLinkForm from "./components/MagicLinkForm";
 import AppHeader from "./components/AppHeader";
 import IntroScreen from "./components/IntroScreen";
+import HomeDashboard from "./components/HomeDashboard";
 
-type View = "loading" | "auth" | "intro";
+type View = "loading" | "auth" | "welcome" | "home";
+
+interface Journey {
+  answeredCount: number;
+  isComplete: boolean;
+  peerTotal: number;
+  peerResponded: number;
+  canCompare: boolean;
+}
 
 /**
- * Entry route (/ypo-tool). Handles sign-in, then routes the member to the
- * right screen: a completed member goes to /results, an in-progress one to
- * /assessment, and a fresh member sees the intro (which captures their name
- * and starts the assessment).
+ * Entry route (/ypo-tool). Handles sign-in, then shows the member an oriented
+ * landing: a first-run Welcome (captures name, starts the assessment) for new
+ * members, or a live Home dashboard — showing where they are across the
+ * rate → invite → compare journey — for anyone who has already started.
  */
 export default function YpoToolClient() {
   const router = useRouter();
   const [view, setView] = useState<View>("loading");
   const [user, setUser] = useState<YpoUser | null>(null);
+  const [journey, setJourney] = useState<Journey | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
 
   // Surface error params from the magic-link redirect
@@ -37,24 +48,36 @@ export default function YpoToolClient() {
     }
   }, []);
 
-  /** After auth, send the member to the correct screen. */
-  const routeMember = useCallback(async () => {
+  /** Load the member's journey state and land them on Welcome or Home. */
+  const loadHome = useCallback(async () => {
     try {
-      const cur = await fetch("/api/ypo-tool/assessment/current").then((r) => r.json());
+      const [cur, invite] = await Promise.all([
+        fetch("/api/ypo-tool/assessment/current").then((r) => r.json()),
+        fetch("/api/ypo-tool/invite/status")
+          .then((r) => r.json())
+          .catch(() => ({})),
+      ]);
+
       const assessment = cur.assessment;
-      if (assessment && assessment.status === "complete") {
-        router.replace("/ypo-tool/results");
+      // No assessment row yet → brand-new member sees the Welcome.
+      if (!assessment) {
+        setView("welcome");
         return;
       }
-      if (assessment && Object.keys(cur.responses || {}).length > 0) {
-        router.replace("/ypo-tool/assessment");
-        return;
-      }
-      setView("intro");
+
+      const responses = cur.responses || {};
+      setJourney({
+        answeredCount: ALL_ITEM_KEYS.filter((k) => responses[k] != null).length,
+        isComplete: assessment.status === "complete",
+        peerTotal: (invite.raters || []).length,
+        peerResponded: invite.respondedCount || 0,
+        canCompare: !!invite.canViewAggregate,
+      });
+      setView("home");
     } catch {
-      setView("intro");
+      setView("welcome");
     }
-  }, [router]);
+  }, []);
 
   // Check session on mount
   useEffect(() => {
@@ -63,13 +86,13 @@ export default function YpoToolClient() {
       .then((data) => {
         if (data.user) {
           setUser(data.user);
-          routeMember();
+          loadHome();
         } else {
           setView("auth");
         }
       })
       .catch(() => setView("auth"));
-  }, [routeMember]);
+  }, [loadHome]);
 
   /** Dev-only bypass: create a real session so the routed flow authenticates. */
   const handleBypassAuth = useCallback(
@@ -83,16 +106,16 @@ export default function YpoToolClient() {
         if (res.ok) {
           const data = await res.json();
           setUser(data.user);
-          routeMember();
+          loadHome();
         }
       } catch {
         // dev only — ignore
       }
     },
-    [routeMember],
+    [loadHome],
   );
 
-  /** From the intro: persist name, ensure an assessment row, begin. */
+  /** From the Welcome: persist name, ensure an assessment row, begin. */
   const handleStartAssessment = useCallback(
     async (name: string) => {
       try {
@@ -136,7 +159,29 @@ export default function YpoToolClient() {
     );
   }
 
-  // intro
+  const firstName = (user?.name || "").trim().split(/\s+/)[0] || "";
+
+  if (view === "home" && journey) {
+    return (
+      <div className="min-h-screen bg-white">
+        <AppHeader email={user?.email} />
+        <HomeDashboard
+          firstName={firstName}
+          answeredCount={journey.answeredCount}
+          isComplete={journey.isComplete}
+          peerTotal={journey.peerTotal}
+          peerResponded={journey.peerResponded}
+          canCompare={journey.canCompare}
+          onStart={() => router.push("/ypo-tool/assessment")}
+          onResults={() => router.push("/ypo-tool/results")}
+          onInvite={() => router.push("/ypo-tool/invite")}
+          onCompare={() => router.push("/ypo-tool/compare")}
+        />
+      </div>
+    );
+  }
+
+  // welcome (first run)
   return (
     <div className="min-h-screen bg-white">
       <AppHeader email={user?.email} />
