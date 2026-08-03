@@ -11,7 +11,7 @@ import {
 import ScaleInput from "@/app/(main)/ypo-tool/components/ScaleInput";
 import ProgressRail from "@/app/(main)/ypo-tool/components/ProgressRail";
 
-type View = "loading" | "error" | "intro" | "flow" | "done";
+type View = "loading" | "error" | "closed" | "intro" | "flow" | "done";
 type FlowStep =
   | { phase: "section-intro"; circleIdx: number }
   | { phase: "questions"; circleIdx: number };
@@ -53,6 +53,12 @@ export default function PeerRatingClient({ token }: { token: string }) {
         }
         const data = await res.json();
         setFirstName(data.rateeFirstName || "");
+
+        // Round closed to peers — the link no longer collects responses.
+        if (data.closed) {
+          setView("closed");
+          return;
+        }
 
         // Check for existing in-progress response (cookie-based resume)
         const checkRes = await fetch(`/api/ypo-tool/rate/${token}/response`);
@@ -222,6 +228,26 @@ export default function PeerRatingClient({ token }: { token: string }) {
           <p style={{ fontSize: 16, color: "#636B7C", lineHeight: 1.6 }}>
             This rating link is invalid or has expired. Please ask the person
             who invited you to share a new link.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (view === "closed") {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center px-6">
+        <div className="text-center" style={{ maxWidth: 480 }}>
+          <h1
+            className="font-extrabold mb-3"
+            style={{ fontSize: 28, color: "#1E2A4A" }}
+          >
+            This assessment has closed
+          </h1>
+          <p style={{ fontSize: 16, color: "#636B7C", lineHeight: 1.6 }}>
+            {firstName ? `${firstName} isn’t` : "This person isn’t"} collecting
+            responses right now. If you’d still like to weigh in, reach out for a
+            fresh link.
           </p>
         </div>
       </div>

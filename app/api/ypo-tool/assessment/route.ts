@@ -13,11 +13,13 @@ export async function POST() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    // Return existing in-progress assessment or create new
+    // Return the member's OPEN round (any status) or create a fresh one.
+    // Scoping to closed_at IS NULL keeps us within the one-open-round-per-user
+    // constraint and lets a member resume an in-progress round.
     const existing = await sql`
       SELECT id, status, created_at, completed_at
       FROM ypo_assessment
-      WHERE user_id = ${session.user.id} AND status = 'in_progress'
+      WHERE user_id = ${session.user.id} AND closed_at IS NULL
       ORDER BY created_at DESC
       LIMIT 1
     `;

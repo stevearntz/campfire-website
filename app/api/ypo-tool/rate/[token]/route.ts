@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { CIRCLES } from "@/app/(main)/ypo-tool/lib/behaviors";
+import { getInviteByToken } from "@/app/(main)/ypo-tool/lib/rounds";
 
 export async function GET(
   _request: Request,
@@ -11,22 +12,20 @@ export async function GET(
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    const invite = await sql`
-      SELECT pi.id, u.name, u.email
-      FROM ypo_peer_invite pi
-      JOIN ypo_users u ON u.id = pi.user_id
-      WHERE pi.token = ${token}
-      LIMIT 1
-    `;
+    const invite = await getInviteByToken(sql, token);
 
-    if (invite.length === 0) {
+    if (!invite) {
       return NextResponse.json({ error: "Invalid link" }, { status: 404 });
     }
 
-    const user = invite[0];
-    const firstName = user.name
-      ? user.name.split(" ")[0]
-      : user.email.split("@")[0];
+    const firstName = invite.name
+      ? invite.name.split(" ")[0]
+      : invite.email.split("@")[0];
+
+    // Round closed — the link no longer collects responses.
+    if (invite.closed) {
+      return NextResponse.json({ closed: true, rateeFirstName: firstName });
+    }
 
     const items = CIRCLES.flatMap((c) =>
       c.items.map((item) => ({
