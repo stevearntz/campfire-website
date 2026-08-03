@@ -1,11 +1,5 @@
 import { neon } from "@neondatabase/serverless";
-import { calculateAverages } from "./scoring";
-import type {
-  AssessmentInput,
-  AssessmentRecord,
-  BehaviorScores,
-  YpoUser,
-} from "./constants";
+import type { YpoUser } from "./constants";
 
 function getDb() {
   const url = process.env.POSTGRES_URL;
@@ -176,125 +170,10 @@ export async function checkRateLimit(
   return { allowed: true };
 }
 
-/* ═══ Assessments ═══ */
+/* ═══ Legacy JSONB assessments (ypo_assessments) removed ═══
+   The live self-assessment flow uses the normalized ypo_assessment /
+   ypo_response tables, queried directly in the route handlers. The old
+   JSONB path (createAssessment/getUserAssessments/getAssessmentById/
+   getAssessmentByShareToken + the scoring helpers) had no live callers
+   and was deleted. See git history if it ever needs to come back. */
 
-function mapAssessmentRow(row: Record<string, unknown>): AssessmentRecord {
-  return {
-    id: row.id as number,
-    userId: row.user_id as number,
-    type: row.type as "self" | "peer",
-    targetName: (row.target_name as string) || undefined,
-    scores: row.scores as BehaviorScores,
-    averages: {
-      joy: parseFloat(String(row.joy_avg)),
-      trust: parseFloat(String(row.trust_avg)),
-      power: parseFloat(String(row.power_avg)),
-      partnership: parseFloat(String(row.partnership_avg)),
-    },
-    strength:
-      row.strength_category
-        ? {
-            category: row.strength_category as AssessmentRecord["strength"] extends undefined ? never : NonNullable<AssessmentRecord["strength"]>["category"],
-            behaviorIndex: row.strength_behavior as number,
-          }
-        : undefined,
-    growth:
-      row.growth_category
-        ? {
-            category: row.growth_category as AssessmentRecord["growth"] extends undefined ? never : NonNullable<AssessmentRecord["growth"]>["category"],
-            behaviorIndex: row.growth_behavior as number,
-          }
-        : undefined,
-    observation: (row.observation as string) || undefined,
-    encouragement: (row.encouragement as string) || undefined,
-    shareToken: (row.share_token as string) || undefined,
-    viewCount: (row.view_count as number) || 0,
-    createdAt: String(row.created_at),
-  };
-}
-
-export async function createAssessment(
-  userId: number,
-  input: AssessmentInput,
-): Promise<AssessmentRecord> {
-  const sql = getDb();
-  const averages = calculateAverages(input.scores);
-
-  if (input.type === "self") {
-    const rows = await sql`
-      INSERT INTO ypo_assessments (
-        user_id, type, scores,
-        joy_avg, trust_avg, power_avg, partnership_avg,
-        strength_category, strength_behavior,
-        growth_category, growth_behavior
-      ) VALUES (
-        ${userId}, 'self', ${JSON.stringify(input.scores)},
-        ${averages.joy}, ${averages.trust}, ${averages.power}, ${averages.partnership},
-        ${input.strength.category}, ${input.strength.behaviorIndex},
-        ${input.growth.category}, ${input.growth.behaviorIndex}
-      )
-      RETURNING *
-    `;
-    return mapAssessmentRow(rows[0]);
-  } else {
-    const shareToken = crypto.randomUUID();
-    const rows = await sql`
-      INSERT INTO ypo_assessments (
-        user_id, type, target_name, scores,
-        joy_avg, trust_avg, power_avg, partnership_avg,
-        observation, encouragement, share_token
-      ) VALUES (
-        ${userId}, 'peer', ${input.targetName},
-        ${JSON.stringify(input.scores)},
-        ${averages.joy}, ${averages.trust}, ${averages.power}, ${averages.partnership},
-        ${input.observation}, ${input.encouragement}, ${shareToken}
-      )
-      RETURNING *
-    `;
-    return mapAssessmentRow(rows[0]);
-  }
-}
-
-export async function getUserAssessments(
-  userId: number,
-): Promise<AssessmentRecord[]> {
-  const sql = getDb();
-  const rows = await sql`
-    SELECT * FROM ypo_assessments
-    WHERE user_id = ${userId}
-    ORDER BY created_at DESC
-  `;
-  return rows.map(mapAssessmentRow);
-}
-
-export async function getAssessmentById(
-  id: number,
-  userId: number,
-): Promise<AssessmentRecord | null> {
-  const sql = getDb();
-  const rows = await sql`
-    SELECT * FROM ypo_assessments
-    WHERE id = ${id} AND user_id = ${userId}
-  `;
-  if (rows.length === 0) return null;
-  return mapAssessmentRow(rows[0]);
-}
-
-export async function getAssessmentByShareToken(
-  token: string,
-): Promise<AssessmentRecord | null> {
-  const sql = getDb();
-  const rows = await sql`
-    SELECT * FROM ypo_assessments
-    WHERE share_token = ${token}
-  `;
-  if (rows.length === 0) return null;
-
-  await sql`
-    UPDATE ypo_assessments
-    SET view_count = view_count + 1
-    WHERE id = ${rows[0].id}
-  `;
-
-  return mapAssessmentRow(rows[0]);
-}

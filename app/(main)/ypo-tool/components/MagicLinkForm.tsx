@@ -135,7 +135,7 @@ export default function MagicLinkForm({
             maxWidth: 600,
           }}
         >
-          A 3-minute read on the behaviors that activate this team. Rate
+          A 4-minute read on the behaviors that activate this team. Rate
           yourself, then invite a few peers. You&apos;ll see where you line
           up — and where your blind spots are.
         </p>
@@ -300,7 +300,7 @@ export default function MagicLinkForm({
           <span style={{ color: "rgba(255,255,255,0.35)" }}>&middot;</span>
           <span>6-point scale</span>
           <span style={{ color: "rgba(255,255,255,0.35)" }}>&middot;</span>
-          <span>~3 min</span>
+          <span>~4 min</span>
           <span style={{ color: "rgba(255,255,255,0.35)" }}>&middot;</span>
           <span>private to you</span>
         </div>

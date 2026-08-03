@@ -59,11 +59,10 @@ app/ypo-tool/
 ├── lib/
 │   ├── behaviors.ts            # CIRCLES array, item text, scoring helpers
 │   ├── constants.ts            # Types, FRAMEWORK object, email validation
-│   ├── db.ts                   # Neon Postgres queries (users, sessions, assessments)
+│   ├── db.ts                   # Neon Postgres queries (users, sessions, rate limits)
 │   ├── auth.ts                 # Cookie-based session helpers
 │   ├── email.ts                # Resend magic-link email
-│   ├── scoring.ts              # calculateAverages, getProfile
-│   └── schema.sql              # Full DB schema (10 tables)
+│   └── schema.sql              # Full DB schema
 ├── components/
 │   ├── MagicLinkForm.tsx       # Email input + magic link request
 │   ├── AssessmentFlow.tsx      # Multi-step assessment (intro → questions → complete)
@@ -75,8 +74,6 @@ app/ypo-tool/
 │   ├── Results.tsx             # Results view with radar + strength/growth
 │   ├── InvitePeers.tsx         # Invite link + rater status (polls every 15s)
 │   └── ComparisonView.tsx      # Self vs. peer radar + gap analysis
-└── share/
-    └── [token]/page.tsx        # Shared assessment view (auth-gated)
 
 app/rate/
 └── [token]/
@@ -101,23 +98,22 @@ app/api/ypo-tool/
 ├── peer-aggregate/route.ts     # GET: aggregated peer scores (gated by MIN_PEERS)
 ├── comparison/
 │   └── current/route.ts        # GET: self sums + peer averages for radar
-├── rate/[token]/
-│   ├── route.ts                # GET: ratee info for peer rating page
-│   ├── response/route.ts       # GET: check existing | POST: create | PUT: save answer
-│   └── complete/route.ts       # POST: mark peer response complete
-└── share/[token]/route.ts      # GET: shared assessment data (auth-gated)
+└── rate/[token]/
+    ├── route.ts                # GET: ratee info for peer rating page
+    ├── response/route.ts       # GET: check existing | POST: create | PUT: save answer
+    └── complete/route.ts       # POST: mark peer response complete
 ```
 
 ### Database (Neon Postgres)
 
-10 tables, all prefixed `ypo_`. Schema in `lib/schema.sql`.
+All tables prefixed `ypo_`. Schema in `lib/schema.sql` (plus the open-ended
+feedback tables added by `lib/migrations/001`).
 
 | Table | Purpose |
 |---|---|
 | `ypo_users` | Email-verified users. Domain constraint: `@ypo.org` or `@getcampfire.com` |
 | `ypo_auth_tokens` | Single-use magic link tokens (15-min expiry) |
 | `ypo_sessions` | Cookie-based sessions (30-day expiry) |
-| `ypo_assessments` | Legacy assessment table (JSONB scores) — used by `db.ts` |
 | `ypo_rate_limits` | Per-email rate limiting (3 magic links/hour) |
 | `ypo_assessment` | Normalized self-assessment (one row per assessment) |
 | `ypo_response` | Individual self-assessment answers (one row per item) |
@@ -125,7 +121,12 @@ app/api/ypo-tool/
 | `ypo_peer_response` | One row per peer rater (cookie-tracked) |
 | `ypo_peer_answer` | Individual peer answers (one row per item per rater) |
 
-There are two assessment storage paths (legacy JSONB `ypo_assessments` and normalized `ypo_assessment` + `ypo_response`). The active self-assessment flow uses the normalized tables. The legacy table is still referenced by `db.ts` for older assessment operations.
+The self-assessment flow uses the normalized `ypo_assessment` + `ypo_response`
+tables. An older JSONB `ypo_assessments` table (plus its `db.ts` helpers,
+`scoring.ts`, and the `/api/ypo-tool/assessments` + `share/[token]` routes)
+was removed in the July 2026 cleanup — it had no live callers. `behaviors.ts`
+is the single source of truth for the framework and scoring. The `ypo_assessments`
+table may still exist in the DB; it is no longer touched by application code.
 
 ### Auth
 
@@ -196,7 +197,7 @@ No test framework configured. Manual testing via the flows described above.
 5. **Name is required for peers** — every response is attributed (was optional pre-July-2026)
 6. **Third-person peer wording** — "This person follows through..." with name substitution if ratee's first name is available
 7. **Gap threshold = 0.10** — differences below this are not flagged as blind spots or hidden strengths
-8. **Two assessment storage paths** — legacy JSONB table and normalized table both exist; active flow uses normalized
+8. **Single source of truth** — `behaviors.ts` owns the framework and scoring; the old JSONB assessment path was removed (July 2026)
 
 ---
 
@@ -216,10 +217,9 @@ No test framework configured. Manual testing via the flows described above.
 
 ## Known Issues / Future Work
 
-- **Two assessment table patterns**: `ypo_assessments` (legacy JSONB) and `ypo_assessment` + `ypo_response` (normalized) coexist. Could consolidate.
 - **No session cleanup cron**: Expired sessions and tokens accumulate in DB. A periodic cleanup query would help.
 - **No email notification to ratee**: When peers complete their rating, the ratee isn't notified. Could send a Resend email when peer count reaches MIN_PEERS.
-- **Share flow (`/ypo-tool/share/[token]`)**: Server component exists but the full read-only results view for shared assessments may need additional work.
+- **No share flow**: A read-only "share my results" view was removed in the July 2026 cleanup (it was an unwired placeholder). If revived, build it on the normalized `ypo_assessment` tables.
 - **Retake flow** (updated July 2026): latest attempt wins; incomplete attempts are cleared by `POST /assessment/restart`. Completed attempts remain in `ypo_assessment` as history but aren't surfaced in the UI yet.
 - **Mobile polish**: Functional but could benefit from more responsive refinement on the radar chart and comparison view.
 
