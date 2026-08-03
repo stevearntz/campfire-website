@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
 import { CIRCLES, MIN_PEERS } from "@/app/(main)/ypo-tool/lib/behaviors";
-import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
+import { resolveRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const session = await getSession();
     if (!session) {
@@ -13,8 +13,14 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    // Self and peer scores must come from the SAME round.
-    const round = await getCurrentRound(sql, session.user.id);
+    // Self and peer scores must come from the SAME round (current, or an
+    // explicit owned ?round=ID for viewing history).
+    const roundParam = new URL(request.url).searchParams.get("round");
+    const round = await resolveRound(
+      sql,
+      session.user.id,
+      roundParam ? parseInt(roundParam, 10) : null,
+    );
 
     let selfScores: Record<string, number> | null = null;
 

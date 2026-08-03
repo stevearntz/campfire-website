@@ -1,6 +1,10 @@
 # YPO Tool — Multiple Assessment Rounds (build spec)
 
-Status: **planned** · Author: Steve + Claude · Aug 2026
+Status: **shipped (Phases 1–5)** · Author: Steve + Claude · Aug 2026
+
+Phases 1–3 (data model, round-scoped backend, dashboard round management),
+Phase 4 (view a past round read-only), and Phase 5 (cross-round progress
+trend) are all built, verified against Neon, and merged to production.
 
 ## Goal
 

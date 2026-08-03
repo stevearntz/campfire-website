@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
+import { resolveRound } from "@/app/(main)/ypo-tool/lib/rounds";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const session = await getSession();
     if (!session) {
@@ -11,20 +12,18 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    // Find most recent assessment (in-progress or complete)
-    const rows = await sql`
-      SELECT id, status, created_at, completed_at
-      FROM ypo_assessment
-      WHERE user_id = ${session.user.id}
-      ORDER BY created_at DESC
-      LIMIT 1
-    `;
+    // An explicit ?round=ID (owned) lets a member view a past round read-only;
+    // otherwise fall back to their current round.
+    const roundParam = new URL(request.url).searchParams.get("round");
+    const assessment = await resolveRound(
+      sql,
+      session.user.id,
+      roundParam ? parseInt(roundParam, 10) : null,
+    );
 
-    if (rows.length === 0) {
+    if (!assessment) {
       return NextResponse.json({ assessment: null, responses: {} });
     }
-
-    const assessment = rows[0];
     const responses = await sql`
       SELECT item_key, value FROM ypo_response
       WHERE assessment_id = ${assessment.id}

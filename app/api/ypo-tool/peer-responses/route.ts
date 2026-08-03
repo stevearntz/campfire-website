@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
-import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
+import { resolveRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
 
 /**
  * GET — every peer response for the signed-in member, fully attributed.
@@ -9,7 +9,7 @@ import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/round
  * feedback. Includes both complete and in-progress responses (in-progress
  * are flagged so the UI can label them).
  */
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const session = await getSession();
     if (!session) {
@@ -19,7 +19,12 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    const round = await getCurrentRound(sql, session.user.id);
+    const roundParam = new URL(request.url).searchParams.get("round");
+    const round = await resolveRound(
+      sql,
+      session.user.id,
+      roundParam ? parseInt(roundParam, 10) : null,
+    );
     const invite = round ? await getRoundInvite(sql, round.id) : null;
 
     if (!invite) {

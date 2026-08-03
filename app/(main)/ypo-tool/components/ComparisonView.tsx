@@ -32,10 +32,13 @@ export default function ComparisonView({
   responses,
   onBack,
   rateeFirstName,
+  roundId,
 }: {
   responses: Responses;
   onBack: () => void;
   rateeFirstName?: string;
+  /** When set, compare a specific past round instead of the current one. */
+  roundId?: string | null;
 }) {
   const [data, setData] = useState<ComparisonData | null>(null);
   const [peers, setPeers] = useState<PeerDetail[]>([]);
@@ -70,9 +73,10 @@ export default function ComparisonView({
   const [growthPick, setGrowthPick] = useState(CIRCLES[defaultGrowthIdx].key);
 
   useEffect(() => {
+    const q = roundId ? `?round=${encodeURIComponent(roundId)}` : "";
     async function load() {
       try {
-        const res = await fetch("/api/ypo-tool/comparison/current");
+        const res = await fetch(`/api/ypo-tool/comparison/current${q}`);
         if (res.status === 409) {
           setError("Not enough peer responses yet.");
           setLoading(false);
@@ -88,7 +92,7 @@ export default function ComparisonView({
 
         // Fetch attributed per-peer detail (names, individual answers, notes)
         try {
-          const detailRes = await fetch("/api/ypo-tool/peer-responses");
+          const detailRes = await fetch(`/api/ypo-tool/peer-responses${q}`);
           if (detailRes.ok) {
             const detail = await detailRes.json();
             const list: PeerDetail[] = detail.peers || [];
@@ -105,7 +109,7 @@ export default function ComparisonView({
       setLoading(false);
     }
     load();
-  }, []);
+  }, [roundId]);
 
   // Once peers are loaded, scroll the deep-linked peer into view (expanded,
   // with a brief highlight that fades).

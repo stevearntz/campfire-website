@@ -10,16 +10,21 @@ export interface MemberData {
   user: YpoUser | null;
   responses: Responses;
   feedback: Record<string, string>;
-  assessment: { id: number; status: string } | null;
+  assessment: {
+    id: number;
+    status: string;
+    closed_at?: string | null;
+    title?: string | null;
+  } | null;
 }
 
 /**
  * Shared loader for the signed-in member routes. Fetches the current user and
- * their latest assessment (responses + feedback). If the visitor isn't
- * authenticated, redirects to the tool entry (/ypo-tool), which shows sign-in.
- * Each page applies its own status-based guard on top of this.
+ * an assessment (responses + feedback) — the member's current round by
+ * default, or a specific owned round when `roundId` is given (for viewing
+ * history read-only). Unauthenticated visitors are redirected to /ypo-tool.
  */
-export function useMember(): MemberData {
+export function useMember(roundId?: string | null): MemberData {
   const router = useRouter();
   const [data, setData] = useState<MemberData>({
     loading: true,
@@ -38,7 +43,8 @@ export function useMember(): MemberData {
           router.replace("/ypo-tool");
           return;
         }
-        const cur = await fetch("/api/ypo-tool/assessment/current").then((r) =>
+        const q = roundId ? `?round=${encodeURIComponent(roundId)}` : "";
+        const cur = await fetch(`/api/ypo-tool/assessment/current${q}`).then((r) =>
           r.json(),
         );
         if (cancelled) return;
@@ -56,7 +62,7 @@ export function useMember(): MemberData {
     return () => {
       cancelled = true;
     };
-  }, [router]);
+  }, [router, roundId]);
 
   return data;
 }
