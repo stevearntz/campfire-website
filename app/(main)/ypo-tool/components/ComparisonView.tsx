@@ -188,6 +188,34 @@ export default function ComparisonView({
     ? negativeGaps.reduce((a, b) => (a.d < b.d ? a : b))
     : null;
 
+  // Self-Concept: how your self-view calibrates against your peers'. Rather
+  // than going blank when there's no blind spot, it always says something
+  // true — you over-rate somewhere, you're modest, or you're right in step.
+  const joinCircles = (arr: string[]) =>
+    arr.length <= 1
+      ? arr[0] || ""
+      : arr.length === 2
+        ? `${arr[0]} and ${arr[1]}`
+        : `${arr.slice(0, -1).join(", ")}, and ${arr[arr.length - 1]}`;
+  const underratedTitles = negativeGaps.map((g) => g.title);
+  const selfConcept = blindSpot
+    ? {
+        title: blindSpot.title,
+        body: "You rate yourself higher here than your peers do — a possible blind spot.",
+        barColor: blindSpot.color,
+      }
+    : underratedTitles.length > 0
+      ? {
+          title: "Modest self-view",
+          body: `Your peers rated you higher than you rated yourself — on ${joinCircles(underratedTitles)}.`,
+          barColor: "#E055CB",
+        }
+      : {
+          title: "Right in step",
+          body: "You see yourself much as your peers do.",
+          barColor: "#E7E3EE",
+        };
+
   return (
     <div className="min-h-[calc(100vh-64px)] bg-white">
       <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
@@ -261,7 +289,7 @@ export default function ComparisonView({
           <div className="flex-1 space-y-6">
             {/* Gap cards — side by side */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Blind spot card */}
+              {/* Self-Concept card */}
               <div
                 className="relative rounded-2xl px-5 py-4"
                 style={{
@@ -273,7 +301,7 @@ export default function ComparisonView({
                   className="absolute left-0 top-4 bottom-4 rounded-full"
                   style={{
                     width: 4,
-                    background: blindSpot?.color || "#E7E3EE",
+                    background: selfConcept.barColor,
                   }}
                 />
                 <div className="pl-3">
@@ -282,21 +310,19 @@ export default function ComparisonView({
                     style={{
                       fontSize: 10,
                       letterSpacing: "0.14em",
-                      color: "#B23B9F",
+                      color: "#6E3FCC",
                     }}
                   >
-                    Possible Blind Spot
+                    Self-Concept
                   </p>
                   <h3
                     className="font-extrabold mb-1"
                     style={{ fontSize: 20, color: "#1E2A4A" }}
                   >
-                    {blindSpot?.title || "In sync"}
+                    {selfConcept.title}
                   </h3>
                   <p style={{ fontSize: 13.5, lineHeight: 1.5, color: "#636B7C" }}>
-                    {blindSpot
-                      ? "You rate yourself higher here than your peers do."
-                      : "You and your peers see this about the same."}
+                    {selfConcept.body}
                   </p>
                 </div>
               </div>
