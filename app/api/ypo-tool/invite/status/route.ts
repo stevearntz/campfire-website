@@ -28,7 +28,7 @@ export async function GET() {
     }
 
     const responses = await sql`
-      SELECT rater_name, status FROM ypo_peer_response
+      SELECT id, rater_name, status FROM ypo_peer_response
       WHERE invite_id = ${invite[0].id}
       ORDER BY created_at ASC
     `;
@@ -40,6 +40,7 @@ export async function GET() {
       respondedCount,
       pendingCount,
       raters: responses.map((r) => ({
+        id: r.id,
         name: r.rater_name || null,
         status: r.status,
       })),
