@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
 import { CIRCLES, MIN_PEERS } from "@/app/(main)/ypo-tool/lib/behaviors";
+import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
 
 export async function GET() {
   try {
@@ -12,20 +13,15 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    // ── Self scores (from localStorage-backed assessment responses) ──
-    // For now, self scores come from the client. But if stored in DB:
-    const selfAssessment = await sql`
-      SELECT id FROM ypo_assessment
-      WHERE user_id = ${session.user.id} AND status = 'complete'
-      ORDER BY created_at DESC LIMIT 1
-    `;
+    // Self and peer scores must come from the SAME round.
+    const round = await getCurrentRound(sql, session.user.id);
 
     let selfScores: Record<string, number> | null = null;
 
-    if (selfAssessment.length > 0) {
+    if (round && round.status === "complete") {
       const selfResponses = await sql`
         SELECT item_key, value FROM ypo_response
-        WHERE assessment_id = ${selfAssessment[0].id}
+        WHERE assessment_id = ${round.id}
       `;
       if (selfResponses.length === 12) {
         const byKey: Record<string, number> = {};
@@ -41,13 +37,10 @@ export async function GET() {
       }
     }
 
-    // ── Peer aggregate ──
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite
-      WHERE user_id = ${session.user.id} LIMIT 1
-    `;
+    // ── Peer aggregate (same round) ──
+    const invite = round ? await getRoundInvite(sql, round.id) : null;
 
-    if (invite.length === 0) {
+    if (!invite) {
       return NextResponse.json(
         { error: "No peer invite found", code: "no_peers" },
         { status: 409 },
@@ -58,7 +51,7 @@ export async function GET() {
       SELECT pr.id AS response_id, pa.item_key, pa.value
       FROM ypo_peer_response pr
       JOIN ypo_peer_answer pa ON pa.peer_response_id = pr.id
-      WHERE pr.invite_id = ${invite[0].id} AND pr.status = 'complete'
+      WHERE pr.invite_id = ${invite.id} AND pr.status = 'complete'
     `;
 
     // Group by peer

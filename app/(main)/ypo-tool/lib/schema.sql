@@ -91,17 +91,25 @@ CREATE TABLE ypo_rate_limits (
 
 CREATE INDEX idx_ypo_rate_limits_lookup ON ypo_rate_limits(identifier, action);
 
--- 6. Assessment (normalized, per Design increment 3)
+-- 6. Assessment — also the "round" container (see migration 002).
+--    created_at = round start date. status tracks the SELF-assessment
+--    (in_progress|complete); closed_at tracks the ROUND (NULL = open to peers).
+--    One open round per user is enforced by idx_ypo_assessment_one_open.
 CREATE TABLE ypo_assessment (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES ypo_users(id) ON DELETE CASCADE,
   status VARCHAR(20) NOT NULL DEFAULT 'in_progress' CHECK (status IN ('in_progress', 'complete')),
+  title VARCHAR(120),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  completed_at TIMESTAMP WITH TIME ZONE
+  completed_at TIMESTAMP WITH TIME ZONE,
+  closed_at TIMESTAMP WITH TIME ZONE
 );
 
 CREATE INDEX idx_ypo_assessment_user_id ON ypo_assessment(user_id);
 CREATE INDEX idx_ypo_assessment_status ON ypo_assessment(user_id, status);
+-- At most one open (closed_at IS NULL) round per user.
+CREATE UNIQUE INDEX idx_ypo_assessment_one_open
+  ON ypo_assessment(user_id) WHERE closed_at IS NULL;
 
 -- 7. Individual responses (one row per answered item)
 CREATE TABLE ypo_response (
@@ -115,15 +123,16 @@ CREATE TABLE ypo_response (
 
 CREATE INDEX idx_ypo_response_assessment ON ypo_response(assessment_id);
 
--- 8. Peer invite (one active link per member)
+-- 8. Peer invite (one link per ROUND — see migration 002).
 CREATE TABLE ypo_peer_invite (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES ypo_users(id) ON DELETE CASCADE,
+  assessment_id INTEGER NOT NULL REFERENCES ypo_assessment(id) ON DELETE CASCADE,
   token VARCHAR(20) UNIQUE NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
-CREATE UNIQUE INDEX idx_ypo_peer_invite_user ON ypo_peer_invite(user_id);
+CREATE UNIQUE INDEX idx_ypo_peer_invite_assessment ON ypo_peer_invite(assessment_id);
 CREATE INDEX idx_ypo_peer_invite_token ON ypo_peer_invite(token);
 
 -- 9. Peer response (one row per rater)

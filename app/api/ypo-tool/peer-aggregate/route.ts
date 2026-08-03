@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
 import { CIRCLES, MIN_PEERS } from "@/app/(main)/ypo-tool/lib/behaviors";
+import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
 
 export async function GET() {
   try {
@@ -12,13 +13,10 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite
-      WHERE user_id = ${session.user.id}
-      LIMIT 1
-    `;
+    const round = await getCurrentRound(sql, session.user.id);
+    const invite = round ? await getRoundInvite(sql, round.id) : null;
 
-    if (invite.length === 0) {
+    if (!invite) {
       return NextResponse.json({ ready: false, n: 0 });
     }
 
@@ -27,7 +25,7 @@ export async function GET() {
       SELECT pr.id AS response_id, pa.item_key, pa.value
       FROM ypo_peer_response pr
       JOIN ypo_peer_answer pa ON pa.peer_response_id = pr.id
-      WHERE pr.invite_id = ${invite[0].id} AND pr.status = 'complete'
+      WHERE pr.invite_id = ${invite.id} AND pr.status = 'complete'
     `;
 
     // Group answers by response_id

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
 import { MIN_PEERS } from "@/app/(main)/ypo-tool/lib/behaviors";
+import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
 
 export async function GET() {
   try {
@@ -12,13 +13,11 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite
-      WHERE user_id = ${session.user.id}
-      LIMIT 1
-    `;
+    // Rater status for the member's current round.
+    const round = await getCurrentRound(sql, session.user.id);
+    const invite = round ? await getRoundInvite(sql, round.id) : null;
 
-    if (invite.length === 0) {
+    if (!invite) {
       return NextResponse.json({
         respondedCount: 0,
         pendingCount: 0,
@@ -29,7 +28,7 @@ export async function GET() {
 
     const responses = await sql`
       SELECT id, rater_name, status FROM ypo_peer_response
-      WHERE invite_id = ${invite[0].id}
+      WHERE invite_id = ${invite.id}
       ORDER BY created_at ASC
     `;
 

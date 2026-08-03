@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
+import { getCurrentRound, getRoundInvite } from "@/app/(main)/ypo-tool/lib/rounds";
 
 /**
  * GET — every peer response for the signed-in member, fully attributed.
@@ -18,20 +19,17 @@ export async function GET() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite
-      WHERE user_id = ${session.user.id}
-      LIMIT 1
-    `;
+    const round = await getCurrentRound(sql, session.user.id);
+    const invite = round ? await getRoundInvite(sql, round.id) : null;
 
-    if (invite.length === 0) {
+    if (!invite) {
       return NextResponse.json({ peers: [] });
     }
 
     const responses = await sql`
       SELECT id, rater_name, rater_email, status, created_at, completed_at
       FROM ypo_peer_response
-      WHERE invite_id = ${invite[0].id}
+      WHERE invite_id = ${invite.id}
       ORDER BY completed_at ASC NULLS LAST, created_at ASC
     `;
 

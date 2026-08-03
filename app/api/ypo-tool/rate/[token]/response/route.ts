@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { ALL_ITEM_KEYS } from "@/app/(main)/ypo-tool/lib/behaviors";
+import { getInviteByToken } from "@/app/(main)/ypo-tool/lib/rounds";
 
 const VALID_KEYS = new Set(ALL_ITEM_KEYS);
+
+const roundClosed = () =>
+  NextResponse.json(
+    { error: "This assessment has closed.", code: "round_closed" },
+    { status: 410 },
+  );
 
 function peerCookieName(token: string) {
   return `ypo_peer_${token}`;
@@ -97,13 +104,12 @@ export async function POST(
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    // Validate invite
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite WHERE token = ${token} LIMIT 1
-    `;
-    if (invite.length === 0) {
+    // Validate invite + round still open
+    const invite = await getInviteByToken(sql, token);
+    if (!invite) {
       return NextResponse.json({ error: "Invalid link" }, { status: 404 });
     }
+    if (invite.closed) return roundClosed();
 
     // Check for existing response via cookie
     const cookieStore = await cookies();
@@ -112,7 +118,7 @@ export async function POST(
     if (existingId) {
       const existing = await sql`
         SELECT id, status FROM ypo_peer_response
-        WHERE id = ${parseInt(existingId, 10)} AND invite_id = ${invite[0].id}
+        WHERE id = ${parseInt(existingId, 10)} AND invite_id = ${invite.id}
         LIMIT 1
       `;
       if (existing.length > 0) {
@@ -138,7 +144,7 @@ export async function POST(
     // Create new response
     const created = await sql`
       INSERT INTO ypo_peer_response (invite_id, rater_name)
-      VALUES (${invite[0].id}, ${raterName})
+      VALUES (${invite.id}, ${raterName})
       RETURNING id, status
     `;
 
@@ -181,17 +187,16 @@ export async function PUT(
       return NextResponse.json({ error: "No active session" }, { status: 400 });
     }
 
-    // Validate invite + response ownership
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite WHERE token = ${token} LIMIT 1
-    `;
-    if (invite.length === 0) {
+    // Validate invite + round still open + response ownership
+    const invite = await getInviteByToken(sql, token);
+    if (!invite) {
       return NextResponse.json({ error: "Invalid link" }, { status: 404 });
     }
+    if (invite.closed) return roundClosed();
 
     const response = await sql`
       SELECT id, status FROM ypo_peer_response
-      WHERE id = ${parseInt(responseId, 10)} AND invite_id = ${invite[0].id}
+      WHERE id = ${parseInt(responseId, 10)} AND invite_id = ${invite.id}
       LIMIT 1
     `;
     if (response.length === 0) {

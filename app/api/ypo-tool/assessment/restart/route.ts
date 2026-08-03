@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/app/(main)/ypo-tool/lib/auth";
 
 /**
- * POST — start a clean retake.
- * Behavior (by request): latest attempt wins, and prior INCOMPLETE attempts
- * are cleared. Completed attempts are kept as history. This deletes any
- * in-progress assessments (cascade clears their responses + self-feedback),
- * then creates one fresh in-progress assessment.
+ * POST — start a fresh assessment round.
+ * Closes the member's current open round (kept as history, along with its
+ * self-assessment and any peer responses collected against its link) and
+ * opens a new empty round. This preserves the one-open-round-per-user
+ * invariant and the historical record used for progress tracking.
  */
 export async function POST() {
   try {
@@ -18,10 +18,11 @@ export async function POST() {
     const { neon } = await import("@neondatabase/serverless");
     const sql = neon(process.env.POSTGRES_URL!);
 
-    // Clear prior incomplete attempts (responses + feedback cascade on delete).
+    // Close whatever round is currently open (does not delete it or its peers).
     await sql`
-      DELETE FROM ypo_assessment
-      WHERE user_id = ${session.user.id} AND status = 'in_progress'
+      UPDATE ypo_assessment
+      SET closed_at = NOW()
+      WHERE user_id = ${session.user.id} AND closed_at IS NULL
     `;
 
     const created = await sql`

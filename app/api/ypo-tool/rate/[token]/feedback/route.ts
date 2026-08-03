@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { CIRCLES } from "@/app/(main)/ypo-tool/lib/behaviors";
+import { getInviteByToken } from "@/app/(main)/ypo-tool/lib/rounds";
 
 const VALID_CIRCLES = new Set(CIRCLES.map((c) => c.key));
 
@@ -25,16 +26,20 @@ export async function PUT(
       return NextResponse.json({ error: "No active session" }, { status: 400 });
     }
 
-    const invite = await sql`
-      SELECT id FROM ypo_peer_invite WHERE token = ${token} LIMIT 1
-    `;
-    if (invite.length === 0) {
+    const invite = await getInviteByToken(sql, token);
+    if (!invite) {
       return NextResponse.json({ error: "Invalid link" }, { status: 404 });
+    }
+    if (invite.closed) {
+      return NextResponse.json(
+        { error: "This assessment has closed.", code: "round_closed" },
+        { status: 410 },
+      );
     }
 
     const response = await sql`
       SELECT id, status FROM ypo_peer_response
-      WHERE id = ${parseInt(responseId, 10)} AND invite_id = ${invite[0].id}
+      WHERE id = ${parseInt(responseId, 10)} AND invite_id = ${invite.id}
       LIMIT 1
     `;
     if (response.length === 0) {
