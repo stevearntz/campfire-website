@@ -26,7 +26,7 @@ export default function InvitePageClient() {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppHeader email={user?.email} />
+      <AppHeader email={user?.email} crumb="Invite peers" />
       <InvitePeers
         onBack={() => router.push("/ypo-tool/results")}
         onViewComparison={() => router.push("/ypo-tool/compare")}

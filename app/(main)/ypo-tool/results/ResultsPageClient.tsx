@@ -47,7 +47,7 @@ export default function ResultsPageClient() {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppHeader email={user?.email} />
+      <AppHeader email={user?.email} crumb="Your results" />
       <Results
         responses={responses}
         selfFeedback={feedback}
