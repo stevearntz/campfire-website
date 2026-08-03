@@ -7,7 +7,7 @@ import type { YpoUser } from "./lib/constants";
 import MagicLinkForm from "./components/MagicLinkForm";
 import AppHeader from "./components/AppHeader";
 import IntroScreen from "./components/IntroScreen";
-import HomeDashboard from "./components/HomeDashboard";
+import HomeDashboard, { type PastRound } from "./components/HomeDashboard";
 
 type View = "loading" | "auth" | "welcome" | "home";
 
@@ -30,6 +30,7 @@ export default function YpoToolClient() {
   const [view, setView] = useState<View>("loading");
   const [user, setUser] = useState<YpoUser | null>(null);
   const [journey, setJourney] = useState<Journey | null>(null);
+  const [pastRounds, setPastRounds] = useState<PastRound[]>([]);
   const [authError, setAuthError] = useState<string | null>(null);
 
   // Surface error params from the magic-link redirect
@@ -48,27 +49,38 @@ export default function YpoToolClient() {
     }
   }, []);
 
-  /** Load the member's journey state and land them on Welcome or Home. */
+  /** Load the member's rounds and land them on Welcome or Home. */
   const loadHome = useCallback(async () => {
     try {
+      const roundsData = await fetch("/api/ypo-tool/rounds").then((r) => r.json());
+      const rounds: PastRound[] = roundsData.rounds || [];
+
+      // No rounds at all → brand-new member sees the Welcome.
+      if (rounds.length === 0) {
+        setView("welcome");
+        return;
+      }
+
+      setPastRounds(rounds.filter((r) => !r.open));
+
+      // No open round → member can start a fresh one (history still shows).
+      if (!roundsData.active) {
+        setJourney(null);
+        setView("home");
+        return;
+      }
+
+      // Open round → load its live journey (invite status + answered count).
       const [cur, invite] = await Promise.all([
         fetch("/api/ypo-tool/assessment/current").then((r) => r.json()),
         fetch("/api/ypo-tool/invite/status")
           .then((r) => r.json())
           .catch(() => ({})),
       ]);
-
-      const assessment = cur.assessment;
-      // No assessment row yet → brand-new member sees the Welcome.
-      if (!assessment) {
-        setView("welcome");
-        return;
-      }
-
       const responses = cur.responses || {};
       setJourney({
         answeredCount: ALL_ITEM_KEYS.filter((k) => responses[k] != null).length,
-        isComplete: assessment.status === "complete",
+        isComplete: roundsData.active.status === "complete",
         peerTotal: (invite.raters || []).length,
         peerResponded: invite.respondedCount || 0,
         canCompare: !!invite.canViewAggregate,
@@ -78,6 +90,26 @@ export default function YpoToolClient() {
       setView("welcome");
     }
   }, []);
+
+  /** Close the open round, then re-render Home (now in the no-open state). */
+  const handleCloseRound = useCallback(async () => {
+    try {
+      await fetch("/api/ypo-tool/rounds/close", { method: "POST" });
+    } catch {
+      // best-effort
+    }
+    loadHome();
+  }, [loadHome]);
+
+  /** Open a fresh round and jump straight into the self-assessment. */
+  const handleStartNewRound = useCallback(async () => {
+    try {
+      await fetch("/api/ypo-tool/rounds/start", { method: "POST" });
+    } catch {
+      // best-effort — assessment page will find-or-create
+    }
+    router.push("/ypo-tool/assessment");
+  }, [router]);
 
   // Check session on mount
   useEffect(() => {
@@ -161,21 +193,25 @@ export default function YpoToolClient() {
 
   const firstName = (user?.name || "").trim().split(/\s+/)[0] || "";
 
-  if (view === "home" && journey) {
+  if (view === "home") {
     return (
       <div className="min-h-screen bg-white">
         <AppHeader email={user?.email} />
         <HomeDashboard
           firstName={firstName}
-          answeredCount={journey.answeredCount}
-          isComplete={journey.isComplete}
-          peerTotal={journey.peerTotal}
-          peerResponded={journey.peerResponded}
-          canCompare={journey.canCompare}
+          hasActive={!!journey}
+          answeredCount={journey?.answeredCount ?? 0}
+          isComplete={journey?.isComplete ?? false}
+          peerTotal={journey?.peerTotal ?? 0}
+          peerResponded={journey?.peerResponded ?? 0}
+          canCompare={journey?.canCompare ?? false}
+          pastRounds={pastRounds}
           onStart={() => router.push("/ypo-tool/assessment")}
           onResults={() => router.push("/ypo-tool/results")}
           onInvite={() => router.push("/ypo-tool/invite")}
           onCompare={() => router.push("/ypo-tool/compare")}
+          onClose={handleCloseRound}
+          onStartNew={handleStartNewRound}
         />
       </div>
     );
