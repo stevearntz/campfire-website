@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   CIRCLES,
   circleSum,
@@ -44,6 +44,16 @@ export default function ComparisonView({
   const [openIds, setOpenIds] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // Deep-link support: /compare?peer=<id> scrolls to and highlights that
+  // peer's card (e.g. clicking a name on the invite screen). Read once from
+  // the URL at init so no synchronous setState-in-effect is needed.
+  const [focusPeerId] = useState<number | null>(() => {
+    if (typeof window === "undefined") return null;
+    const p = new URLSearchParams(window.location.search).get("peer");
+    return p && !Number.isNaN(Number(p)) ? Number(p) : null;
+  });
+  const [highlightId, setHighlightId] = useState<number | null>(null);
+  const peerRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
 
   // Self scores from local responses
   const selfScores: Record<string, number> = {};
@@ -96,6 +106,25 @@ export default function ComparisonView({
     }
     load();
   }, []);
+
+  // Once peers are loaded, scroll the deep-linked peer into view (expanded,
+  // with a brief highlight that fades).
+  useEffect(() => {
+    if (focusPeerId == null || peers.length === 0) return;
+    if (!peers.some((p) => p.id === focusPeerId)) return;
+    setOpenIds((prev) => new Set(prev).add(focusPeerId));
+    setHighlightId(focusPeerId);
+    const scrollT = setTimeout(() => {
+      peerRefs.current
+        .get(focusPeerId)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 120);
+    const fadeT = setTimeout(() => setHighlightId(null), 2800);
+    return () => {
+      clearTimeout(scrollT);
+      clearTimeout(fadeT);
+    };
+  }, [focusPeerId, peers]);
 
   if (loading) {
     return (
@@ -424,11 +453,23 @@ export default function ComparisonView({
                 const isOpen = openIds.has(peer.id);
                 const answeredCount = Object.keys(peer.answers).length;
 
+                const isHighlighted = highlightId === peer.id;
+
                 return (
                   <div
                     key={peer.id}
-                    className="rounded-2xl overflow-hidden"
-                    style={{ background: "#fff", border: "1px solid #EEE9F6" }}
+                    ref={(el) => {
+                      peerRefs.current.set(peer.id, el);
+                    }}
+                    className="rounded-2xl overflow-hidden transition-all duration-500"
+                    style={{
+                      background: "#fff",
+                      border: `1px solid ${isHighlighted ? "#9D88ED" : "#EEE9F6"}`,
+                      boxShadow: isHighlighted
+                        ? "0 0 0 3px rgba(157,136,237,0.28)"
+                        : "none",
+                      scrollMarginTop: 120,
+                    }}
                   >
                     {/* Header row */}
                     <button

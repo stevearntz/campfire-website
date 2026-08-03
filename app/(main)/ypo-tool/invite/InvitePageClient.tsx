@@ -30,6 +30,7 @@ export default function InvitePageClient() {
       <InvitePeers
         onBack={() => router.push("/ypo-tool/results")}
         onViewComparison={() => router.push("/ypo-tool/compare")}
+        onViewPeer={(id) => router.push(`/ypo-tool/compare?peer=${id}`)}
       />
     </div>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 interface Rater {
+  id: number;
   name: string | null;
   status: "in_progress" | "complete";
 }
@@ -10,9 +11,11 @@ interface Rater {
 export default function InvitePeers({
   onBack,
   onViewComparison,
+  onViewPeer,
 }: {
   onBack: () => void;
   onViewComparison: () => void;
+  onViewPeer: (id: number) => void;
 }) {
   const [inviteUrl, setInviteUrl] = useState("");
   const [copied, setCopied] = useState(false);
@@ -218,7 +221,7 @@ export default function InvitePeers({
               </div>
             ) : (
               <div className="space-y-2">
-                {raters.map((rater, i) => {
+                {raters.map((rater) => {
                   const name = rater.name || "Unnamed peer";
                   const initials = name
                     .split(" ")
@@ -228,50 +231,80 @@ export default function InvitePeers({
                     .slice(0, 2);
                   const isComplete = rater.status === "complete";
 
-                  return (
+                  const avatar = (
                     <div
-                      key={i}
-                      className="flex items-center gap-3 rounded-xl px-4 py-3"
+                      className="flex items-center justify-center rounded-full flex-shrink-0 font-bold"
                       style={{
-                        background: "#F8F6FB",
-                        border: "1px solid #EEE9F6",
+                        width: 34,
+                        height: 34,
+                        background: "#F3EFFA",
+                        color: "#6E3FCC",
+                        fontSize: 12,
                       }}
                     >
-                      {/* Avatar */}
-                      <div
-                        className="flex items-center justify-center rounded-full flex-shrink-0 font-bold"
-                        style={{
-                          width: 34,
-                          height: 34,
-                          background: "#F3EFFA",
-                          color: "#6E3FCC",
-                          fontSize: 12,
-                        }}
-                      >
-                        {initials}
-                      </div>
+                      {initials}
+                    </div>
+                  );
 
-                      {/* Name */}
-                      <span
-                        className="flex-1 font-medium"
-                        style={{ fontSize: 14, color: "#1E2A4A" }}
-                      >
-                        {name}
-                      </span>
+                  const nameEl = (
+                    <span
+                      className="flex-1 font-medium text-left"
+                      style={{ fontSize: 14, color: "#1E2A4A" }}
+                    >
+                      {name}
+                    </span>
+                  );
 
-                      {/* Status chip */}
+                  // Completed peers are clickable — jump to their attributed
+                  // feedback on the side-by-side comparison.
+                  if (isComplete) {
+                    return (
+                      <button
+                        key={rater.id}
+                        onClick={() => onViewPeer(rater.id)}
+                        className="w-full flex items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-[#F3EFFA]"
+                        style={{ background: "#F8F6FB", border: "1px solid #EEE9F6" }}
+                        title={`View ${name}'s feedback`}
+                      >
+                        {avatar}
+                        {nameEl}
+                        <span
+                          className="flex-shrink-0 font-bold uppercase"
+                          style={{ fontSize: 10, letterSpacing: "0.08em", color: "#6E3FCC" }}
+                        >
+                          View feedback
+                        </span>
+                        <svg
+                          className="w-4 h-4 flex-shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="#6E3FCC"
+                          strokeWidth={2.5}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    );
+                  }
+
+                  return (
+                    <div
+                      key={rater.id}
+                      className="flex items-center gap-3 rounded-xl px-4 py-3"
+                      style={{ background: "#F8F6FB", border: "1px solid #EEE9F6" }}
+                    >
+                      {avatar}
+                      {nameEl}
                       <span
                         className="font-bold uppercase rounded-full px-3 py-1"
                         style={{
                           fontSize: 10,
                           letterSpacing: "0.08em",
-                          color: isComplete ? "#1F8A5B" : "#B7B2C0",
-                          background: isComplete
-                            ? "rgba(31,138,91,0.1)"
-                            : "rgba(183,178,192,0.15)",
+                          color: "#B7B2C0",
+                          background: "rgba(183,178,192,0.15)",
                         }}
                       >
-                        {isComplete ? "Responded" : "Pending"}
+                        Pending
                       </span>
                     </div>
                   );
