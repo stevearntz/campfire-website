@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMember } from "../lib/useMember";
 import AppHeader from "../components/AppHeader";
@@ -16,7 +16,12 @@ function Spinner() {
 
 export default function ComparePageClient() {
   const router = useRouter();
-  const { loading, user, responses, assessment } = useMember();
+  // ?round=ID compares a specific past round; absent = current round.
+  const [roundId] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("round");
+  });
+  const { loading, user, responses, assessment } = useMember(roundId);
 
   useEffect(() => {
     if (!loading && !assessment) router.replace("/ypo-tool");
@@ -30,11 +35,14 @@ export default function ComparePageClient() {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppHeader email={user?.email} crumb="Comparison" />
+      <AppHeader email={user?.email} crumb={roundId ? "Past comparison" : "Comparison"} />
       <ComparisonView
         responses={responses}
         rateeFirstName={firstName}
-        onBack={() => router.push("/ypo-tool/results")}
+        roundId={roundId}
+        onBack={() =>
+          router.push(roundId ? `/ypo-tool/results?round=${roundId}` : "/ypo-tool/results")
+        }
       />
     </div>
   );

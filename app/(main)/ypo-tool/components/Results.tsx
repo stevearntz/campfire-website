@@ -8,11 +8,16 @@ export default function Results({
   selfFeedback,
   onRestart,
   onInvitePeers,
+  readOnly = false,
+  onCompare,
 }: {
   responses: Responses;
   selfFeedback?: Record<string, string>;
-  onRestart: () => void;
+  onRestart?: () => void;
   onInvitePeers?: () => void;
+  /** Viewing a past (closed) round — hide the invite/restart actions. */
+  readOnly?: boolean;
+  onCompare?: () => void;
 }) {
   const notes = CIRCLES.filter((c) => selfFeedback?.[c.key]?.trim());
   const sums = CIRCLES.map((c) => circleSum(c, responses));
@@ -285,38 +290,60 @@ export default function Results({
 
         {/* Footer actions */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 border-t border-[#EEE9F6]">
-          <button
-            onClick={onInvitePeers}
-            className="font-bold uppercase transition-opacity hover:opacity-90"
-            style={{
-              height: 54,
-              borderRadius: 14,
-              background: "#6E3FCC",
-              color: "#fff",
-              fontSize: 14,
-              letterSpacing: "0.08em",
-              padding: "0 32px",
-            }}
-          >
-            Invite peers &rarr;
-          </button>
+          {readOnly ? (
+            onCompare && (
+              <button
+                onClick={onCompare}
+                className="font-bold uppercase transition-opacity hover:opacity-90"
+                style={{
+                  height: 54,
+                  borderRadius: 14,
+                  background: "#6E3FCC",
+                  color: "#fff",
+                  fontSize: 14,
+                  letterSpacing: "0.08em",
+                  padding: "0 32px",
+                }}
+              >
+                See comparison &rarr;
+              </button>
+            )
+          ) : (
+            <>
+              <button
+                onClick={onInvitePeers}
+                className="font-bold uppercase transition-opacity hover:opacity-90"
+                style={{
+                  height: 54,
+                  borderRadius: 14,
+                  background: "#6E3FCC",
+                  color: "#fff",
+                  fontSize: 14,
+                  letterSpacing: "0.08em",
+                  padding: "0 32px",
+                }}
+              >
+                Invite peers &rarr;
+              </button>
 
-          <button
-            onClick={onRestart}
-            className="font-bold uppercase transition-colors"
-            style={{
-              height: 54,
-              borderRadius: 14,
-              background: "transparent",
-              border: "1px solid #E7E3EE",
-              color: "#636B7C",
-              fontSize: 14,
-              letterSpacing: "0.08em",
-              padding: "0 28px",
-            }}
-          >
-            Restart
-          </button>
+              <button
+                onClick={onRestart}
+                className="font-bold uppercase transition-colors"
+                style={{
+                  height: 54,
+                  borderRadius: 14,
+                  background: "transparent",
+                  border: "1px solid #E7E3EE",
+                  color: "#636B7C",
+                  fontSize: 14,
+                  letterSpacing: "0.08em",
+                  padding: "0 28px",
+                }}
+              >
+                Restart
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

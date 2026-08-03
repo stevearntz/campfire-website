@@ -46,6 +46,8 @@ export default function HomeDashboard({
   onCompare,
   onClose,
   onStartNew,
+  onViewRound,
+  onProgress,
 }: {
   firstName: string;
   hasActive: boolean;
@@ -61,6 +63,9 @@ export default function HomeDashboard({
   onCompare: () => void;
   onClose: () => void;
   onStartNew: () => void;
+  onViewRound: (id: number) => void;
+  /** Provided once the member has ≥2 rounds — links to the progress trend. */
+  onProgress?: () => void;
 }) {
   const [confirmingClose, setConfirmingClose] = useState(false);
 
@@ -253,18 +258,32 @@ export default function HomeDashboard({
         {/* History — closed rounds */}
         {pastRounds.length > 0 && (
           <div className="mt-12">
-            <p
-              className="font-bold uppercase mb-4"
-              style={{ fontSize: 11, letterSpacing: "0.12em", color: "#A8A2B3" }}
-            >
-              Past rounds
-            </p>
+            <div className="flex items-center justify-between mb-4">
+              <p
+                className="font-bold uppercase"
+                style={{ fontSize: 11, letterSpacing: "0.12em", color: "#A8A2B3" }}
+              >
+                Past rounds
+              </p>
+              {onProgress && (
+                <button
+                  onClick={onProgress}
+                  className="font-bold uppercase transition-opacity hover:opacity-80"
+                  style={{ fontSize: 11, letterSpacing: "0.06em", color: "#6E3FCC" }}
+                >
+                  See progress →
+                </button>
+              )}
+            </div>
             <div className="space-y-2">
               {pastRounds.map((r) => (
-                <div
+                <button
                   key={r.id}
-                  className="flex items-center justify-between rounded-xl px-4 py-3"
+                  onClick={() => onViewRound(r.id)}
+                  className="w-full flex items-center justify-between rounded-xl px-4 py-3 text-left transition-colors"
                   style={{ background: "#FBFAFD", border: "1px solid #F0ECF7" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#F5F1FB")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#FBFAFD")}
                 >
                   <div>
                     <div className="font-bold" style={{ fontSize: 14.5, color: "#1E2A4A" }}>
@@ -277,7 +296,13 @@ export default function HomeDashboard({
                       {r.closedAt ? ` · closed ${formatDate(r.closedAt)}` : ""}
                     </div>
                   </div>
-                </div>
+                  <span
+                    className="font-bold uppercase flex-shrink-0 ml-3"
+                    style={{ fontSize: 11, letterSpacing: "0.06em", color: "#6E3FCC" }}
+                  >
+                    View →
+                  </span>
+                </button>
               ))}
             </div>
           </div>

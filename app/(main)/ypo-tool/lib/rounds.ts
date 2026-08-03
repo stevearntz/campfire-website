@@ -46,6 +46,37 @@ export async function getCurrentRound(sql: Sql, userId: number): Promise<RoundRo
   return rows[0] ?? null;
 }
 
+/** A specific round, but only if it belongs to the given user (else null). */
+export async function getRoundById(
+  sql: Sql,
+  userId: number,
+  roundId: number,
+): Promise<RoundRow | null> {
+  const rows = (await sql`
+    SELECT id, status, title, created_at, completed_at, closed_at
+    FROM ypo_assessment
+    WHERE id = ${roundId} AND user_id = ${userId}
+    LIMIT 1
+  `) as RoundRow[];
+  return rows[0] ?? null;
+}
+
+/**
+ * Resolve the round a member is asking to view: an explicit, owned `roundId`
+ * if given and valid, otherwise their current round. Null if neither exists.
+ */
+export async function resolveRound(
+  sql: Sql,
+  userId: number,
+  roundId?: number | null,
+): Promise<RoundRow | null> {
+  if (roundId) {
+    const owned = await getRoundById(sql, userId, roundId);
+    if (owned) return owned;
+  }
+  return getCurrentRound(sql, userId);
+}
+
 /** The invite row for a specific round, or null if not minted yet. */
 export async function getRoundInvite(
   sql: Sql,

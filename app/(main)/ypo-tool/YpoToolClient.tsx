@@ -212,6 +212,12 @@ export default function YpoToolClient() {
           onCompare={() => router.push("/ypo-tool/compare")}
           onClose={handleCloseRound}
           onStartNew={handleStartNewRound}
+          onViewRound={(id) => router.push(`/ypo-tool/results?round=${id}`)}
+          onProgress={
+            pastRounds.length + (journey ? 1 : 0) >= 2
+              ? () => router.push("/ypo-tool/progress")
+              : undefined
+          }
         />
       </div>
     );
