@@ -68,6 +68,8 @@ export default function HomeDashboard({
   onProgress?: () => void;
 }) {
   const [confirmingClose, setConfirmingClose] = useState(false);
+  const [confirmText, setConfirmText] = useState("");
+  const canClose = confirmText.trim().toLowerCase() === "close";
 
   // ── Step 1: Rate yourself ──────────────────────────────────────
   const step1: JourneyStep = isComplete
@@ -176,53 +178,118 @@ export default function HomeDashboard({
           <>
             <JourneyTracker steps={[step1, step2, step3]} />
 
-            {/* Close the current round */}
-            <div className="mt-8 pt-6" style={{ borderTop: "1px solid #EEE9F6" }}>
-              {!confirmingClose ? (
-                <button
-                  onClick={() => setConfirmingClose(true)}
-                  className="transition-colors"
-                  style={{ fontSize: 13.5, color: "#A8A2B3" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#636B7C")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#A8A2B3")}
-                >
-                  Close this round
-                </button>
-              ) : (
-                <div
-                  className="rounded-xl p-4"
-                  style={{ background: "#F8F6FB", border: "1px solid #EEE9F6" }}
-                >
-                  <p className="mb-3" style={{ fontSize: 13.5, color: "#636B7C", lineHeight: 1.55 }}>
-                    Closing stops your peer link from collecting and moves this
-                    round to your history. You can start a new one afterward.
-                  </p>
-                  <div className="flex items-center gap-2">
+            {/* Close the current round — only once the self-assessment is done.
+                An unfinished round has nothing to close; you just continue it. */}
+            {isComplete && (
+              <div className="mt-8 pt-8" style={{ borderTop: "1px solid #EEE9F6" }}>
+                {!confirmingClose ? (
+                  <div
+                    className="rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                    style={{ background: "#FBFAFD", border: "1px solid #EEE9F6" }}
+                  >
+                    <div>
+                      <h3 className="font-bold mb-0.5" style={{ fontSize: 15.5, color: "#1E2A4A" }}>
+                        Done with this round?
+                      </h3>
+                      <p style={{ fontSize: 13.5, color: "#636B7C", lineHeight: 1.5 }}>
+                        Stop collecting peer responses and move it to your history.
+                      </p>
+                    </div>
                     <button
-                      onClick={onClose}
-                      className="font-bold uppercase transition-opacity hover:opacity-90"
+                      onClick={() => {
+                        setConfirmText("");
+                        setConfirmingClose(true);
+                      }}
+                      className="font-bold uppercase transition-colors flex-shrink-0 self-start sm:self-auto"
                       style={{
-                        height: 40,
-                        borderRadius: 10,
-                        background: "#6E3FCC",
-                        color: "#fff",
-                        fontSize: 12.5,
+                        height: 46,
+                        borderRadius: 12,
+                        background: "transparent",
+                        border: "1.5px solid #6E3FCC",
+                        color: "#6E3FCC",
+                        fontSize: 13,
                         letterSpacing: "0.06em",
-                        padding: "0 20px",
+                        padding: "0 22px",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "#6E3FCC";
+                        e.currentTarget.style.color = "#fff";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "#6E3FCC";
                       }}
                     >
-                      Close round
-                    </button>
-                    <button
-                      onClick={() => setConfirmingClose(false)}
-                      style={{ fontSize: 13.5, color: "#A8A2B3", padding: "0 12px" }}
-                    >
-                      Cancel
+                      Close this round
                     </button>
                   </div>
-                </div>
-              )}
-            </div>
+                ) : (
+                  <div
+                    className="rounded-2xl p-5"
+                    style={{ background: "#FBF6FB", border: "1px solid #F0D9EE" }}
+                  >
+                    <h3 className="font-bold mb-1" style={{ fontSize: 15.5, color: "#1E2A4A" }}>
+                      Close this round?
+                    </h3>
+                    <p className="mb-4" style={{ fontSize: 13.5, color: "#636B7C", lineHeight: 1.55 }}>
+                      This stops your peer link from collecting and moves the round
+                      to your history — it can’t be reopened. Type{" "}
+                      <span className="font-bold" style={{ color: "#1E2A4A" }}>close</span>{" "}
+                      to confirm.
+                    </p>
+                    <input
+                      type="text"
+                      value={confirmText}
+                      onChange={(e) => setConfirmText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && canClose) onClose();
+                      }}
+                      autoFocus
+                      placeholder="close"
+                      className="w-full outline-none mb-4"
+                      style={{
+                        height: 46,
+                        borderRadius: 12,
+                        background: "#fff",
+                        border: "1px solid #E7D3E4",
+                        color: "#1E2A4A",
+                        fontSize: 15,
+                        padding: "0 16px",
+                        maxWidth: 240,
+                      }}
+                    />
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={onClose}
+                        disabled={!canClose}
+                        className="font-bold uppercase transition-opacity"
+                        style={{
+                          height: 46,
+                          borderRadius: 12,
+                          background: canClose ? "#E055CB" : "#EBD7E8",
+                          color: "#fff",
+                          fontSize: 13,
+                          letterSpacing: "0.06em",
+                          padding: "0 24px",
+                          cursor: canClose ? "pointer" : "not-allowed",
+                        }}
+                      >
+                        Close round
+                      </button>
+                      <button
+                        onClick={() => {
+                          setConfirmingClose(false);
+                          setConfirmText("");
+                        }}
+                        style={{ fontSize: 13.5, color: "#A8A2B3", padding: "0 12px" }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </>
         ) : (
           /* No open round — offer to start a new one */
