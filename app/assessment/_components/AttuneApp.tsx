@@ -197,10 +197,11 @@ function Explainer({
       <div className="text-center">
         <Eyebrow>{COPY.explainerTagline}</Eyebrow>
         <h1
-          className="mt-6 text-5xl leading-[1.05] sm:text-6xl"
+          className="mt-6 text-5xl leading-[1.08] sm:text-6xl"
           style={{ fontFamily: BRAND.serif, fontWeight: 400, color: BRAND.green }}
         >
-          How <span style={{ fontStyle: "italic" }}>cared for</span> do people feel at work?
+          Is your organization set up for people to do their{" "}
+          <span style={{ fontStyle: "italic" }}>best</span> work?
         </h1>
         <p
           className="mx-auto mt-6 max-w-[46ch] text-lg leading-relaxed"

@@ -5,6 +5,7 @@ import {
   BRAND,
   COPY,
   PRESETS,
+  HEALTH_BANDS,
   READING_BANDS,
   CALLOUTS,
   TIERS,
@@ -21,7 +22,16 @@ import {
 import { scoreColor, scoreFraction, textOn } from "../_lib/scale-color";
 import { Wordmark, Eyebrow } from "./ui";
 
-function readingLabel(score: number) {
+// Primary headline: org-wide effectiveness / health (overall across the stack).
+function healthLabel(score: number) {
+  return (
+    HEALTH_BANDS.find((b) => score >= b.min)?.label ??
+    HEALTH_BANDS[HEALTH_BANDS.length - 1].label
+  );
+}
+
+// The "cared for" differentiator, shown alongside — not as the headline.
+function caredForLabel(score: number) {
   return (
     READING_BANDS.find((b) => score >= b.min)?.label ??
     READING_BANDS[READING_BANDS.length - 1].label
@@ -108,13 +118,13 @@ export default function Dashboard({
               className="text-[0.75rem] uppercase tracking-[0.14em]"
               style={{ color: BRAND.gold }}
             >
-              How cared for the organization feels
+              Organizational health
             </div>
             <div
               className="mt-3 text-4xl leading-[1.05] sm:text-5xl"
               style={{ fontFamily: BRAND.serif, fontWeight: 500 }}
             >
-              {readingLabel(summary.northstar)}
+              {healthLabel(summary.overall)}
             </div>
             <p
               className="mt-4 text-sm leading-relaxed"
@@ -124,8 +134,13 @@ export default function Dashboard({
             </p>
           </div>
           <div className="flex gap-9">
-            <Stat label="Cared for" value={summary.northstar} accent={BRAND.gold} />
-            <Stat label="Overall" value={summary.overall} accent={BRAND.cream} />
+            <Stat label="Health" value={summary.overall} accent={BRAND.cream} />
+            <Stat
+              label="Cared for"
+              value={summary.northstar}
+              accent={BRAND.gold}
+              caption={caredForLabel(summary.northstar)}
+            />
             <Stat label="Respondents" value={summary.count} accent={BRAND.cream} raw />
           </div>
         </div>
@@ -201,11 +216,13 @@ function Stat({
   value,
   accent,
   raw,
+  caption,
 }: {
   label: string;
   value: number;
   accent: string;
   raw?: boolean;
+  caption?: string;
 }) {
   return (
     <div className="text-right">
@@ -222,6 +239,11 @@ function Stat({
       >
         {label}
       </div>
+      {caption && (
+        <div className="mt-0.5 text-[0.7rem]" style={{ color: BRAND.gold }}>
+          {caption}
+        </div>
+      )}
     </div>
   );
 }
