@@ -70,6 +70,8 @@ export const COPY = {
   viewDashboardLink: "View org dashboard →",
   levelPrompt: "Which best describes your role?",
   levelSub: "Your answers are anonymous. This just helps us group the results.",
+  deptPrompt: "Which part of the organization are you in?",
+  deptSub: "Still anonymous — this lets us compare across departments.",
   confirmationTitle: "Thank you.",
   confirmationBody:
     "Your response is in. Next you'll see how the organization reads as a whole — rolled up and segmented by level.",
@@ -93,6 +95,36 @@ export const LEVELS: { id: LevelId; label: string; count: number }[] = [
   { id: "manager", label: "Manager", count: 15 },
   { id: "ic", label: "Individual contributor", count: 19 },
 ]; // total = 60
+
+/* -------------------------------------------------------------------------
+   Departments — the SECOND segmentation axis (alongside level). One of the
+   most powerful cross-cuts: it shows *which part of the org* feels it least.
+   - `weight`   = relative headcount (how many simulated people land here).
+   - `bias`     = the story dial, roughly -1..+1: how this department reads
+                  vs. the org (positive = healthier/more cared-for). Centered
+                  automatically so the org-wide average is preserved.
+   Rewrite this list to match a real customer's org.
+   ------------------------------------------------------------------------- */
+export type DeptId =
+  | "eng"
+  | "sales"
+  | "support"
+  | "marketing"
+  | "product"
+  | "ops"
+  | "people"
+  | "finance";
+
+export const DEPARTMENTS: { id: DeptId; label: string; weight: number; bias: number }[] = [
+  { id: "eng", label: "Engineering", weight: 22, bias: -0.5 },
+  { id: "sales", label: "Sales", weight: 14, bias: 0.6 },
+  { id: "support", label: "Customer Support", weight: 12, bias: -0.8 },
+  { id: "marketing", label: "Marketing", weight: 8, bias: 0.2 },
+  { id: "product", label: "Product", weight: 8, bias: 0.1 },
+  { id: "ops", label: "Operations", weight: 10, bias: -0.2 },
+  { id: "people", label: "People & Culture", weight: 6, bias: 0.7 },
+  { id: "finance", label: "Finance", weight: 6, bias: 0.0 },
+];
 
 /* -------------------------------------------------------------------------
    Tiers — the three-layer "stack" plus the single north-star item.
@@ -167,6 +199,11 @@ export const SIM = {
   // Per-response random wobble (std-dev, in scale points). Higher = messier.
   noise: 0.55,
 
+  // Department spread magnitude (points). How far departments diverge from
+  // each other, scaled by each department's `bias`. Centered so the org-wide
+  // average stays put. 0 = departments identical.
+  deptSpread: 0.5,
+
   // Fallback baseline if the dashboard is opened without taking the survey.
   neutralBaseline: 3.3,
 };
@@ -231,6 +268,8 @@ export const CALLOUTS = {
     `${tierName} is the weakest tier across the org (${score.toFixed(1)}/5). The base may be holding — the top isn't.`,
   levelGap: (highLabel: string, lowLabel: string, gap: number) =>
     `${lowLabel}s feel the least cared for — a ${gap.toFixed(1)}-point gap below ${highLabel}.`,
+  deptHealthGap: (highLabel: string, lowLabel: string, gap: number) =>
+    `${lowLabel} is the most strained department and ${highLabel} the healthiest — a ${gap.toFixed(1)}-point spread across the org.`,
   strongTier: (tierName: string, score: number) =>
     `${tierName} is your strongest layer (${score.toFixed(1)}/5).`,
 };
