@@ -7,18 +7,20 @@ import {
   BRAND,
   COPY,
   LEVELS,
+  DEPARTMENTS,
   QUESTIONS,
   SCALE,
   TIERS,
   NORTHSTAR,
   type LevelId,
+  type DeptId,
   type TierId,
 } from "../_lib/config";
 import type { SimResponse } from "../_lib/simulate";
 import { Wordmark, Eyebrow, Button, TopWordmark } from "./ui";
 import Dashboard from "./Dashboard";
 
-type Screen = "gate" | "explainer" | "level" | "survey" | "done" | "dashboard";
+type Screen = "gate" | "explainer" | "level" | "department" | "survey" | "done" | "dashboard";
 
 const tierLabel = (t: TierId) =>
   t === NORTHSTAR ? "The north star" : TIERS.find((x) => x.id === t)?.name ?? t;
@@ -26,6 +28,7 @@ const tierLabel = (t: TierId) =>
 export default function AttuneApp() {
   const [screen, setScreen] = useState<Screen>("gate");
   const [level, setLevel] = useState<LevelId | null>(null);
+  const [department, setDepartment] = useState<DeptId | null>(null);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [qIndex, setQIndex] = useState(0);
   const [anchor, setAnchor] = useState<SimResponse | null>(null);
@@ -43,6 +46,7 @@ export default function AttuneApp() {
 
   function reset() {
     setLevel(null);
+    setDepartment(null);
     setAnswers({});
     setQIndex(0);
     setAnchor(null);
@@ -68,14 +72,14 @@ export default function AttuneApp() {
 
   function goBack() {
     if (qIndex === 0) {
-      setScreen("level");
+      setScreen("department");
     } else {
       setQIndex((i) => i - 1);
     }
   }
 
   function finishToDashboard() {
-    if (level) setAnchor({ level, answers });
+    if (level && department) setAnchor({ level, department, answers });
     setScreen("dashboard");
   }
 
@@ -105,9 +109,19 @@ export default function AttuneApp() {
         <LevelSelect
           onPick={(l) => {
             setLevel(l);
+            setScreen("department");
+          }}
+        />
+      )}
+
+      {screen === "department" && (
+        <DepartmentSelect
+          onPick={(d) => {
+            setDepartment(d);
             setQIndex(0);
             setScreen("survey");
           }}
+          onBack={() => setScreen("level")}
         />
       )}
 
@@ -266,6 +280,64 @@ function LevelSelect({ onPick }: { onPick: (l: LevelId) => void }) {
               </span>
             </button>
           ))}
+        </div>
+      </div>
+    </Shell>
+  );
+}
+
+function DepartmentSelect({
+  onPick,
+  onBack,
+}: {
+  onPick: (d: DeptId) => void;
+  onBack: () => void;
+}) {
+  return (
+    <Shell>
+      <div>
+        <Eyebrow>Your team</Eyebrow>
+        <h2
+          className="mt-5 text-3xl sm:text-4xl"
+          style={{ fontFamily: BRAND.serif, fontWeight: 400, color: BRAND.green }}
+        >
+          {COPY.deptPrompt}
+        </h2>
+        <p className="mt-3 text-sm" style={{ color: BRAND.inkSoft }}>
+          {COPY.deptSub}
+        </p>
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {DEPARTMENTS.map((d) => (
+            <button
+              key={d.id}
+              onClick={() => onPick(d.id)}
+              className="group flex items-center justify-between rounded-[14px] border px-5 py-4 text-left transition-all duration-200 hover:border-[color:var(--h)] hover:shadow-[0_2px_8px_rgba(35,66,54,0.07)]"
+              style={
+                {
+                  borderColor: BRAND.line,
+                  backgroundColor: BRAND.surface,
+                  "--h": BRAND.green,
+                } as React.CSSProperties
+              }
+            >
+              <span style={{ color: BRAND.ink }}>{d.label}</span>
+              <span
+                className="opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                style={{ color: BRAND.copper }}
+              >
+                →
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="mt-8">
+          <button
+            onClick={onBack}
+            className="text-sm transition-colors hover:text-[color:var(--h)]"
+            style={{ color: BRAND.inkSoft, ["--h" as string]: BRAND.copper }}
+          >
+            ← Back
+          </button>
         </div>
       </div>
     </Shell>

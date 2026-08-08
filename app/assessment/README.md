@@ -18,11 +18,15 @@ Almost everything lives in **`_lib/config.ts`**:
   client-visible; just a light gate. Unlock is stored in `sessionStorage`.
 - `COPY` — all top-level screen copy.
 - `LEVELS` — roles + how many simulated respondents sit at each (pyramid, ~60).
+- `DEPARTMENTS` — the second segmentation axis. Each has a `weight` (relative
+  headcount) and a `bias` (~-1..+1 story dial: how the team reads vs. the org).
+  Rewrite to match a real customer's org.
 - `QUESTIONS` — the 17 items (Foundation ×4, Management ×6, Attunement ×6,
   north-star ×1). Rewrite freely.
 - `SCALE` — the shared 1–5 scale.
-- `SIM` — simulation dials: `levelGradient` (seniority gap magnitude), `noise`,
-  `neutralBaseline` (fallback when no survey is taken).
+- `SIM` — simulation dials: `levelGradient` (seniority gap magnitude),
+  `deptSpread` (how far departments diverge), `noise`, `neutralBaseline`
+  (fallback when no survey is taken).
 - `PRESETS` — the demo stories (Healthy / Big level gap / Strong base, weak top /
   Shaky foundation). Each just sets a per-tier baseline + gradient.
 - `THRESHOLDS`, `CALLOUTS`, `READING_BANDS` — the dashboard's copy + banding.
@@ -33,11 +37,13 @@ Almost everything lives in **`_lib/config.ts`**:
 ## How the simulated org works (`_lib/simulate.ts`)
 
 The respondent is treated as **one representative pulse**. Their per-item answers
-become the org baseline; each simulated respondent at level _L_ gets
-`answer[i] + levelAdjustment(L) + gaussianNoise`, clamped to 1–5. The seniority
-gradient is **centered on the count-weighted mean level**, so the org-wide
-average stays close to the respondent's own answers — only the _shape_ (top vs.
-bottom) shifts. The respondent's own response is folded into the pool.
+become the org baseline; each simulated respondent at level _L_ in department _D_
+gets `answer[i] + levelAdjustment(L) + deptAdjustment(D) + gaussianNoise`, clamped
+to 1–5. Both the seniority gradient and the department spread are **centered on
+their weighted means**, so the org-wide average stays close to the respondent's
+own answers — only the _shape_ (top vs. bottom, team vs. team) shifts.
+Departments are assigned across the pool by `weight`. The respondent's own
+response is folded into the pool.
 
 - Open the dashboard straight from the explainer → neutral mid-range org.
 - **Regenerate sample data** re-draws the noise around the _same_ baseline.
@@ -47,10 +53,11 @@ bottom) shifts. The respondent's own response is folded into the pool.
 
 - `page.tsx` — route entry (renders `AttuneApp`).
 - `layout.tsx` — fonts + `noindex` metadata + page surface.
-- `_components/AttuneApp.tsx` — screen flow: gate → explainer → level → survey →
-  confirmation → dashboard, plus reset.
-- `_components/Dashboard.tsx` — the rollup (headline, stack, gap-by-level,
-  tier × level heatmap, callouts, preset switcher).
+- `_components/AttuneApp.tsx` — screen flow: gate → explainer → level →
+  department → survey → confirmation → dashboard, plus reset.
+- `_components/Dashboard.tsx` — the rollup (health headline, stack, gap-by-level,
+  tier × level heatmap, **by-department bars, tier × department heatmap**,
+  callouts, preset switcher).
 - `_components/ui.tsx` — shared atoms (wordmark, eyebrow, button).
 - `_lib/config.ts` — all editable content + tokens.
 - `_lib/simulate.ts` — org generation + rollup math.

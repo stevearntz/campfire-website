@@ -147,11 +147,16 @@ export default function Dashboard({
       </section>
 
       {/* callouts */}
-      <div className="mb-10 grid gap-4 sm:grid-cols-2">
+      <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Callout accent={BRAND.copper} text={CALLOUTS.levelGap(
           summary.biggestGap.highLabel,
           summary.biggestGap.lowLabel,
           summary.biggestGap.gap,
+        )} />
+        <Callout accent={BRAND.moss} text={CALLOUTS.deptHealthGap(
+          summary.deptGap.highLabel,
+          summary.deptGap.lowLabel,
+          summary.deptGap.gap,
         )} />
         <Callout accent={BRAND.river} text={CALLOUTS.weakestTier(
           summary.weakestTier.name,
@@ -182,7 +187,29 @@ export default function Dashboard({
 
       {/* heatmap: tier × level */}
       <Panel title="Tier by level" sub="Where the care holds — and where it thins out.">
-        <Heatmap summary={summary} />
+        <Heatmap rows={summary.heatmap} />
+      </Panel>
+
+      {/* by department — the second axis */}
+      <Panel
+        title="By department"
+        sub="Overall health department by department — the differences are often the story."
+      >
+        <div className="space-y-5">
+          {summary.departments.map((d) => (
+            <BarRow
+              key={d.id}
+              label={d.label}
+              score={d.health}
+              meta={`cared for ${d.caredFor.toFixed(1)} · n=${d.n}`}
+            />
+          ))}
+        </div>
+      </Panel>
+
+      {/* heatmap: tier × department */}
+      <Panel title="Tier by department" sub="Which team is thin on which layer.">
+        <Heatmap rows={summary.departments.map((d) => ({ label: d.label, cells: d.cells }))} />
       </Panel>
 
       {/* preset switcher — clearly separated from the default org */}
@@ -327,14 +354,17 @@ function BarRow({ label, score, meta }: { label: string; score: number; meta?: s
   );
 }
 
-function Heatmap({ summary }: { summary: ReturnType<typeof summarize> }) {
+type HeatRow = { label: string; cells: { tier: TierId; score: number }[] };
+
+function Heatmap({ rows }: { rows: HeatRow[] }) {
+  if (!rows.length) return null;
   return (
     <div className="overflow-x-auto">
       <table className="w-full border-separate" style={{ borderSpacing: "5px" }}>
         <thead>
           <tr>
             <th className="w-44" />
-            {summary.heatmap[0].cells.map((c) => (
+            {rows[0].cells.map((c) => (
               <th
                 key={c.tier}
                 className="px-2 pb-2 text-left text-[0.7rem] font-medium uppercase tracking-[0.1em]"
@@ -346,8 +376,8 @@ function Heatmap({ summary }: { summary: ReturnType<typeof summarize> }) {
           </tr>
         </thead>
         <tbody>
-          {summary.heatmap.map((row) => (
-            <tr key={row.level}>
+          {rows.map((row) => (
+            <tr key={row.label}>
               <td className="pr-3 text-right text-sm" style={{ color: BRAND.ink }}>
                 {row.label}
               </td>
