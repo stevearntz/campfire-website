@@ -1,5 +1,9 @@
 /* =========================================================================
    Attune — Organizational Assessment prototype
+   A pulse on organizational effectiveness & health (clarity, alignment, the
+   conditions for great work), whose differentiator is whether people actually
+   FEEL it — the care / attunement layer, surfaced on the dashboard.
+
    ONE editable config file. Almost everything you'll want to tweak lives
    here: password, copy, questions, levels, scale, simulation dials,
    presets, thresholds, callouts, and brand colors.
@@ -55,9 +59,12 @@ export const BRAND = {
    ------------------------------------------------------------------------- */
 export const COPY = {
   explainerTitle: "Attune",
-  explainerTagline: "How cared for do people feel at work?",
+  // Lead on organizational effectiveness & health — clarity, alignment, the
+  // conditions for great work. NOT "how cared-for do you feel." (The care /
+  // attunement layer is the differentiator, surfaced on the dashboard.)
+  explainerTagline: "A pulse on organizational health",
   explainerBody:
-    "A short, anonymous read on how supported people feel across your organization — from the executive team to the front line. Takes about 3–4 minutes.",
+    "A short, anonymous read on whether your organization is clear, aligned, and set up for people to do great work — from the executive team to the front line. About 3–4 minutes.",
   explainerMeta: "~3–4 minutes · Anonymous",
   getStarted: "Get started",
   viewDashboardLink: "View org dashboard →",
@@ -228,7 +235,18 @@ export const CALLOUTS = {
     `${tierName} is your strongest layer (${score.toFixed(1)}/5).`,
 };
 
-/* Labels used under the north-star headline based on the org-wide score. */
+/* Headline band for the org-wide EFFECTIVENESS / HEALTH reading — this is the
+   primary dashboard headline (overall across the whole stack). */
+export const HEALTH_BANDS: { min: number; label: string }[] = [
+  { min: 4.3, label: "Thriving" },
+  { min: 3.7, label: "Healthy" },
+  { min: 3.0, label: "Mixed" },
+  { min: 2.3, label: "Strained" },
+  { min: 0, label: "Struggling" },
+];
+
+/* Band for the "cared for" north-star — the DIFFERENTIATING dimension shown
+   alongside the health headline, not as the sole headline. */
 export const READING_BANDS: { min: number; label: string }[] = [
   { min: 4.3, label: "Deeply cared for" },
   { min: 3.7, label: "Cared for" },
