@@ -5,26 +5,39 @@ import { CIRCLES, ALL_ITEM_KEYS, type Responses } from "../lib/behaviors";
 import SectionIntro from "./SectionIntro";
 import QuestionScreen from "./QuestionScreen";
 
-const STORAGE_KEY = "ypo_assessment_responses";
+const STORAGE_PREFIX = "ypo_assessment_responses";
+
+/**
+ * localStorage is a per-round backup. It MUST be keyed by assessment id —
+ * a single global key let a completed round's answers bleed into a freshly
+ * started (empty) round, which made resumeStep() read "complete" and the flow
+ * render nothing (a white screen). Fall back to the bare prefix only when
+ * there's no DB id (demo mode).
+ */
+function storageKey(assessmentId?: number): string {
+  return assessmentId && assessmentId > 0
+    ? `${STORAGE_PREFIX}_${assessmentId}`
+    : STORAGE_PREFIX;
+}
 
 type FlowStep =
   | { phase: "intro"; circleIdx: number }
   | { phase: "questions"; circleIdx: number }
   | { phase: "complete" };
 
-function loadResponses(): Responses {
+function loadResponses(assessmentId?: number): Responses {
   if (typeof window === "undefined") return {};
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(storageKey(assessmentId));
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
   }
 }
 
-function saveResponses(r: Responses) {
+function saveResponses(assessmentId: number | undefined, r: Responses) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(r));
+    localStorage.setItem(storageKey(assessmentId), JSON.stringify(r));
   } catch {
     // localStorage full or unavailable
   }
@@ -58,27 +71,35 @@ export default function AssessmentFlow({
   assessmentId?: number;
 }) {
   const [responses, setResponses] = useState<Responses>(() => {
-    // Prefer DB-loaded responses, fall back to localStorage
+    // Prefer DB-loaded responses, fall back to this round's localStorage.
     if (initialResponses && Object.keys(initialResponses).length > 0) {
       return initialResponses;
     }
-    return loadResponses();
+    return loadResponses(assessmentId);
   });
   const [feedback, setFeedback] = useState<Record<string, string>>(
     initialFeedback || {},
   );
-  const [step, setStep] = useState<FlowStep>(() => resumeStep(
-    initialResponses && Object.keys(initialResponses).length > 0
-      ? initialResponses
-      : loadResponses()
-  ));
+  const [step, setStep] = useState<FlowStep>(() => {
+    const seed =
+      initialResponses && Object.keys(initialResponses).length > 0
+        ? initialResponses
+        : loadResponses(assessmentId);
+    const resumed = resumeStep(seed);
+    // Never mount straight into "complete" — that renders nothing. If every
+    // item is already answered, land on the last section so the member can
+    // review and finish it properly.
+    return resumed.phase === "complete"
+      ? { phase: "questions", circleIdx: CIRCLES.length - 1 }
+      : resumed;
+  });
   const [dbAssessmentId] = useState<number | null>(assessmentId ?? null);
   const topRef = useRef<HTMLDivElement>(null);
 
-  // Persist to localStorage on change
+  // Persist to this round's localStorage on change
   useEffect(() => {
-    saveResponses(responses);
-  }, [responses]);
+    saveResponses(assessmentId, responses);
+  }, [assessmentId, responses]);
 
   const scrollToTop = useCallback(() => {
     setTimeout(() => {
