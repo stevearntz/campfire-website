@@ -77,8 +77,26 @@ export async function fetchEvents(options?: {
   return data.entries ?? [];
 }
 
+/**
+ * Listing events is best-effort: the Luma subscription is currently inactive,
+ * so list-events returns 403. These pages prerender at build time, and a throw
+ * here fails the whole production build. Log and fall back to an empty list so
+ * the rest of the site can still ship. Registration below still throws — those
+ * errors need to reach the user.
+ */
+async function listEventsOrEmpty(
+  options: Parameters<typeof fetchEvents>[0],
+): Promise<LumaEvent[]> {
+  try {
+    return await fetchEvents(options);
+  } catch (err) {
+    console.warn("Luma list-events unavailable, rendering no events:", err);
+    return [];
+  }
+}
+
 export async function fetchUpcomingEvents(limit?: number): Promise<LumaEvent[]> {
-  return fetchEvents({
+  return listEventsOrEmpty({
     after: new Date().toISOString(),
     sortDirection: "asc",
     limit,
@@ -86,7 +104,7 @@ export async function fetchUpcomingEvents(limit?: number): Promise<LumaEvent[]> 
 }
 
 export async function fetchPastEvents(limit?: number): Promise<LumaEvent[]> {
-  return fetchEvents({
+  return listEventsOrEmpty({
     before: new Date().toISOString(),
     sortDirection: "desc",
     limit,
