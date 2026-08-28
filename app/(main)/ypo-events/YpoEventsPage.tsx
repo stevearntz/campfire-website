@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 /* ─── constants ─── */
 
@@ -57,7 +56,7 @@ const IMPERATIVES = [
     title: "Quality",
     owner: "Camy & Meghna",
     description:
-      "Define what “quality” actually means for a global event — then measure it better than a satisfaction score can.",
+      "Define what “quality” means for a global event, and find a better way to measure it.",
     color: "#C084FC",
   },
   {
@@ -65,7 +64,7 @@ const IMPERATIVES = [
     title: "Audiences",
     owner: "Maria",
     description:
-      "Identify the audiences this team isn’t yet serving, and build an audience roadmap rather than assuming who shows up.",
+      "Identify the audiences this team isn’t yet serving, and build an audience roadmap.",
     color: "#A855F7",
   },
   {
@@ -73,7 +72,7 @@ const IMPERATIVES = [
     title: "Experiences",
     owner: "Allison",
     description:
-      "Build experiences designed for those audiences — not adapted from what already exists.",
+      "Build experiences designed for those audiences, rather than adapting what already exists.",
     color: "#8B5CF6",
   },
   {
@@ -81,7 +80,7 @@ const IMPERATIVES = [
     title: "Champions",
     owner: "Jeff",
     description:
-      "Champion excellence. Set the standard across the portfolio and hold the whole team to it.",
+      "Champion excellence. Set the standard across the portfolio and hold the team to it.",
     color: "#7C3AED",
   },
   {
@@ -89,7 +88,7 @@ const IMPERATIVES = [
     title: "Scale",
     owner: "Daniel",
     description:
-      "Operationalize what works so it runs on systems instead of heroics.",
+      "Operationalize what works so it runs on systems instead of individual effort.",
     color: "#6D28D9",
   },
 ];
@@ -99,9 +98,9 @@ const BEHAVIORS = [
     name: "Respected",
     tagline: "We’re brought in early, not handed the work late.",
     items: [
-      "Revered for the work — the quality of what we deliver speaks before we do",
-      "Trusted and trusting — we extend trust first, and earn it back",
-      "Elevated — we operate at the altitude where decisions get made",
+      "Revered. The quality of the work speaks for itself.",
+      "Trusted and trusting. We extend trust first.",
+      "Elevated. We’re in the room where decisions get made.",
     ],
     color: "#C084FC",
   },
@@ -109,29 +108,29 @@ const BEHAVIORS = [
     name: "Bold",
     tagline: "We say the hard thing, and we say it first.",
     items: [
-      "Politely assertive — direct about the hard thing, careful with the person",
-      "Boldly curious — we ask the question everyone else is avoiding",
-      "Unafraid — we make the call instead of waiting for permission",
+      "Politely assertive. Direct about the issue, careful with the person.",
+      "Boldly curious. We ask the question others are avoiding.",
+      "Unafraid. We make the call instead of waiting for permission.",
     ],
     color: "#A855F7",
   },
   {
     name: "Intentional",
-    tagline: "Strategic over reactive — we choose the work.",
+    tagline: "We choose the work rather than absorb it.",
     items: [
-      "Strategic over reactive — we choose the work; the work doesn’t choose us",
-      "Clear about what we’re not doing — we name the tradeoff instead of absorbing it",
-      "Collaborative by design — we bring people in early, not for sign-off",
+      "Strategic over reactive. We decide what we take on.",
+      "Clear about what we’re not doing. We name the tradeoff.",
+      "Collaborative by design. We bring people in early, not for sign-off.",
     ],
     color: "#8B5CF6",
   },
   {
     name: "Badass",
-    tagline: "Only @ YPO — and everyone can tell.",
+    tagline: "Only @ YPO.",
     items: [
-      "Only @ YPO — we build what members genuinely can’t get anywhere else",
-      "Empowered — we own the outcome, not just the task",
-      "Resilient — we absorb the change and hold the standard",
+      "Only @ YPO. We build what members can’t get anywhere else.",
+      "Empowered. We own the outcome, not just the task.",
+      "Resilient. We absorb the change and hold the standard.",
     ],
     color: "#7C3AED",
   },
@@ -141,22 +140,22 @@ const NEXT_STEPS = [
   {
     title: "Do the trust work",
     description:
-      "The session didn’t reach it. The shift is from an inward to an outward mindset — treating colleagues as people rather than objects — and replacing assumptions with curiosity. Run in pairs, three questions: How does someone in my role affect your ability to do your work? How could a person in my role be most helpful to you? How, and how often, should we check in to stay accountable to our impact on each other?",
+      "The session didn’t reach it. The shift is from an inward to an outward mindset, treating colleagues as people rather than objects, and replacing assumptions with curiosity. Run it in pairs, three questions: How does someone in my role affect your ability to do your work? How could a person in my role be most helpful to you? How, and how often, should we check in to stay accountable to our impact on each other?",
   },
   {
     title: "Set the cadence",
     description:
-      "Commitments were made in the room. What wasn’t agreed is how often this team comes back to them, and who holds whom. Without a rhythm, the commitments quietly expire.",
+      "Commitments were made in the room. What wasn’t agreed is how often the team comes back to them, and who holds whom accountable.",
   },
   {
     title: "Push goals to the individual level",
     description:
-      "The chain runs Purpose → Mission → Strategy → Outcomes → Behaviors. Goals are the missing link — each imperative needs to come down to specific goals per team, and then per person.",
+      "The chain runs Purpose, Mission, Strategy, Outcomes, Behaviors. Goals are the missing link. Each imperative needs specific goals per team, and then per person.",
   },
   {
     title: "Define each imperative",
     description:
-      "The five have owners but not yet definitions. Each owner writes what “done” looks like for their workstream, so progress is something the team can see rather than assume.",
+      "The five have owners but not yet definitions. Each owner writes what “done” looks like for their workstream.",
   },
 ];
 
@@ -312,9 +311,9 @@ export default function YpoEventsPage() {
             Ten leaders, four hours, one chain
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-5">
-            Most teams start at the far end &mdash; they pick some values, agree
-            to be better, and the words don&apos;t last. This session worked in
-            the other direction.
+            Most teams start at the far end. They pick some values, agree to be
+            better, and the words don&apos;t last. This session worked in the
+            other direction.
           </p>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-5">
             The room started with why Global Events exists at all, and only got
@@ -324,8 +323,7 @@ export default function YpoEventsPage() {
           </p>
           <p className="text-[1.05rem] text-[#4A4A4A] leading-relaxed max-w-[700px] font-medium">
             Everyone answered the hard questions independently first, then the
-            group converged. That&apos;s where the real disagreement surfaces
-            &mdash; and where the alignment becomes worth something.
+            group converged. That is where the real disagreement surfaces.
           </p>
         </div>
       </section>
@@ -339,19 +337,19 @@ export default function YpoEventsPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-10">
             This is not a team with a delivery problem. Event satisfaction sits
-            at <span className="text-[#1C1334] font-semibold">4.68</span>.
-            Attendance is solid. The experiences are, by any honest measure,
-            incredible. Global Events runs hard, runs well, and runs on budget.
+            at <span className="text-[#1C1334] font-semibold">4.68</span>,
+            attendance is solid, and the experiences are excellent. Global
+            Events runs hard and runs on budget.
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-5 mb-12">
+          <div className="grid sm:grid-cols-2 gap-5">
             <div className="bg-white rounded-2xl p-6 border border-[#E5E0DA]">
               <p className="text-xs font-semibold tracking-[0.12em] uppercase text-[#8A9590] mb-3">
                 What&apos;s true
               </p>
               <p className="text-[0.95rem] text-[#4A4A4A] leading-relaxed">
-                The team delivers experiences members genuinely can&apos;t get
-                anywhere else. The standard is already high and already met.
+                The team delivers experiences members can&apos;t get anywhere
+                else. The standard is high and it is being met.
               </p>
             </div>
             <div className="bg-white rounded-2xl p-6 border-2 border-[#6E3FCC]/20">
@@ -359,25 +357,16 @@ export default function YpoEventsPage() {
                 What&apos;s missing
               </p>
               <p className="text-[0.95rem] text-[#4A4A4A] leading-relaxed">
-                Being seen as strategic rather than operational &mdash; brought
-                in when the thinking happens, not when the work needs
-                executing.
+                Being seen as strategic rather than operational. Brought in when
+                the thinking happens, not when the work needs executing.
               </p>
             </div>
           </div>
-
-          <Blockquote
-            quote="Excellence that isn't recognized isn't a delivery problem. It's a trust and positioning problem — and it improves differently."
-            attribution="Session framing"
-          />
         </div>
       </section>
 
       {/* ════════ QUOTE: STRATEGIC OVER REACTIVE ════════ */}
-      <QuoteSection
-        line1="The word the team crossed out was &lsquo;reactive.&rsquo;"
-        line2="Strategic over reactive."
-      />
+      <QuoteSection line2="Strategic over Reactive" />
 
       {/* ════════ PEERDOM ════════ */}
       <section className="relative overflow-hidden py-20 md:py-28">
@@ -397,19 +386,18 @@ export default function YpoEventsPage() {
             Peerdom
           </h2>
           <p className="text-lg text-white/50 leading-relaxed max-w-[700px] mb-6">
-            In a normal corporate hierarchy the chief executive is always at the
-            top, and usually alone. Peerdom is the opposite condition &mdash;
-            leaders meeting strictly as equals, with the armor, the titles and
-            the bravado set down.
+            In a corporate hierarchy the chief executive is at the top, and
+            usually alone. Peerdom is the opposite: leaders meeting strictly as
+            equals, without the armor or the titles.
           </p>
           <p className="text-lg text-white/50 leading-relaxed max-w-[700px] mb-12">
-            It is the thing YPO is actually built on. And it is the thing this
-            team manufactures. Global Events doesn&apos;t produce events; it
-            produces the conditions in which peerdom happens &mdash;{" "}
+            It is what YPO is built on, and it is what this team creates. Global
+            Events doesn&apos;t produce events. It produces the conditions for
+            peerdom to happen{" "}
             <span className="text-white font-semibold">
               beyond the chapter
             </span>
-            , at a scale no single chapter could reach.
+            .
           </p>
 
           <div
@@ -420,14 +408,14 @@ export default function YpoEventsPage() {
             }}
           >
             <p className="text-white/60 text-[0.95rem] leading-relaxed mb-3">
-              Two words changed the purpose statement in the room:{" "}
+              Two words were added to the purpose statement in the room:{" "}
               <span className="text-white font-semibold">
                 beyond the chapter.
               </span>
             </p>
             <p className="text-white/40 text-sm">
-              A chapter is a member&apos;s home. Global Events is what extends
-              the peer world past it.
+              A chapter is a member&apos;s home. Global Events extends the peer
+              network past it.
             </p>
           </div>
         </div>
@@ -442,8 +430,8 @@ export default function YpoEventsPage() {
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
             Everyone answered independently, and the answers were not the same.
-            An hour later, the room had one statement it agreed on &mdash; in
-            its own words.
+            An hour later, the room had one statement it agreed on, in its own
+            words.
           </p>
 
           <div
@@ -467,9 +455,8 @@ export default function YpoEventsPage() {
             Better Leader. Better World.
           </p>
           <p className="text-[1.05rem] text-[#6B7370] leading-relaxed max-w-[700px]">
-            Better people, better leaders, a better world &mdash; that&apos;s
-            the ladder. Every experience this team builds is supposed to move
-            someone up it.
+            Better people, better leaders, a better world. Every experience this
+            team builds should move someone along that line.
           </p>
         </div>
       </section>
@@ -532,7 +519,7 @@ export default function YpoEventsPage() {
             Given that purpose, what is this team actually trying to do?
           </p>
 
-          <div className="space-y-3 mb-12">
+          <div className="space-y-3">
             {MISSION_BULLETS.map((bullet, i) => (
               <div
                 key={bullet}
@@ -548,10 +535,6 @@ export default function YpoEventsPage() {
             ))}
           </div>
 
-          <Blockquote
-            quote="Only @ YPO — experiences a member genuinely could not have anywhere else. It's not a slogan. It's the test."
-            attribution="The room's rallying phrase"
-          />
         </div>
       </section>
 
@@ -569,9 +552,8 @@ export default function YpoEventsPage() {
             What gets watched
           </h2>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
-            Lagging measures tell you whether it worked. Leading measures tell
-            you whether it&apos;s working. The team named both &mdash; targets
-            still to be set.
+            The team named the measures it will track. Targets are still to be
+            set.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -605,11 +587,23 @@ export default function YpoEventsPage() {
         <div className="max-w-[900px] mx-auto px-6">
           <SectionLabel>The Strategy</SectionLabel>
           <h2 className="text-2xl md:text-4xl font-bold text-[#1C1334] leading-tight mb-4">
-            Five imperatives, in priority order
+            What strategy actually means
           </h2>
+          <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-6">
+            Each person owns their outcomes, and predicts the moves needed to
+            achieve them. As information changes and other moves are made around
+            them, they adapt to that new information.
+          </p>
+          <p className="text-[1.05rem] text-[#4A4A4A] leading-relaxed max-w-[700px] font-medium mb-12">
+            Defining multiple steps ahead is what gives you confidence in the
+            first one.
+          </p>
+
+          <h3 className="text-xl md:text-2xl font-bold text-[#1C1334] leading-tight mb-4">
+            Five imperatives, in priority order
+          </h3>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
-            Each one has a name on it. That&apos;s the difference between a
-            strategy and a list.
+            Each one has an owner.
           </p>
 
           <div className="space-y-4">
@@ -661,9 +655,9 @@ export default function YpoEventsPage() {
             Respected. Bold. Intentional. Badass.
           </p>
           <p className="text-lg text-[#6B7370] leading-relaxed max-w-[700px] mb-12">
-            The room generated the words, then voted. These four survived. Each
-            one has to pass three tests to be real: would we coach it, would we
-            reward it, and would we correct its absence?
+            The room generated the words, then voted. These four came out on
+            top. Each one has to pass three tests to be real: would we coach it,
+            would we reward it, and would we correct its absence?
           </p>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -751,7 +745,7 @@ export default function YpoEventsPage() {
         </div>
       </section>
 
-      {/* ════════ CTA ════════ */}
+      {/* ════════ CLOSING ════════ */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div
           className="absolute inset-0"
@@ -771,23 +765,12 @@ export default function YpoEventsPage() {
         />
         <div className="relative z-10 max-w-[620px] mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight mb-5">
-            Keep the work
-            <br />
-            moving
+            Where this stands
           </h2>
-          <p className="text-lg text-white/60 leading-relaxed mb-10">
-            The purpose is written and the imperatives have owners. What holds
-            it together is the trust work and the cadence &mdash; and both are
-            still ahead of this team.
+          <p className="text-lg text-white/60 leading-relaxed">
+            The purpose is written and the five imperatives have owners. The
+            trust work and the cadence are still ahead of this team.
           </p>
-          <Link
-            href="https://calendly.com/getcampfire/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-[#E055CB] hover:bg-[#c94ab5] text-white font-bold px-8 py-4 rounded-full text-lg transition-colors duration-200"
-          >
-            Book a Conversation
-          </Link>
         </div>
       </section>
 
@@ -830,24 +813,7 @@ function SectionLabel({
   );
 }
 
-function Blockquote({
-  quote,
-  attribution,
-}: {
-  quote: string;
-  attribution: string;
-}) {
-  return (
-    <div className="border-l-[3px] border-[#9D88ED] pl-6 py-2">
-      <p className="text-[1.1rem] text-[#4A4A4A] leading-relaxed italic mb-2">
-        &ldquo;{quote}&rdquo;
-      </p>
-      <p className="text-sm text-[#8A9590]">&mdash; {attribution}</p>
-    </div>
-  );
-}
-
-function QuoteSection({ line1, line2 }: { line1: string; line2: string }) {
+function QuoteSection({ line1, line2 }: { line1?: string; line2: string }) {
   return (
     <section className="relative overflow-hidden py-20 md:py-24">
       <div
@@ -867,15 +833,21 @@ function QuoteSection({ line1, line2 }: { line1: string; line2: string }) {
         }}
       />
       <div className="relative z-10 max-w-[620px] mx-auto px-6 text-center">
-        <p className="text-white/40 text-6xl font-light leading-none mb-4">
-          &ldquo;
-        </p>
+        {line1 && (
+          <>
+            <p className="text-white/40 text-6xl font-light leading-none mb-4">
+              &ldquo;
+            </p>
+            <p
+              className="text-xl md:text-2xl font-light text-white/80 leading-relaxed mb-2"
+              dangerouslySetInnerHTML={{ __html: line1 }}
+            />
+          </>
+        )}
         <p
-          className="text-xl md:text-2xl font-light text-white/80 leading-relaxed mb-2"
-          dangerouslySetInnerHTML={{ __html: line1 }}
-        />
-        <p
-          className="text-xl md:text-2xl font-bold text-white leading-relaxed"
+          className={`font-bold text-white leading-tight ${
+            line1 ? "text-xl md:text-2xl" : "text-3xl md:text-5xl"
+          }`}
           dangerouslySetInnerHTML={{ __html: line2 }}
         />
       </div>
