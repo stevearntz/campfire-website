@@ -78,7 +78,7 @@ const IMPERATIVES = [
   {
     step: 4,
     title: "Champions",
-    owner: "Jeff",
+    owner: "Jeff & Michele",
     description:
       "Champion excellence. Set the standard across the portfolio and hold the team to it.",
     color: "#7C3AED",
