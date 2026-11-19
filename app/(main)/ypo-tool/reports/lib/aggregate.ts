@@ -16,9 +16,11 @@ export interface CircleAgg {
   key: string;
   title: string;
   color: string;
-  selfSum: number; // /18
-  peerSum: number; // /18
+  selfSum: number; // /18 team mean
+  peerSum: number; // /18 team mean
   gap: number; // selfSum − peerSum
+  selfValues: number[]; // per-member self circle sums (/18) — for distribution
+  peerValues: number[]; // per-member peer-avg circle sums (/18)
   behaviors: BehaviorAgg[];
 }
 export interface TeamAggregate {
@@ -102,7 +104,13 @@ export async function getTeamAggregate(): Promise<TeamAggregate> {
       .filter((s) => s > 0);
     const selfSum = round1(mean(selfSums));
     const peerSum = round1(mean(peerSums));
-    return { key: c.key, title: c.title, color: c.color, selfSum, peerSum, gap: round1(selfSum - peerSum), behaviors };
+    return {
+      key: c.key, title: c.title, color: c.color, selfSum, peerSum,
+      gap: round1(selfSum - peerSum),
+      selfValues: selfSums.map(round1),
+      peerValues: peerSums.map(round1),
+      behaviors,
+    };
   });
 
   return {
