@@ -33,12 +33,14 @@ export async function getTeamAggregate(): Promise<TeamAggregate> {
   const { neon } = await import("@neondatabase/serverless");
   const sql = neon(process.env.POSTGRES_URL!);
 
-  // Real YPO members with a completed self-assessment.
+  // Latest completed self-assessment per real YPO member — "where the group
+  // stands" reflects each person's most recent state, one row per member.
   const assessments = (await sql`
-    SELECT a.id, u.id AS user_id
+    SELECT DISTINCT ON (u.id) a.id, u.id AS user_id
     FROM ypo_assessment a
     JOIN ypo_users u ON u.id = a.user_id
     WHERE a.status = 'complete' AND lower(u.email) LIKE '%@ypo.org'
+    ORDER BY u.id, a.created_at DESC
   `) as { id: number; user_id: number }[];
 
   // Per member: self item values, and per-item list of peer means.
@@ -57,11 +59,22 @@ export async function getTeamAggregate(): Promise<TeamAggregate> {
     `) as { id: number }[];
     const memberPeer: Record<string, number[]> = {};
     if (inv.length) {
+      // One response per rater — their most recent. A rater can re-rate over
+      // time (progress tracking); the current snapshot uses only their latest.
       const prs = (await sql`
-        SELECT id FROM ypo_peer_response WHERE invite_id = ${inv[0].id} AND status = 'complete'
-      `) as { id: number }[];
-      peerResponses += prs.length;
-      for (const pr of prs) {
+        SELECT id, rater_name, completed_at FROM ypo_peer_response
+        WHERE invite_id = ${inv[0].id} AND status = 'complete'
+        ORDER BY completed_at DESC NULLS LAST
+      `) as { id: number; rater_name: string | null; completed_at: string | null }[];
+      const seen = new Set<string>();
+      const latest = prs.filter((pr) => {
+        const key = (pr.rater_name || "").trim().toLowerCase() || `__id${pr.id}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+      peerResponses += latest.length;
+      for (const pr of latest) {
         const ans = (await sql`
           SELECT item_key, value FROM ypo_peer_answer WHERE peer_response_id = ${pr.id}
         `) as { item_key: string; value: number }[];
