@@ -33,7 +33,7 @@ function gapLabel(gap: number): { text: string; color: string; bg: string } {
 
 function Bar({ value, color }: { value: number; color: string }) {
   return (
-    <div style={{ height: 8, borderRadius: 4, background: "#EEE9F6", overflow: "hidden" }}>
+    <div style={{ height: 8, borderRadius: 4, background: "#D4CBE8", overflow: "hidden" }}>
       <div style={{ width: `${(value / 18) * 100}%`, height: "100%", background: color, borderRadius: 4 }} />
     </div>
   );
@@ -57,9 +57,9 @@ function BehaviorTrack({ self, peer, showSelf }: { self: number; peer: number; s
   return (
     <div style={{ position: "relative", height: 18, padding: "0 6px" }}>
       <div style={{ position: "relative", height: "100%" }}>
-        <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 2, background: "#EEE9F6", borderRadius: 2 }} />
+        <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 2, background: "#D4CBE8", borderRadius: 2 }} />
         {showSelf && (
-          <div style={{ position: "absolute", top: 8, left: `${lo}%`, width: `${hi - lo}%`, height: 2, background: "#D9D2EA" }} />
+          <div style={{ position: "absolute", top: 8, left: `${lo}%`, width: `${hi - lo}%`, height: 2, background: "#B3A8CF" }} />
         )}
         <Dot pos={p} color={PEER} />
         {showSelf && <Dot pos={s} color={SELF} />}
@@ -76,7 +76,7 @@ function Switch({ on, onChange }: { on: boolean; onChange: (v: boolean) => void 
       onClick={() => onChange(!on)}
       style={{
         width: 36, height: 20, borderRadius: 999, flex: "none",
-        background: on ? SELF : "#D9D2EA", position: "relative", transition: "background .15s",
+        background: on ? SELF : "#B3A8CF", position: "relative", transition: "background .15s",
       }}
     >
       <span
@@ -95,7 +95,7 @@ function ValueCard({ c, showSelf }: { c: CircleAgg; showSelf: boolean }) {
   return (
     <div
       className="rounded-2xl p-5"
-      style={{ background: "#fff", border: "1px solid #EEE9F6", boxShadow: "0 14px 30px -26px rgba(28,19,52,0.35)" }}
+      style={{ background: "#fff", border: "1px solid #D4CBE8", boxShadow: "0 14px 30px -26px rgba(28,19,52,0.35)" }}
     >
       <div className="flex items-center gap-2 mb-4">
         <span style={{ width: 11, height: 11, borderRadius: "50%", background: c.color, display: "inline-block" }} />
@@ -182,7 +182,7 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
         </h1>
         <div
           className="flex flex-wrap gap-x-6 gap-y-1 rounded-xl px-4 py-3 mb-8"
-          style={{ background: "#F8F6FB", border: "1px solid #EEE9F6", fontSize: 13.5, color: "#636B7C" }}
+          style={{ background: "#F8F6FB", border: "1px solid #D4CBE8", fontSize: 13.5, color: "#636B7C" }}
         >
           <span><b style={{ color: "#1E2A4A" }}>{coverage.members}</b> members</span>
           <span><b style={{ color: "#1E2A4A" }}>{coverage.peerResponses}</b> peer responses</span>
@@ -194,7 +194,7 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
       {/* Sticky section nav + toggle */}
       <div
         className="sticky z-30 border-b"
-        style={{ top: 64, background: "rgba(255,255,255,0.94)", backdropFilter: "blur(6px)", borderColor: "#EEE9F6" }}
+        style={{ top: 64, background: "rgba(255,255,255,0.94)", backdropFilter: "blur(6px)", borderColor: "#D4CBE8" }}
       >
         <div className="max-w-4xl mx-auto px-6 flex items-center gap-5" style={{ height: 48, overflowX: "auto" }}>
           {SECTIONS.map((s) => (
@@ -230,11 +230,11 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
             <div>
               <svg viewBox={`-54 -6 ${SIZE + 108} ${SIZE + 12}`} width="100%" style={{ maxWidth: 320 }}>
                 {[1 / 3, 2 / 3, 1].map((s) => (
-                  <polygon key={s} points={ring(s)} fill="none" stroke="#EEE9F6" strokeWidth={1} />
+                  <polygon key={s} points={ring(s)} fill="none" stroke="#D4CBE8" strokeWidth={1} />
                 ))}
                 {ANGLES.map((a, i) => {
                   const [x, y] = xy(a, RAD);
-                  return <line key={i} x1={CXY} y1={CXY} x2={x} y2={y} stroke="#EEE9F6" strokeWidth={1} />;
+                  return <line key={i} x1={CXY} y1={CXY} x2={x} y2={y} stroke="#D4CBE8" strokeWidth={1} />;
                 })}
                 <polygon points={peerPts} fill="rgba(224,85,203,0.10)" stroke={PEER} strokeWidth={2} strokeDasharray="5 4" />
                 {showSelf && (
@@ -271,7 +271,7 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
 
         {/* ── Report 2 — Behavior breakdown ── */}
         <section id="behaviors" style={sectionStyle} className="mt-20 pt-10" >
-          <div style={{ borderTop: "1px solid #EEE9F6" }} className="pt-10">
+          <div style={{ borderTop: "1px solid #D4CBE8" }} className="pt-10">
             <h2 className="font-extrabold mb-1" style={{ fontSize: 22, color: "#1E2A4A" }}>
               Inside each value — the twelve behaviors
             </h2>
@@ -298,15 +298,15 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
                     <span style={{ width: 11, height: 11, borderRadius: "50%", background: c.color, display: "inline-block" }} />
                     <span className="font-extrabold" style={{ fontSize: 16, color: "#1E2A4A" }}>{c.title}</span>
                   </div>
-                  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #EEE9F6" }}>
+                  <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #D4CBE8" }}>
                     {c.behaviors.map((b, i) => (
                       <div
                         key={b.key}
                         className="grid items-center gap-x-4 gap-y-2 px-4 py-3"
                         style={{
                           gridTemplateColumns: "minmax(0,1fr) 160px 108px",
-                          borderTop: i ? "1px solid #F4F1F9" : "none",
-                          background: i % 2 ? "#FCFBFE" : "#fff",
+                          borderTop: i ? "1px solid #E7E0F3" : "none",
+                          background: i % 2 ? "#F5F1FB" : "#fff",
                         }}
                       >
                         <p style={{ fontSize: 14, color: "#1E2A4A", lineHeight: 1.45 }}>{b.text}</p>
