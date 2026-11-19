@@ -10,6 +10,7 @@ const ALL_SECTIONS = [
   { id: "overview", label: "Where the group stands", needsSelf: false },
   { id: "behaviors", label: "The twelve behaviors", needsSelf: false },
   { id: "gaps", label: "Blind spots & strengths", needsSelf: true },
+  { id: "spread", label: "The spread", needsSelf: false },
 ];
 const THRESH = 0.3; // min self↔peer gap (1–6 scale) to flag a behavior
 
@@ -181,6 +182,52 @@ function GapRow({ item, dir, i }: { item: GapItem; dir: "hidden" | "blind"; i: n
           {dir === "hidden" ? "+" : "−"}{mag.toFixed(1)}
         </div>
         <div style={{ fontSize: 11, color: "#A8A2B3" }}>{item.self.toFixed(1)} → {item.peer.toFixed(1)}</div>
+      </div>
+    </div>
+  );
+}
+
+function DistributionStrip({ c, showSelf }: { c: CircleAgg; showSelf: boolean }) {
+  const LO = 9, HI = 18;
+  const pos = (v: number) => Math.max(0, Math.min(100, ((v - LO) / (HI - LO)) * 100));
+  const ticks = [9, 12, 15, 18];
+  const peer = c.peerValues;
+  const lo = peer.length ? Math.min(...peer) : 0;
+  const hi = peer.length ? Math.max(...peer) : 0;
+  const range = hi - lo;
+  const spread =
+    range <= 2 ? { t: "Tightly aligned", col: "#1F8A8A", bg: "#E9F6F6" }
+    : range <= 4 ? { t: "Some spread", col: "#9A6F00", bg: "#FBF0DC" }
+    : { t: "Widely spread", col: "#B23B9F", bg: "#FBEEF8" };
+  const H = showSelf ? 52 : 34;
+  const peerY = showSelf ? 34 : 17;
+  const selfY = 15;
+
+  const Dot = ({ v, y, color }: { v: number; y: number; color: string }) => (
+    <div style={{ position: "absolute", left: `${pos(v)}%`, top: y, transform: "translate(-50%,-50%)", width: 12, height: 12, borderRadius: "50%", background: color, opacity: 0.5 }} />
+  );
+
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-2 flex-wrap">
+        <span style={{ width: 11, height: 11, borderRadius: "50%", background: c.color, display: "inline-block" }} />
+        <span className="font-extrabold" style={{ fontSize: 16, color: "#1E2A4A" }}>{c.title}</span>
+        <span className="font-bold uppercase" style={{ fontSize: 10.5, letterSpacing: "0.04em", color: spread.col, background: spread.bg, padding: "3px 8px", borderRadius: 999 }}>
+          {spread.t}
+        </span>
+        <span className="ml-auto tabular-nums" style={{ fontSize: 12.5, color: "#636B7C" }}>
+          avg <b style={{ color: "#1E2A4A" }}>{c.peerSum.toFixed(1)}</b> · range {lo.toFixed(1)}–{hi.toFixed(1)}
+        </span>
+      </div>
+      <div style={{ position: "relative", height: H }}>
+        {ticks.map((t) => (
+          <div key={t} style={{ position: "absolute", left: `${pos(t)}%`, top: 0, bottom: 14, width: 1, background: "#E7E0F3" }} />
+        ))}
+        {showSelf && c.selfValues.map((v, i) => <Dot key={`s${i}`} v={v} y={selfY} color={SELF} />)}
+        {peer.map((v, i) => <Dot key={`p${i}`} v={v} y={peerY} color={PEER} />)}
+        {ticks.map((t) => (
+          <div key={`l${t}`} style={{ position: "absolute", left: `${pos(t)}%`, bottom: 0, transform: "translateX(-50%)", fontSize: 10.5, color: "#A8A2B3" }}>{t}</div>
+        ))}
       </div>
     </div>
   );
@@ -449,6 +496,24 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
             </div>
           </section>
         )}
+
+        {/* ── Report 4 — The spread ── */}
+        <section id="spread" style={sectionStyle} className="mt-20 pt-10">
+          <div style={{ borderTop: "1px solid #D4CBE8" }} className="pt-10">
+            <h2 className="font-extrabold mb-1" style={{ fontSize: 22, color: "#1E2A4A" }}>
+              The spread
+            </h2>
+            <p className="mb-8" style={{ fontSize: 15.5, color: "#636B7C", lineHeight: 1.6, maxWidth: 660 }}>
+              Averages hide how aligned or scattered the group is. Each dot is one member’s score for
+              that value — a tight cluster means the cohort shares the experience, a wide scatter means
+              it’s mixed. {showSelf ? "Peers in pink, self in purple." : "Peer scores."} Scale 9–18;
+              darker dots are members stacked on the same score.
+            </p>
+            <div className="grid gap-7">
+              {circles.map((c) => <DistributionStrip key={c.key} c={c} showSelf={showSelf} />)}
+            </div>
+          </div>
+        </section>
 
         <p className="mt-16" style={{ fontSize: 12.5, color: "#A8A2B3", lineHeight: 1.5, maxWidth: 640 }}>
           A snapshot of where the group stands now: each person’s most recent response counts (a
