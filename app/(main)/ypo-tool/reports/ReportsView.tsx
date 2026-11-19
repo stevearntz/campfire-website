@@ -6,10 +6,12 @@ import type { TeamAggregate, CircleAgg } from "./lib/aggregate";
 const SELF = "#6E3FCC";
 const PEER = "#E055CB";
 
-const SECTIONS = [
-  { id: "overview", label: "Where the group stands" },
-  { id: "behaviors", label: "The twelve behaviors" },
+const ALL_SECTIONS = [
+  { id: "overview", label: "Where the group stands", needsSelf: false },
+  { id: "behaviors", label: "The twelve behaviors", needsSelf: false },
+  { id: "gaps", label: "Blind spots & strengths", needsSelf: true },
 ];
+const THRESH = 0.3; // min self↔peer gap (1–6 scale) to flag a behavior
 
 // ── Radar geometry (Joy top, Trust right, Power bottom, Partnership left) ──
 const SIZE = 300;
@@ -142,10 +144,54 @@ function ValueCard({ c, showSelf }: { c: CircleAgg; showSelf: boolean }) {
   );
 }
 
+interface GapItem {
+  circle: string;
+  color: string;
+  text: string;
+  self: number;
+  peer: number;
+  gap: number; // peer − self
+}
+
+function GapRow({ item, dir, i }: { item: GapItem; dir: "hidden" | "blind"; i: number }) {
+  const mag = Math.abs(item.gap);
+  const barColor = dir === "hidden" ? "#1F8A8A" : "#B23B9F";
+  const pct = Math.min(mag / 1.5, 1) * 100;
+  return (
+    <div
+      className="grid items-center gap-x-3 px-4 py-3"
+      style={{
+        gridTemplateColumns: "minmax(0,1fr) 72px 86px",
+        borderTop: i ? "1px solid #E7E0F3" : "none",
+        background: i % 2 ? "#F5F1FB" : "#fff",
+      }}
+    >
+      <div className="flex items-start gap-2">
+        <span style={{ width: 9, height: 9, borderRadius: "50%", background: item.color, marginTop: 5, flex: "none" }} />
+        <div>
+          <p style={{ fontSize: 13.5, color: "#1E2A4A", lineHeight: 1.4 }}>{item.text}</p>
+          <p className="uppercase" style={{ fontSize: 10.5, letterSpacing: "0.05em", color: "#A8A2B3", marginTop: 1 }}>{item.circle}</p>
+        </div>
+      </div>
+      <div style={{ height: 6, borderRadius: 3, background: "#D4CBE8", overflow: "hidden" }}>
+        <div style={{ width: `${pct}%`, height: "100%", background: barColor, borderRadius: 3 }} />
+      </div>
+      <div className="text-right tabular-nums">
+        <div className="font-extrabold" style={{ fontSize: 15, color: barColor }}>
+          {dir === "hidden" ? "+" : "−"}{mag.toFixed(1)}
+        </div>
+        <div style={{ fontSize: 11, color: "#A8A2B3" }}>{item.self.toFixed(1)} → {item.peer.toFixed(1)}</div>
+      </div>
+    </div>
+  );
+}
+
 export default function ReportsView({ data }: { data: TeamAggregate }) {
   const { coverage, circles } = data;
   const [showSelf, setShowSelf] = useState(true);
-  const [active, setActive] = useState(SECTIONS[0].id);
+  const [active, setActive] = useState(ALL_SECTIONS[0].id);
+
+  const sections = ALL_SECTIONS.filter((s) => showSelf || !s.needsSelf);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -156,12 +202,14 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
       },
       { rootMargin: "-30% 0px -55% 0px" },
     );
-    SECTIONS.forEach((s) => {
+    sections.forEach((s) => {
       const el = document.getElementById(s.id);
       if (el) obs.observe(el);
     });
     return () => obs.disconnect();
-  }, []);
+    // Re-observe when section visibility changes with the toggle.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSelf]);
 
   const jump = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -169,6 +217,20 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
   const selfPts = poly(circles.map((c) => c.selfSum));
   const peerPts = poly(circles.map((c) => c.peerSum));
   const sectionStyle = { scrollMarginTop: 120 } as const;
+
+  // ── Report 3 — gaps across all 12 behaviors ──
+  const gapItems: GapItem[] = circles.flatMap((c) =>
+    c.behaviors.map((b) => ({
+      circle: c.title,
+      color: c.color,
+      text: b.text,
+      self: b.selfMean,
+      peer: b.peerMean,
+      gap: Math.round((b.peerMean - b.selfMean) * 10) / 10,
+    })),
+  );
+  const hidden = gapItems.filter((g) => g.gap >= THRESH).sort((a, b) => b.gap - a.gap);
+  const blind = gapItems.filter((g) => g.gap <= -THRESH).sort((a, b) => a.gap - b.gap);
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-white">
@@ -197,7 +259,7 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
         style={{ top: 64, background: "rgba(255,255,255,0.94)", backdropFilter: "blur(6px)", borderColor: "#D4CBE8" }}
       >
         <div className="max-w-4xl mx-auto px-6 flex items-center gap-5" style={{ height: 48, overflowX: "auto" }}>
-          {SECTIONS.map((s) => (
+          {sections.map((s) => (
             <button
               key={s.id}
               onClick={() => jump(s.id)}
@@ -328,6 +390,65 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
             </div>
           </div>
         </section>
+
+        {/* ── Report 3 — Blind spots & hidden strengths ── */}
+        {showSelf && (
+          <section id="gaps" style={sectionStyle} className="mt-20 pt-10">
+            <div style={{ borderTop: "1px solid #D4CBE8" }} className="pt-10">
+              <h2 className="font-extrabold mb-1" style={{ fontSize: 22, color: "#1E2A4A" }}>
+                Blind spots &amp; hidden strengths
+              </h2>
+              <p className="mb-8" style={{ fontSize: 15.5, color: "#636B7C", lineHeight: 1.6, maxWidth: 660 }}>
+                The behaviors with the widest distance between how the group rates itself and how peers
+                rate them, ranked. <b style={{ color: "#1F8A8A" }}>Hidden strengths</b> are where peers
+                see more than the group gives itself credit for; <b style={{ color: "#B23B9F" }}>blind
+                spots</b> are where the group rates itself higher than peers do.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-8">
+                {/* Hidden strengths */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#1F8A8A", display: "inline-block" }} />
+                    <span className="font-extrabold" style={{ fontSize: 16, color: "#1E2A4A" }}>Hidden strengths</span>
+                    <span style={{ fontSize: 12.5, color: "#A8A2B3" }}>peers rate higher</span>
+                  </div>
+                  {hidden.length ? (
+                    <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #D4CBE8" }}>
+                      {hidden.map((g, i) => <GapRow key={g.text} item={g} dir="hidden" i={i} />)}
+                    </div>
+                  ) : (
+                    <p className="rounded-2xl p-4" style={{ border: "1px solid #D4CBE8", fontSize: 13.5, color: "#636B7C" }}>
+                      No standout hidden strengths — self and peer views are close across the board.
+                    </p>
+                  )}
+                </div>
+
+                {/* Blind spots */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#B23B9F", display: "inline-block" }} />
+                    <span className="font-extrabold" style={{ fontSize: 16, color: "#1E2A4A" }}>Possible blind spots</span>
+                    <span style={{ fontSize: 12.5, color: "#A8A2B3" }}>group rates itself higher</span>
+                  </div>
+                  {blind.length ? (
+                    <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #D4CBE8" }}>
+                      {blind.map((g, i) => <GapRow key={g.text} item={g} dir="blind" i={i} />)}
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl p-5" style={{ background: "#E9F6F6", border: "1px solid #CDE9E9" }}>
+                      <p className="font-bold mb-1" style={{ fontSize: 14.5, color: "#1F6E6E" }}>None — a notably humble group.</p>
+                      <p style={{ fontSize: 13.5, color: "#3E7A7A", lineHeight: 1.5 }}>
+                        On every behavior, the group rates itself at or below how its peers see it. There’s
+                        no area where the cohort collectively overestimates itself.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         <p className="mt-16" style={{ fontSize: 12.5, color: "#A8A2B3", lineHeight: 1.5, maxWidth: 640 }}>
           A snapshot of where the group stands now: each person’s most recent response counts (a
