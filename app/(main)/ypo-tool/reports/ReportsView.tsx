@@ -31,6 +31,34 @@ function Bar({ value, color }: { value: number; color: string }) {
   );
 }
 
+// A 1–6 dumbbell: self and peer dots with the gap drawn between them.
+function Dot({ pos, color }: { pos: number; color: string }) {
+  return (
+    <div
+      style={{
+        position: "absolute", top: 3, left: `${pos}%`, transform: "translateX(-50%)",
+        width: 12, height: 12, borderRadius: "50%", background: color,
+        border: "2px solid #fff", boxShadow: `0 0 0 1px ${color}`,
+      }}
+    />
+  );
+}
+function BehaviorTrack({ self, peer }: { self: number; peer: number }) {
+  const pos = (v: number) => ((Math.max(1, Math.min(6, v)) - 1) / 5) * 100;
+  const s = pos(self), p = pos(peer);
+  const lo = Math.min(s, p), hi = Math.max(s, p);
+  return (
+    <div style={{ position: "relative", height: 18, padding: "0 6px" }}>
+      <div style={{ position: "relative", height: "100%" }}>
+        <div style={{ position: "absolute", top: 8, left: 0, right: 0, height: 2, background: "#EEE9F6", borderRadius: 2 }} />
+        <div style={{ position: "absolute", top: 8, left: `${lo}%`, width: `${hi - lo}%`, height: 2, background: "#D9D2EA" }} />
+        <Dot pos={p} color={PEER} />
+        <Dot pos={s} color={SELF} />
+      </div>
+    </div>
+  );
+}
+
 function ValueCard({ c }: { c: CircleAgg }) {
   const g = gapLabel(c.gap);
   return (
@@ -148,6 +176,59 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
           {/* Value cards */}
           <div className="grid sm:grid-cols-2 gap-4">
             {circles.map((c) => <ValueCard key={c.key} c={c} />)}
+          </div>
+        </div>
+
+        {/* Report 2 — Behavior breakdown */}
+        <div className="mt-20 pt-10" style={{ borderTop: "1px solid #EEE9F6" }}>
+          <h2 className="font-extrabold mb-1" style={{ fontSize: 22, color: "#1E2A4A" }}>
+            Inside each value — the twelve behaviors
+          </h2>
+          <p className="mb-6" style={{ fontSize: 15.5, color: "#636B7C", lineHeight: 1.6, maxWidth: 640 }}>
+            Each value is three specific behaviors. Here’s self versus peers on each — on the 1–6
+            rating scale — so you can see which behaviors are driving the numbers above and where the
+            widest gaps sit.
+          </p>
+          <div className="flex items-center gap-5 mb-8" style={{ fontSize: 12.5, color: "#636B7C" }}>
+            <span className="flex items-center gap-1.5">
+              <span style={{ width: 11, height: 11, borderRadius: "50%", background: SELF, display: "inline-block" }} /> Self
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span style={{ width: 11, height: 11, borderRadius: "50%", background: PEER, display: "inline-block" }} /> Peers
+            </span>
+            <span style={{ color: "#A8A2B3" }}>scale 1–6</span>
+          </div>
+
+          <div className="grid gap-8">
+            {circles.map((c) => (
+              <div key={c.key}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span style={{ width: 11, height: 11, borderRadius: "50%", background: c.color, display: "inline-block" }} />
+                  <span className="font-extrabold" style={{ fontSize: 16, color: "#1E2A4A" }}>{c.title}</span>
+                </div>
+                <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid #EEE9F6" }}>
+                  {c.behaviors.map((b, i) => (
+                    <div
+                      key={b.key}
+                      className="grid items-center gap-x-4 gap-y-2 px-4 py-3"
+                      style={{
+                        gridTemplateColumns: "minmax(0,1fr) 160px 108px",
+                        borderTop: i ? "1px solid #F4F1F9" : "none",
+                        background: i % 2 ? "#FCFBFE" : "#fff",
+                      }}
+                    >
+                      <p style={{ fontSize: 14, color: "#1E2A4A", lineHeight: 1.45 }}>{b.text}</p>
+                      <BehaviorTrack self={b.selfMean} peer={b.peerMean} />
+                      <div className="text-right tabular-nums" style={{ fontSize: 12.5 }}>
+                        <span style={{ color: SELF, fontWeight: 700 }}>{b.selfMean.toFixed(1)}</span>
+                        <span style={{ color: "#C9C4D4" }}> · </span>
+                        <span style={{ color: PEER, fontWeight: 700 }}>{b.peerMean.toFixed(1)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
