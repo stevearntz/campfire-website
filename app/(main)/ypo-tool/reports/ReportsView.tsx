@@ -152,9 +152,10 @@ export default function ReportsView({ data }: { data: TeamAggregate }) {
         </div>
 
         <p className="mt-12" style={{ fontSize: 12.5, color: "#A8A2B3", lineHeight: 1.5, maxWidth: 640 }}>
-          Each member is weighted equally — a member’s peer score is the average of their own peers,
-          so someone with ten raters doesn’t outweigh someone with two. Real YPO members only; test
-          accounts excluded.
+          A snapshot of where the group stands now: each person’s most recent response counts (a
+          member’s latest self-assessment, each rater’s latest rating). Each member is weighted
+          equally — their peer score is the average of their own peers, so someone with ten raters
+          doesn’t outweigh someone with two. Real YPO members only; test accounts excluded.
         </p>
       </div>
     </div>
